@@ -1,0 +1,460 @@
+<!-- snippets/product__options.liquid -->
+{% comment %} 
+  Add to cart block for product sections. Includes quantity selector, variant picker, subscription options and addtional content. 
+
+  Accepts:
+    - blocksettings: liquid object of block settings
+    - featured: boolean to assign product object from section settings, set this to true if block is used within a section rather than product template
+  
+  Usage:
+    {% render 'product__options', 
+      blocksettings: block.settings, 
+      featured: true %}
+
+  Globals:
+    - settings.product_variant_selection: set variants style to dropdown or buttons
+    - settings.product_color_selection: set color option picker style to dropdown, buttons or swatches
+    - settings.type_seperator: setting to pick the type of seperator between text
+
+  Possible enhancements:
+    - Include nesting container within snippet.
+{% endcomment %}
+
+{% if featured %}
+  {%- assign product = section.settings.product -%}
+{% endif %}
+{% if bundle %}
+  {%- assign product = item -%}
+{% endif %}
+
+{%- comment -%}variants{%- endcomment -%}
+<div class="flex flex-wrap px-4 no-js--hide
+  {% if product.has_only_default_variant %}
+    hidden
+  {% endif %}">
+
+  <p class="type--small mb-2"
+    x-show="choosing && buttonDisabled"
+    x-cloak>
+    {{ 'products.general.options_prompt' | t }}
+  </p>
+
+  {% for product_option in product.options_with_values %}
+    <div class="w-full">
+
+      <div class="flex justify-between mb-2">
+
+        {% comment %} option label {% endcomment %}
+        <label 
+          class="type--smaller flex opacity-75" 
+          for="{{ product.id }}-{{ product_option.name | handle | remove: '-' }}">
+          {{ product_option.name }}
+          {% for value in product_option.values %}
+            <span x-model="{{ product_option.name | handle | remove: '-' }}" class="ml-1"
+              :class="{ 
+                'inline' : {{ product_option.name | handle | remove: '-' }} == `{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}`,
+                'hidden' : {{ product_option.name | handle | remove: '-' }} != `{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}`,
+              }" 
+              x-cloak>: {{ value }}</span>
+          {% endfor %}
+        </label>
+
+        {% comment %} option popup {% endcomment %}
+        {% capture option_handle %}{{ product_option.name | handle | remove: '-' }}{% endcapture %}
+        {% for block in section.blocks %}
+          {%- case block.type -%}
+            {%- when 'popup' -%}
+              {% if block.settings.option == option_handle %}
+                
+                <div x-data="{ drawer: false }">
+                  <button class="type--smaller flex underline opacity-75"
+                    type="button"  
+                    @click="drawer = true; hide_header = true;">
+                    {{ block.settings.title }}
+                  </button>
+                  {% capture drawer_content %}
+                    <div class="border--b-width color__border-divider-1 color__bg-body sticky top-0 flex flex-wrap items-center justify-between px-4 py-2">
+                      <div>
+                        <button class="btn btn--plain btn--smaller" 
+                          type="button"
+                          title="{{ 'general.navigation.close' | t }}"
+                          @click="drawer = false; hide_header = false;">
+                          {% render 'component__icon', icon: 'x', size: '24', class: '' %}
+                        </button>
+                      </div>
+                      <div class="text-right">
+                        {{ block.settings.title }}
+                      </div>
+                    </div>
+                    <div class="p-4">
+                      {{ block.settings.page.content }}
+                    </div>
+                  {% endcapture %}
+                  {% render 'component__drawer', 
+                    drawer_id: 'drawer',
+                    position: 'right',
+                    content: drawer_content %}
+                </div>
+                
+              {% endif %}
+          {%- endcase -%}
+        {% endfor %}
+        
+      </div>
+      
+      {%- assign color =  'general.color.color' | t -%}
+      {%- assign colorDowncase =  color | downcase -%}
+      
+      {% comment %} Color options {% endcomment %}
+      {%- if product_option.name == color or 
+        product_option.name == colorDowncase or 
+        product_option.name == "Colour" or 
+        product_option.name == "colour" -%}
+
+        {% comment %} Swatches {% endcomment %}
+        {% if settings.product_color_selection == 'swatches' %}
+          <div class="flex flex-wrap w-full gap-2 
+            {% if forloop.index == forloop.length %}mb-0{% else %}mb-4{% endif %}">
+            {% for value in product_option.values %}
+              {%- capture swatch_image_filename -%}swatch-{{ value | handle }}.jpg{%- endcapture -%}
+              {% assign swatch_image = images[swatch_image_filename] %}
+              <button id="option-{{ product_option.position }}" name="{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}" aria-label="{{ value }}" type="button" 
+                class="btn btn--plain btn--small bg-center !w-8 !h-8 !min-w-0 !min-h-0"
+                :class="{ 
+                  'btn--plain border--focus' : {{ product_option.name | handle | remove: '-' }} == `{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}`,
+                  'btn--plain' : {{ product_option.name | handle | remove: '-' }} != `{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}`,
+                }"
+                style="
+                  background-color: {{ value | handle }};
+                  {% if swatch_image contains '.jpg' %}
+                    background-image: url('{{ swatch_image | image_url }}');
+                  {% endif %}
+                "
+                @click="{{ product_option.name | handle | remove: '-' }} = `{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}`; handleForm();">
+              </button>
+            {% endfor %}
+          </div>
+
+        {% comment %} Buttons {% endcomment %}
+        {% elsif settings.product_color_selection == 'buttons' %}
+          <div class="flex flex-wrap w-full gap-2 
+            {% if forloop.index == forloop.length %}mb-0{% else %}mb-4{% endif %}">
+            {% for value in product_option.values %}
+
+            
+
+              <button id="option-{{ product_option.position }}" name="{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}" type="button" 
+                class="btn btn--plain btn--small"
+                :class="{ 
+                  'btn--plain border--focus' : {{ product_option.name | handle | remove: '-' }} == `{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}`,
+                  'btn--plain' : {{ product_option.name | handle | remove: '-' }} != `{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}`,
+                }"
+                @click="{{ product_option.name | handle | remove: '-' }} = `{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}`; handleForm();">
+                {{ value }}
+              </button>
+            {% endfor %}
+          </div>
+
+        {% comment %} Select {% endcomment %}
+        {% else %}
+          <select 
+            id="{{ product.id }}-{{ product_option.name | handle | remove: '-' }}" 
+            name="select-option-{{ product_option.position }}"
+            class="{% if forloop.index == forloop.length %}mb-0{% else %}mb-4{% endif %}" 
+            :class="{ '!border-rose-500': choosing }" 
+            @change="handleForm()" 
+            x-model="{{ product_option.name | handle | remove: '-' }}">
+            <option disabled selected value="">{{ 'products.general.choose_option' | t }}</option>
+            {% for value in product_option.values %}
+              <option value="{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}">
+                {{ value }} 
+              </option>
+            {% endfor %}
+          </select>
+          
+        {% endif %}
+      
+      {% comment %} Not colors {% endcomment %}
+      {% else %}
+
+        {% comment %} Dropdowns {% endcomment %}
+        {% if settings.product_variant_selection == 'dropdowns' %}
+          <select 
+            id="{{ product.id }}-{{ product_option.name | handle | remove: '-' }}" 
+            name="select-option-{{ product_option.position }}"
+            class="{% if forloop.index == forloop.length %}mb-0{% else %}mb-4{% endif %}" 
+            :class="{ '!border-rose-500': choosing }" 
+            @change="handleForm()" 
+            x-model="{{ product_option.name | handle | remove: '-' }}">
+            <option disabled selected value="">{{ 'products.general.choose_option' | t }}</option>
+            {% for value in product_option.values %}
+              <option value="{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}">
+                {{ value }} 
+              </option>
+            {% endfor %}
+          </select>
+        
+        {% comment %} Buttons {% endcomment %}
+        {% else %}
+          <div 
+            class="flex flex-wrap w-full gap-2 
+            {% if forloop.index == forloop.length %}mb-0{% else %}mb-4{% endif %}">
+            {% for value in product_option.values %}
+              <button id="option-{{ product_option.position }}" name="{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}" type="button" 
+                class="btn btn--plain btn--small"
+                :class="{ 
+                  'btn--plain border--focus' : {{ product_option.name | handle | remove: '-' }} == `{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}`,
+                  'btn--plain' : {{ product_option.name | handle | remove: '-' }} != `{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}`,
+                }"
+                @click="{{ product_option.name | handle | remove: '-' }} = `{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}`; handleForm();">
+                {{ value }}
+              </button>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endif %}
+
+    </div>
+  {% endfor %}
+
+  <select class="hidden" 
+    name="handle" 
+    x-model="variantHandle">
+    {% for variant in product.variants %}
+      <option value="{{ variant.title | handle }}" 
+        data-id="{{ variant.id }}"
+        {% if variant.id == product.selected_or_first_available_variant.id %}selected{% endif %}>
+          {{ variant.title | handle }}
+      </option>
+    {% endfor %}
+  </select>
+
+</div>
+<div class="flex flex-wrap px-4 hidden no-js--block
+  {% if product.has_only_default_variant %}hidden{% endif %}">
+  <div class="w-full">
+    <label class="type--smaller flex mb-1 opacity-75" 
+      for="Variants-{{ section.id }}">
+      {{ 'products.general.sold_out' | t }}
+    </label>
+    <select id="Variants-{{ section.id }}"
+      class="w-full" 
+      name="id" 
+      x-model="defaultVariantId">
+      {%- for variant in product.variants -%}
+        <option value="{{ variant.id }}"
+          {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}
+          {% if variant.available == false %}disabled{% endif %}>
+          {{ variant.title }}
+          {%- if variant.available == false %} - {{ 'products.general.sold_out' | t }}{% endif %}
+          - {{ variant.price | money | strip_html }}
+        </option>
+      {%- endfor -%}
+    </select>
+  </div>
+</div>
+
+{%- comment -%}selling plan{%- endcomment -%}
+{% if product.selected_or_first_available_selling_plan_allocation %}
+  <div 
+    class="no-js--hide w-full px-4 
+    {% unless product.has_only_default_variant %}mt-4{% endunless %}"
+    x-show="defaultHasSellingPlan">
+    <div 
+      class="border--width border--radius color__border-divider-1 w-full !border-b-0 overflow-hidden">
+      {% unless product.requires_selling_plan %}
+        <div 
+          class="border--b-width color__border-divider-1">
+          <label 
+            class="inline-flex items-center justify-between w-full px-4 py-4" 
+            @click="sellingGroupId = 0">
+            <input 
+              type="radio" 
+              name="purchase_option"
+              value="0"
+              {% if product.selected_or_first_available_selling_plan_allocation %}checked{% endif %}
+              :checked="{ 'checked': sellingGroupId == 0 }" 
+              @change="handleForm">
+            <span 
+              class="grow ml-2">
+              {{ 'products.general.one_time_purchase' | t }}
+            </span>
+            <span x-text="Shopify.formatMoney({{ product.price_min }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">
+              {{ product.price_min | money }}
+            </span>
+          </label>
+        </div>
+      {% endunless %}
+
+      {% for group in product.selling_plan_groups %}
+        <div 
+          class="border--b-width color__border-divider-1">
+
+          {% comment %} find lowest price {% endcomment %}
+          {% assign selling_plan_price_min = product.price_max | plus: 0 %}
+          {% assign selling_plan_discount = 0 %}
+          {% for variant in product.variants %}
+            {%- for allocation in variant.selling_plan_allocations -%}
+              {% if allocation.selling_plan_group_id == group.id %}
+                {% if selling_plan_price_min >= allocation.per_delivery_price %}
+                  {% assign selling_plan_price_min = allocation.per_delivery_price | plus: 0 %}
+                {% endif %}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+
+          {% comment %} find biggest discount {% endcomment %}
+          {% assign selling_plan_discount = 0 %}
+          {% assign selling_plan_discount_original = 0 %}
+          {% assign selling_plan_discount_type = "" %}
+          {% for selling_plan in group.selling_plans %}
+            {%- for price_adjustment in selling_plan.price_adjustments -%}
+              {% assign current_discount = 0 %}
+              {% if price_adjustment.value_type == "fixed_amount" %}
+                {% assign current_discount = price_adjustment.value %}
+              {% elsif price_adjustment.value_type == "price" %}
+                {% assign current_discount = product.price | minus: price_adjustment.value %}
+              {% elsif price_adjustment.value_type == "percentage" %}
+                {% assign current_discount = product.price | times: price_adjustment.value | divided_by: 100 %}
+              {% endif %}
+              {% if current_discount > selling_plan_discount %}
+                {% assign selling_plan_discount = current_discount %}
+                {% assign selling_plan_discount_original = price_adjustment.value %}
+                {% assign selling_plan_discount_type = price_adjustment.value_type %}
+              {% endif %}
+            {%- endfor -%} 
+          {% endfor %}
+
+          <label 
+            class="inline-flex items-center justify-between w-full px-4 py-4" 
+            @click="sellingGroupId = '{{ group.id }}';">
+            <input 
+              type="radio" 
+              name="purchase_option" 
+              value="{{ group.id }}"
+              {% if product.requires_selling_plan or product.selling_plan_groups.size == 1 %}checked{% endif %}
+              {% if product.selling_plan_groups.size == 1 %}x-init="sellingGroupId = '{{ group.id }}';"{% endif %}
+              @change="handleForm">
+            <span class="grow flex flex-wrap items-center gap-1 ml-2">
+              {{ group.name }}
+              {% capture selling_plan_discount %}
+                {% if selling_plan_discount_type == 'percentage' %}
+                  {{ 'products.general.save_up_to' | t }} {{ selling_plan_discount_original | append: '%' }}
+                {% else %}
+                <span x-text="'{{ 'products.general.save_up_to' | t }}' + ' ' + Shopify.formatMoney({{ selling_plan_discount_original }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">{{ selling_plan_discount_original | money }}</span>
+                   
+                {% endif %}
+              {% endcapture %}
+              {% render 'component__badge', 
+                color: 'overlay-1',
+                icon: '',
+                content: selling_plan_discount %}
+            </span>
+            <span class="flex flex-col items-end text-right" x-text="Shopify.formatMoney({{ selling_plan_price_min }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">
+              {{ selling_plan_price_min | money }}
+              <span class="type--smaller flex opacity-75">
+                {{ 'products.general.each' | t }}
+              </span> 
+            </span>
+          </label>
+
+          {% for variant in product.variants %}
+            <div 
+              class="border--t-width color__border-divider-1 color__bg-overlay-1 pb-4 pl-4" 
+              x-show="defaultVariantId == {{ variant.id }} && sellingGroupId == '{{ group.id }}'" 
+              x-cloak>
+
+              {% for selling_plan in group.selling_plans %}
+                <label 
+                  class="inline-flex items-center justify-between w-full px-4 pt-4">
+                  <input 
+                    class="js:{{ group.id }}_{{ variant.id }}_selling_plan" 
+                    type="radio" 
+                    name="{{ group.id }}_{{ variant.id }}_selling_plan" 
+                    value="{{ selling_plan.id }}"
+                    {% if product.selected_or_first_available_selling_plan_allocation or group.selling_plans.size == 1 %}checked{% endif %}
+                    {% if group.selling_plans.size == 1 %}x-init="handleForm"{% endif %}
+                    x-model="defaultSellingPlanId"
+                    @change="handleForm"
+                    data-selling-plan='{
+                      {%- for allocation in variant.selling_plan_allocations -%}
+                        {% if allocation.selling_plan.id == selling_plan.id %}
+                          "price": {{ allocation.price }},
+                          "compare_at_price": {{ allocation.compare_at_price }},
+                          "per_delivery_price": {{ allocation.per_delivery_price }},
+                          "unit_price": {{ allocation.unit_price | default: "0" }},
+                        {% endif %}
+                      {%- endfor -%}
+                      "recurring_deliveries": {{ selling_plan.recurring_deliveries }},
+                      "name": "{{ selling_plan.name }}",
+                      "description": "{{ selling_plan.description }}",
+                      "price_adjustments": [
+                        {%- for price_adjustment in selling_plan.price_adjustments -%}
+                          {
+                            "index": {{ price_adjustment.position }},
+                            "value": {{ price_adjustment.value }},
+                            "order_count": {{ price_adjustment.order_count | default: "null" }},
+                            "value_type": "{{ price_adjustment.value_type }}"
+                          }{% unless forloop.last == true %},{% endunless %}
+                        {%- endfor -%} 
+                      ]
+                    }'>
+                  <span class="grow ml-2">
+                    {{ selling_plan.name }}
+                  </span>
+                  <span>
+                    {%- for allocation in variant.selling_plan_allocations -%}
+                      {% if allocation.selling_plan.id == selling_plan.id %}
+                        <span class="flex flex-col items-end text-right" x-text="Shopify.formatMoney({{ allocation.per_delivery_price }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">
+                          {{ allocation.per_delivery_price | money }}
+                          <span class="type--smaller flex opacity-75">
+                            {{ 'products.general.each' | t }}
+                          </span> 
+                        </span>
+                      {% endif %}
+                    {%- endfor -%}
+                  </span>
+                </label>
+              {% endfor %}
+
+            </div>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="mt-2" 
+      x-show="defaultSellingPlanName && sellingGroupId != 0" 
+      x-cloak>
+      <div class="flex items-center gap-2">
+        {% render 'component__icon', icon: 'refresh-cw', size: '16' %}
+        <p class="type--small mb-0">
+          <span x-text="defaultSellingPlanName"></span>
+          <span x-text="defaultSavingsSummary"></span>
+          <span x-text="defaultSellingPlanDescription"></span>
+        </p>
+      </div>
+    </div>
+
+  </div>
+  <div class="no-js--block flex flex-wrap hidden px-4">
+    <div class="w-full">
+      <label class="type--smaller flex mb-1 opacity-75" 
+        for="Variants-{{ section.id }}">
+        {{ 'products.general.purchase_options' | t }}
+      </label>
+      <select name="selling_plan" 
+        x-model="defaultSellingPlanId">
+        {% for group in product.selling_plan_groups %}
+          <optgroup label="{{ group.name }}">
+            {% for selling_plan in group.selling_plans %}
+              <option value="{{ selling_plan.id }}">
+                {{ selling_plan.name }}
+              </option>
+            {% endfor %}
+          </optgroup>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+{% endif %}

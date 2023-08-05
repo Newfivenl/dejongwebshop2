@@ -1,0 +1,100 @@
+<!-- snippets/product__price.liquid -->
+{% comment %} 
+  Block for product price.
+
+  Accepts:
+    - blocksettings: liquid object of block settings
+    - featured: boolean to assign product object from section settings, set this to true if block is used within a section rather than product template
+      
+  Usage:
+    {% render 'product__price', 
+      blocksettings: block.settings, 
+      featured: true %}
+
+  Pro tips:
+    - This will display price, compare at price, and additonal price info.
+    - Prices will update to reflect any changes to variant selection.
+{% endcomment %}
+
+{%- comment -%}price{%- endcomment -%}
+{% if featured %}
+  {%- assign product = section.settings.product -%}
+{% endif %}
+<div>
+
+  {%- comment -%}product price{%- endcomment -%}
+  <span class="flex items-center">
+    <span class="!leading-tight" 
+      x-text="Shopify.formatMoney(defaultVariantPrice, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')"
+      x-show="defaultVariantPrice > 0"></span>
+      {% if settings.price_range_display == "show_range" %}
+        <span class="!leading-tight"
+          x-show="defaultVariantPrice == 0" x-text="Shopify.formatMoney({{ product.price_min }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">{{ product.price_min | money }} </span>
+        {% if product.price_varies %}
+          <pre class="!leading-tight m-0" 
+            x-show="defaultVariantPrice == 0" x-text="' - ' + Shopify.formatMoney({{ product.price_max }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')"> - {{ product.price_max | money }}</pre>
+        {% endif %}
+      {% else %}
+      <span class="!leading-tight"
+        x-show="defaultVariantPrice == 0" x-text="'Starting from ' + Shopify.formatMoney({{ product.price_min }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">Starting from {{ product.price_min | money }} </span>
+      {% endif %}
+    
+    <span class="!leading-tight" 
+      x-show="sellingGroupId == false && defaultVariantPrice > 0">
+      {% if product.compare_at_price_max > 0 %}
+        <s class="ml-2 !leading-tight" 
+          x-text="Shopify.formatMoney(defaultVariantComparePrice, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')"
+          x-show="defaultVariantComparePrice > 0">{{ product.compare_at_price_max | money }}</s>
+      {% endif %}
+    </span>
+    <span class="!leading-tight" 
+      x-show="sellingGroupId != false && defaultVariantPrice > 0">
+      <s class="ml-2 !leading-tight" 
+        x-text="Shopify.formatMoney(defaultVariantComparePrice, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')"
+        x-show="defaultVariantComparePrice > defaultVariantPrice"
+        x-cloak>{{ product.compare_at_price_max | money }}</s>
+    </span>
+  </span>
+
+  {%- comment -%}unit price{%- endcomment -%}
+  <span class="type--small flex" 
+    x-show="defaultVariantUnitPrice > 0" 
+    x-cloak>
+    {% for variant in product.variants limit: 1 %}
+      <span x-text="Shopify.formatMoney(defaultVariantUnitPrice, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">
+        {{ variant.unit_price | money }}
+      </span>
+      <span>/</span>
+      <span x-text="defaultVariantUnitLabel">
+          {{ variant.unit_price_measurement.reference_value }}{{ variant.unit_price_measurement.reference_unit }}
+      </span>
+    {% endfor %}
+  </span>
+
+  {%- comment -%}subscription badge{%- endcomment -%}
+  <div class="mt-1" 
+    x-show="sellingGroupId != 0 && defaultHasSellingPlan" 
+    x-cloak>
+    {% capture subscription_badge %}
+      {{ 'products.general.subscription' | t }} <span x-text="defaultSavingsHighlight"></span>
+    {% endcapture %}
+    {% render 'component__badge', 
+      color: 'overlay-1',
+      icon: '',
+      content: subscription_badge %}
+  </div>
+
+  {%- comment -%}taxes badge{%- endcomment -%}
+  {% if cart.taxes_included %}
+    {%- capture taxes_included -%}
+      {{ 'customer.order.taxes_included' | t }}
+    {%- endcapture -%}
+    <div class="mt-1">
+      {% render 'component__badge', 
+        color: 'overlay-2',
+        icon: '',
+        content: taxes_included %}
+    </div>
+  {% endif %}
+
+</div>

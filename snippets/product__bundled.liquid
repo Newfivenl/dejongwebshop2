@@ -1,0 +1,76 @@
+<span class="type--smaller flex mb-2 opacity-75">{{ 'products.general.bundle_includes' | t }}</span>
+<div class="border--width border--radius color__border-divider-1 flex flex-col gap-4 p-4">
+  {% for item in product.metafields.custom.product_bundle.value %}
+    <div 
+      class="md:h-[4rem] lg:h-full relative md:snap-center flex justify-center flex-none whitespace-normal overflow-hidden upsell"
+      :class="'upsell--' + {{ item.id }}"
+      x-show="{{ item.available }}">
+      <div class="color__bg-body color__text flex items-center w-full">
+
+        <div class="w-[25%] h-full flex-none">
+          <div class="object-cover flex items-center h-full max-w-full aspect-[1/1] aspect-w-1 aspect-h-1
+            {{ settings.thumbmails_color_scheme }}">
+            <a href="{{ item.url }}"
+              tabindex="-1">
+              <img class="w-full h-full object-cover
+                {{ settings.thumbmails_color_scheme }}"
+                height="200"
+                width="200"
+                loading="lazy"
+                src="{{ item.featured_image | image_url: width: 300 }}" 
+                alt="{{ item.title }}" />
+            </a>
+          </div>
+        </div>
+
+        <div class="flex flex-row items-center justify-between flex-grow gap-2 px-4 text-left">
+          <a class="hover:no-underline no-underline" href="{{ item.url }}">
+            <div class="grow flex flex-col">
+              <p class="mb-0 type--small
+                {{ settings.type_thumbnail_capitilization }}
+                {% if settings.type_thumbnail == 'body' %}type__body{% endif %}
+                {% if settings.type_thumbnail == 'heading' %}type__heading{% endif %}
+                {% if settings.type_thumbnail == 'navigation' %}type__nav{% endif %}">{{ item.title }}</p>
+              <p class="mb-0">
+                <span class="type--small" 
+                  x-text="Shopify.formatMoney({{ item.price }},currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">
+                </span>
+                {% if item.compare_at_price %}
+                  <s class="type--small" 
+                    x-text="Shopify.formatMoney({{ item.compare_at_price }},currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">
+                  </s>
+                {% endif %}
+              </p>
+            </div>
+          </a>
+        </div>
+        <div class="hidden" 
+          x-show="'{{ item.variants[0].option1 }}' == 'Default Title'"> 
+          <input name="bundle_option_{{ forloop.index0 }}_id" 
+            type="hidden"
+            value="{{ item.variants[0].id }}">
+          <label 
+            for="'upsell_item_quantity_' + {{ item.variants[0].id }}" class="sr-only">{{ 'products.general.quantity' | t }}</label>
+          <input id="'upsell_item_quantity_' + {{ item.variants[0].id }}"
+            class="!hidden" 
+            type="text" 
+            name="quantity" 
+            value="1" 
+            min="1"
+            max="" 
+            x-model="quantity">
+          <button type="submit" 
+            role="button"   
+            class="btn btn--secondary btn--small btn--load"
+            :class="{ 'btn--loading' : cart_loading && button_loading }"
+            :disabled="button_loading">
+            <div class="btn__content">{{ 'products.general.short_add_label' | t }}</div>
+            <div class="btn__spinner">
+              {% render 'component__icon', icon: 'spinner', size: '24', class: '' %}
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>

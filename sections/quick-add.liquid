@@ -1,0 +1,571 @@
+<!-- sections/quick-add.liquid -->
+{% comment %} 
+  Use section rendering API to load and inject quick-add form for product thumbnails.
+
+  Globals:
+    - settings.thumbmails_color_scheme: color scheme of thumbnails
+    - settings.type_seperator: setting to pick the type of seperator between text
+    - settings.enable_quick_image: boolean to enable/disable image in quick add popup
+    - settings.enable_thumbnails_product_type: boolean to enable product type
+    - settings.enable_thumbnails_vendor: boolean to enable vendor
+    - settings.enable_thumbnails_variant_count: boolean to enable variant count
+    - settings.product_variant_selection: set variants style to dropdown or buttons
+   
+  Pro tips:
+    - Use variant dropdown selectors for products that have lots of variant options.
+{% endcomment %}
+
+<section class="fixed inset-0 z-50 overflow-hidden"
+  aria-modal="true"
+  role="dialog"
+  x-data="{quickAdd:true, edit: false}"
+  x-show="quickAdd" 
+  x-cloak>
+  <div  class="sm:block sm:p-0 flex items-end justify-center min-h-screen px-4 pt-4 text-center">  
+    <div class="-z-10 fixed inset-0 transition-opacity bg-black bg-opacity-50" 
+      @click="theme_scroll = true;"
+      aria-hidden="true"
+      x-show="quickAdd"
+      {% if settings.enable_animations %}
+        x-transition:enter="animation-300"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="animation-300"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+      {% endif %}
+      x-cloak>
+    </div>
+    <div class="md:left-5 md:bottom-auto md:right-5 md:top-1/2 md:align-middle md:-translate-y-1/2 absolute bottom-0 left-0 right-0 inline-block m-auto text-left align-bottom transition-all transform
+      {% if settings.enable_quick_image %}
+        md:max-w-[80vw]
+      {% else %}
+        md:max-w-md
+      {% endif %}"
+      x-show="quickAdd"
+      x-trap="quickAdd"
+      {% if settings.enable_animations %}
+        x-transition:enter="animation-300"
+        x-transition:enter-start="opacity-0 translate-y-8"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="animation-300"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0 translate-y-8"
+      {% endif %}
+      x-cloak>
+
+      <div class="p-2">
+        <button class="btn btn--smaller btn--plain">
+          {% render 'component__icon', icon: 'x', size: '24', class: '' %}
+        </button>
+      </div>
+      
+      <div class="mobile-border--radius-b-0 color__bg-body color__text border--radius overflow-y-auto shadow-lg max-h-[80vh]" 
+        x-data="{ button_loading: false, edit: window.location.search.includes('edit') }"
+        @click.outside="quickAdd = false; hide_header = false; reduce_product_zindex = false; setQuery('');">
+
+        {%- capture script_product -%}
+          {% render 'script__product' %}
+        {%- endcapture -%}
+        <div 
+          x-data="{{ script_product }}" x-init='if(window.location.search.includes("edit")) {edit = true; handleForm(true,new URLSearchParams(window.location.search).get("edit"))}'>
+          <form class="flex flex-wrap items-stretch"
+            action="/cart/add" 
+            method="post" 
+            enctype="multipart/form-data"
+            @submit.prevent="
+            if(edit) {
+              editCartItem(new URLSearchParams(window.location.search).get('edit'), defaultVariantId, defaultSellingPlanId,  quantity, true)
+            } else {
+              addCartItem($refs.formContainer)
+            }
+              button_loading = true; 
+              quickAdd = false; 
+              setQuery('');
+              setTimeout(function(){ button_loading = false}, 500);"
+            x-ref="formContainer"
+            @change="handleForm(true);">
+            
+            {%- comment -%}images{%- endcomment -%}
+            {% if settings.enable_quick_image %}
+              <div class="md:w-1/2 relative w-full md:max-h-full max-h-[50vh]">
+                <div class="!sticky top-0 h-full w-full md:max-h-[80vh] object-cover flex items-center
+                  {{ settings.thumbmails_color_scheme }}">
+                  {%- unless product.featured_image == blank %}
+                    {{ product.featured_image 
+                      | image_url: width: 900 
+                      | image_tag: class: 'w-full h-full object-cover md:max-h-full max-h-[50vh]', loading: 'lazy', alt: product.title }}
+                  {%- endunless -%}
+                </div>
+                <div class="md:hidden bottom-4 absolute left-0 right-0 text-center">
+                  <button type="button" aria-label="Arrow down" class="btn btn--plain btn--smaller shadow-md"
+                    x-data="{ scroll: () => { $el.scrollTo(0, $el.scrollHeight); }}" 
+                    x-init="scroll()"
+                    @click="scroll()">
+                    {% render 'component__icon', icon: 'arrow-down', size: '20', class: '' %}
+                  </button>
+                </div>
+              </div>
+            {% endif %}
+              
+            <div class="flex flex-col flex-wrap w-full
+              {% if settings.enable_quick_image %}
+                md:w-1/2
+              {% endif %}">
+
+              {%- comment -%}details{%- endcomment -%}
+              <div class="border--b-width color__border-divider-1 color__bg-body relative z-10 flex items-end justify-between p-4">
+                <div>
+                  <h3 style="word-break:break-word" class="type__heading type__heading--bold-3 mb-0.5">
+                    {{ product.title }}
+                  </h3>
+                  <ul class="flex flex-wrap items-center gap-x-1 gap-y-0.5 p-0 opacity-75 mb-0.5">
+                    {% if settings.enable_thumbnails_product_type %}
+                      <li class="type--small inline-block last:after:hidden
+                        {% if settings.type_seperator == 'dot' %} after:content-['\00B7'] {% else %} after:content-['\007C'] {% endif %}">
+                        {{ product.type }}
+                      </li>
+                    {% endif %}
+                    {% if settings.enable_thumbnails_vendor %}
+                      <li class="type--small inline-block last:after:hidden 
+                        {% if settings.type_seperator == 'dot' %} after:content-['\00B7'] {% else %} after:content-['\007C'] {% endif %}">
+                        {{ product.vendor }}
+                      </li>
+                    {% endif %}
+                    {% if settings.enable_thumbnails_variant_count %}
+                      <li class="type--small inline-block last:after:hidden 
+                        {% if settings.type_seperator == 'dot' %} after:content-['\00B7'] {% else %} after:content-['\007C'] {% endif %}">
+                        {{ product.variants.size }} {{ 'products.general.options' | t }}
+                      </li>
+                    {% endif %}
+                  </ul>
+                  <div class="flex flex-wrap items-center gap-1 mb-2">
+                    <span class="type--small !leading-tight" 
+                      x-text="Shopify.formatMoney(defaultVariantPrice, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')"
+                      x-show="defaultVariantPrice > 0"></span>
+                      {% if settings.price_range_display == "show_range" %}
+                    <span class="type--small !leading-tight" x-show="defaultVariantPrice == 0" x-text="Shopify.formatMoney({{ product.price_min }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">{{ product.price_min | money }}</span>
+                    {% if product.price_varies %}
+                      <span class="type--small !leading-tight" x-show="defaultVariantPrice == 0" x-text="'- ' + Shopify.formatMoney({{ product.price_max }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">- {{ product.price_max | money }}</span>
+                    {% endif %}
+                    {% else %}
+                    <span class="!leading-tight"
+                      x-show="defaultVariantPrice == 0" x-text="'Starting from ' + Shopify.formatMoney({{ product.price_min }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">Starting from {{ product.price_min | money }} </span>
+                    {% endif %}
+                    {% if product.compare_at_price_max > 0 %}
+                      <s class="type--small !leading-tight" x-show="defaultVariantComparePrice > 0" x-text="Shopify.formatMoney({{ product.compare_at_price_max }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">{{ product.compare_at_price_max | money }}</s>
+                    {% endif %}
+                  </div>
+                  <a href="{{ product.url }}" class="btn btn--smaller btn--plain">{{ 'products.general.learn_more' | t }}</a>
+                </div>
+              </div>
+              
+              {%- comment -%}variants{%- endcomment -%}
+              <div class="color__bg-body relative z-10 flex flex-wrap px-4 pt-4
+                {% if product.has_only_default_variant %}
+                  hidden
+                {% endif %}">
+                
+                <p class="type--small mb-2"
+                  x-show="choosing && buttonDisabled"
+                  x-cloak>
+                  {{ 'products.general.options_prompt' | t }}
+                </p>
+                
+                {% for product_option in product.options_with_values %}
+                  <div class="w-full">
+
+                    <label class="type--smaller flex mb-1 opacity-75" for="{{ product.id }}-{{ product_option.name | handle | remove: '-' }}">
+                      {{ product_option.name }}
+                      {% for value in product_option.values %}
+                        <span x-model="{{ product_option.name | handle | remove: '-' }}"
+                          class="ml-1"
+                          :class="{ 
+                            'inline' : {{ product_option.name | handle | remove: '-' }} == `{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}`,
+                            'hidden' : {{ product_option.name | handle | remove: '-' }} != `{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}`,
+                          }" x-cloak> : {{ value }}</span>
+                      {% endfor %}
+                    </label>
+            
+            
+                    {%- assign color =  'general.color.color' | t -%}
+                    {%- assign colorDowncase =  color | downcase -%}
+                    
+                    {%- if product_option.name == color or product_option.name == colorDowncase or product_option.name == "Colour" or product_option.name == "colour" -%}
+                      {% if settings.product_color_selection == 'swatches' %}
+                        <div class="flex flex-wrap w-full gap-2 mb-4">
+                          {% for value in product_option.values %}
+
+                           
+                          {%- capture swatch_image_filename -%}swatch-{{ value | handle }}.jpg{%- endcapture -%}
+                          {% assign swatch_image = images[swatch_image_filename] %}
+
+                            <button type="button" 
+                              id="option-{{ product_option.position }}" name="{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}"
+                              class="btn btn--plain btn--small bg-center !w-8 !h-8 !min-w-0 !min-h-0"
+                              :class="{ 
+
+                                'btn--plain border--focus' : {{ product_option.name | handle | remove: '-' }} == `{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}`,
+                                'btn--plain' : {{ product_option.name | handle | remove: '-' }} != `{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}`,
+                              }"
+                              style="
+                                background-color: {{ value | handle }};
+                                {% if swatch_image contains '.jpg' %}
+                                  background-image: url('{{ swatch_image | image_url }}');
+                                {% endif %}
+                              "
+                              @click="{{ product_option.name | handle | remove: '-' }} = `{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}`; handleForm(true);">
+                            </button>
+                          {% endfor %}
+                        </div>
+                      {% elsif settings.product_color_selection == 'buttons' %}
+                      <div class="flex flex-wrap w-full gap-2 mb-4">
+                        {% for value in product_option.values %}
+                          <button type="button" 
+                            id="option-{{ product_option.position }}" name="{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}"
+                            class="btn btn--plain btn--small"
+                            :class="{ 
+                              'btn--plain border--focus' : {{ product_option.name | handle | remove: '-' }} == `{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}`,
+                              'btn--plain' : {{ product_option.name | handle | remove: '-' }} != `{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}`,
+                            }"
+                            @click="{{ product_option.name | handle | remove: '-' }} = `{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}`; handleForm(true);">
+                            {{ value }}
+                          </button>
+                        {% endfor %}
+                      </div>
+                      {% else %}
+                      <select name="select-option-{{ product_option.position }}" class="mb-4" :class="{ '!border-rose-500': choosing }" id="{{ product.id }}-{{ product_option.name | handle | remove: '-' }}" x-model="{{ product_option.name | handle | remove: '-' }}">
+                        <option disabled selected value="">{{ 'products.general.choose_option' | t }}</option>
+                        {% for value in product_option.values %}
+                          <option value="{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}">
+                            {{ value }}
+                          </option>
+                        {% endfor %}
+                      </select>
+                      {% endif %}
+                   
+                    {% else %}
+                      {% if settings.product_variant_selection == 'dropdowns' %}
+                        <select name="select-option-{{ product_option.position }}" class="mb-4" :class="{ '!border-rose-500': choosing }" id="{{ product.id }}-{{ product_option.name | handle | remove: '-' }}" x-model="{{ product_option.name | handle | remove: '-' }}">
+                          <option disabled selected value="">{{ 'products.general.choose_option' | t }}</option>
+                          {% for value in product_option.values %}
+
+                            <option value="{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}">
+                              {{ value }}
+                            </option>
+                          {% endfor %}
+                        </select>
+                      {% else %}
+                      <div class="flex flex-wrap w-full gap-2 mb-4">
+                        {% for value in product_option.values %}
+                          <button type="button" 
+                            id="option-{{ product_option.position }}" name="{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}"
+                            class="btn btn--plain btn--small"
+                            :class="{ 
+                              'btn--plain border--focus' : {{ product_option.name | handle | remove: '-' }} == `{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}`,
+                              'btn--plain' : {{ product_option.name | handle | remove: '-' }} != `{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}`,
+                            }"
+                            @click="{{ product_option.name | handle | remove: '-' }} = `{{ value | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}`; handleForm(true);">
+                            {{ value }}
+                          </button>
+                        {% endfor %}
+                      </div>
+                      {% endif %}  
+                    {% endif %}
+                    
+                  </div>
+                {% endfor %}
+                
+                <select class="hidden" name="handle" x-model="variantHandle">
+                  {% for variant in product.variants %}
+                    <option value="{{ variant.title | handle }}" data-id="{{ variant.id }}">{{ variant.title | handle }}</option>
+                  {% endfor %}
+                </select>
+          
+                <select class="hidden" name="id" x-model="defaultVariantId">
+                  {% for variant in product.variants %}
+                    <option value="{{ variant.id }}">{{ variant.title }}</option>
+                  {% endfor %}
+                </select>
+                <label for="qa-{{ product.id }}-quantity" class="sr-only">{{ 'products.general.quantity' | t }}</label>
+                <input  class="!hidden" type="text" name="quantity" id="qa-{{ product.id }}quantity" value="1" min="1" max="" x-model="quantity">
+              </div>
+              
+              {%- comment -%}selling plans{%- endcomment -%}
+              {% if product.selected_or_first_available_selling_plan_allocation %}
+                <div 
+                  class="no-js--hide w-full px-4 pt-4"
+                  x-show="defaultHasSellingPlan">
+              
+                  <div 
+                    class="border--width color__border-divider-1 border--radius w-full !border-b-0 overflow-hidden">
+                    {% unless product.requires_selling_plan %}
+                      <div 
+                        class="border--b-width color__border-divider-1">
+                        <label 
+                          class="inline-flex items-center justify-between w-full px-4 py-4" 
+                          @click="sellingGroupId = 0">
+                          <input 
+                            type="radio" 
+                            name="purchase_option"
+                            value="0"
+                            {% if product.selected_or_first_available_selling_plan_allocation %}checked{% endif %}
+                            :checked="{ 'checked': sellingGroupId == 0 }" 
+                            @change="handleForm(true)">
+                          <span 
+                            class="grow ml-2">
+                            {{ 'products.general.one_time_purchase' | t }}
+                          </span>
+                          <span x-text="Shopify.formatMoney({{ product.price_min }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">
+                            {{ product.price_min | money }}
+                          </span>
+                        </label>
+                      </div>
+                    {% endunless %}
+              
+                    {% for group in product.selling_plan_groups %}
+                      <div 
+                        class="border--b-width color__border-divider-1">
+              
+                        {% comment %} find lowest price {% endcomment %}
+                        {% assign selling_plan_price_min = product.price_max | plus: 0 %}
+                        {% assign selling_plan_discount = 0 %}
+                        {% for variant in product.variants %}
+                          {%- for allocation in variant.selling_plan_allocations -%}
+                            {% if allocation.selling_plan_group_id == group.id %}
+                              {% if selling_plan_price_min >= allocation.per_delivery_price %}
+                                {% assign selling_plan_price_min = allocation.per_delivery_price | plus: 0 %}
+                              {% endif %}
+                            {% endif %}
+                          {%- endfor -%}
+                        {%- endfor -%}
+              
+                        {% comment %} find biggest discount {% endcomment %}
+                        {% assign selling_plan_discount = 0 %}
+                        {% assign selling_plan_discount_original = 0 %}
+                        {% assign selling_plan_discount_type = "" %}
+                        {% for selling_plan in group.selling_plans %}
+                          {%- for price_adjustment in selling_plan.price_adjustments -%}
+                            {% assign current_discount = 0 %}
+                            {% if price_adjustment.value_type == "fixed_amount" %}
+                              {% assign current_discount = price_adjustment.value %}
+                            {% elsif price_adjustment.value_type == "price" %}
+                              {% assign current_discount = product.price | minus: price_adjustment.value %}
+                            {% elsif price_adjustment.value_type == "percentage" %}
+                              {% assign current_discount = product.price | times: price_adjustment.value | divided_by: 100 %}
+                            {% endif %}
+                            {% if current_discount > selling_plan_discount %}
+                              {% assign selling_plan_discount = current_discount %}
+                              {% assign selling_plan_discount_original = price_adjustment.value %}
+                              {% assign selling_plan_discount_type = price_adjustment.value_type %}
+                            {% endif %}
+                          {%- endfor -%} 
+                        {% endfor %}
+              
+                        <label 
+                          class="inline-flex items-center justify-between w-full px-4 py-4" 
+                          @click="sellingGroupId = '{{ group.id }}';">
+                          <input 
+                            type="radio" 
+                            name="purchase_option" 
+                            value="{{ group.id }}"
+                            {% if product.requires_selling_plan or product.selling_plan_groups.size == 1 %}checked{% endif %}
+                            {% if product.selling_plan_groups.size == 1 %}x-init="sellingGroupId = '{{ group.id }}';"{% endif %}
+                            @change="handleForm(true)">
+                          <span class="grow flex flex-wrap items-center gap-1 ml-2">
+                            {{ group.name }}
+                            {% capture selling_plan_discount %}
+                              {% if selling_plan_discount_type == 'percentage' %}
+                                {{ 'products.general.save_up_to' | t }} {{ selling_plan_discount_original | append: '%' }}
+                              {% else %}
+                              <span x-text="'{{ 'products.general.save_up_to' | t }}' + ' ' + Shopify.formatMoney({{ selling_plan_discount_original }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')"></span>
+                              {% endif %}
+                            {% endcapture %}
+                            {% render 'component__badge', 
+                              color: 'overlay-1',
+                              icon: '',
+                              content: selling_plan_discount %}
+                          </span>
+                          <span class="flex flex-col items-end text-right" x-text="'{{ 'products.general.save_up_to' | t }}' + ' ' + Shopify.formatMoney({{ selling_plan_price_min }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">
+                            <span class="type--smaller flex opacity-75">
+                              {{ 'products.general.each' | t }}
+                            </span> 
+                          </span>
+                        </label>
+              
+                        {% for variant in product.variants %}
+                          <div 
+                            class="flex flex-col border--t-width color__border-divider-1 color__bg-overlay-1 pb-4 pl-4" 
+                            x-show="defaultVariantId == {{ variant.id }} && sellingGroupId == '{{ group.id }}'" 
+                            x-cloak>
+              
+                            {% for selling_plan in group.selling_plans %}
+                              <label 
+                                class="inline-flex items-center justify-between w-full px-4 pt-4">
+                                <input 
+                                  class="js:{{ group.id }}_{{ variant.id }}_selling_plan" 
+                                  type="radio" 
+                                  name="{{ group.id }}_{{ variant.id }}_selling_plan" 
+                                  value="{{ selling_plan.id }}"
+                                  {% if product.selected_or_first_available_selling_plan_allocation or group.selling_plans.size == 1 %}checked{% endif %}
+                                  {% if group.selling_plans.size == 1 %}x-init="handleForm(true)"{% endif %}
+                                  x-model="defaultSellingPlanId"
+                                  @change="handleForm(true)"
+                                  data-selling-plan='{
+                                    {%- for allocation in variant.selling_plan_allocations -%}
+                                      {% if allocation.selling_plan.id == selling_plan.id %}
+                                        "price": {{ allocation.price }},
+                                        "compare_at_price": {{ allocation.compare_at_price }},
+                                        "per_delivery_price": {{ allocation.per_delivery_price }},
+                                        "unit_price": {{ allocation.unit_price | default: "0" }},
+                                      {% endif %}
+                                    {%- endfor -%}
+                                    "recurring_deliveries": {{ selling_plan.recurring_deliveries }},
+                                    "name": "{{ selling_plan.name }}",
+                                    "description": "{{ selling_plan.description }}",
+                                    "price_adjustments": [
+                                      {%- for price_adjustment in selling_plan.price_adjustments -%}
+                                        {
+                                          "index": {{ price_adjustment.position }},
+                                          "value": {{ price_adjustment.value }},
+                                          "order_count": {{ price_adjustment.order_count | default: "null" }},
+                                          "value_type": "{{ price_adjustment.value_type }}"
+                                        }{% unless forloop.last == true %},{% endunless %}
+                                      {%- endfor -%} 
+                                    ]
+                                  }'>
+                                <span class="grow ml-2">
+                                  {{ selling_plan.name }}
+                                </span>
+                                <span>
+                                  {%- for allocation in variant.selling_plan_allocations -%}
+                                    {% if allocation.selling_plan.id == selling_plan.id %}
+                                      <span class="flex flex-col items-end text-right" x-text="Shopify.formatMoney({{ allocation.per_delivery_price }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">
+                                        {{ allocation.per_delivery_price | money }}
+                                        <span class="type--smaller flex opacity-75">
+                                          {{ 'products.general.each' | t }}
+                                        </span> 
+                                      </span>
+                                    {% endif %}
+                                  {%- endfor -%}
+                                </span>
+                              </label>
+                            {% endfor %}
+              
+                          </div>
+                        {% endfor %}
+                      </div>
+                    {% endfor %}
+                  </div>
+              
+                  <div class="mt-2" 
+                    x-show="defaultSellingPlanName && sellingGroupId != 0" 
+                    x-cloak>
+                    <div class="flex items-center gap-2">
+                      {% render 'component__icon', icon: 'refresh-cw', size: '16' %}
+                      <p class="type--small mb-0">
+                        <span x-text="defaultSellingPlanName"></span>
+                        <span x-text="defaultSavingsSummary"></span>
+                        <span x-text="defaultSellingPlanDescription"></span>
+                      </p>
+                    </div>
+                  </div>
+              
+                </div>
+                <div class="no-js--block flex flex-wrap hidden px-4">
+                  <div class="w-full">
+                    <label class="type--smaller flex mb-1 opacity-75" 
+                      for="Variants-{{ section.id }}">
+                      {{ 'products.general.purchase_options' | t }}
+                    </label>
+                    <select name="selling_plan" 
+                      x-model="defaultSellingPlanId">
+                      {% for group in product.selling_plan_groups %}
+                        <optgroup label="{{ group.name }}">
+                          {% for selling_plan in group.selling_plans %}
+                            <option value="{{ selling_plan.id }}">
+                              {{ selling_plan.name }}
+                            </option>
+                          {% endfor %}
+                        </optgroup>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+              {% endif %}
+
+              {%- comment -%}add butttons{%- endcomment -%}
+              <div class="color__bg-body border--t-width color__border-divider-1 sticky bottom-0 z-10 flex flex-wrap items-end content-end flex-grow w-full px-4 py-4 mt-4">
+                <button disabled type="button" role="button" class="btn btn--load btn--plain !w-full"  
+                  x-show="buttonDisabled && defaultAvailable && !edit"
+                  @click="choosing = true"
+                  :class="{ 'btn--loading' : cart_loading && button_loading }"
+                  :disabled="button_loading"
+                  x-cloak>
+                  <div class="btn__content">{{ 'products.general.choose_options' | t }}</div>
+                </button>
+                <button disabled type="button" role="button" class="btn btn--load btn--plain !w-full"  
+                  x-show="!defaultAvailable && defaultVariantExists"
+                  :class="{ 'btn--loading' : cart_loading && button_loading }"
+                  :disabled="button_loading"
+                  x-cloak>
+                  <div class="btn__content">{{ 'products.general.sold_out' | t }}</div>
+                </button>
+                <button class="btn btn--load !w-full btn--plain" 
+                  :class="{ 'btn--loading' : cart_loading && button_loading }" 
+                  type="button" 
+                  role="button"
+                  disabled
+                  :disabled="button_loading"
+                  x-show="!defaultVariantExists && allOptionsSelected"    
+                  x-cloak>
+                  <div class="btn__content">
+                    {{ 'products.general.unavailable' | t }}
+                  </div>
+                </button>
+                <button role="button" class="btn btn--load btn--primary !w-full"  
+                  x-show="!buttonDisabled && defaultAvailable && defaultVariantExists && !edit"
+                  :class="{ 'btn--loading' : cart_loading && button_loading }"
+                  :disabled="button_loading"
+                  x-cloak>
+                  <div class="btn__content">
+                     {% if product.metafields.custom.button_text %}
+                      {{ product.metafields.custom.button_text }} {% if settings.type_seperator == 'dot' and settings.show_product_button_prices %}·{% elsif settings.type_seperator == 'line' and settings.show_product_button_prices %}|{% endif %}
+                    {% else %}
+                    {{ 'products.general.add_to_cart' | t }} {% if settings.type_seperator == 'dot' and settings.show_product_button_prices %}·{% elsif settings.type_seperator == 'line' and settings.show_product_button_prices %}|{% endif %}
+                    {% endif %}
+                    {% if settings.show_product_button_prices %}
+                    <span class="ml-1" x-text="Shopify.formatMoney(defaultVariantPrice, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">{{ product.price | money }}</span>
+                    {% endif %}
+                  </div>
+                  <div class="btn__spinner">
+                    {% render 'component__icon', icon: 'spinner', size: '24', class: '' %}
+                  </div>
+                </button>
+                <button role="button" class="btn btn--load btn--primary !w-full"  
+                  x-show="!buttonDisabled && defaultAvailable && defaultVariantExists && edit"
+                  :class="{ 'btn--loading' : cart_loading && button_loading }"
+                  :disabled="button_loading"
+                  x-cloak>
+                  <div class="btn__content">
+                    {{ 'cart.general.edit_item' | t }} {% if settings.type_seperator == 'dot' and settings.show_product_button_prices %}·{% elsif settings.type_seperator == 'line' and settings.show_product_button_prices %}|{% endif %}
+                    {% if settings.show_product_button_prices %}
+                    <span class="ml-1" x-text="Shopify.formatMoney(defaultVariantPrice, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">{{ product.price | money }}</span>
+                    {% endif %}
+                  </div>
+                  <div class="btn__spinner">
+                    {% render 'component__icon', icon: 'spinner', size: '24', class: '' %}
+                  </div>
+                </button>
+                
+              </div>
+            </div>
+        
+          </form>
+        
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>

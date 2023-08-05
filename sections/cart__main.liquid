@@ -1,0 +1,468 @@
+<!-- sections/cart__main.liquid -->
+{% comment %} 
+  Main section of the cart template.
+
+  Globals:
+    - settings.layout_horizontal: horizontaly margin
+
+  Possible enhancements:
+    - Add support for cart behavior to go to cart page after adding.
+
+  Pro tips:
+    - This template isn't primarly used since the cart drawer will be used instead.
+{% endcomment %}
+
+<section class="{{ section.settings.page_color_scheme }}"
+  style="
+    padding-bottom:{{ section.settings.spacing_bottom }}px;
+    padding-top:{{ section.settings.spacing_top }}px;">
+
+  <div class="
+    {{ settings.layout_horizontal }}">
+
+    <form action="{{ routes.cart_url }}" method="post">
+      <div class="flex flex-wrap items-start">
+
+        {%- comment -%}headline{%- endcomment -%}
+        {% if cart.item_count > 0 %}
+          <div class="w-full">
+            <h1>{{ 'cart.general.cart_heading' | t }} (<span x-text="cart.item_count">{{ cart.item_count }}</span>)</h1>
+          </div> 
+        {% else %}
+          <div class="w-full">
+            <h1>{{ 'cart.general.empty' | t }}</h1>
+          </div>
+          <a class="btn" href="{{ section.settings.empty_button_url }}">
+            {{ section.settings.empty_button_label }}
+          </a>
+        {% endif %}
+
+        {%- comment -%}cart{%- endcomment -%}
+        <div class="md:w-2/3 md:border--r-width w-full
+          {{ section.settings.color_border }}">
+          <template x-for="(item, index) in cart.items">
+            <div>
+              <div class="border--b-width flex w-full py-4 md:pr-4 gap-2
+                {{ section.settings.main_color_scheme_first }}
+                {{ section.settings.main_color_border }}">
+                <a class="w-[20%] h-full"
+                  :href="item.url">
+                  <div class="border--radius object-cover max-w-full overflow-hidden
+                    {{ settings.thumbnails_ratio }}
+                    {{ settings.thumbmails_color_scheme }}">
+                    {% capture image_class %}w-full h-full object-cover {{ settings.thumbmails_color_scheme }} {% endcapture %}
+                    <img class="{{ image_class }}" 
+                      loading="lazy"
+                      :src="item.image" 
+                      :alt="item.product_title" 
+                      />
+                  </div>
+                </a>
+
+                <div class="animation-500 flex flex-col justify-between flex-grow"
+                  {% if settings.enable_animations %}
+                    :class="{ 
+                      'opacity-50' : cart_loading }"
+                  {% endif %}>
+                  <div class="flex items-start justify-between gap-2">
+                    <a class="hover:no-underline no-underline" :href="item.url" tabindex="-1">
+                      <p class="mb-0 !leading-tight" x-text="item.product_title"></p>
+                      <template x-if="item.properties">
+                        <template x-for="property in Object.entries(item.properties)">
+                          <p class="type--smaller mb-0 opacity-75" x-text="property[0] + ' : ' + property[1]"></p>
+                        </template>
+                      </template>
+                        
+                      
+                      <p class="type--smaller mb-0 opacity-75" x-text="item.variant_title"></p>    
+                      {% if settings.enable_sku %}
+                        <p class="type--smaller mb-0 opacity-75" x-text="item.sku"></p>
+                      {% endif %}       
+                      <p class="type--smaller mb-0 opacity-75" x-text="item.selling_plan_allocation ? item.selling_plan_allocation.selling_plan.name : ''"></p>
+                      <template x-for="(discount) in item.discounts">
+                        <div class="mt-2">
+                          {% capture badge_content %}
+                            <span class="type--smaller type__nav mr-1" x-text="discount.title"></span>
+                            <span class="type--smaller type__nav mr-1">{% if settings.type_seperator == 'dot' %}·{% else %}|{% endif %}</span>
+                            <span class="type--smaller type__nav" x-text="Shopify.formatMoney(discount.amount, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')"></span>
+                          {% endcapture %}
+                          {% render 'component__badge', 
+                            color: 'overlay-2',
+                            text: 'text',
+                            icon: 'tag',
+                            content: badge_content %}
+                        </div>
+                      </template>
+                    </a>
+
+                    <div class="flex flex-col items-end">
+                      <span class="!leading-tight" x-text="Shopify.formatMoney(item.line_price, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')"></span>
+                      <span
+                        x-show="item.total_discount > 0"
+                        x-cloak>
+                        <s class="!leading-tight" 
+                          x-text="Shopify.formatMoney(item.original_line_price, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">
+                        </s>
+                      </span>
+                      <span class="type--small" x-show="item.unit_price_measurement">
+                        <span x-text="Shopify.formatMoney(item.unit_price, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')"></span>
+                        <span>/</span>
+                        <span x-text="
+                          if(item.unit_price_measurement){
+                            return item.unit_price_measurement.reference_value;
+                          }"></span>
+                        <span x-text="
+                          if(item.unit_price_measurement){
+                            return item.unit_price_measurement.reference_unit;
+                          }"></span>
+                      </span>
+                    </div>
+
+                  </div>
+                  <div class="flex items-center justify-between gap-2 mt-2">
+
+                    <div class="relative flex max-w-[150px] color__text color__border-divider-2 border--width hover:color__border-selected-1 color__bg-overlay-1 border__input--radius overflow-hidden animation-500" 
+                      x-data="{ 
+                        button_loading: false
+                      }">
+                      <button class="btn btn--smaller btn--plain shrink-0 !rounded-none" 
+                        :disabled="button_loading"
+                        title="{{ 'cart.general.decrease' | t }}"
+                        @click.prevent="
+                          if(changeCartItemQuantity(item.key, item.quantity-1, false, false)) {
+                            button_loading = true; 
+                            item.quantity--;
+                            setTimeout(function(){ button_loading = false}, 500);
+                          }">
+                        {% render 'component__icon', icon: 'minus', size: '14', class: '' %}
+                      </button>
+                      <label :for="'cart-' + item.key + '-quantity'" class="sr-only">{{ 'products.general.quantity' | t }}</label>
+                      <input :id="'cart-' + item.key + '-quantity'" placeholder="1" type="text" 
+                        class="form-input !border-0 text-center !rounded-none" 
+                        @change.debounce="
+                          changeCartItemQuantity(item.key, item.quantity, false);
+                          button_loading = true; 
+                          setTimeout(function(){ button_loading = false}, 500);" 
+                        x-model='item.quantity'>
+                      <div class="btn__spinner btn--smaller !w-auto"
+                        :class="{ '!visible color__bg-overlay-1 z-10' : button_loading }">
+                        {% render 'component__icon', icon: 'spinner', size: '16', class: '' %}
+                      </div>
+                      <button class="btn btn--smaller btn--plain shrink-0 !rounded-none" 
+                        :disabled="button_loading"
+                        title="{{ 'cart.general.increase' | t }}"
+                        @click.prevent="
+                          if(changeCartItemQuantity(item.key, item.quantity+1, false, false)) {
+                            button_loading = true; 
+                            item.quantity++;
+                            setTimeout(function(){ button_loading = false}, 500);
+                          }">
+                        {% render 'component__icon', icon: 'plus', size: '14', class: '' %}
+                      </button>
+                    </div>
+                    
+                    <div x-data="{ button_loading: false }">
+                      <button 
+                        class="btn btn--load btn--plain btn--small"
+                        :class="{ 'btn--loading' : cart_loading && button_loading }"
+                        :disabled="button_loading"
+                        @click="changeCartItemQuantity(item.key, 0, false); button_loading = true; setTimeout(function(){ button_loading = false}, 500);" >
+                        {% render 'component__icon', icon: 'trash', size: '14', class: '' %}
+                        <div class="btn__spinner">
+                          {% render 'component__icon', icon: 'spinner', size: '20', class: '' %}
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </template>
+        </div>
+
+        {%- comment -%}sidebar{%- endcomment -%}
+        {% if cart.total_price > 0 %}
+          <aside class="md:w-1/3 border--t-width sticky top-0 w-full
+            {{ section.settings.color_border }}
+            {{ section.settings.sidebar_color_scheme }}">
+              
+            {%- comment -%}subtotal{%- endcomment -%}
+            <div class="border--b-width w-full p-4 
+              {{ section.settings.color_border }}">
+              <div class="flex items-center justify-between w-full mb-1">
+                <span>{{ 'cart.general.subtotal' | t }}</span>
+                <span x-text="Shopify.formatMoney(cart.original_total_price, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">{{ cart.original_total_price | money }}</span>
+              </div>
+              <div class="flex items-center justify-between w-full mb-1">
+                <span>{{ 'cart.general.discount' | t }}</span>
+                <span x-text="Shopify.formatMoney(cart.total_discount, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">-{{ cart.total_discount | money }}</span>
+              </div>
+              <div class="flex items-center justify-between w-full">
+                <span class="flex items-center w-full">
+                  <strong>{{ 'cart.general.total' | t }}</strong>
+                  {% if cart.taxes_included %}
+                    {%- capture taxes_included -%}
+                      {{ 'customer.order.taxes_included' | t }}
+                    {%- endcapture -%}
+                    <div class="ml-1">
+                      {% render 'component__badge', 
+                        color: 'overlay-1',
+                        icon: '',
+                        content: taxes_included %}
+                    </div>
+                  {% endif %}
+                </span>
+                <strong x-text="Shopify.formatMoney(cart.total_price, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">{{ cart.total_price | money }}</strong>
+              </div>
+            </div>
+
+            {%- comment -%}notes{%- endcomment -%}
+            {% if section.settings.enable_cart_note %}
+              <div class="border--b-width w-full p-4 
+                {{ section.settings.color_border }}" 
+                x-data="{ reveal: cart.note != '', currentNote: cart.note }"
+                x-show="cart.items.length > 0"
+                x-cloak>
+                <label class="flex items-center">
+                  <label for="notes" class="sr-only">{{ 'cart.notes.title' | t }}</label>
+                  <input id="notes" :checked="reveal" type="checkbox" class="form-checkbox" @click="reveal = ! reveal">
+                  <p class="text--small mb-0 ml-2">{{ 'cart.notes.add' | t }}</p>
+                </label>
+                <textarea 
+                  name="note"
+                  rows="4" 
+                  class="form-textarea border--radius w-full mt-2"
+                  placeholder="{{ 'cart.notes.placeholder_alt' | t }}"
+                  x-model="currentNote"
+                  @keydown.debounce="updateCartNote(currentNote)"
+                  x-show="reveal"
+                  x-cloak></textarea>
+              </div>
+            {% endif %}
+
+            {%- comment -%}checkout{%- endcomment -%}
+            <div class="mt-auto">
+              <div class="w-full p-4">
+                <label for="checkout" class="sr-only">{{ 'cart.general.checkout' | t }}<</label>
+                <input 
+                  id="checkout"
+                  class="!w-full btn mb-2"
+                  type="submit" 
+                  name="checkout" 
+                  value="{{ 'cart.general.checkout' | t }} {% if settings.type_seperator == 'dot' %}·{% else %}|{% endif %} {{ cart.total_price | money_with_currency | strip_html }}">
+
+                {% if section.settings.enable_dynamic_checkout %}
+                  {% if additional_checkout_buttons %}
+                    <div class="additional-checkout-buttons additional-checkout-buttons--vertical mb-2">
+                      {{ content_for_additional_checkout_buttons }}
+                    </div>
+                  {% endif %}
+                {% endif %}
+                {%- unless section.settings.main_disclaimer == blank %}
+                  <div class="type--smaller m-0--clear">
+                    {{ section.settings.main_disclaimer }}
+                  </div>
+                {%- endunless -%}
+              </div>
+            </div>
+
+          
+            
+          </aside>
+        {% endif %}
+
+      </div>
+    </form>
+      
+  </div>
+</section>
+
+{% schema %}
+{
+  "name":"t:sections.cart.name",
+  "settings":[
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.header__22.content"
+    },
+    {
+      "type":"range",
+      "id":"spacing_top",
+      "min":0,
+      "max":300,
+      "step":20,
+      "unit":"px",
+      "label":"t:sections.all.layout.settings.spacing.label_top",
+      "default":60
+    },
+    {
+      "type":"range",
+      "id":"spacing_bottom",
+      "min":0,
+      "max":300,
+      "step":20,
+      "unit":"px",
+      "label":"t:sections.all.layout.settings.spacing.label_bottom",
+      "default":60
+    },
+    {
+      "type":"header",
+      "content":"t:sections.all.headers.header__6.content"
+    },
+    {
+      "type":"select",
+      "id":"page_color_scheme",
+      "label":"t:sections.all.colors.settings.color_scheme.label",
+      "options":[
+        {
+          "value":"color__bg-body color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__1.label"
+        },
+        {
+          "value":"color__bg-neutral color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__2.label"
+        },
+        {
+          "value":"color__bg-overlay-1 color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__3.label"
+        },
+        {
+          "value":"color__bg-overlay-2 color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__4.label"
+        },
+        {
+          "value":"color__bg-overlay-3 color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__5.label"
+        },
+        {
+          "value":"color__bg-primary color__primary",
+          "label":"t:sections.all.colors.settings.color_scheme.options__6.label"
+        },
+        {
+          "value":"color__bg-secondary color__secondary",
+          "label":"t:sections.all.colors.settings.color_scheme.options__7.label"
+        },
+        {
+          "value":"color__bg-tertiary color__tertiary",
+          "label":"t:sections.all.colors.settings.color_scheme.options__8.label"
+        }
+      ],
+      "default":"color__bg-overlay-1 color__text"
+    },
+    {
+      "type":"select",
+      "id":"color_border",
+      "label":"t:sections.all.colors.settings.color_border.label",
+      "options":[
+        {
+          "value":"color__border-divider-1",
+          "label":"t:sections.all.colors.settings.color_border.options__1.label"
+        },
+        {
+          "value":"color__border-selected-1",
+          "label":"t:sections.all.colors.settings.color_border.options__2.label"
+        },
+        {
+          "value":"!color__border-transparent",
+          "label":"t:sections.all.colors.settings.color_border.options__3.label"
+        }
+      ],
+      "default":"color__border-divider-1"
+    },
+    {
+      "type":"header",
+      "content":"t:sections.all.headers.header__7.content"
+    },
+    {
+      "type":"select",
+      "id":"sidebar_color_scheme",
+      "label":"t:sections.all.colors.settings.color_scheme.label",
+      "options":[
+        {
+          "value":"color__bg-body color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__1.label"
+        },
+        {
+          "value":"color__bg-neutral color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__2.label"
+        },
+        {
+          "value":"color__bg-overlay-1 color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__3.label"
+        },
+        {
+          "value":"color__bg-overlay-2 color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__4.label"
+        },
+        {
+          "value":"color__bg-overlay-3 color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__5.label"
+        },
+        {
+          "value":"color__bg-primary color__primary",
+          "label":"t:sections.all.colors.settings.color_scheme.options__6.label"
+        },
+        {
+          "value":"color__bg-secondary color__secondary",
+          "label":"t:sections.all.colors.settings.color_scheme.options__7.label"
+        },
+        {
+          "value":"color__bg-tertiary color__tertiary",
+          "label":"t:sections.all.colors.settings.color_scheme.options__8.label"
+        }
+      ],
+      "default":"color__bg-overlay-1 color__text"
+    },
+    {
+      "type":"richtext",
+      "id":"main_disclaimer",
+      "label":"t:sections.cart.settings.main_disclaimer.label"
+    },
+    {
+      "type":"header",
+      "content":"t:sections.all.headers.header__9.content"
+    },
+    {
+      "type":"text",
+      "id":"empty_button_label",
+      "label":"t:sections.cart.settings.empty_button_label.label",
+      "default":{
+        "en":"Shop all",
+        "es": "Comprar todo",
+        "it": "Acquista tutto",
+        "de": "Alles kaufen",
+        "fr": "Magasiner tout"
+      }
+    },
+    {
+      "type":"url",
+      "id":"empty_button_url",
+      "label":"t:sections.cart.settings.empty_button_url.label",
+      "default":"/collections/all"
+    },
+    {
+      "type":"header",
+      "content":"t:sections.all.headers.header__8.content"
+    },
+    {
+      "type":"checkbox",
+      "id":"enable_cart_note",
+      "label":"t:sections.cart.settings.enable_cart_note.label"
+    },
+    {
+      "type":"checkbox",
+      "id":"enable_dynamic_checkout",
+      "label":"t:sections.cart.settings.enable_dynamic_checkout.label"
+    }
+  ],
+  "presets":[
+    {
+      "name":"t:sections.cart.name"
+    }
+  ],
+  "templates":[
+    "cart"
+  ]
+}
+{% endschema %}

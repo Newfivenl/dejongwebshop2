@@ -1,0 +1,98 @@
+<!-- snippets/theme__scripts.liquid -->
+{% comment %} 
+  Site wide variables and JavaScript. 
+
+  Usage:
+    {% render 'theme__scripts' %}
+
+  Globals: 
+    - settings.cart_behavior: set the cart behavior to either 'drawer' or 'alert'
+  
+  Possible enhancements: 
+    - Prepare help docs on editing JavaScript and include build files.
+
+  Pro tips: 
+    - Build files can be requested from theme support - hello@brickspacelab.com.
+{% endcomment %}
+
+<script>
+  window.__initialData = window.__initialData || {};
+  Object.assign(window.__initialData, {
+    // Audio related properties
+    click_audio: new Audio('{{ 'click.wav' | asset_url }}'),
+    success_audio: new Audio('{{ 'success.wav' | asset_url }}'),
+    enable_audio: {% if settings.enable_audio %}localStorage.getItem("paper_enable_audio") ? JSON.parse(localStorage.getItem("paper_enable_audio")) : true{% else %}false{% endif %},
+    audio_popup: false,
+    // Scroll related properties
+    is_scrolled: false, 
+    prev_scroll_pos: 0,
+    scroll_up: false,
+    scroll_up_force: true,
+    hide_header: false,
+    reduce_product_zindex: false,
+    // Mouse position properties
+    mouse_x: 0, 
+    mouse_y: 0,
+    // Menu related properties
+    menu_drawer: false,
+    menu_nested: false,
+    // Popup related properties
+    age_popup:  localStorage.getItem("agePopupConfirmed") ? true : false,
+    filter_popup: false,
+    localization_popup: false,
+    back_in_stock_popup: false,
+    // Alert related properties
+    show_alert: false,
+    error_title: '{{ 'general.errors.general' | t }}',
+    error_message: '',
+    // Product related properties
+    recent_products: localStorage.getItem("recentlyViewedProducts") ? JSON.parse(localStorage.getItem("recentlyViewedProducts")) : [],
+    incomplete_fields: false,
+    selectedImageIndex: 0,
+    // Cart related properties
+    cart_drawer: false,
+    cart_loading: false,
+    cart_alert: false,
+    cart_delay: 5000,
+    cart_delay_width: 0,
+    cart_behavior: '{{ settings.cart_behavior }}',
+    cart: {
+      items: [
+        {%- for item in cart.items -%}
+          {
+            variant_id: {{ item.variant_id }},
+            final_price: {{ item.final_price }},
+            quantity: {{ item.quantity }},
+            unit_price: 0,
+            line_price: {{ item.final_line_price }},
+            unit_price_measurement: {}
+          },
+        {%- endfor -%}
+      ],
+      note: '{{ cart.note }}',
+      item_count: {{ cart.item_count }},
+      total_price: {{ cart.total_price }},
+      original_total_price: {{ cart.original_total_price }},
+      total_discount: {{ cart.total_discount }},
+      shipping_gap: 0,
+      shipping_progress: '0%',
+    },
+    // Search related properties
+    search_loading: false,
+    search_active: false,
+    search_items: [],
+    search_items_collections: [],
+    search_items_pages: [],
+    search_items_articles: [],
+    search_items_queries: [],
+    // Collection and pagination related properties
+    collection_loading: false,
+    currency_symbol: {% if settings.currency_symbol == "symbol" %} '{{ cart.currency.symbol }}' {% else %} Shopify.currency.active {% endif %},
+  });
+</script>
+
+{% if template.directory == 'customers' %}
+  <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
+{% endif %}
+
+{% render 'script__design-mode' %}

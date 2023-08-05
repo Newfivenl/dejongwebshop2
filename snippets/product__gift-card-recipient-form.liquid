@@ -1,0 +1,44 @@
+{% comment %}
+  Renders gift card recipient form.
+
+  Usage:
+  {% render 'gift-card-recipient-form' %}
+{% endcomment %}
+  
+<div class="card-recipient-container mb-4" x-data="{ showForm: false }" >
+  <div class="flex items-center">
+    <input id="recipient-checkbox" class="form-checkbox mr-2" type="checkbox" @change="showForm = !showForm"/>
+    <label for="recipient-checkbox">{{ 'gift_cards.recipient.checkbox_label' | t }}</label>
+  </div>
+  
+  <div x-show="showForm" class="pt-4">
+    <div class="mb-2">
+      <label for="recipient-email"
+        class="type--smaller flex mb-2 opacity-75">
+        {{ 'gift_cards.recipient.email' | t }} *
+      </label>
+      <input id="recipient-email" 
+        type="email" name="{{ 'gift_cards.recipient.email' | t }}"
+        required >
+    </div>
+  
+    <div class="mb-2">
+      <label for="recipient-name"
+        class="type--smaller flex mb-2 opacity-75">
+        {{ 'gift_cards.recipient.name' | t }} *
+      </label>
+      <input id="recipient-name" 
+        type="text" name="{{ 'gift_cards.recipient.name' | t }}"
+        required>
+    </div>
+  
+    <div class="flex flex-col">
+      <label for="recipient-message"
+        class="type--smaller flex mb-2 opacity-75">
+        {{ 'gift_cards.recipient.message' | t }}
+      </label>
+      <textarea id="recipient-message"  name="{{ 'gift_cards.recipient.message' | t }}"></textarea>
+    </div>
+  </div>
+ 
+</div>

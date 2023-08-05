@@ -1,0 +1,310 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_content": "Aller au contenu"
+    },
+    "social": {
+      "share_on_facebook": "Partager",
+      "share_on_twitter": "Tweet",
+      "share_on_pinterest": "Épinglez-le"
+    },
+    "navigation": {
+      "account": "Compte",
+      "menu": "Menu",
+      "back": "Précédent",
+      "close": "Fermer",
+      "scroll_up": "Retour en haut de la page"
+    },
+    "color": {
+      "title": "Thème de couleur",
+      "use_default": "Utiliser la valeur par défaut du système",
+      "use_dark": "Utiliser le mode sombre",
+      "use_light": "Utiliser le mode lumière",
+      "dark": "Mode sombre",
+      "light": "Mode d’éclairage",
+      "color": "Couleur"
+    },
+    "media": {
+      "next_slide": "Diapositive suivante",
+      "previous_slide": "Diapositive précédente",
+      "view_in_space": "Voir dans votre espace",
+      "play": "Jouer",
+      "audio_off": "Audio désactivé",
+      "audio_on": "Audio activé",
+      "enable_audio": "Activer l’audio",
+      "disable_audio": "Désactiver l’audio"
+    },
+    "scroll": {
+      "scroll_down": "Faites défiler"
+    },
+    "breadcrumbs": {
+      "home": "Domicile"
+    },
+    "search": {
+      "search": "Rechercher",
+      "placeholder": "Recherche par produits, couleurs ou plus...",
+      "view_all": "Voir tous les résultats",
+      "cancel_search": "Annuler la recherche",
+      "top_searches": "Principales recherches",
+      "empty": "Aucun résultat trouvé",
+      "loading": "Chargement...",
+      "pages": "Pages",
+      "articles": "Articles de presse",
+      "collections": "Collections",
+      "products": "Produits",
+      "result": "Résultat"
+    },
+    "pagination": {
+      "load_more": "Charger plus",
+      "loading_more": "Chargement plus",
+      "show": "Montrant",
+      "of": "de"
+    },
+    "localization": {
+      "country": "Sélection du pays",
+      "language": "Sélection de la langue",
+      "change_language": "Changer la langue",
+      "change_country": "Changer de pays"
+    },
+    "footer": {
+      "copyright": "Copyright {{ y }} ©. Tous droits réservés."
+    },
+    "errors": {
+      "general": "Quelque chose s’est mal passé..."
+    }
+  },
+  "collections": {
+    "general": {
+      "all":"Tout",
+      "collection_items": "Articles",
+      "no_matches": "Désolé, il n’y a aucun produit dans cette collection"
+    },
+    "sorting": {
+      "sort_by": "Trier par",
+      "sort": "Trier",
+      "filter_and_sort": "Filtrer et trier",
+      "remove_filter": "Clair",
+      "remove_all_filters": "Effacer tout"
+    }
+  },
+  "products": {
+    "general": {
+      "from": "De",
+      "each": "chaque",
+      "sold_out": "Épuisé",
+      "out_of_stock": "Rupture de stock",
+      "available": "Disponible",
+      "unavailable": "Indisponible",
+      "add_to_cart": "Ajouter au panier",
+      "short_add_label": "Ajouter",
+      "options": "Options",
+      "variants": "Variantes",
+      "variant_id":"Variant ID",
+      "learn_more": "Pour en savoir plus",
+      "options_prompt": "Sélectionnez une option pour l’ajouter à votre panier",
+      "choose_option": "Choisissez une option",
+      "choose_options": "Choisir des options",
+      "purchase_options": "Options d’achat",
+      "one_time_purchase": "Achat unique",
+      "subscription": "Abonnement",
+      "quantity": "Quantité",
+      "save": "Économiser",
+      "save_up_to": "Économisez jusqu'à",
+      "bundle_includes": "Le bundle inclut"
+    },
+    "inventory": {
+      "only": "Seulement",
+      "remaining": "en stock"
+    },
+    "pickup": {
+      "available": "Disponible pour le ramassage",
+      "out_of_stock": "Rupture de stock",
+      "in_stock_at": "En stock chez",
+      "in_stock": "En stock",
+      "more_locations": "Voir plus d’emplacements",
+      "other_stores": "Vérifier la disponibilité dans d’autres magasins",
+      "store_information": "Afficher les informations du magasin"
+    },
+    "accordions": {
+      "description": "Description"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Panier",
+      "cart_heading": "Votre panier",
+      "checkout": "Passer à la caisse",
+      "decrease": "Diminuer la quantité",
+      "increase": "Augmenter la quantité",
+      "subtotal": "Sous-total",
+      "total": "Total",
+      "discount": "Remise",
+      "toggle": "Ouvrir le panier",
+      "empty": "Votre panier est vide",
+      "updated": "Panier mis à jour",
+      "view_cart": "Voir le panier",
+      "upsell_title": "Options supplémentaires populaires",
+      "upgrade": "Mise à niveau du panier",
+      "continue_shopping": "Continuer vos achats",
+      "edit": "Éditer",
+      "edit_item": "Modifier l’élément"
+    },
+    "progress_bar": {
+      "pre_text": "Vous êtes",
+      "text": "Loin de la livraison gratuite"
+    },
+    "notes": {
+      "title": "Notes",
+      "add": "Ajouter une note à votre commande",
+      "placeholder": "Entrez votre note ici",
+      "placeholder_alt": "Entrez une note pour votre commande"
+    },
+    "share": {
+      "title": "Partagez votre panier",
+      "copy_url": "Copier l’URL",
+      "copied": "Copié",
+      "description": "Utilisez ce lien pour envoyer votre panier à vous-même ou à d’autres personnes"
+    }
+  },
+  "article": {
+    "general": {
+      "success": "Succès",
+      "post": "Publier"
+    },
+    "share": {
+      "title": "Lien à partager",
+      "copy_url": "Copier l’URL",
+      "copied": "Copié",
+      "share_text": "Utilisez ce lien pour partager cet article"
+    },
+    "comment": {
+      "name_placeholder": "Entrez votre nom"
+    }
+  },
+  "customer": {
+    "account": {
+      "heading": "Détails",
+      "addresses_link": "Voir les adresses",
+      "reorder": "Réorganiser",
+      "activate": "Activer le compte",
+      "password": "Mot de passe",
+      "password_confirmation": "Confirmation du mot de passe",
+      "password_placeholder": "Entrez le mot de passe",
+      "decline_invitation": "Refuser l’invitation",
+      "existing": "Vous avez déjà un compte ?",
+      "log_in": "S'identifier",
+      "sign_up": "S’enregistrer",
+      "or": "ou",
+      "return": "Retour au compte",
+      "default_address": "Adresse par défaut",
+      "email": "Adresse courriel",
+      "password_prompt": "Vous n’avez pas de compte ou vous avez oublié votre mot de passe ?",
+      "forgot": "Mot de passe oublié",
+      "reset_password": "Réinitialiser le mot de passe",
+      "recover_success": "Nous vous avons envoyé un e-mail avec un lien pour réinitialiser votre mot de passe.",
+      "submit": "Envoyer",
+      "name": "Prénom",
+      "last_name": "Nom de famille",
+      "shipping": "Adresse de livraison"
+    },
+    "order": {
+      "order_heading": "Commande",
+      "orders_heading": "Ordres",
+      "taxes_included": "Taxes incluses",
+      "shipping": "Livraison",
+      "discounts": "Preferentiels",
+      "taxes": "Impôts",
+      "refund": "Remboursement"
+    },
+    "sign_in": {
+      "title": "Connexion",
+      "log_out": "Se déconnecter",
+      "enter_with_password": "Entrez en utilisant le mot de passe"
+    },
+    "addresses": {
+      "first_name": "Prénom",
+      "first_name_placeholder": "Votre prénom",
+      "last_name": "Nom",
+      "last_name_placeholder": "Votre nom de famille",
+      "company": "Compagnie",
+      "company_placeholder": "Société Inc.",
+      "phone": "Téléphone",
+      "phone_placeholder": "000-000-0000",
+      "address": "Adresse",
+      "address_placeholder": "123, rue Happy",
+      "address_2": "Numéro d’apt\/suite",
+      "address_2_placeholder": "Unité 2",
+      "city": "Ville",
+      "city_placeholder": "",
+      "zip": "Fermeture éclair",
+      "zip_placeholder": "",
+      "country": "Pays",
+      "country_placeholder": "",
+      "region": "État \/ province",
+      "region_placeholder": "",
+      "default_address": "Définir comme adresse par défaut",
+      "create_address": "Ajouter une nouvelle adresse",
+      "cancel": "Annuler",
+      "delete": "Supprimer",
+      "edit": "Éditer",
+      "all_addresses": "Toutes les adresses",
+      "billing_address": "Adresse de facturation"
+    }
+  },
+  "gift_cards": {
+    "issued": {
+      "subtext": "Votre carte-cadeau!",
+      "expired": "Expiré le {{ expiration }}",
+      "shop_link": "Acheter maintenant",
+      "remaining_html": "{{ solde }} gauche",
+      "add_to_apple_wallet": "Ajouter à Apple Wallet",
+      "copy": "Copier",
+      "print": "Imprimer",
+      "gift_card_code": "Code de la carte-cadeau",
+      "qr_image_alt": "QR code - scanner pour échanger une carte-cadeau"
+    },
+    "recipient": {
+      "email": "E-mail du destinataire",
+      "name": "Nom du destinataire",
+      "message": "Message",
+      "checkbox_label": "Je veux envoyer ceci en cadeau"
+    }
+  },
+  "contact": {
+    "form": {
+      "email": "Messagerie électronique",
+      "email_placeholder": "Entrez votre adresse e-mail",
+      "message": "Message",
+      "send": "Envoyer",
+      "success": "Merci de nous avoir contactés. Nous vous répondrons dans les plus brefs délais."
+    }
+  },
+  "age_verification": {
+    "day": "Jour",
+    "month": "Mois",
+    "year": "Année",
+    "age_error": "Désolé, vous êtes trop jeune.",
+    "incomplete_error": "Veuillez remplir le formulaire de date.",
+    "confirm": "Confirmer",
+    "cancel": "Annuler"
+  },
+    "back_in_stock": {
+      "notify": "M’avertir",
+      "title": "Inscrivez-vous pour recevoir une notification lorsque cet article est de nouveau en stock"
+  },
+  "countdown": {
+    "days": "Jours",
+    "hours": "Heures",
+    "minutes": "Minutes",
+    "seconds": "Secondes"
+  },
+  "theme_editor": {
+    "help_and_documentation": "Aide et documentation",
+    "message_support": "Support de messagerie",
+    "suggest_a_feature": "Suggérer une fonctionnalité",
+    "report_an_issue": "Signaler un problème",
+    "changelog": "Journal des modifications",
+    "by": "par",
+    "visibility_note": "Ce widget ne sera pas visible par les clients visitant votre boutique en ligne."
+  }
+}

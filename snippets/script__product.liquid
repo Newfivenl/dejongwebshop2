@@ -1,0 +1,634 @@
+{% comment %} 
+  Product specific JavaScript. Pulls in variables and settings from liquied
+
+  Accepts:
+    - featured: boolean to assign product object from section settings, set this to true if block is used within a section rather than product template
+    - gallery_style: set the gallery style for the product section.
+
+  Usage:
+    <div class="product__form">
+      x-data="{% render 'script__product', 
+        gallery_style : section.settings.media_gallery_style,
+        featured: true %}"
+      x-init="initForm();"
+      x-ref="formContainer">
+      ...
+    </div>
+{% endcomment %}
+
+{% if featured %}
+  {%- assign product = section.settings.product -%}
+{% endif %}
+{
+  // variant data
+  variants: {
+    {%- for variant in product.variants -%}
+      '{{ variant.title | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}': [
+        {
+          available: {{ variant.available }},
+          price: {{ variant.price }},
+          comparePrice: {% if variant.compare_at_price %}{{ variant.compare_at_price }}{% else %}0{% endif %},
+          unitPrice: {{ variant.unit_price | default: 0 }},
+          unitLabel: '{{ variant.unit_price_measurement.reference_value }}{{ variant.unit_price_measurement.reference_unit }}',
+          id: {{ variant.id }},
+          featuredMedia: '{{ variant.featured_media | handle }}',
+          hasSellingPlan: {% if variant.selling_plan_allocations.size > 0 %}true{% else %}false{% endif %},
+          requiresSellingPlan: {% if variant.requires_selling_plan %}{{ variant.requires_selling_plan }}{% else %}false{% endif %}, 
+          title: `{{ variant.title | replace: "`", "" | escape }}`,
+          sku:'{{ variant.sku | replace: "'", "\'" | replace: '"', '\"' | escape }}',
+          storesAvailable: {{ variant.store_availabilities.size }},
+          {% if variant.option1 %} option1: `{{ variant.option1 | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}`,{% endif %}
+          {% if variant.option2 %} option2: `{{ variant.option2 | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}`,{% endif %}
+          {% if variant.option3 %} option3: `{{ variant.option3 | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}`,{% endif %}
+        }
+      ],
+    {%- endfor -%}
+  },
+
+  // product options
+  {% for product_option in product.options_with_values %}
+    {{ product_option.name | handle | remove: '-' }}: '',
+  {% endfor %}
+  
+  // product data
+  defaultAvailable: {{ product.available }},
+  defaultVariantPrice: {% if section.settings.enable_default_variant %}{{ product.price }}{% else %}0{% endif %},
+  defaultVariantComparePrice: {% if product.compare_at_price and section.settings.enable_default_variant %}{{ product.compare_at_price_max }}{% else %}0{% endif %},
+  defaultVariantUnitPrice: 0,
+  defaultVariantUnitLabel: '',
+  defaultVariantId: {{ product.selected_or_first_available_variant.id }},
+  defaultVariantfeaturedMedia: '{{ product.selected_or_first_available_variant.featured_media }}',
+  defaultSellingPlanId: 0,
+  defaultSellingPlanName: '',
+  defaultSellingPlanDescription: '',
+  defaultHasSellingPlan: {% if product.selected_or_first_available_selling_plan_allocation.size > 0 %}true{% else %}false{% endif %},
+  defaultRequiresSellingPlan: {% if variant.requires_selling_plan %}{{ variant.requires_selling_plan }}{% else %}false{% endif %} ,
+  defaultRecurringDeliveries: false,
+  defaultSavingsSummary: '',
+  defaultSavingsHighlight: '',
+  defaultVariantExists: true,
+  defaultVariantSKU: '{{ product.selected_or_first_available_variant.sku }}',
+  allOptionsSelected:false,
+  quantity: 1,
+  optionsCount: {{ product.options_with_values | size }},
+  variantCount: {{ product.variants.size }},
+  variantHandle: '{{ product.selected_or_first_available_variant.title | replace: '/', '-' | replace: ' ', '' | replace: '--', '-' | replace: "'", '' | replace: '"', '' | replace: '`', '' | downcase }}',
+  variantTitle:`{{ product.selected_or_first_available_variant.title | replace: '`', '\`' | escape }}`,
+  sellingGroupId: '{{ product.selling_plan_groups[0].id }}',
+  optionValues: [],
+  calculatedPrice: {{ product.price }},
+  storesAvailable: {{ product.selected_or_first_available_variant.store_availabilities.size }},
+
+  // bundle data
+  isBundle: {% if product.metafields.custom.product_bundle.value == empty %} false {% else %} true {% endif %},
+  {%- assign bundlePrices = product.metafields.custom.product_bundle.value | map: 'price' -%}
+  {% comment %} theme-check-disable UnknownFilter {% endcomment %}
+  bundlePrice: {{ bundlePrices | sum }},
+  {% comment %}theme-check-enable UnknownFilter {% endcomment %}
+
+  // more values
+  buttonDisabled:  {% if product.has_only_default_variant %}false{% else %}true{% endif %},
+  choosing: false,
+  attributeName: 'x-on:submit.prevent',
+  attributeValue: {% if product.metafields.custom.product_bundle.value == null %} 'addCartItem($refs.productForm)' {% else %} 'addCartItem($refs.productForm, true)' {% endif %} ,
+  
+  // slider data
+  gallery_index: 0,
+  gallery_index_scroll: 0,
+  gallery_index_size: {{ product.media.size | minus: 1 }},
+  show_arrows: false,
+  isOverflown(element) {
+    return element.scrollWidth > element.clientWidth;
+  },
+
+  scrollNext() {
+    this.gallery_index_scroll = this.gallery_index + 1;
+    if(this.gallery_index_scroll > this.gallery_index_size){
+      this.gallery_index_scroll = 0;
+    }
+    this.scrollToIndex(this.gallery_index_scroll);
+  },
+
+  scrollBack() {
+    this.gallery_index_scroll = this.gallery_index - 1;
+    if(this.gallery_index_scroll < 0){
+      this.gallery_index_scroll = this.gallery_index_size;
+    }
+    this.scrollToIndex(this.gallery_index_scroll);
+  },
+
+  scrollToIndex(gallery_index_scroll) {
+    this.gallery_index = gallery_index_scroll;
+    let slider = this.$refs.slider;
+    let currentSlide = slider.querySelector('[data-slide=&quot;' + gallery_index_scroll + '&quot;]');
+
+
+
+    {% comment %} Check for enable variant images {% endcomment %}
+    const checkIfHidden = (el, index) => {
+      if(el && el.style.display == 'none') {
+        this.gallery_index_scroll++
+        currentSlide = slider.querySelector('[data-slide=&quot;' + this.gallery_index_scroll++ + '&quot;]');
+        {% comment %} checkIfHidden(currentSlide, this.gallery_index_scroll) {% endcomment %}
+
+      }
+    }
+   checkIfHidden(currentSlide, this.gallery_index_scroll);
+   if (currentSlide) {
+    let currentSlidePosition = currentSlide.offsetLeft;
+      slider.scrollTo({
+        top: 0,
+        left: currentSlidePosition,
+        behavior: 'smooth'
+      });
+    }
+    let thumbnailSlider = this.$refs.thumbnail_slider;
+    if (thumbnailSlider){
+      let currentThumb = thumbnailSlider.querySelector('[data-slide=&quot;' + gallery_index_scroll + '&quot;]');
+      if (currentThumb) {
+        let currentThumbPosition = currentThumb.offsetTop;
+        thumbnailSlider.scrollTo({
+          top: currentThumbPosition-200,
+          left: 0,
+          behavior: 'smooth'
+        });
+      }
+    }
+  },
+
+  handleForm(quickAdd = false, defaultVariantId) {
+    let formContainer = this.$refs.formContainer;
+
+    // check if defaultVariantId exists and set defaults
+    // loop through variants and find first available variant
+    if (defaultVariantId) {
+      for (var variant in this.variants) {
+        let variantItem = this.variants[variant][0];
+        if (defaultVariantId == variantItem.id) {
+          this.variantHandle = variant;
+          {% for product_option in product.options_with_values %}
+            {% case forloop.index %}
+              {% when 1 %}
+                this.{{ product_option.name | handle | remove: '-' }} = variantItem.option1;
+              {% when 2 %}
+                this.{{ product_option.name | handle | remove: '-' }} = variantItem.option2;
+              {% when 3 %}
+                this.{{ product_option.name | handle | remove: '-' }} = variantItem.option3;
+            {% endcase %}
+          {% endfor %}
+        }
+      }
+    }
+    
+    // update variant handle
+    this.optionValues = [];
+    {% for product_option in product.options_with_values %}
+      this.optionValues.push(this.{{ product_option.name | handle | remove: '-' }});
+    {% endfor %}
+    let optionsArrray = this.optionValues;
+    let everythingSelected = this.optionValues.every((value) => {
+      return value != ''
+    })
+    if(everythingSelected) {
+      allOptionsSelected = true
+    }
+    this.optionValues = this.optionValues.join('-');
+    if( this.optionValues ){
+      this.variantHandle = this.optionValues;
+    }
+
+    {% comment %} Sold out/unavailable indicators {% endcomment %}
+
+
+     if(this.allOptionsSelected) {
+       {% comment %} selectors {% endcomment %}
+    const options1 = document.querySelectorAll('button[id=&quot;' + 'option-1' + '&quot;]')
+    const options2 = document.querySelectorAll('button[id=&quot;' + 'option-2' + '&quot;]')
+    const options3 = document.querySelectorAll('button[id=&quot;' + 'option-3' + '&quot;]')
+
+    const selectSelector1 = document.querySelector('select[name=&quot;' + 'select-option-1' + '&quot;]')
+    const selectSelector2 = document.querySelector('select[name=&quot;' + 'select-option-2' + '&quot;]')
+    const selectSelector3 = document.querySelector('select[name=&quot;' + 'select-option-3' + '&quot;]')
+
+    if(this.variants[this.variantHandle]) {
+      const optionsLength = {{ product.options.size }}
+      let currentObj;
+      let optionNumber;
+      if(optionsLength === 1) {
+        optionNumber = 1;
+        currentObj = Object.entries(this.variants);
+      } else if (optionsLength === 2) {
+        optionNumber = 2
+        currentObj = Object.entries(this.variants).filter(([key]) => key.includes(this.variants[this.variantHandle][0].option1))
+      } else {
+        optionNumber = 3
+        currentObj = Object.entries(this.variants).filter(([key]) => key.includes(this.variants[this.variantHandle][0].option1 + '-' + this.variants[this.variantHandle][0].option2))
+      }
+       {% comment %} Reset previous strikethroughs {% endcomment %}
+       if(options1 && options1.length > 0) {
+        for (let option of options1) {
+          if(option.classList.contains('strikethrough')) {
+            option.classList.remove('strikethrough')
+          }
+        }
+      } else if(selectSelector1 && selectSelector1.length > 0) {
+        for (let option of selectSelector1) {
+         if(option.text.includes(' - SOLD OUT')) {
+           option.text = option.text.replace(' - SOLD OUT','')
+         }
+       } 
+      }
+      if(options2 && options2.length > 0) {
+        for (let option of options2) {
+          if(option.classList.contains('strikethrough')) {
+            option.classList.remove('strikethrough')
+          }
+        }
+       } else if(selectSelector2 && selectSelector2.length > 0) {
+         for (let option of selectSelector2) {
+           if(option.text.includes(' - SOLD OUT')) {
+             option.text = option.text.replace(' - SOLD OUT','')
+           }
+         } 
+       }
+      if(options3 && options3.length > 0) {
+        for (let option of options3) {
+          if(option.classList.contains('strikethrough')) {
+            option.classList.remove('strikethrough')
+          }
+        }
+       } else if(selectSelector3 && selectSelector3.length > 0) {
+         for (let option of selectSelector3) {
+           if(option.text.includes(' - SOLD OUT')) {
+             option.text = option.text.replace(' - SOLD OUT','')
+           }
+         } 
+       }
+
+       {% comment %} add strikethrough {% endcomment %}
+
+       currentObj.forEach((variant) => {
+        let option1 = variant[1][0].option1
+        let option2 = variant[1][0].option2
+        let option3 = variant[1][0].option3
+
+        let dropdownOption1;
+        let dropdownOption2;
+        let dropdownOption3;
+
+        if(selectSelector1) {
+          dropdownOption1 = selectSelector1.querySelector('option[value=&quot;' + option1 + '&quot;]');
+        }
+        if(selectSelector2) {
+          dropdownOption2 = selectSelector2.querySelector('option[value=&quot;' + option2 + '&quot;]');
+        }
+        if(selectSelector3) {
+          dropdownOption3 = selectSelector3.querySelector('option[value=&quot;' + option3 + '&quot;]');
+        }
+
+        const selector1 = document.querySelector('button[name=&quot;' + option1 + '&quot;]')
+        const selector2 = document.querySelector('button[name=&quot;' + option2 + '&quot;]')
+        const selector3 = document.querySelector('button[name=&quot;' + option3 + '&quot;]')
+
+         if(optionNumber === 1) {
+          if(!variant[1][0].available) {
+            if(selector1) {
+              selector1.classList.add('strikethrough') 
+            } else {
+              dropdownOption1.text = dropdownOption1.text + ' - SOLD OUT'
+            }
+          } 
+        } else if (optionNumber === 2) {
+          if(!variant[1][0].available) {
+            if(selector1) {
+              selector1.classList.add('strikethrough')
+            } else {
+              dropdownOption1.text = dropdownOption1.text + ' - SOLD OUT'
+            }
+             
+            if(selector2) {
+              selector2.classList.add('strikethrough') 
+            } else {
+              dropdownOption2.text = dropdownOption2.text + ' - SOLD OUT'
+            }
+          } 
+          if(this.variants[this.variantHandle][0].available) {
+            if(selector1) {
+              selector1.classList.remove('strikethrough') 
+            } else {
+              dropdownOption1.text = dropdownOption1.text.replace(' - SOLD OUT','')
+            }
+          }
+        } else {
+          if(!variant[1][0].available) {
+            if(selector1) {
+              selector1.classList.add('strikethrough')
+            } else {
+              dropdownOption1.text = dropdownOption1.text + ' - SOLD OUT'
+            }
+             
+            if(selector2) {
+              selector2.classList.add('strikethrough') 
+            } else {
+              dropdownOption2.text = dropdownOption2.text + ' - SOLD OUT'
+            }
+
+            if(selector3) {
+              selector3.classList.add('strikethrough') 
+            } else {
+              dropdownOption3.text = dropdownOption3.text + ' - SOLD OUT'
+            }
+          } 
+          if(this.variants[this.variantHandle][0].available) {
+            if(selector1) {
+              selector1.classList.remove('strikethrough') 
+            } else {
+              dropdownOption1.text = dropdownOption1.text.replace(' - SOLD OUT','')
+            }
+            if(selector2) {
+              selector2.classList.remove('strikethrough') 
+            } else {
+              dropdownOption2.text = dropdownOption2.text.replace(' - SOLD OUT','')
+            }
+          }
+        }         
+      }) 
+
+
+    } else {
+
+      {% comment %} Reset previous strikethroughs {% endcomment %}
+      if(options1 && options1.length > 0) {
+        for (let option of options1) {
+          if(option.classList.contains('strikethrough')) {
+            option.classList.remove('strikethrough')
+          }
+        }
+      } else if(selectSelector1 && selectSelector1.length > 0) {
+        for (let option of selectSelector1) {
+         if(option.text.includes(' - SOLD OUT')) {
+           option.text = option.text.replace(' - SOLD OUT','')
+         }
+       } 
+      }
+      if(options2 && options2.length > 0) {
+        for (let option of options2) {
+          if(option.classList.contains('strikethrough')) {
+            option.classList.remove('strikethrough')
+          }
+        }
+       } else if(selectSelector2 && selectSelector2.length > 0) {
+         for (let option of selectSelector2) {
+           if(option.text.includes(' - SOLD OUT')) {
+             option.text = option.text.replace(' - SOLD OUT','')
+           }
+         } 
+       }
+      if(options3 && options3.length > 0) {
+        for (let option of options3) {
+          if(option.classList.contains('strikethrough')) {
+            option.classList.remove('strikethrough')
+          }
+        }
+       } else if(selectSelector3 && selectSelector3.length > 0) {
+         for (let option of selectSelector3) {
+           if(option.text.includes(' - SOLD OUT')) {
+             option.text = option.text.replace(' - SOLD OUT','')
+           }
+         } 
+       }
+
+      {% comment %} Add strikethrough to last row {% endcomment %}
+      optionsArrray.forEach((opt) => {
+        const optionButton = document.querySelector('button[name=&quot;' + opt + '&quot;]')
+        if(optionButton) {
+          optionButton.classList.add('strikethrough')
+        }
+      })
+      const selectors = document.querySelectorAll('button[id=&quot;' + 'option-3' + '&quot;]')
+
+      if(selectors.length > 0) {
+        selectors.forEach((selector) => {
+          selector.classList.add('strikethrough')
+        })  
+      } else {
+        for (let i = 0; i < selectSelector3.length; i++) {
+          if(i != 0)
+          selectSelector3[i].text = selectSelector3[i].text + ' - SOLD OUT'
+        }
+      }
+      
+    } 
+    } 
+   
+
+    // update defaults from variant data
+    if (this.variants[this.variantHandle]){
+      this.defaultVariantExists = true;
+      this.buttonDisabled = false;
+      this.defaultAvailable = this.variants[this.variantHandle][0].available;
+      this.defaultVariantPrice = this.variants[this.variantHandle][0].price;
+      this.defaultVariantComparePrice = this.variants[this.variantHandle][0].comparePrice;
+      this.defaultVariantUnitPrice = this.variants[this.variantHandle][0].unitPrice;
+      this.defaultVariantUnitLabel = this.variants[this.variantHandle][0].unitLabel;
+      this.defaultVariantId = this.variants[this.variantHandle][0].id;
+      this.defaultVariantSKU = this.variants[this.variantHandle][0].sku;
+      this.defaultVariantfeaturedMedia = this.variants[this.variantHandle][0].featuredMedia;
+      this.defaultHasSellingPlan = this.variants[this.variantHandle][0].hasSellingPlan;
+      this.defaultRequiresSellingPlan = this.variants[this.variantHandle][0].requiresSellingPlan;
+      this.variantTitle = this.variants[this.variantHandle][0].title;
+      this.storesAvailable = this.variants[this.variantHandle][0].storesAvailable;
+      this.allOptionsSelected = true
+    } else {
+      this.defaultVariantExists = false;
+    }
+    
+    // check if subscription is selected
+    if (this.defaultHasSellingPlan && this.sellingGroupId) {
+      
+      let sellingPlanInput = formContainer.querySelector('input[name=&quot;' + this.sellingGroupId + '_' + this.defaultVariantId + '_selling_plan' + '&quot;]:checked');
+      if (sellingPlanInput == null) {
+        this.buttonDisabled = true;
+      } else {
+        let sellingPlanData = JSON.parse(sellingPlanInput.getAttribute('data-selling-plan'));
+
+        // update selling plan id
+        this.defaultSellingPlanId = sellingPlanInput.value;
+        // update defaults from selling plan data
+        this.defaultVariantPrice = sellingPlanData.price;
+        this.defaultVariantComparePrice = sellingPlanData.compare_at_price;
+        this.defaultVariantUnitPrice = sellingPlanData.unit_price;
+        this.defaultRecurringDeliveries = sellingPlanData.recurring_deliveries;
+        this.defaultSellingPlanName = sellingPlanData.name + '.';
+        this.defaultSellingPlanDescription = sellingPlanData.description;
+  
+        // loop through pricing adjustments and display summary
+        this.defaultSavingsSummary = '';
+        let savingSummary = '';
+        let savingHighlight = '';  
+        sellingPlanData.price_adjustments.forEach(function (price_adjustment, index, array) {
+          let savingValue = price_adjustment.value;
+          if (savingValue > 0) {
+            let savingsPercentLabel;
+            let savingsCount;
+            let punctionation;
+            let sentanceStart;
+            if (price_adjustment.value_type == 'percentage') {
+              savingsPercentLabel = '%';
+            }
+            if (price_adjustment.value_type == 'price') {
+              savingsPercentLabel = '';
+              savingValue = Shopify.formatMoney(savingValue, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}');
+            }
+            if (price_adjustment.value_type == 'fixed_amount') {
+              savingsPercentLabel = '';
+              savingValue = Shopify.formatMoney(savingValue, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}');
+            }
+            if (price_adjustment.order_count == null) {
+              savingsCount = 'ongoing';
+            }
+            else {
+              savingsCount = price_adjustment.order_count;
+            }
+            if (index === 0) {
+              punctionation = '. ';
+              sentanceStart = '{{ 'products.general.save' | t }} '
+              savingHighlight = '{% if settings.type_seperator == 'dot' %}·{% else %}|{% endif %} {{ 'products.general.save' | t }} ' + savingValue + savingsPercentLabel;
+            } else {
+              sentanceStart = '{{ 'products.general.save' | t }} '
+            }
+            if (index === (array.length -1)) { 
+              punctionation = '. ';
+            }
+            if (price_adjustment.value_type == 'price') {
+              sentanceStart = ''
+              savingHighlight = ' {% if settings.type_seperator == 'dot' %}·{% else %}|{% endif %} {{ 'products.general.save' | t }} ' + savingValue + savingsPercentLabel;
+            }
+            savingSummary += sentanceStart + savingValue + savingsPercentLabel + ' for ' + savingsCount + ' order(s)' + punctionation;
+          }
+        });
+        this.defaultSavingsSummary = savingSummary;
+        this.defaultSavingsHighlight = savingHighlight
+      }
+
+    } 
+    else {
+      this.defaultSellingPlanName = '';
+      this.defaultSellingPlanId = 0;
+      let sellingPlanInput = formContainer.querySelector('select[name=&quot;selling_plan&quot;]');
+      if(sellingPlanInput) {
+        sellingPlanInput.value = 0; 
+      }
+    }
+    // updated calculated price
+    this.calculatedPrice = this.quantity * this.defaultVariantPrice;
+    
+    // sort featured variant image to front
+    {% if gallery_style == 'grid' %}
+      if (!this.buttonDisabled) {
+        if (this.defaultVariantfeaturedMedia  && !quickAdd) {
+          let featuredImages = formContainer.querySelectorAll('.' + this.defaultVariantfeaturedMedia);
+          for (const image of featuredImages) {
+            let imageParent = image.parentNode;
+            imageParent.prepend(image);
+          }   
+        }
+      }
+    {% else %}
+      if (!this.buttonDisabled) {
+        if (this.defaultVariantfeaturedMedia && !quickAdd){
+          let featuredImages = formContainer.querySelectorAll('.' + this.defaultVariantfeaturedMedia);
+
+          this.scrollToIndex(featuredImages[0].dataset.slide)
+          {% comment %} for (const image of featuredImages) {
+            let imageParent = image.parentNode;
+            imageParent.prepend(image);
+          } {% endcomment %}
+        }
+      }
+    {% endif %}
+   
+    if(!quickAdd) {
+      {% unless featured %}
+        // update url with variant parameter
+        let searchParams = new URLSearchParams(window.location.search);
+        searchParams.set('variant', this.defaultVariantId);
+        let newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
+        history.pushState(null, '', newRelativePathQuery);
+      {% endunless %}
+    }
+    
+
+    // update local pickup block
+    let pickupContainer = formContainer.querySelector('.js\\:pickup');
+    if (pickupContainer) {
+      fetch(window.location + '&section_id=product__pickup')
+      .then( async (response) => {
+        let data = await response.text();
+        if (response.status === 200) {
+          let html = document.createElement('div'); html.innerHTML = data;
+          let htmlCleaned = html.querySelector('.js\\:pickup');
+          if(htmlCleaned){
+            pickupContainer.innerHTML = htmlCleaned.innerHTML;
+          } 
+        } 
+        else {
+          console.error('Error:', error);
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    }
+    
+    // trigger change of form name=id element
+    let select = document.getElementById('Variants-{{ section.id }}');
+    let changeEvent = new Event('change', { bubbles: true });
+    if (select){
+      setTimeout(function() {
+        select.dispatchEvent(changeEvent);
+      }, 100);
+    }
+
+  },
+
+  initForm() {
+
+    // add listener to form
+    let formContainer = this.$refs.formContainer;
+    let forms = formContainer.querySelectorAll('form');
+    for (const form of forms) {
+     if(form.className.includes('shopify-product-form'))
+      form.setAttribute(this.attributeName, this.attributeValue);
+      form.setAttribute('x-on:keydown.enter.prevent', ''); 
+    } 
+    
+
+    // update default options if ?variant is present
+    if (window.location.href.indexOf('?%3Fvariant%3D') > -1) {
+      {% for product_option in product.options_with_values %}
+        this.{{ product_option.name | handle | remove: '-' }} = '{{ product_option.selected_value | handle }}';
+      {% endfor %}
+      this.handleForm();
+    } 
+    
+    else {
+      // enable form for single variant products
+      if (this.variantCount == 1 && this.optionsCount <= 1) {
+        this.handleForm();
+      } 
+
+      // enable form for multi variants
+      else {
+        // set first variant as default
+        {% if section.settings.enable_default_variant %}
+          this.defaultVariantId = {{ product.selected_or_first_available_variant.id }};
+          this.defaultAvailable = true;
+          this.handleForm(false, {{ product.selected_or_first_available_variant.id }});
+        {% endif %}
+      }
+    }
+
+  }
+  
+}

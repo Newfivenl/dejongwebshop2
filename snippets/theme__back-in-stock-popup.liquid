@@ -1,0 +1,35 @@
+{% capture popup_content %}
+<div class="p-4">
+  <p>{{ "back_in_stock.title" | t }}</p>
+  {% form 'customer' %}
+    {% if form.posted_successfully? %}
+      <div class="m-0--clear mb-2">
+        {{ block.settings.success }}
+      </div>
+    {% else %}
+      {% if form.errors %}
+        <div class="color__bg-overlay-1 type--small border--radius p-2 mt-2 mb-4">
+          {{ form.errors | default_errors }}
+        </div>
+      {% endif %}
+      <div class="flex w-full">
+        <input type="hidden" name="contact[tags]" :value="{{ product.id }}, defaultVariantId">
+        <label for="customer_email" class="sr-only">{{ 'contact.form.email' | t }}</label>
+        <input id="customer_email" class="form-input flex-grow -mr-8"
+          name="contact[email]"
+          type="email"
+          placeholder="{{ 'contact.form.email_placeholder' | t }}"
+          autocorrect="off"
+          autocapitalize="off"/>
+        <button type="submit" class="btn btn--small {{ section.settings.color_button }} whitespace-nowrap shrink-0">
+          <span class="btn__content">{{ "customer.account.submit" | t }}</span>
+        </button>
+      </div>
+    {% endif %}
+  {% endform %}
+</div>
+
+  {% endcapture %}
+  {% render 'component__popup', 
+    popup_id: 'back_in_stock_popup',
+    content: popup_content %}

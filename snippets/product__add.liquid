@@ -1,0 +1,190 @@
+<!-- snippets/product__add.liquid -->
+{% comment %} 
+  Add to cart block for product sections. Includes quantity selector, variant picker, subscription options and addtional content. 
+
+  Accepts:
+    - blocksettings: liquid object of block settings
+    - featured: boolean to assign product object from section settings, set this to true if block is used within a section rather than product template
+  
+  Usage:
+    {% render 'product__add', 
+      blocksettings: block.settings, 
+      featured: true %}
+
+  Globals:
+    - settings.product_variant_selection: set variants style to dropdown or buttons
+    - settings.product_color_selection: set color option picker style to dropdown, buttons or swatches
+    - settings.type_seperator: setting to pick the type of seperator between text
+
+  Possible enhancements:
+    - Include nesting container within snippet.
+{% endcomment %}
+
+{% if featured %}
+  {%- assign product = section.settings.product -%}
+{% endif %}
+
+{%- liquid
+  assign gift_card_recipient_feature_active = false
+  if blocksettings.enable_gift_card_recipient and product.gift_card?
+    assign gift_card_recipient_feature_active = true
+  endif
+
+  if section.settings.enable_alternative_options
+    assign alt_options_enabled = true
+  else 
+    assign alt_options_enabled = false
+  endif
+-%}
+
+{%- comment -%}add{%- endcomment -%}
+<div class="px-4">
+
+  {% if blocksettings.enable_quantity %}
+    <div class="mb-4">
+      <label class="type--smaller flex mb-1 opacity-75" 
+        for="{{ product.id }}-quantity">
+        {{ 'products.general.quantity' | t }}
+      </label>
+      <div class="color__text color__border-divider-2 color__bg-overlay-1 border--width hover:color__border-selected-1 border__input--radius relative flex w-full overflow-hidden" 
+        x-data="{ 
+          button_loading: false
+        }">
+        <button class="btn btn--smaller btn--plain shrink-0 !rounded-none" 
+          title="{{ 'cart.general.decrease' | t }}"
+          :disabled="button_loading"
+          @click="
+            quantity--;
+            handleForm(); 
+            button_loading = true; 
+            setTimeout(function(){ button_loading = false}, 500);">
+          {% render 'component__icon', icon: 'minus', size: '14', class: '' %}
+        </button>
+        <input id="{{ product.id }}-quantity"
+          class="form-input !border-0 text-center !rounded-none" 
+          type="text" 
+          name="quantity" 
+          value="1"
+          placeholder="1" 
+          min="1"
+          x-model='quantity'
+          @change.debounce="
+            button_loading = true; 
+            handleForm();
+            setTimeout(function(){ button_loading = false}, 500);" >
+        <div class="btn__spinner btn--smaller !w-auto"
+          :class="{ '!visible color__bg-overlay-1 z-10' : button_loading }">
+          {% render 'component__icon', icon: 'spinner', size: '16', class: '' %}
+        </div>
+        <button class="btn btn--smaller btn--plain shrink-0 !rounded-none" 
+          title="{{ 'cart.general.increase' | t }}"
+          :disabled="button_loading"
+          @click="
+            quantity++; 
+            handleForm();
+            button_loading = true; 
+            setTimeout(function(){ button_loading = false}, 500);">
+          {% render 'component__icon', icon: 'plus', size: '14', class: '' %}
+        </button>
+      </div>
+    </div>
+  {% endif %}
+
+  {% unless blocksettings.enable_quantity %}
+    <input 
+      class="hidden" 
+      type="number" 
+      name="quantity" 
+      placeholder="1" 
+      min="1"
+      value="1"
+      x-model='quantity'
+      hidden>
+  {% endunless %}
+  
+  {%- if gift_card_recipient_feature_active -%}
+    {%- render 'product__gift-card-recipient-form' -%}
+  {%- endif -%}
+  
+  <div class="flex-grow">
+    <button class="btn btn--load !w-full btn--plain"  
+      :class="{ 'btn--loading' : cart_loading && button_loading }"
+      type="button" 
+      role="button" 
+      disabled
+      :disabled="button_loading"
+      @click="choosing = true"
+      x-show="buttonDisabled && defaultAvailable && {{ alt_options_enabled }} != true "
+      x-cloak>
+      <div class="btn__content">
+        {{ 'products.general.choose_options' | t }}
+      </div>
+    </button>
+    {% if blocksettings.enable_notify_me %}
+      <div x-show="!defaultAvailable && defaultVariantExists" class="mb-2">
+      <button class="btn !w-full"  
+        type="button"
+        @click="back_in_stock_popup = true">
+        {{ "back_in_stock.notify" | t }}
+      </button>
+    </div>
+    {% endif %}
+    <button class="btn btn--load !w-full btn--plain" 
+      :class="{ 'btn--loading' : cart_loading && button_loading }" 
+      type="button" 
+      role="button"
+      disabled  
+      :disabled="button_loading"
+      x-show="!defaultAvailable && defaultVariantExists"  
+      x-cloak>
+      <div class="btn__content">
+        {{ 'products.general.sold_out' | t }}
+      </div>
+    </button>
+    <button class="btn btn--load !w-full btn--plain" 
+      :class="{ 'btn--loading' : cart_loading && button_loading }" 
+      type="button" 
+      role="button"
+      disabled
+      :disabled="button_loading"
+      x-show="!defaultVariantExists && allOptionsSelected"    
+      x-cloak>
+      <div class="btn__content">
+        {{ 'products.general.unavailable' | t }}
+      </div>
+    </button>
+    <button class="btn btn--load !w-full"  
+      type="submit"
+      role="button"
+      :class="{ 'btn--loading' : cart_loading && button_loading }"
+      :disabled="button_loading || incomplete_fields"
+      {% if alt_options_enabled %}
+        x-show="true"
+      {% else %}
+        x-show="!buttonDisabled && defaultVariantExists && defaultAvailable"
+      {% endif %}>
+      <div class="btn__content">
+        {% if product.metafields.custom.button_text %}
+          {{ product.metafields.custom.button_text }} {% if settings.type_seperator == 'dot' and settings.show_product_button_prices %}·{% elsif settings.type_seperator == 'line' and settings.show_product_button_prices %}|{% endif %}
+        {% else %}
+        {{ 'products.general.add_to_cart' | t }} {% if settings.type_seperator == 'dot' and settings.show_product_button_prices %}·{% elsif settings.type_seperator == 'line' and settings.show_product_button_prices %}|{% endif %}
+        {% endif %}
+        {% if settings.show_product_button_prices %}
+        <span  class="ml-1" 
+          {% if product.metafields.custom.product_bundle.value == null %}
+            x-text="Shopify.formatMoney(calculatedPrice, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')" 
+          {% else %}
+          x-text="Shopify.formatMoney(bundlePrice, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')" 
+          {% endif %}
+          x-show="calculatedPrice > 0"
+          x-cloak>
+          {{ product.price | money }}
+        </span>
+      {% endif %}
+      </div>
+      <div class="btn__spinner">
+        {% render 'component__icon', icon: 'spinner', size: '24', class: '' %}
+      </div>
+    </button>
+  </div>  
+</div>

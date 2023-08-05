@@ -1,0 +1,335 @@
+<!-- sections/discount.liquid -->
+{% comment %}
+  Show a discount code customers can copy to their clipboard
+
+  Globals:
+    - settings.layout_horizontal: horizontaly margin
+
+  Pro tips:
+    - Use this section to highlight active discounts
+{% endcomment %}
+
+<section
+  class="
+    relative
+    {{ section.settings.visibility }}
+    {{ section.settings.color_scheme }}
+    {{ section.settings.color_border }}
+    {{ section.settings.style_border }}
+  "
+  style="
+      padding-top:{{ section.settings.spacing_top }}px;
+      padding-bottom:{{ section.settings.spacing_bottom }}px;"
+>
+  <div
+    class="
+      py-2 flex flex-wrap justify-center
+      {{ settings.layout_horizontal }}
+    "
+  >
+    <div class=" lg:text-left lg:w-1/2 flex items-center flex-grow w-full">
+      <div
+        class=" relative w-full"
+      >
+        <div class="relative flex w-full overflow-hidden">
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'code' %}
+                <div
+                  x-data="{
+                    coupon_btn: '{{ block.settings.button_label }}'
+                  }"
+                  class="
+                    flex w-full items-center
+                    {% if settings.enable_animations %}
+                      animation-300
+                    {% endif %}
+                    {% if section.settings.layout_alignment == "center" %}
+                      justify-center
+                    {% elsif section.settings.layout_alignment == "left" %}
+                    justify-start
+                    {% else %}
+                      justify-end
+                    {% endif %}
+                  "
+                >
+                  <span class="type--small m-0--clear mr-4">{{ block.settings.content }}</span>
+                  <label for="coupon_{{ forloop.index }}" class="sr-only">{{ block.settings.button_label }}</label>
+                  <input
+                    id="coupon_{{ forloop.index }}"
+                    class="-mr-10 !w-auto !color__text"
+                    type="text"
+                    placeholder=""
+                    autocorrect="off"
+                    autocapitalize="off"
+                    value="{{ block.settings.coupon_text }}"
+                    disabled
+                  >
+                  <button
+                    type="submit"
+                    class="{{ section.settings.button_color }} btn--smaller whitespace-nowrap shrink-0"
+                    @click="copyToClipboard('coupon_{{ forloop.index }}');
+                    coupon_btn = '{{ 'cart.share.copied' | t }}';
+                    "
+                  >
+                    <span class="btn__content" x-text="coupon_btn">{{ block.settings.button_label }}</span>
+                  </button>
+                </div>
+            {% endcase %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.coupon_banner.name",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.header__22.content"
+    },
+    {
+      "type": "range",
+      "id": "spacing_top",
+      "min": 0,
+      "max": 300,
+      "step": 20,
+      "unit": "px",
+      "label": "t:sections.all.layout.settings.spacing.label_top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "spacing_bottom",
+      "min": 0,
+      "max": 300,
+      "step": 20,
+      "unit": "px",
+      "label": "t:sections.all.layout.settings.spacing.label_bottom",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.header__1.content"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.settings.color_scheme.label",
+      "options": [
+        {
+          "value": "color__bg-body color__text",
+          "label": "t:sections.all.colors.settings.color_scheme.options__1.label"
+        },
+        {
+          "value": "color__bg-neutral color__text",
+          "label": "t:sections.all.colors.settings.color_scheme.options__2.label"
+        },
+        {
+          "value": "color__bg-overlay-1 color__text",
+          "label": "t:sections.all.colors.settings.color_scheme.options__3.label"
+        },
+        {
+          "value": "color__bg-overlay-2 color__text",
+          "label": "t:sections.all.colors.settings.color_scheme.options__4.label"
+        },
+        {
+          "value": "color__bg-overlay-3 color__text",
+          "label": "t:sections.all.colors.settings.color_scheme.options__5.label"
+        },
+        {
+          "value": "color__bg-primary color__primary",
+          "label": "t:sections.all.colors.settings.color_scheme.options__6.label"
+        },
+        {
+          "value": "color__bg-secondary color__secondary",
+          "label": "t:sections.all.colors.settings.color_scheme.options__7.label"
+        },
+        {
+          "value": "color__bg-tertiary color__tertiary",
+          "label": "t:sections.all.colors.settings.color_scheme.options__8.label"
+        }
+      ],
+      "default": "color__bg-overlay-1 color__text"
+    },
+    {
+      "type":"select",
+      "id":"color_border",
+      "label":"t:sections.all.colors.settings.color_border.label",
+      "options":[
+        {
+          "value":"color__border-divider-1",
+          "label":"t:sections.all.colors.settings.color_border.options__1.label"
+        },
+        {
+          "value":"color__border-selected-1",
+          "label":"t:sections.all.colors.settings.color_border.options__2.label"
+        }
+      ],
+      "default":"color__border-divider-1"
+    },
+    {
+      "type":"select",
+      "id":"button_color",
+      "label":"t:sections.banner.blocks.buttons.button_color.label",
+      "options":[
+        {
+          "value":"btn",
+          "label":"t:sections.all.colors.settings.color_button.options__1.label"
+        },
+        {
+          "value":"btn btn--secondary",
+          "label":"t:sections.all.colors.settings.color_button.options__2.label"
+        },
+        {
+          "value":"btn btn--tertiary",
+          "label":"t:sections.all.colors.settings.color_button.options__5.label"
+        },
+        {
+          "value":"btn btn--neutral",
+          "label":"t:sections.all.colors.settings.color_button.options__3.label"
+        },
+        {
+          "value":"btn btn--plain",
+          "label":"t:sections.all.colors.settings.color_button.options__4.label"
+        }
+      ],
+      "default":"btn"
+    },
+    {
+      "type":"header",
+      "content":"t:sections.all.headers.header__2.content"
+    },
+    {
+      "type":"select",
+      "id":"style_border",
+      "label":"t:sections.all.styles.settings.style_border.label",
+      "options":[
+        {
+          "value":"",
+          "label":"t:sections.all.styles.settings.style_border.options__1.label"
+        },
+        {
+          "value":"border--t-width",
+          "label":"t:sections.all.styles.settings.style_border.options__2.label"
+        },
+        {
+          "value":"border--b-width",
+          "label":"t:sections.all.styles.settings.style_border.options__3.label"
+        },
+        {
+          "value":"border--b-width border--t-width",
+          "label":"t:sections.all.styles.settings.style_border.options__4.label"
+        }
+      ],
+      "default":"border--b-width"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.header__3.content"
+    },
+    {
+      "type": "select",
+      "id": "layout_alignment",
+      "label": "t:sections.theme_announcement.settings.layout_alignment.label",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.theme_announcement.settings.layout_alignment.options__1.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.theme_announcement.settings.layout_alignment.options__2.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.theme_announcement.settings.layout_alignment.options__3.label"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.header__8.content"
+    },
+    {
+      "type": "select",
+      "id": "visibility",
+      "label": "t:sections.all.visibility.label",
+      "options": [
+        {
+          "value": "",
+          "label": "t:sections.all.visibility.options__1.label"
+        },
+        {
+          "value": "md:hidden",
+          "label": "t:sections.all.visibility.options__2.label"
+        },
+        {
+          "value": "hidden md:block",
+          "label": "t:sections.all.visibility.options__3.label"
+        }
+      ],
+      "default": ""
+    }
+  ],
+  "blocks": [
+    {
+      "type": "code",
+      "name": "t:sections.coupon_banner.blocks.code.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "coupon_text",
+          "label": "t:sections.coupon_banner.blocks.code.name"
+        },
+        {
+          "type": "text",
+          "id": "content",
+          "label": "t:sections.theme_announcement.blocks.text.settings.content.label",
+          "default": {
+            "en": "Promo code:"
+          }
+        },
+        {
+          "type":"text",
+          "id":"button_label",
+          "label":"t:sections.content_grid.blocks.content.settings.button_label.label",
+          "default":{
+            "en":"Copy code"
+          }
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.coupon_banner.name",
+      "settings": {
+        "spacing_top": 20,
+        "spacing_bottom": 20,
+        "color_scheme": "color__bg-overlay-2 color__text",
+        "layout_alignment": "center",
+        "visibility": ""
+      },
+      "blocks":[
+        {
+          "type": "code",
+          "settings": {
+            "coupon_text": "CODE10",
+            "content": "A special offer for your customers",
+            "button_label": "Copy code"
+          }
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["custom.overlay"]
+  }
+}
+{% endschema %}

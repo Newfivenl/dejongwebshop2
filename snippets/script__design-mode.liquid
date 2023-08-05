@@ -1,0 +1,133 @@
+<!-- snippets/script__design-mode.liquid -->
+{% comment %} 
+  Apply minor changes when using the theme editor for a better experience.
+
+  Usage:
+    {% render 'script__design-mode' %}
+{% endcomment %}
+
+{% if request.design_mode %}
+  <script>
+    document.addEventListener("shopify:section:select", function(event) {
+      if (event.detail.sectionId.includes("theme__menu")) {
+        const section = event.target.children[0];
+        const backdrop = section.children[0];
+        const drawer = section.children[1];
+
+        section.style.display = 'block';
+        backdrop.style.display = 'block';
+        drawer.style.display = 'flex'; 
+      }
+      if (event.detail.sectionId.includes("theme__cart")) {
+        const section = event.target.children[0];
+        const backdropAbs = section.children[0];
+        const backdrop = backdropAbs.children[0];
+        const drawer = backdropAbs.children[1];
+
+        section.style.display = 'block';
+        backdropAbs.style.display = 'block';
+        backdrop.style.display = 'block';
+        drawer.style.display = 'flex';  
+      }
+    });
+    document.addEventListener("shopify:section:deselect", function(event) {
+      if (event.detail.sectionId.includes("theme__menu")) {
+        const section = event.target.children[0];
+        const backdrop = section.children[0];
+        const drawer = section.children[1];
+
+        section.style.display = 'none';
+        backdrop.style.display = 'none';
+        drawer.style.display = 'none'; 
+      }
+      if (event.detail.sectionId.includes("theme__cart")) {
+        const section = event.target.children[0];
+        const backdropAbs = section.children[0];
+        const backdrop = backdropAbs.children[0];
+        const drawer = backdropAbs.children[1];
+
+        section.style.display = 'none';
+        backdropAbs.style.display = 'none';
+        backdrop.style.display = 'none';
+        drawer.style.display = 'none';  
+      }
+    });
+  </script>
+  <script>
+    window.intercomSettings = {
+      api_base: "https://api-iam.intercom.io",
+      app_id: "fnubgeik",
+      Theme_version: "Paper v6.0.0",
+      Shop_name: "{{ shop.name }}",
+      Shop_url: "{{ shop.url }}",
+      email: "{{ shop.email }}"
+    };
+  </script>
+  <script>
+    (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/fnubgeik';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+  </script>
+
+  {% capture dropdown_content %}
+    <div class="border--b-width color__border-divider-1 flex flex-col p-2">
+      <button class="hover:color__bg-overlay-1 hover:no-underline type--small w-full p-2 text-left cursor-pointer"
+        @click="
+        Intercom('showSpace', 'help');">
+        {% render 'component__icon', icon: 'book', size: '20', class: 'mr-1' %} {{ 'theme_editor.help_and_documentation' | t }}
+      </button>
+      <button class="hover:color__bg-overlay-1 hover:no-underline type--small w-full p-2 text-left cursor-pointer"
+        @click="
+        Intercom('showSpace', 'messages');">
+        {% render 'component__icon', icon: 'chat', size: '20', class: 'mr-1' %} {{ 'theme_editor.message_support' | t }}
+      </button>
+    </div>
+    <div class="type--small border--b-width color__border-divider-1 flex flex-col p-2">
+      <a class="hover:color__bg-overlay-1 hover:no-underline hover:opacity-100 w-full px-2 py-1 no-underline"
+        href="https://brickspacelab.notion.site/Paper-Changelog-cdfeea8101ae465f8880ac90ce22e951"
+        target="_blank">
+        {{ 'theme_editor.changelog' | t }}
+      </a>
+    </div>
+    <div class="type--small border--b-width color__border-divider-1 flex flex-col p-2 opacity-50">
+      <a class="hover:color__bg-overlay-1 hover:no-underline hover:opacity-100 w-full px-2 py-1 no-underline"
+        href="https://twitter.com/brickspacelab"
+        target="_blank">
+        Twitter
+      </a>
+      <a class="hover:color__bg-overlay-1 hover:no-underline hover:opacity-100 w-full px-2 py-1 no-underline"
+        href="https://discord.gg/4qdBFhmzCR"
+        target="_blank">
+        Discord
+      </a>
+    </div>
+    <div class="type--small flex flex-col px-4 py-2 opacity-50">
+      <div>
+        Paper {{ 'theme_editor.by' | t }} <a href="https://brickspacelab.com/">Brickspace Lab</a>
+      </div>
+      <div class="mt-2">
+        {{ 'theme_editor.visibility_note' | t }}
+      </div>
+    </div>
+  {% endcapture %}
+  {% capture dropdown_button %}
+    {% render 'component__icon', icon: 'help', size: '20', class: '' %}
+  {% endcapture %}
+  <div 
+    class="bottom-4 right-4 md:block group fixed z-50 hidden"
+    x-data="{ help_widget : true }"
+    x-show="help_widget">
+    <button 
+      class="color__bg-secondary color__secondary -right-2 -top-2 group-hover:opacity-100 absolute z-10 flex p-1 leading-none rounded-full opacity-0"
+      type="button"
+      title="{{ 'general.navigation.close' | t }}"
+      @click="help_widget = false;">
+      {% render 'component__icon', icon: 'x', size: '14', class: '' %}
+    </button>
+    {% render 'component__dropdown', 
+      direction: 'up',
+      position: 'right',
+      button_class: 'flex items-center justify-center rounded-full w-10 h-10 shadow-lg color__bg-body border--width color__border-divider-1',
+      button_label: dropdown_button, 
+      content: dropdown_content %}
+  </div>
+
+{% endif %}

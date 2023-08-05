@@ -1,0 +1,123 @@
+<!-- snippets/theme__styles.liquid -->
+{% comment %} 
+  All CSS for theme comes in through here.
+
+  Usage:
+    {% render 'theme__styles' %}
+
+  Globals: 
+    - settings.type_font_body: set font family for body text
+    - settings.type_font_heading: set font family for heading text
+    - settings.type_font_nav: set font family for navigation text
+    - settings.background_body_light: set the body background color for light mode
+    - settings.background_body_dark: set the body background color for dark mode
+    - settings.foreground_body_light: set the body foreground for light mode (used for text color)
+    - settings.foreground_body_dark: set the body foreground for dark mode (used for text color)
+    - settings.background_primary_light: set the primary background color for light mode
+    - settings.background_primary_dark: set the primary background color for dark mode
+    - settings.foreground_primary_light: set the primary foreground for light mode
+    - settings.foreground_primary_dark: set the primary foreground for dark mode
+    - settings.background_secondary_light: set the secondary background color for light mode
+    - settings.background_secondary_dark: set the secondary background color for dark mode
+    - settings.foreground_secondary_light: set the secondary foreground for light mode
+    - settings.foreground_secondary_dark: set the secondary foreground for dark mode
+    - settings.border_button_radius: set the border radius for buttons
+    - settings.border_input_radius: set the border radius for input elements
+    - settings.border_element_radius: set the border radius for secondary elements
+    - settings.border_width: set the border width
+    - settings.border_light: set the border color for light mode
+    - settings.border_dark: set the border color for dark mode
+    - settings.type_base_size: set base size for font size
+    - settings.type_button_capitilization: set capitilization for button text
+{% endcomment %}
+
+<noscript><style>
+  .js\:animation.opacity-0 {
+    opacity: 100 !important;
+  }
+  .js\:animation.translate-y-4,
+  .js\:animation.translate-y-8 {
+    transform: translateY(0px) !important;
+  }
+  .no-js--hide {
+    display: none !important;
+  }
+  .no-js--block {
+    display: block !important;
+  }
+</style></noscript>
+
+{%- liquid
+  assign type_font_body = settings.type_font_body
+  assign type_font_body_bold = settings.type_font_body | font_modify: 'weight', 'bold'
+  assign type_font_body_italic = settings.type_font_body | font_modify: 'style', 'italic'
+  assign type_font_body_bold_italic = type_font_body_bold | font_modify: 'style', 'italic'
+  assign type_font_heading = settings.type_font_heading
+  assign type_font_nav = settings.type_font_nav
+%}
+
+{% style %}
+
+  {{ type_font_body | font_face: font_display: 'swap' }}
+  {{ type_font_body_bold | font_face: font_display: 'swap' }}
+  {{ type_font_body_italic | font_face: font_display: 'swap' }}
+  {{ type_font_body_bold_italic | font_face: font_display: 'swap' }}
+  {{ type_font_heading | font_face: font_display: 'swap' }}
+  {{ type_font_nav | font_face: font_display: 'swap' }}
+
+  :root {
+    --color__bg-body-light: {{ settings.background_body_light }};
+    --color__bg-overlay-light-1: {{ settings.background_body_light | color_darken: 6 }};
+    --color__bg-overlay-light-2: {{ settings.background_body_light | color_darken: 12 }};
+    --color__bg-overlay-light-3: {{ settings.background_body_light | color_darken: 24 }};
+
+    --color__text-light: {{ settings.foreground_body_light }};
+    --color__link-light: {{ settings.background_primary_light }};
+
+    --color__text-dark: {{ settings.foreground_body_dark }};
+
+    --color__border-divider-light-1: {{ settings.border_light }};
+    --color__border-divider-light-2: {{ settings.border_light | color_darken: 15 }};
+    --color__border-divider-light-3: {{ settings.border_light | color_darken: 30 }};
+    --color__border-selected-light-1: {{ settings.border_light | color_darken: 45 }};
+    --color__border-selected-light-2: {{ settings.border_light | color_darken: 60 }};
+
+    --color-primary-button-background-light: {{ settings.background_primary_light }};
+    --color-primary-button-border-light: {{ settings.background_primary_light }};
+    --color-primary-button-text-light: {{ settings.foreground_primary_light }};
+
+    --color-secondary-button-background-light: {{ settings.background_secondary_light }};
+    --color-secondary-button-border-light: {{ settings.background_secondary_light }};
+    --color-secondary-button-text-light: {{ settings.foreground_secondary_light }};
+
+    --color-tertiary-button-background-light: {{ settings.background_tertiary_light }};
+    --color-tertiary-button-border-light: {{ settings.background_tertiary_light }};
+    --color-tertiary-button-text-light: {{ settings.foreground_tertiary_light }};
+
+    --color-neutral-button-background-light: {{ settings.background_body_light | color_darken: 8 | color_mix: settings.background_primary_light, 90 }};
+    --color-neutral-button-border-light: {{ settings.background_body_light | color_darken: 8 | color_mix: settings.background_primary_light, 90 }};
+    --color-neutral-button-text-light: {{ settings.foreground_body_light }};
+
+    --color-plain-button-background-light: {{ settings.background_body_light | color_darken: 6 }};
+    --color-plain-button-border-light: {{ settings.background_body_light | color_darken: 6 }};
+    --color-plain-button-text-light: {{ settings.foreground_body_light }};
+
+    --sizes-border-button-radius: {{ settings.border_button_radius }}px;
+    --sizes-border-input-radius: {{ settings.border_input_radius }}px;
+    --sizes-border-element-radius: {{ settings.border_element_radius }}px;
+    --sizes-border-width: {{ settings.border_width }}px;
+    --sizes-gap-width: {{ settings.layout_gap_size }}px;
+
+    --type-font-body-family: {{ settings.type_font_body.family }}, {{ settings.type_font_body.fallback_families }};
+    --type-font-body-style: {{ settings.type_font_body.style }};
+    --type-font-body-weight: {{ settings.type_font_body.weight }};
+    --type-font-header-family: {{ settings.type_font_heading.family }}, {{ settings.type_font_heading.fallback_families }};
+    --type-font-header-style: {{ settings.type_font_heading.style }};
+    --type-font-header-weight: {{ settings.type_font_heading.weight }};
+    --type-font-nav-family: {{ settings.type_font_nav.family }}, {{ settings.type_font_nav.fallback_families }};
+    --type-font-nav-style: {{ settings.type_font_nav.style }};
+    --type-font-nav-weight: {{ settings.type_font_nav.weight }};
+    --type-font-base-size: {{ settings.type_base_size }}px;
+    --type-button-capiliziation: {{ settings.type_button_capitilization }};
+  }
+{% endstyle %}

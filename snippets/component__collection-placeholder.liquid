@@ -1,0 +1,53 @@
+<div class="group relative w-full
+  {% if settings.thumbnails_border_style == 'thumbnail' %}
+    border--radius overflow-hidden
+    {{ settings.thumbnails_color_border }} 
+    {{ settings.thumbmails_color_scheme }} 
+  {% endif %}">
+  
+  {% comment %} image {% endcomment %}
+  <a href="#"
+    class="relative block mb-2">
+    <div class="w-full overflow-hidden
+      {{ settings.thumbmails_color_scheme }} 
+      {% if settings.thumbnails_border_style == 'image' %}
+        border--radius
+        {{ settings.thumbnails_color_border }} 
+      {% endif %}">
+      <div class="object-cover overflow-hidden
+        {{ settings.thumbnails_ratio }}">
+        {% if index > 6 %}
+          {{ 'collection-1' | placeholder_svg_tag }}
+        {% else %}
+          {{ 'collection-' | append: index | placeholder_svg_tag }}
+        {% endif %}
+      </div>
+    </div>
+  </a>
+
+  {% comment %} content {% endcomment %}
+  <a href="#" 
+    tabindex="-1"
+    class="hover:no-underline block no-underline whitespace-normal
+    {{ settings.thumbnail_alignment }}	
+    {% if settings.thumbnails_border_style == "thumbnail" %}
+      px-4 pb-4
+    {% endif %}">
+    <h3 class="type--base !leading-tight mb-0.5
+      {{ settings.type_thumbnail_capitilization }}
+      {% if settings.type_thumbnail == 'body' %}type__body{% endif %}
+      {% if settings.type_thumbnail == 'heading' %}type__heading{% endif %}
+      {% if settings.type_thumbnail == 'navigation' %}type__nav{% endif %}">
+      Title {{ index }}
+    </h3>
+    {% if section.settings.enable_collection_size_count %}
+      <div class="flex items-center 
+        {{ settings.thumbnail_alignment }}">
+        <span class="type--small !leading-tight">
+          10 {{ 'collections.general.collection_items' | t }}
+        </span>
+      </div>
+    {% endif %}
+  </a>
+  
+</div>

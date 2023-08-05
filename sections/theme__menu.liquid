@@ -1,0 +1,514 @@
+<!-- sections/theme__menu.liquid -->
+{% comment %} 
+  Slide out menu for mobile visitors.
+
+  Globals:
+    - settings.enable_region: boolean to enable/disable the region selector
+    - settings.enable_language: boolean to enable/disable the language selector
+    - settings.type_seperator: setting to pick the type of seperator between text
+  
+  Protips:
+    - Create a new navigation link list to set unique menu items for mobile visitors.
+{% endcomment %}
+
+{% capture drawer_content %}
+  {%- comment -%}top bar{%- endcomment -%}
+  <section class="border--b-width sticky top-0 flex flex-wrap items-center justify-between px-4 py-2
+    {{ section.settings.top_color_scheme }}
+    {{ section.settings.top_color_border }}"
+    @click="menu_nested = false;">
+    <div>
+
+      <button class="btn btn--smaller
+        {{ section.settings.top_color_button }}"
+        title="{{ 'general.navigation.close' | t }}"
+        @click="menu_drawer = false;">
+        {% render 'component__icon', icon: 'x', size: '24', class: '' %}
+      </button>
+    </div>
+    <div class=" text-right">
+      {% if section.settings.top_button_cart_type == "text" %}
+        <a
+          class="inline-flex pl-4 no-underline"
+          href="{{ routes.cart_url }}"
+          rel="nofollow"
+          {% if settings.cart_icon_behavior == "open_cart_drawer" %}@click.prevent="menu_drawer = false; cart_drawer = true; if(enable_audio) { playSound(click_audio)}"{% endif %}>
+            {{ 'cart.general.title' | t }} 
+          <span class="ml-1">(<span x-text="cart.item_count">{{ cart.item_count }}</span>)</span>
+        </a>
+      {% else %}
+
+        <a
+          class="relative flex inline-flex items-center pl-4 !no-underline"
+          href="{{ routes.cart_url }}"
+          rel="nofollow"
+          title="{{ 'cart.general.toggle' | t }}"
+          {% if settings.cart_icon_behavior == "open_cart_drawer" %}@click.prevent="menu_drawer = false; cart_drawer = true; if(enable_audio) { playSound(click_audio) } "{% endif %}
+          >
+          {% render 'component__icon', icon: 'cart', size: '24', class: '' %} 
+          <span class="type--smaller color__bg-primary color__primary ml-1 px-2 py-0.5 border__button--radius">
+            <span class="type__nav" x-text="cart.item_count">{{ cart.item_count }}</span>
+          </span>
+        </a>
+      {% endif %}
+    </div>
+  </section>
+  
+  {%- comment -%}navigation{%- endcomment -%}
+  <section class="relative h-[inherit] overflow-y-auto overflow-x-hidden
+    {{ section.settings.main_color_scheme }}">
+
+    {%- for link in section.settings.main_links.links -%}
+      <div 
+        class="w-full"
+        :class="{ 
+          'border--b-width {{ section.settings.main_color_border }}': !flipbook,
+          'absolute flex items-stretch top-0 h-full': flipbook
+        }"
+        x-data="{ flipbook: false }"
+        @click.outside="flipbook = false;"
+        x-cloak>
+
+        {% if link.links != blank %}
+          <button type="button" class="flex items-center justify-between w-full px-4 py-4"
+            x-show="!flipbook"
+            @click="flipbook = ! flipbook; menu_nested = true;">
+            <span class="type__body">
+              {{ link.title }}
+            </span>
+            <div>
+              {% render 'component__icon', icon: 'chevron-right', size: '24', class: '' %}
+            </div>
+          </button>
+          <div
+            class="w-full h-full absolute block items-stretch top-0 z-10
+             {{ section.settings.main_color_scheme }}"
+            x-show="flipbook"
+            {% if settings.enable_animations %}
+              x-transition:enter="animation-100"
+              x-transition:enter-start="translate-x-24 opacity-0"
+              x-transition:enter-end="translate-x-0 opacity-100"
+              x-transition:leave="animation-100"
+              x-transition:leave-start="translate-x-0 opacity-100"
+              x-transition:leave-end="translate-x-24 opacity-0"
+            {% endif %}
+            x-cloak>
+            <div class="border--b-width sticky top-0 px-4 py-2 {{ section.settings.main_color_scheme }} {{ section.settings.main_color_border }}">
+              <button
+                class="btn btn--small
+                {{ section.settings.main_color_button }}"
+                @click="flipbook = ! flipbook; menu_nested = false;">
+                {% render 'component__icon', icon: 'chevron-left', size: '20', class: '' %}
+                {{ 'general.navigation.back' | t }}
+              </button>
+            </div>
+
+            {% for child_link in link.links %}
+              {% if child_link.links != blank %}
+                {% capture accordion_content %}
+                  {% for grandchild_link in child_link.links %}
+                    <a href="{{ grandchild_link.url }}" class="type__body border--t-width {{ section.settings.main_color_border }} flex items-center justify-between w-full px-4 py-4 pl-8 no-underline">
+                      {{ grandchild_link.title }}
+                    </a>
+                  {% endfor %}
+                {% endcapture %}
+                {% capture accordion_container_class %}
+                  border--b-width {{ section.settings.main_color_border }}
+                {% endcapture %}
+                {% capture accordion_inner_class %}
+                  color__bg-overlay-1
+                {% endcapture %}
+                {% render 'component__accordion', 
+                  button_label: child_link.title, 
+                  button_class: "px-4",
+                  container_class: accordion_container_class,
+                  inner_class: accordion_inner_class
+                  content: accordion_content %}
+              {% else %}
+                <a href="{{ child_link.url }}" class="type__body border--b-width {{ section.settings.main_color_border }} flex items-center justify-between w-full px-4 py-4 no-underline">
+                  <span class="type__body">
+                    {{ child_link.title }}
+                  </span>
+                </a>
+              {% endif %}
+            {% endfor %}
+            
+          </div>
+        {% else %}   
+          <a href="{{ link.url }}" class="type__body flex items-center justify-between w-full px-4 py-4 no-underline
+            {% if link.child_active %}!underline{% endif %}
+            {% if link.active %}!underline{% endif %}">
+            <span class="type__body">
+              {{ link.title }}
+            </span>
+          </a>
+        {% endif %}
+
+      </div>
+    {%- endfor -%}
+
+  </section>
+  
+  {%- comment -%}sticky footer{%- endcomment -%}
+  <aside class="sticky bottom-0 {{ section.settings.bottom_color_scheme }}" x-show="!menu_nested">
+    <div class="flex flex-wrap">
+
+      <div class="border--t-width {{ section.settings.bottom_color_border }} w-full">
+        <div class="flex flex-wrap px-4 pt-2">
+
+        {%- if shop.customer_accounts_enabled -%} 
+          <a href="{{ routes.account_url }}" rel="nofollow" class="btn btn--smaller mb-2 mr-2
+            {{ section.settings.bottom_button_color }}">
+            {% if customer %}
+              {{ 'general.navigation.account' | t }}
+            {% else %}
+            {{ 'customer.account.log_in' | t }}
+            {% endif %}
+          </a>
+        {% endif %}
+
+          {% if settings.enable_region or settings.enable_language %}
+            <button class="btn btn--smaller mb-2 mr-2
+            {{ section.settings.bottom_button_color }}" 
+              @click="localization_popup = true;">
+              <span class="fi type--smaller" style="background-image: url(https://flagicons.lipis.dev/flags/4x3/{{ localization.country.iso_code | downcase }}.svg)"></span>
+              <span class="type--smaller ml-1">{{ localization.country.currency.symbol }} {{ localization.country.currency.iso_code }}
+              {% if settings.type_seperator == 'dot' %}·{% else %}|{% endif %}
+              {{ localization.language.iso_code | upcase }}</span> 
+              {% render 'component__icon', icon: 'chevron-down', size: '16' %}
+            </button>
+          {% endif %}
+          
+        </div>
+      </div>
+
+      <div class="border--t-width {{ section.settings.bottom_color_border }} w-full">
+        <p class="type--small px-4 py-2 m-0">
+          {%- for link in section.settings.bottom_links.links -%}
+            <a href="{{ link.url }}" class="mr-2">{{ link.title }}</a>
+          {%- endfor -%}
+         </p>
+      </div>
+      
+    </div>
+  </aside>
+
+{% endcapture %}
+
+{% render 'component__drawer', 
+  drawer_id: 'menu_drawer',
+  position: 'left',
+  content: drawer_content %}
+
+{% schema %}
+{
+  "name":"t:sections.theme_menu.name",
+  "settings":[
+    {
+      "type":"header",
+      "content":"t:sections.all.headers.header__15.content"
+    },
+    {
+      "type":"link_list",
+      "id":"main_links",
+      "label":"t:sections.theme_menu.settings.main_links.label"
+    },
+    {
+      "type":"header",
+      "content":"t:sections.all.headers.header__12.content"
+    },
+    {
+      "type":"select",
+      "id":"top_color_scheme",
+      "label":"t:sections.all.colors.settings.color_scheme.label",
+      "options":[
+        {
+          "value":"color__bg-body color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__1.label"
+        },
+        {
+          "value":"color__bg-neutral color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__2.label"
+        },
+        {
+          "value":"color__bg-overlay-1 color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__3.label"
+        },
+        {
+          "value":"color__bg-overlay-2 color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__4.label"
+        },
+        {
+          "value":"color__bg-overlay-3 color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__5.label"
+        },
+        {
+          "value":"color__bg-primary color__primary",
+          "label":"t:sections.all.colors.settings.color_scheme.options__6.label"
+        },
+        {
+          "value":"color__bg-secondary color__secondary",
+          "label":"t:sections.all.colors.settings.color_scheme.options__7.label"
+        },
+        {
+          "value":"color__bg-tertiary color__tertiary",
+          "label":"t:sections.all.colors.settings.color_scheme.options__8.label"
+        }
+      ],
+      "default":"color__bg-body color__text"
+    },
+    {
+      "type":"select",
+      "id":"top_color_border",
+      "label":"t:sections.all.colors.settings.color_border.label",
+      "options":[
+        {
+          "value":"color__border-divider-1",
+          "label":"t:sections.all.colors.settings.color_border.options__1.label"
+        },
+        {
+          "value":"color__border-selected-1",
+          "label":"t:sections.all.colors.settings.color_border.options__2.label"
+        },
+        {
+          "value":"!color__border-transparent",
+          "label":"t:sections.all.colors.settings.color_border.options__3.label"
+        }
+      ],
+      "default":"color__border-divider-1"
+    },
+    {
+      "type":"select",
+      "id":"top_color_button",
+      "label":"t:sections.all.colors.settings.color_button.label",
+      "options":[
+        {
+          "value":"btn",
+          "label":"t:sections.all.colors.settings.color_button.options__1.label"
+        },
+        {
+          "value":"btn btn--secondary",
+          "label":"t:sections.all.colors.settings.color_button.options__2.label"
+        },
+        {
+          "value":"btn btn--tertiary",
+          "label":"t:sections.all.colors.settings.color_button.options__5.label"
+        },
+        {
+          "value":"btn btn--neutral",
+          "label":"t:sections.all.colors.settings.color_button.options__3.label"
+        },
+        {
+          "value":"btn btn--plain",
+          "label":"t:sections.all.colors.settings.color_button.options__4.label"
+        }
+      ],
+      "default":"btn btn--plain"
+    },
+    {
+      "type":"select",
+      "id":"top_button_cart_type",
+      "label":"t:sections.theme_menu.settings.top_button_cart_type.label",
+      "options":[
+        {
+          "value":"icon",
+          "label":"t:sections.theme_menu.settings.top_button_cart_type.options__1.label"
+        },
+        {
+          "value":"text",
+          "label":"t:sections.theme_menu.settings.top_button_cart_type.options__2.label"
+        }
+      ],
+      "default":"icon"
+    },
+    {
+      "type":"header",
+      "content":"t:sections.all.headers.header__13.content"
+    },
+    {
+      "type":"select",
+      "id":"main_color_scheme",
+      "label":"t:sections.all.colors.settings.color_scheme.label",
+      "options":[
+        {
+          "value":"color__bg-body color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__1.label"
+        },
+        {
+          "value":"color__bg-neutral color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__2.label"
+        },
+        {
+          "value":"color__bg-overlay-1 color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__3.label"
+        },
+        {
+          "value":"color__bg-overlay-2 color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__4.label"
+        },
+        {
+          "value":"color__bg-overlay-3 color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__5.label"
+        },
+        {
+          "value":"color__bg-primary color__primary",
+          "label":"t:sections.all.colors.settings.color_scheme.options__6.label"
+        },
+        {
+          "value":"color__bg-secondary color__secondary",
+          "label":"t:sections.all.colors.settings.color_scheme.options__7.label"
+        },
+        {
+          "value":"color__bg-tertiary color__tertiary",
+          "label":"t:sections.all.colors.settings.color_scheme.options__8.label"
+        }
+      ],
+      "default":"color__bg-body color__text"
+    },
+    {
+      "type":"select",
+      "id":"main_color_border",
+      "label":"t:sections.all.colors.settings.color_border.label",
+      "options":[
+        {
+          "value":"color__border-divider-1",
+          "label":"t:sections.all.colors.settings.color_border.options__1.label"
+        },
+        {
+          "value":"color__border-selected-1",
+          "label":"t:sections.all.colors.settings.color_border.options__2.label"
+        },
+        {
+          "value":"!color__border-transparent",
+          "label":"t:sections.all.colors.settings.color_border.options__3.label"
+        }
+      ],
+      "default":"color__border-divider-1"
+    },
+    {
+      "type":"select",
+      "id":"main_color_button",
+      "label":"t:sections.all.colors.settings.color_button.label",
+      "options":[
+        {
+          "value":"btn",
+          "label":"t:sections.all.colors.settings.color_button.options__1.label"
+        },
+        {
+          "value":"btn btn--secondary",
+          "label":"t:sections.all.colors.settings.color_button.options__2.label"
+        },
+        {
+          "value":"btn btn--tertiary",
+          "label":"t:sections.all.colors.settings.color_button.options__5.label"
+        },
+        {
+          "value":"btn btn--neutral",
+          "label":"t:sections.all.colors.settings.color_button.options__3.label"
+        },
+        {
+          "value":"btn btn--plain",
+          "label":"t:sections.all.colors.settings.color_button.options__4.label"
+        }
+      ],
+      "default":"btn btn--plain"
+    },
+    {
+      "type":"header",
+      "content":"t:sections.all.headers.header__14.content"
+    },
+    {
+      "type":"select",
+      "id":"bottom_color_scheme",
+      "label":"t:sections.all.colors.settings.color_scheme.label",
+      "options":[
+        {
+          "value":"color__bg-body color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__1.label"
+        },
+        {
+          "value":"color__bg-neutral color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__2.label"
+        },
+        {
+          "value":"color__bg-overlay-1 color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__3.label"
+        },
+        {
+          "value":"color__bg-overlay-2 color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__4.label"
+        },
+        {
+          "value":"color__bg-overlay-3 color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__5.label"
+        },
+        {
+          "value":"color__bg-primary color__primary",
+          "label":"t:sections.all.colors.settings.color_scheme.options__6.label"
+        },
+        {
+          "value":"color__bg-secondary color__secondary",
+          "label":"t:sections.all.colors.settings.color_scheme.options__7.label"
+        },
+        {
+          "value":"color__bg-tertiary color__tertiary",
+          "label":"t:sections.all.colors.settings.color_scheme.options__8.label"
+        }
+      ],
+      "default":"color__bg-overlay-1 color__text"
+    },
+    {
+      "type":"select",
+      "id":"bottom_color_border",
+      "label":"t:sections.all.colors.settings.color_border.label",
+      "options":[
+        {
+          "value":"color__border-divider-1",
+          "label":"t:sections.all.colors.settings.color_border.options__1.label"
+        },
+        {
+          "value":"color__border-selected-1",
+          "label":"t:sections.all.colors.settings.color_border.options__2.label"
+        },
+        {
+          "value":"!color__border-transparent",
+          "label":"t:sections.all.colors.settings.color_border.options__3.label"
+        }
+      ],
+      "default":"color__border-divider-1"
+    },
+    {
+      "type":"select",
+      "id":"bottom_button_color",
+      "label":"t:sections.theme_menu.settings.bottom_button_color.label",
+      "options":[
+        {
+          "value":"btn",
+          "label":"t:sections.theme_menu.settings.bottom_button_color.options__1.label"
+        },
+        {
+          "value":"btn btn--secondary",
+          "label":"t:sections.theme_menu.settings.bottom_button_color.options__2.label"
+        },
+        {
+          "value":"btn btn--neutral",
+          "label":"t:sections.theme_menu.settings.bottom_button_color.options__3.label"
+        },
+        {
+          "value":"btn btn--plain",
+          "label":"t:sections.theme_menu.settings.bottom_button_color.options__4.label"
+        }
+      ],
+      "default":"btn btn--secondary"
+    },
+    {
+      "type":"link_list",
+      "id":"bottom_links",
+      "label":"t:sections.theme_menu.settings.bottom_links.label"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["custom.overlay"]
+  }
+}
+{% endschema %}

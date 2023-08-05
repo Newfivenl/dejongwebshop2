@@ -1,0 +1,204 @@
+<!-- snippets/component__product-featured.liquid -->
+{% comment %} 
+  Product thumbnail with four product photos.
+  Accepts:
+    - product: liquid product object
+    - animate_index: optional index of animation order
+  
+  Usage:
+    {% render 'component__product-featured', 
+      product: product, 
+      animate_index: animate_index %}
+  Globals:
+    - settings.enable_animations: boolean to enable animations
+    - settings.thumbnails_border_style: border style of thumbnails
+    - settings.thumbnails_color_border: border color
+    - settings.thumbmails_color_scheme: color scheme of thumbnails
+    - settings.type_thumbnail: typography for thumbnail titles
+    - settings.type_thumbnail_capitilization: set the capitilization for thumbnail titles
+    - settings.type_seperator: setting to pick the type of seperator between text
+    - settings.enable_thumbnails_product_type: boolean to enable product type
+    - settings.enable_thumbnails_vendor: boolean to enable vendor
+    - settings.enable_thumbnails_variant_count: boolean to enable variant count
+  
+  Pro tips:
+    - Use this while looping through products.
+{% endcomment %}
+
+<div class="relative w-full
+  {% if settings.thumbnails_border_style == 'thumbnail' %}
+    border--radius overflow-hidden
+    {{ settings.thumbnails_color_border }} 
+    {{ settings.thumbmails_color_scheme }} 
+  {% endif %}">
+
+  {%- comment -%}images{%- endcomment -%}  
+  <a href="{{ product.url | within: collection }}"
+    class="grid grid-cols-4 mb-2 overflow-hidden
+      {% if settings.thumbnails_border_style == 'image' %}
+        border--radius
+        {{ settings.thumbnails_color_border }} 
+      {% endif %}"
+    style="
+      gap: {{ settings.layout_gap_size }}px;">
+
+    <div class="w-full grid col-start-1 col-span-3
+      {{ settings.thumbmails_color_scheme }}">
+      <div class="object-cover overflow-hidden
+        {{ settings.thumbnails_ratio }}">
+        {%- unless product.featured_image == blank %}
+          {% capture image_class %}w-full h-full object-cover {{ settings.thumbmails_color_scheme }}{% endcapture %}
+          {{ product.featured_image 
+            | image_url: width: 900 
+            | image_tag: class: image_class, loading: 'lazy', alt: product.featured_image.alt }}
+        {%- endunless -%}
+      </div>
+    </div>
+
+    <div class="grid items-stretch w-full col-start-4"
+      style="
+        gap: {{ settings.layout_gap_size }}px;">
+
+      {%- if product.images[1] == blank %}
+        {% assign image1 = product.images[0] %}
+      {%- else -%}
+        {% assign image1 = product.images[1] %}
+      {%- endif -%}
+      <div class="object-cover overflow-hidden
+        {{ settings.thumbnails_ratio }}
+        {{ settings.thumbmails_color_scheme }}">
+        {%- unless image1 == blank %}
+          {% capture image_class %}w-full h-full object-cover {{ settings.thumbmails_color_scheme }}{% endcapture %}
+          {{ image1 
+            | image_url: width: 200 
+            | image_tag: class: image_class, loading: 'lazy', alt: image1.alt }}
+        {%- endunless -%}
+      </div>
+      
+      {%- if product.images[2] == blank %}
+        {% assign image2 = product.images[0] %}
+      {%- else -%}
+        {% assign image2 = product.images[2] %}
+      {%- endif -%}
+      <div class="object-cover overflow-hidden
+        {{ settings.thumbnails_ratio }}
+        {{ settings.thumbmails_color_scheme }}">
+        {%- unless image2 == blank %}
+          {% capture image_class %}w-full h-full object-cover {{ settings.thumbmails_color_scheme }}{% endcapture %}
+          {{ image2 
+            | image_url: width: 200 
+            | image_tag: class: image_class, loading: 'lazy', alt: image2.alt }}
+        {%- endunless -%}
+      </div>
+
+      {%- if product.images[3] == blank %}
+        {% assign image3 = product.images[0] %}
+      {%- else -%}
+        {% assign image3 = product.images[3] %}
+      {%- endif -%}
+      <div class="object-cover overflow-hidden
+        {{ settings.thumbnails_ratio }}
+        {{ settings.thumbmails_color_scheme }}">
+        {%- unless image3 == blank %}
+          {% capture image_class %}w-full h-full object-cover {{ settings.thumbmails_color_scheme }}{% endcapture %}
+          {{ image3 
+            | image_url: width: 200 
+            | image_tag: class: image_class, loading: 'lazy', alt: image3.alt }}
+        {%- endunless -%}
+      </div>
+      
+    </div>
+
+  </a>
+
+  {%- comment -%}content{%- endcomment -%}
+  <a href="{{ product.url | within: collection }}" 
+    class="hover:no-underline block no-underline
+      {{ settings.thumbnail_alignment }}
+      {% if settings.thumbnails_border_style == "thumbnail" %}
+        px-4 pb-4
+      {% endif %}"
+    tabindex="-1">
+    
+    <h3 class="type--base !leading-tight mb-0.5
+      {{ settings.type_thumbnail_capitilization }}
+      {% if settings.type_thumbnail == 'body' %}type__body{% endif %}
+      {% if settings.type_thumbnail == 'heading' %}type__heading{% endif %}
+      {% if settings.type_thumbnail == 'navigation' %}type__nav{% endif %}">
+      {{ product.title }}
+    </h3>
+
+    <ul class="flex flex-wrap items-center gap-x-1 gap-y-0.5 p-0 opacity-75 mb-0.5
+      {{ settings.thumbnail_alignment }}">
+      {% if settings.enable_thumbnails_product_type %}
+        <li class="type--small inline-block last:after:hidden
+          {% if settings.type_seperator == 'dot' %} after:content-['\00B7'] {% else %} after:content-['\007C'] {% endif %}">
+          {{ product.type }}
+        </li>
+      {% endif %}
+      {% if settings.enable_thumbnails_vendor %}
+        <li class="type--small inline-block last:after:hidden 
+          {% if settings.type_seperator == 'dot' %} after:content-['\00B7'] {% else %} after:content-['\007C'] {% endif %}">
+          {{ product.vendor }}
+        </li>
+      {% endif %}
+      {% if settings.enable_thumbnails_variant_count %}
+        <li class="type--small inline-block last:after:hidden 
+          {% if settings.type_seperator == 'dot' %} after:content-['\00B7'] {% else %} after:content-['\007C'] {% endif %}">
+          {{ product.variants.size }} {{ 'products.general.options' | t }}
+        </li>
+      {% endif %}
+    </ul>
+
+    <div class="flex flex-wrap items-center gap-1 mb-0.5
+      {{ settings.thumbnail_alignment }}">
+      <span class="type--small !leading-tight" x-text="Shopify.formatMoney({{ product.price_min }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">{{ product.price_min | money }}</span>
+      {% if product.price_varies %}
+        <span class="type--small !leading-tight" x-text="' - ' + Shopify.formatMoney({{ product.price_max }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">- {{ product.price_max | money }}</span>
+      {% endif %}
+      {% if product.compare_at_price_max > 0 %}
+        <span class="type--small !leading-tight">
+          <s class="!leading-tight">{{ product.compare_at_price_max | money }}</s>
+        </span>
+      {% endif %}
+    </div>
+    {% if product.selected_or_first_available_variant.unit_price %}
+      <span class="type--small flex opacity-75 mb-0.5
+        {{ settings.thumbnail_alignment }}">
+        <span>
+          {{ product.selected_or_first_available_variant.unit_price | money }}
+        </span>
+        <span>/</span>
+        <span>
+          {{ product.selected_or_first_available_variant.unit_price_measurement.reference_value }}
+          {{ product.selected_or_first_available_variant.unit_price_measurement.reference_unit }}
+        </span>
+      </span>
+    {% endif %}
+
+    {% if settings.stock_threshold %}
+      {% assign product_qty = 0 %}
+      {% for variant in product.variants %}
+        {% if variant.inventory_quantity > 0 %}
+          {% assign product_qty = product_qty | plus: variant.inventory_quantity %}
+        {% endif %}
+      {% endfor %}
+      {% if product_qty < settings.stock_threshold and product_qty > 0 %}
+        {%- capture badge -%}
+          <span class="inline-flex w-2 h-2 mr-2">
+            <span class="animate-ping color__bg-primary absolute inline-flex w-2 h-2 rounded-full"></span>
+            <span class="color__bg-primary inline-flex w-2 h-2 rounded-full"></span>
+          </span>
+          <span class="type--small">{{ product_qty }} {{ 'products.inventory.remaining' | t }}</span>
+        {%- endcapture -%}
+        {% render 'component__badge', 
+          container_class: 'mt-2',
+          color: 'overlay-1',
+          icon: '',
+          content: badge %}
+      {% endif %}
+    {% endif %}
+
+  </a>
+  
+</div>

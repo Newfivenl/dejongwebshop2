@@ -1,0 +1,47 @@
+<!-- snippets/collection__subtags.liquid -->
+{% comment %} 
+  Secondary navigation for collection pages. Use tags for quick filtering.
+
+  Usage:
+    {% render 'collection__subtags' %}
+
+  Globals:
+    - settings.layout_horizontal: horizontaly margin
+
+  Pro tips:
+    - Use this snippet on collection templates.
+{% endcomment %}
+
+{% comment %}sub tags{% endcomment %}
+{% assign raw_sub_tags = collection.metafields.custom.subtags %}
+{% if raw_sub_tags != blank %}
+
+  <nav class="color__bg-body flex flex-wrap">
+    <div class="relative w-full">
+
+      <div class="whitespace-nowrap scroll-smooth snap-x inline-flex w-full gap-2 overflow-x-auto">
+        <div class="snap-center flex justify-center flex-none">
+          <a href="{{ collection.url }}"
+            class="no-underline py-4 border--b-width color__border-selected-1
+            {% if current_tags != blank %}opacity-50 !border-b-0{% endif %}">
+            {{ 'collections.general.all' | t }}
+          </a>
+        </div>
+        {% for item in raw_sub_tags.value -%}
+          <div class="snap-center flex justify-center flex-none">
+            <a href="{{ collection.url }}/{{ item }}"
+              class="no-underline opacity-50 py-4
+              {% if current_tags contains item %}
+                !opacity-100
+                border--b-width
+                color__border-selected-1
+              {% endif %}">
+              {{ item }}
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+
+    </div>
+  </nav> 
+{% endif %}

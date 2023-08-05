@@ -1,0 +1,139 @@
+<!-- snippets/component__upsell-slider-item.liquid -->
+{% comment %} 
+  Upsell slider item displayed in cart slide-out drawer.
+
+  Accepts:
+    - product: liquid product object
+    - index: optional index of animation order
+  
+  Usage:
+    {% render 'component__upsell-slider-item', 
+      product: product, 
+      index: forloop.index0 %}
+
+  Globals:
+    - settings.thumbmails_color_scheme: color scheme of thumbnails
+    - settings.type_thumbnail: typography for thumbnail titles
+    - settings.type_thumbnail_capitilization: set the capitilization 
+  
+  Possible enhancements: 
+    - Refactor so this can be used in non-slider placements.
+  
+  Pro tips:
+    - Use cart upsells to increase AOV. Highlight products that are an easy upsell.
+{% endcomment %}
+
+<div class="relative md:snap-center flex justify-center flex-none w-4/5 whitespace-normal border--width border--radius overflow-hidden
+  color__border-divider-1 upsell upsell--{{ product.id }}" 
+  x-data="{ 
+    button_loading: false
+  }"
+  x-intersect:enter.full="index = {{ index }};"
+  x-bind:data-slide="{{ index }}">
+
+  <div class="color__bg-body color__text flex items-center w-full">
+
+    {% comment %}images{% endcomment %}
+    <div class="w-[25%] h-full flex-none">
+      <div class="object-cover flex items-center h-full max-w-full
+        {{ settings.thumbmails_color_scheme }}">
+        {%- unless product.featured_image == blank %}
+          {% capture image_class %}w-full h-full object-cover aspect-[1/1] {{ settings.thumbmails_color_scheme }}{% endcapture %}
+          {{ product.featured_image 
+            | image_url: width: 200 
+            | image_tag: class: image_class, loading: 'lazy', alt: product.title }}
+        {%- endunless -%}
+      </div>
+    </div>
+
+    {%- comment -%}content{%- endcomment -%}
+    <div class="md:py-4 flex flex-row items-center justify-between flex-grow gap-2 p-2 px-4 text-left">
+      
+      <div class="grow flex flex-col">
+        <p class="mb-0 type--small
+          {{ settings.type_thumbnail_capitilization }}
+          {% if settings.type_thumbnail == 'body' %}type__body{% endif %}
+          {% if settings.type_thumbnail == 'heading' %}type__heading{% endif %}
+          {% if settings.type_thumbnail == 'navigation' %}type__nav{% endif %}">
+          {{ product.title }}
+        </p>
+        {% if settings.enable_tagline and product.metafields.descriptors.subtitle %}
+          <span class="type--small">
+            {{ product.metafields.descriptors.subtitle }}
+          </span>
+        {% endif %}
+        <p class="type--small mb-0">
+          {{ product.price 
+            | money_without_trailing_zeros }}
+        </p>
+      </div>
+
+      <div>
+        <form class="flex flex-wrap"
+          action="/cart/add" 
+          method="post" 
+          enctype="multipart/form-data"
+          x-data="{
+            defaultVariantId: {{ product.variants[0].id }},
+            defaultSellingPlanId: 0,
+            quantity: 1,
+          }"
+          x-ref="formContainer"
+          @submit.prevent="
+          addCartItem($refs.formContainer); 
+            button_loading = true; 
+            setTimeout(function(){ button_loading = false}, 500);
+          ">
+          {% if product.has_only_default_variant %}
+            <input type="hidden"
+              name="id" 
+              value="{{ product.variants[0].id }}" >
+            <label class="sr-only"
+              for="upsell_item_quantity_{{ product.variants[0].id }}" >{{ 'products.general.quantity' | t }}</label>
+            <input id="upsell_item_quantity_{{ product.variants[0].id }}"
+              class="!hidden"
+              type="text"
+              name="quantity"
+              value="1"
+              min="1"
+              max=""
+              x-model="quantity">
+            <button type="submit" 
+              role="button"
+              class="btn btn--plain btn--small btn--load"
+              :class="{ 'btn--loading' : cart_loading && button_loading }"
+              :disabled="button_loading">
+              <div class="btn__content">{{ 'products.general.short_add_label' | t }}</div>
+              <div class="btn__spinner">
+                {% render 'component__icon', icon: 'spinner', size: '24', class: '' %}
+              </div>
+            </button>
+          {% else %}
+            <div>
+              <button type="button" 
+                role="button" 
+                class="btn btn--plain btn--small btn--load" 
+                :class="{ 'btn--loading' : button_loading }" 
+                :disabled="button_loading"
+                @click="
+                  button_loading = true; 
+                  fetchAndRenderQuickAdd('{{ product.handle }}', 'upsell');
+                  setTimeout(function(){ button_loading = false}, 500);">
+                <div class="btn__content">{{ 'products.general.short_add_label' | t }}</div>
+                <div class="btn__spinner">
+                  {% render 'component__icon', icon: 'spinner', size: '24', class: '' %}
+                </div>
+              </button>
+            </div>
+          {% endif %}
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+  
+  {%- comment -%}quick add popup{%- endcomment -%}
+  <div id='js:quickAdd-upsell-{{ product.handle }}'></div>
+  
+</div>

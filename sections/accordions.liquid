@@ -1,0 +1,668 @@
+<!-- sections/accordions.liquid -->
+{% comment %} 
+  Display a list of accordions that can collapse and expand.
+
+  Globals:
+    - settings.layout_horizontal: horizontaly margin
+
+  Possible enhancements:
+    - Add alternative layout options
+
+  Pro tips:
+    - Can be used to show FAQs or other content that can be collapsed and expanded.
+{% endcomment %}
+
+<section class="
+  {{ section.settings.visibility }}
+  {{ section.settings.color_scheme }} 
+  {{ section.settings.color_border }}
+  {{ section.settings.style_border }}">
+  <div style="
+    padding-top:{{ section.settings.spacing_top }}px;
+    padding-bottom:{{ section.settings.spacing_bottom }}px;" 
+    class="{{ settings.layout_horizontal }}">
+
+    {% render 'component__section-header' %} 
+    {% for block in section.blocks %}
+      {% capture accordion_content %}
+        <div class="max-w-prose">
+          {{ block.settings.content }}
+        </div>
+      {% endcapture %}
+      {% render 'component__accordion', 
+        button_label: block.settings.title, 
+        button_class: "",
+        container_class: "border--b-width color__border-divider-1 w-full",
+        content: accordion_content,
+        inner_class: 'mb-4',
+        icon: block.settings.icon %}
+    {% endfor %}
+    
+  </div>
+</section>
+
+{% schema %}
+{
+  "name":"t:sections.accordions.name",
+  "settings":[
+    {
+      "type":"header",
+      "content":"t:sections.all.headers.header__4.content"
+    },
+    {
+      "type":"text",
+      "id":"heading",
+      "label":"t:sections.all.content.settings.heading.label"
+    },
+    {
+      "type":"richtext",
+      "id":"content",
+      "label":"t:sections.all.content.settings.content.label"
+    },
+    {
+      "type":"text",
+      "id":"button_label",
+      "label":"t:sections.all.content.settings.button_label.label"
+    },
+    {
+      "type":"url",
+      "id":"button_url",
+      "label":"t:sections.all.content.settings.button_url.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.header__22.content"
+    },
+    {
+      "type": "range",
+      "id": "spacing_top",
+      "min": 0,
+      "max": 300,
+      "step": 20,
+      "unit": "px",
+      "label": "t:sections.all.layout.settings.spacing.label_top",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "spacing_bottom",
+      "min": 0,
+      "max": 300,
+      "step": 20,
+      "unit": "px",
+      "label": "t:sections.all.layout.settings.spacing.label_bottom",
+      "default": 100
+    },
+    {
+      "type":"header",
+      "content":"t:sections.all.headers.header__1.content"
+    },
+    {
+      "type":"select",
+      "id":"color_scheme",
+      "label":"t:sections.all.colors.settings.color_scheme.label",
+      "options":[
+        {
+          "value":"color__bg-body color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__1.label"
+        },
+        {
+          "value":"color__bg-neutral color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__2.label"
+        },
+        {
+          "value":"color__bg-overlay-1 color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__3.label"
+        },
+        {
+          "value":"color__bg-overlay-2 color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__4.label"
+        },
+        {
+          "value":"color__bg-overlay-3 color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__5.label"
+        },
+        {
+          "value":"color__bg-primary color__primary",
+          "label":"t:sections.all.colors.settings.color_scheme.options__6.label"
+        },
+        {
+          "value":"color__bg-secondary color__secondary",
+          "label":"t:sections.all.colors.settings.color_scheme.options__7.label"
+        },
+        {
+          "value":"color__bg-tertiary color__tertiary",
+          "label":"t:sections.all.colors.settings.color_scheme.options__8.label"
+        }
+      ],
+      "default":"color__bg-body color__text"
+    },
+    {
+      "type":"select",
+      "id":"color_border",
+      "label":"t:sections.all.colors.settings.color_border.label",
+      "options":[
+        {
+          "value":"color__border-divider-1",
+          "label":"t:sections.all.colors.settings.color_border.options__1.label"
+        },
+        {
+          "value":"color__border-selected-1",
+          "label":"t:sections.all.colors.settings.color_border.options__2.label"
+        }
+      ],
+      "default":"color__border-divider-1"
+    },
+    {
+      "type":"select",
+      "id":"color_button",
+      "label":"t:sections.all.colors.settings.color_button.label",
+      "options":[
+        {
+          "value":"btn",
+          "label":"t:sections.all.colors.settings.color_button.options__1.label"
+        },
+        {
+          "value":"btn btn--secondary",
+          "label":"t:sections.all.colors.settings.color_button.options__2.label"
+        },
+        {
+          "value":"btn btn--tertiary",
+          "label":"t:sections.all.colors.settings.color_button.options__5.label"
+        },
+        {
+          "value":"btn btn--neutral",
+          "label":"t:sections.all.colors.settings.color_button.options__3.label"
+        },
+        {
+          "value":"btn btn--plain",
+          "label":"t:sections.all.colors.settings.color_button.options__4.label"
+        }
+      ],
+      "default":"btn btn--secondary"
+    },
+    {
+      "type":"header",
+      "content":"t:sections.all.headers.header__2.content"
+    },
+    {
+      "type":"select",
+      "id":"style_border",
+      "label":"t:sections.all.styles.settings.style_border.label",
+      "options":[
+        {
+          "value":"",
+          "label":"t:sections.all.styles.settings.style_border.options__1.label"
+        },
+        {
+          "value":"border--t-width",
+          "label":"t:sections.all.styles.settings.style_border.options__2.label"
+        },
+        {
+          "value":"border--b-width",
+          "label":"t:sections.all.styles.settings.style_border.options__3.label"
+        },
+        {
+          "value":"border--b-width border--t-width",
+          "label":"t:sections.all.styles.settings.style_border.options__4.label"
+        }
+      ],
+      "default":"border--b-width"
+    },
+    {
+      "type":"header",
+      "content":"t:sections.all.headers.header__3.content"
+   },
+    {
+      "type": "select",
+      "id": "layout_x_alignment",
+      "label": "t:sections.all.layout.settings.layout_x_alignment.label",
+      "options": [
+        {
+          "value": "justify-between",
+          "label": "t:sections.all.layout.settings.layout_x_alignment.options__1.label"
+        },
+        {
+          "value": "text-center justify-center flex-col items-center",
+          "label": "t:sections.all.layout.settings.layout_x_alignment.options__2.label"
+        },
+        {
+          "value": "text-right justify-end flex-col items-end",
+          "label": "t:sections.all.layout.settings.layout_x_alignment.options__3.label"
+        }
+      ],
+      "default": "justify-between"
+    },
+    {
+      "type":"header",
+      "content":"t:sections.all.headers.header__8.content"
+    },
+    {
+      "type":"select",
+      "id":"visibility",
+      "label":"t:sections.all.visibility.label",
+      "options":[
+        {
+          "value":"",
+          "label":"t:sections.all.visibility.options__1.label"
+        },
+        {
+          "value":"md:hidden",
+          "label":"t:sections.all.visibility.options__2.label"
+        },
+        {
+          "value":"hidden md:block",
+          "label":"t:sections.all.visibility.options__3.label"
+        }
+      ],
+      "default":""
+    }
+  ],
+  "blocks":[
+    {
+      "type":"content",
+      "name":"t:sections.accordions.name",
+      "limit":50,
+      "settings":[
+        {
+          "type":"text",
+          "id":"title",
+          "label":"t:sections.accordions.blocks.content.settings.title.label",
+          "default":{
+            "en":"A question your customers are asking",
+            "es": "Una pregunta que hacen tus clientes",
+            "it": "Una domanda che i tuoi clienti stanno facendo",
+            "de": "Eine Frage, die Ihre Kunden stellen",
+            "fr": "Une question que vos clients se posent"
+          }
+        },
+        {
+          "type":"richtext",
+          "id":"content",
+          "label":"t:sections.accordions.blocks.content.settings.content.label",
+          "default":{
+            "en":"<p>Answer to help your customers feel more comfortable completing their purchase.</p>",
+            "es": "<p>Respuesta para ayudar a sus clientes a sentirse más cómodos completando su compra.</p>",
+            "it": "<p>Rispondi per aiutare i tuoi clienti a sentirsi più a proprio agio nel completare il loro acquisto.</p>",
+            "de": "<p>Antwort, damit sich Ihre Kunden beim Abschluss ihres Kaufs wohler fühlen.</p>",
+            "fr": "<p>Réponse pour aider vos clients à se sentir plus à l’aise de finaliser leur achat.</p>"
+          }
+        },
+        {
+          "type":"select",
+          "id":"icon",
+          "label":"t:sections.all.icons.name",
+          "options":[
+             {
+                "value":"",
+                "label":"t:sections.all.icons.options.none.label"
+             },
+             {
+                "value":"activity",
+                "label":"t:sections.all.icons.options.activity.label"
+             },
+             {
+                "value":"alert-circle",
+                "label":"t:sections.all.icons.options.alert-circle.label"
+             },
+             {
+                "value":"alert-triangle",
+                "label":"t:sections.all.icons.options.alert-triangle.label"
+             },
+             {
+                "value":"anchor",
+                "label":"t:sections.all.icons.options.anchor.label"
+             },
+             {
+                "value":"archive",
+                "label":"t:sections.all.icons.options.archive.label"
+             },
+             {
+                "value":"award",
+                "label":"t:sections.all.icons.options.award.label"
+             },
+             {
+                "value":"at-sign",
+                "label":"t:sections.all.icons.options.at-sign.label"
+             },
+             {
+                "value":"bell",
+                "label":"t:sections.all.icons.options.bell.label"
+             },
+             {
+                "value":"book-open",
+                "label":"t:sections.all.icons.options.book-open.label"
+             },
+             {
+                "value":"book",
+                "label":"t:sections.all.icons.options.book.label"
+             },
+             {
+                "value":"bookmark",
+                "label":"t:sections.all.icons.options.bookmark.label"
+             },
+             {
+                "value":"box",
+                "label":"t:sections.all.icons.options.box.label"
+             },
+             {
+                "value":"briefcase",
+                "label":"t:sections.all.icons.options.briefcase.label"
+             },
+             {
+                "value":"calendar",
+                "label":"t:sections.all.icons.options.calendar.label"
+             },
+             {
+                "value":"camera",
+                "label":"t:sections.all.icons.options.camera.label"
+             },
+             {
+                "value":"check",
+                "label":"t:sections.all.icons.options.check.label"
+             },
+             {
+                "value":"check-square",
+                "label":"t:sections.all.icons.options.check-square.label"
+             },
+             {
+                "value":"clipboard",
+                "label":"t:sections.all.icons.options.clipboard.label"
+             },
+             {
+                "value":"cloud",
+                "label":"t:sections.all.icons.options.cloud.label"
+             },
+             {
+                "value":"coffee",
+                "label":"t:sections.all.icons.options.coffee.label"
+             },
+             {
+                "value":"code",
+                "label":"t:sections.all.icons.options.code.label"
+             },
+             {
+                "value":"cpu",
+                "label":"t:sections.all.icons.options.cpu.label"
+             },
+             {
+                "value":"droplet",
+                "label":"t:sections.all.icons.options.droplet.label"
+             },
+             {
+                "value":"dollar-sign",
+                "label":"t:sections.all.icons.options.dollar-sign.label"
+             },
+             {
+                "value":"edit",
+                "label":"t:sections.all.icons.options.edit.label"
+             },
+             {
+                "value":"eye",
+                "label":"t:sections.all.icons.options.eye.label"
+             },
+             {
+                "value":"flag",
+                "label":"t:sections.all.icons.options.flag.label"
+             },
+             {
+                "value":"folder",
+                "label":"t:sections.all.icons.options.folder.label"
+             },
+             {
+                "value":"gift",
+                "label":"t:sections.all.icons.options.gift.label"
+             },
+             {
+                "value":"globe",
+                "label":"t:sections.all.icons.options.globe.label"
+             },
+             {
+                "value":"hash",
+                "label":"t:sections.all.icons.options.hash.label"
+             },
+             {
+                "value":"headphones",
+                "label":"t:sections.all.icons.options.headphones.label"
+             },
+             {
+                "value":"heart",
+                "label":"t:sections.all.icons.options.heart.label"
+             },
+             {
+                "value":"help-circle",
+                "label":"t:sections.all.icons.options.help-circle.label"
+             },
+             {
+                "value":"home",
+                "label":"t:sections.all.icons.options.home.label"
+             },
+             {
+                "value":"image",
+                "label":"t:sections.all.icons.options.image.label"
+             },
+             {
+                "value":"inbox",
+                "label":"t:sections.all.icons.options.inbox.label"
+             },
+             {
+                "value":"info",
+                "label":"t:sections.all.icons.options.info.label"
+             },
+             {
+                "value":"key",
+                "label":"t:sections.all.icons.options.key.label"
+             },
+             {
+                "value":"life-buoy",
+                "label":"t:sections.all.icons.options.life-buoy.label"
+             },
+             {
+                "value":"link",
+                "label":"t:sections.all.icons.options.link.label"
+             },
+             {
+                "value":"lock",
+                "label":"t:sections.all.icons.options.lock.label"
+             },
+             {
+                "value":"mail",
+                "label":"t:sections.all.icons.options.mail.label"
+             },
+             {
+                "value":"map-pin",
+                "label":"t:sections.all.icons.options.map-pin.label"
+             },
+             {
+                "value":"map",
+                "label":"t:sections.all.icons.options.map.label"
+             },
+             {
+                "value":"meh",
+                "label":"t:sections.all.icons.options.meh.label"
+             },
+             {
+                "value":"monitor",
+                "label":"t:sections.all.icons.options.monitor.label"
+             },
+             {
+                "value":"mouse-pointer",
+                "label":"t:sections.all.icons.options.mouse-pointer.label"
+             },
+             {
+                "value":"music",
+                "label":"t:sections.all.icons.options.music.label"
+             },
+             {
+                "value":"package",
+                "label":"t:sections.all.icons.options.package.label"
+             },
+             {
+                "value":"paperclip",
+                "label":"t:sections.all.icons.options.paperclip.label"
+             },
+             {
+                "value":"save",
+                "label":"t:sections.all.icons.options.save.label"
+             },
+             {
+                "value":"settings",
+                "label":"t:sections.all.icons.options.settings.label"
+             },
+             {
+                "value":"shield",
+                "label":"t:sections.all.icons.options.shield.label"
+             },
+             {
+                "value":"shopping-bag",
+                "label":"t:sections.all.icons.options.shopping-bag.label"
+             },
+             {
+                "value":"slash",
+                "label":"t:sections.all.icons.options.slash.label"
+             },
+             {
+                "value":"sliders",
+                "label":"t:sections.all.icons.options.sliders.label"
+             },
+             {
+                "value":"smile",
+                "label":"t:sections.all.icons.options.smile.label"
+             },
+             {
+                "value":"speaker",
+                "label":"t:sections.all.icons.options.speaker.label"
+             },
+             {
+                "value":"star",
+                "label":"t:sections.all.icons.options.star.label"
+             },
+             {
+                "value":"sun",
+                "label":"t:sections.all.icons.options.sun.label"
+             },
+             {
+                "value":"sunrise",
+                "label":"t:sections.all.icons.options.sunrise.label"
+             },
+             {
+                "value":"sunset",
+                "label":"t:sections.all.icons.options.sunset.label"
+             },
+             {
+                "value":"table",
+                "label":"t:sections.all.icons.options.table.label"
+             },
+             {
+                "value":"tag",
+                "label":"t:sections.all.icons.options.tag.label"
+             },
+             {
+                "value":"thermometer",
+                "label":"t:sections.all.icons.options.thermometer.label"
+             },
+             {
+                "value":"thumbs-up",
+                "label":"t:sections.all.icons.options.thumbs-up.label"
+             },
+             {
+                "value":"thumbs-down",
+                "label":"t:sections.all.icons.options.thumbs-down.label"
+             },
+             {
+                "value":"trending-up",
+                "label":"t:sections.all.icons.options.trending-up.label"
+             },
+             {
+                "value":"tool",
+                "label":"t:sections.all.icons.options.tool.label"
+             },
+             {
+                "value":"trash",
+                "label":"t:sections.all.icons.options.trash.label"
+             },
+             {
+                "value":"truck",
+                "label":"t:sections.all.icons.options.truck.label"
+             },
+             {
+                "value":"tv",
+                "label":"t:sections.all.icons.options.tv.label"
+             },
+             {
+                "value":"umbrella",
+                "label":"t:sections.all.icons.options.umbrella.label"
+             },
+             {
+                "value":"unlock",
+                "label":"t:sections.all.icons.options.unlock.label"
+             },
+             {
+                "value":"user-check",
+                "label":"t:sections.all.icons.options.user-check.label"
+             },
+             {
+                "value":"user-plus",
+                "label":"t:sections.all.icons.options.user-plus.label"
+             },
+             {
+                "value":"user",
+                "label":"t:sections.all.icons.options.user.label"
+             },
+             {
+                "value":"users",
+                "label":"t:sections.all.icons.options.users.label"
+             },
+             {
+                "value":"zap",
+                "label":"t:sections.all.icons.options.zap.label"
+             }
+          ],
+          "default":""
+        }
+      ]
+    }
+  ],
+  "presets":[
+    {
+      "name":"t:sections.accordions.name",
+      "settings":{
+        "color_scheme":"color__bg-body color__text",
+        "color_border":"color__border-divider-1",
+        "color_button":"btn btn--secondary",
+        "style_border":"border--b-width",
+        "heading":"Collapsible content",
+        "content":"",
+        "button_label":"Button",
+        "button_url":"/"
+      },
+      "blocks":[
+        {
+          "type":"content",
+          "settings":{
+            "title":"A question your customers are asking",
+            "content":"<p>Answer to help your customers feel more comfortable completing their purchase.</p>"
+          }
+        },
+        {
+          "type":"content",
+          "settings":{
+            "title":"A question your customers are asking",
+            "content":"<p>Answer to help your customers feel more comfortable completing their purchase.</p>"
+          }
+        },
+        {
+          "type":"content",
+          "settings":{
+            "title":"A question your customers are asking",
+            "content":"<p>Answer to help your customers feel more comfortable completing their purchase.</p>"
+          }
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["custom.overlay"]
+  }
+}
+{% endschema %}

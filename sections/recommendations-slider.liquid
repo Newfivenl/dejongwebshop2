@@ -1,0 +1,576 @@
+<!-- sections/recommendations-slider.liquid -->
+{% comment %} 
+  Slider of recommended products. 
+
+  Globals:
+    - settings.layout_horizontal: horizontaly margin
+    - settings.thumbnails_border_style: border style of thumbnails
+    - settings.thumbnails_color_border: border color
+    - settings.thumbmails_color_scheme: color scheme of thumbnails
+    - settings.thumbnails_ratio: set the aspect ratio of thumbnails
+    - settings.thumbnails_object: set the image object sizing
+    - settings.enable_quick_desktop: boolean to enable quick add
+    - settings.enable_quick_mobile: boolean to enable quick add
+    - settings.type_thumbnail: typography for thumbnail titles
+    - settings.type_seperator: setting to pick the type of seperator between text
+    - settings.enable_thumbnails_product_type: boolean to enable product type
+    - settings.enable_thumbnails_vendor: boolean to enable vendor
+    - settings.enable_thumbnails_variant_count: boolean to enable variant count
+
+  Possible enhancements:
+    - Break this up into re-useable snippets.
+
+  Pro tips:
+    - Recomendations can be updated using Search and Discovery app.
+    - Can be set to either complimentary or related products.
+    - This section will only work on product templates.
+{% endcomment %}
+
+<section class="
+  {{ section.settings.visibility }}
+  {{ section.settings.color_scheme }} 
+  {{ section.settings.color_border }}
+  {{ section.settings.style_border }}">
+  <div class="!px-0
+      {{ settings.layout_horizontal }}"
+    style="
+      padding-top:{{ section.settings.spacing_top }}px;
+      padding-bottom:{{ section.settings.spacing_bottom }}px;" 
+    x-data="{
+      initialLoad: true,
+      loadingRecomendations : false,
+      recomended_products: [],
+      getRecomendations(){
+        fetch(window.Shopify.routes.root + 'recommendations/products.json?product_id={{ product.id }}&limit={{ section.settings.products_count }}&intent={{ section.settings.intent }}')
+        .then(response => response.json())
+        .then(({ products }) => {
+          if (products.length > 0) {
+            this.recomended_products = products;
+            this.loadingRecomendations = true;
+            this.initialLoad = false;
+          }
+        }
+      );
+    }
+  }"
+  x-show="recomended_products.length > 0 || initialLoad == true"
+  x-init="getRecomendations();">
+    
+    {%- comment -%}header{%- endcomment -%}
+    <div class="flex flex-row flex-wrap items-end justify-between px-4 pb-4">
+      <div class="max-w-prose md:w-auto w-full">
+        {%- unless section.settings.heading == blank -%}
+          <h3>{{ section.settings.heading }}</h3>
+        {%- endunless -%}
+        {%- unless section.settings.content == blank -%}
+          <div class="m-0--clear">
+            {{ section.settings.content }}
+          </div>
+        {%- endunless -%}
+      </div>
+    </div>
+
+    {%- comment -%}skeleton loader{%- endcomment -%}
+    <div x-show="!loadingRecomendations">
+      <div class="whitespace-nowrap md:snap-x scroll-smooth hidescrollbar inline-flex w-full px-4 overflow-x-auto overflow-y-hidden"
+        style="
+          column-gap: {{ settings.layout_gap_size }}px;
+          row-gap: {{ settings.layout_gap_size | times: 1.5 }}px;">
+        <div class="md:snap-center md:w-[26%] flex justify-center flex-none w-8/12">
+          {% render 'component__skeleton-grid-item' %}
+        </div>
+        <div class="md:snap-center md:w-[26%] flex justify-center flex-none w-8/12">
+          {% render 'component__skeleton-grid-item' %}
+        </div>
+      </div>
+    </div>
+
+    {%- comment -%}results{%- endcomment -%}
+    <div 
+      class="relative w-full"
+      x-show="recomended_products.length > 0 && loadingRecomendations"
+      x-data="{
+        index_slide: 0,
+        index_size: {{ section.settings.products_count | minus: 1 }},
+        show_arrows: false,
+        isOverflown(element) {
+          return element.scrollWidth > element.clientWidth;
+        },
+        scrollNext() {
+          let slider = this.$refs.slider;
+          if(this.index_slide >= this.index_size){
+            slider.scrollLeft = 0;
+          } else {
+            this.index_slide ++;
+            slider.scrollLeft += slider.offsetWidth-300;
+          }
+
+        },
+        scrollBack() {
+          let slider = this.$refs.slider;
+          if(this.index_slide < 0){
+            slider.scrollLeft = 999999;
+          } else {
+            this.index_slide --;
+            slider.scrollLeft -= slider.offsetWidth-300;
+          }
+        }
+      }">
+      
+      {%- comment -%}slides{%- endcomment -%}
+      <div class="whitespace-nowrap md:snap-x scroll-smooth hidescrollbar inline-flex w-full px-4 overflow-x-auto overflow-y-hidden" 
+        style="
+          column-gap: {{ settings.layout_gap_size }}px;
+          row-gap: {{ settings.layout_gap_size | times: 1.5 }}px;"
+        x-init="setTimeout(function(){ if (isOverflown($el)) show_arrows = true}, 2000)"
+        x-ref="slider">
+        <template x-for="(item, index) in recomended_products">
+          <div class="md:snap-center md:w-[26%] flex justify-center flex-none w-8/12"
+            x-intersect:enter.full="index_slide = index;"
+            x-bind:data-slide="index_slide">
+
+            <div class="group relative w-full
+              {% if settings.thumbnails_border_style == 'thumbnail' %}
+                border--radius overflow-hidden
+                {{ settings.thumbnails_color_border }} 
+                {{ settings.thumbmails_color_scheme }} 
+              {% endif %}"
+              x-data="{ 
+                option_popup: true,
+                button_loading: false
+              }">
+
+              {%- comment -%}image{%- endcomment -%}
+              <a class="hover:opacity-100 relative block mb-2" 
+                :href="item.url">
+                <div class="animate w-full overflow-hidden
+                  {{ settings.thumbmails_color_scheme }} 
+                  {% if settings.thumbnails_border_style == 'image' %}
+                    border--radius
+                    {{ settings.thumbnails_color_border }} 
+                  {% endif %}">
+                  <div class="{{ settings.thumbnails_ratio }} object-cover overflow-hidden">
+                    {% if settings.thumbnails_object-sizing == "cover" %}
+                      {% capture image_class %}w-full h-full object-cover {{ settings.thumbmails_color_scheme }}{% endcapture %}
+                    {% else %}
+                      {% capture image_class %}w-full h-full object-contain {{ settings.thumbmails_color_scheme }}{% endcapture %}
+                    {% endif %}
+                    <img class="{{ image_class }}" 
+                      loading="lazy"
+                      :src="item.featured_image" 
+                      :alt="item.title" 
+                      width="904" />
+                  </div>
+                </div>
+              </a>
+
+              {%- comment -%}quick add desktop{%- endcomment -%}
+              {% if settings.enable_quick_desktop %}
+                <div x-show="item.available" class="md:block group-hover:opacity-100 group-focus-within:opacity-100 animation-300 group-hover:translate-y-0 group-focus-within:translate-y-0 absolute hidden w-full px-4 pb-4 -mt-16 translate-y-2 opacity-0">
+                  <form class="flex flex-wrap" action="/cart/add" method="post" enctype="multipart/form-data"
+                    x-data="{
+                      defaultVariantId: item.variants[0].id ,
+                      defaultSellingPlanId: 0,
+                      quantity: 1,
+                    }"
+                    x-ref="recentFormContainer"
+                    @submit.prevent=" 
+                      addCartItem($refs.recentFormContainer);
+                      button_loading = true; 
+                      setTimeout(function(){ button_loading = false}, 500);
+                    ">
+                    <div class="!w-full" x-show="item.variants[0].option1 == 'Default Title'">
+                      
+                      <input name="id" :value="item.variants[0].id" type="hidden">
+                      <label :for="'recommendations-' + item.id + '-quantity'" class="sr-only">{{ 'products.general.quantity' | t }}</label>
+                      <input class="!hidden" type="text" name="quantity" :id="'recommendations-' + item.id + '-quantity'" value="1" min="1" max="" x-model="quantity">
+                      <button type="submit" role="button" class="!w-full btn btn--secondary btn--small btn--load"  
+                        :class="{ 'btn--loading' : cart_loading && button_loading }"
+                        :disabled="button_loading">
+                        <div class="btn__content">{{ 'products.general.add_to_cart' | t }}</div>
+                        <div class="btn__spinner">
+                          {% render 'component__icon', icon: 'spinner', size: '24', class: '' %}
+                        </div>
+                      </button>
+                    </div>
+                      
+                      <button x-show="item.variants[0].option1 !== 'Default Title'" type="button" class="!w-full btn btn--small btn--load btn--secondary" 
+                        @click="
+                        button_loading = true; 
+                        fetchAndRenderQuickAdd(item.handle, 'recent');
+                        setTimeout(function(){ button_loading = false}, 500);"
+                        :class="{ 'btn--loading' : button_loading }"
+                        :disabled="button_loading">
+                        <div class="btn__content">{{ 'products.general.add_to_cart' | t }}</div>
+                        <div class="btn__spinner">
+                          {% render 'component__icon', icon: 'spinner', size: '24', class: '' %}
+                        </div>
+                      </button>
+                  </form>
+                </div>
+              {% endif %}
+
+              <div x-show="!item.available" class="md:block group-hover:opacity-100 group-focus-within:opacity-100 animation-300 group-hover:translate-y-0 group-focus-within:translate-y-0 absolute hidden w-full px-4 pb-4 -mt-16 translate-y-2 opacity-0">
+                <button type="button" class="!w-full btn btn--small btn--plain" tabindex="-1">
+                  {{ 'products.general.sold_out' | t }}
+                </button>
+              </div>
+
+              {%- comment -%}content{%- endcomment -%}
+              <a :href="item.url" tabindex="-1" 
+                class="hover:no-underline block no-underline whitespace-normal
+                {{ settings.thumbnail_alignment }}
+                {% if settings.thumbnails_border_style == "thumbnail" %}
+                  px-4
+                  {% if settings.enable_quick_mobile %}
+                    pb-14 md:pb-4
+                  {% else %}
+                    pb-4
+                  {% endif %}
+                {% else %}
+                  {% if settings.enable_quick_mobile %}
+                    pb-14 md:pb-0
+                  {% else %}
+                    pb-4
+                  {% endif %}
+                {% endif %}">
+                <h3 class="type--base !leading-tight mb-0.5
+                  {% if settings.type_thumbnail == 'body' %}type__body{% endif %}
+                  {% if settings.type_thumbnail == 'heading' %}type__heading{% endif %}
+                  {% if settings.type_thumbnail == 'navigation' %}type__nav{% endif %}"  
+                  x-text="item.title">
+                </h3>
+
+                <ul class="flex flex-wrap items-center gap-x-1 gap-y-0.5 p-0 opacity-75 mb-0.5
+                  {{ settings.thumbnail_alignment }}">
+                  {% if settings.enable_thumbnails_product_type %}
+                    <li class="type--small inline-block last:after:hidden after:pl-1
+                      {% if settings.type_seperator == 'dot' %} after:content-['\00B7'] {% else %} after:content-['\007C'] {% endif %}"
+                      x-text="item.type">
+                    </li>
+                  {% endif %}
+                  {% if settings.enable_thumbnails_vendor %}
+                    <li class="type--small inline-block last:after:hidden after:pl-1
+                      {% if settings.type_seperator == 'dot' %} after:content-['\00B7'] {% else %} after:content-['\007C'] {% endif %}"
+                      x-text="item.vendor">
+                    </li>
+                  {% endif %}
+                  {% if settings.enable_thumbnails_variant_count %}
+                    <li class="type--small inline-block last:after:hidden after:pl-1
+                      {% if settings.type_seperator == 'dot' %} after:content-['\00B7'] {% else %} after:content-['\007C'] {% endif %}" 
+                      x-text="item.variants.length + ' {{ 'products.general.options' | t }}'">
+                    </li>
+                  {% endif %}
+                </ul>
+
+                <div class="flex flex-wrap items-center gap-1 mb-0.5
+                  {{ settings.thumbnail_alignment }}">
+                  <span class="type--small" x-text="Shopify.formatMoney(item.price,currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">{{ product.price_min | money }}</span>
+                  {% if product.price_varies %}
+                    <span class="type--small" x-text="'- ' + Shopify.formatMoney({{ product.price_max }},currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">- {{ product.price_max | money }}</span>
+                  {% endif %}
+                  {% if product.compare_at_price_max > 0 %}
+                    <span class="type--small"><s x-text="Shopify.formatMoney({{ product.compare_at_price_max }},currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">{{ product.compare_at_price_max | money }}</s></span>
+                  {% endif %}
+                </div>
+              </a>
+
+              {%- comment -%}quick add mobile{%- endcomment -%}
+              {% if settings.enable_quick_mobile %}
+                <div class="no-js--hide md:hidden absolute bottom-0 w-full pt-4" x-show="item.available">
+                  <form class="flex flex-wrap" action="/cart/add" method="post" enctype="multipart/form-data"
+                    x-data="{
+                      defaultVariantId: item.variants[0].id,
+                      defaultSellingPlanId: 0,
+                      quantity: 1,
+                    }"
+                    x-ref="recentFormContainer"
+                    @submit.prevent="
+                      addCartItem($refs.recentFormContainer);
+                      button_loading = true; 
+                      setTimeout(function(){ button_loading = false}, 500);
+                    ">
+                    <div class="!w-full" x-show="item.variants[0].option1 == 'Default Title'">
+                      
+                      <input name="id" :value="item.variants[0].id" type="hidden">
+                      <label :for="'recommendations-' + item.id + '-quantity-m'" class="sr-only">{{ 'products.general.quantity' | t }}</label>
+                      <input class="!hidden" type="text" name="quantity" :id="'recommendations-' + item.id + '-quantity-m'" value="1" min="1" max="" x-model="quantity">
+                      <button type="submit" role="button" class="!w-full btn btn--secondary btn--small btn--load"  
+                        :class="{ 'btn--loading' : cart_loading && button_loading }"
+                        :disabled="button_loading">
+                        <div class="btn__content">Add to cart</div>
+                        <div class="btn__spinner">
+                          {% render 'component__icon', icon: 'spinner', size: '24', class: '' %}
+                        </div>
+                      </button>
+                    </div>
+                    
+                    <button x-show="item.variants[0].option1 !== 'Default Title'" type="button" class="!w-full btn btn--small btn--load btn--secondary" 
+                      @click="
+                      button_loading = true; 
+                      fetchAndRenderQuickAdd(item.handle, 'recent');
+                      setTimeout(function(){ button_loading = false}, 500);"
+                      :class="{ 'btn--loading' : button_loading }"
+                      :disabled="button_loading">
+                      <div class="btn__content">Add to cart</div>
+                      <div class="btn__spinner">
+                        {% render 'component__icon', icon: 'spinner', size: '24', class: '' %}
+                      </div>
+                    </button>
+                  </form>
+                </div>
+
+                <div class="md:hidden absolute bottom-0 w-full pt-4"
+                  x-show="!item.available">
+                  <button type="button" class="!w-full btn btn--small btn--plain" tabindex="-1">
+                    {{ 'products.general.sold_out' | t }}
+                  </button>
+                </div>
+              {% endif %}
+
+              <div :id="'js:quickAdd-recent-' + item.handle"></div>
+
+            </div>
+
+          </div>
+        </template>
+      </div>
+
+      <div class="md:flex justify-end hidden gap-4 pt-4 {{ settings.layout_horizontal }}">
+        <div x-show="show_arrows">
+          <button class="btn btn--plain btn--small"
+            title="{{ 'general.media.previous_slide' | t }}"
+            {% if settings.enable_animations %}
+              x-transition:enter="animation-300"
+              x-transition:enter-start="opacity-0"
+              x-transition:enter-end="opacity-100"
+              x-transition:leave="animation-300"
+              x-transition:leave-start="opacity-100"
+              x-transition:leave-end="opacity-0"
+            {% endif %}
+            x-cloak
+            @click="scrollBack();">
+            {% render 'component__icon', icon: 'arrow-left', size: '20', class: '' %}
+          </button>
+        </div>
+        <div x-show="show_arrows">
+          <button class="btn btn--plain btn--small"
+            title="{{ 'general.media.next_slide' | t }}"
+            {% if settings.enable_animations %}
+              x-transition:enter="animation-300"
+              x-transition:enter-start="opacity-0"
+              x-transition:enter-end="opacity-100"
+              x-transition:leave="animation-300"
+              x-transition:leave-start="opacity-100"
+              x-transition:leave-end="opacity-0"
+            {% endif %}
+            x-cloak
+            @click="scrollNext();">
+            {% render 'component__icon', icon: 'arrow-right', size: '20', class: '' %}
+          </button>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+{% schema %}
+{
+  "name":"t:sections.recommendations_slider.name",
+  "settings":[
+    {
+      "type":"header",
+      "content":"t:sections.all.headers.header__11.content"
+    },
+    {
+      "type":"select",
+      "id":"intent",
+      "label":"t:sections.recommendations_slider.settings.intent.label",
+      "info":"t:sections.recommendations_slider.settings.intent.info",
+      "options":[
+        {
+          "value":"related",
+          "label":"t:sections.recommendations_slider.settings.intent.options__1.label"
+        },
+        {
+          "value":"complementary",
+          "label":"t:sections.recommendations_slider.settings.intent.options__2.label"
+        }
+      ],
+      "default":"related"
+    },
+    {
+      "type":"number",
+      "id":"products_count",
+      "label":"t:sections.recommendations_slider.settings.products_count.label",
+      "default":7
+    },
+    {
+      "type":"header",
+      "content":"t:sections.all.headers.header__4.content"
+    },
+    {
+      "type":"text",
+      "id":"heading",
+      "label":"t:sections.all.content.settings.heading.label",
+      "default":{
+        "en":"You may also like",
+        "es":"También te puede interesar",
+        "it":"Potrebbe interessarti anche",
+        "de":"Das könnte Sie auch interessieren",
+        "fr":"Vous aimerez peut-être aussi"
+      }
+    },
+    {
+      "type":"richtext",
+      "id":"content",
+      "label":"t:sections.all.content.settings.content.label"
+    },
+    {
+      "type":"header",
+      "content":"t:sections.all.headers.header__22.content"
+    },
+    {
+      "type":"range",
+      "id":"spacing_top",
+      "min":0,
+      "max":300,
+      "step":20,
+      "unit":"px",
+      "label":"t:sections.all.layout.settings.spacing.label_top",
+      "default":100
+    },
+    {
+      "type":"range",
+      "id":"spacing_bottom",
+      "min":0,
+      "max":300,
+      "step":20,
+      "unit":"px",
+      "label":"t:sections.all.layout.settings.spacing.label_bottom",
+      "default":100
+    },
+    {
+      "type":"header",
+      "content":"t:sections.all.headers.header__1.content"
+    },
+    {
+      "type":"select",
+      "id":"color_scheme",
+      "label":"t:sections.all.colors.settings.color_scheme.label",
+      "options":[
+        {
+          "value":"color__bg-body color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__1.label"
+        },
+        {
+          "value":"color__bg-neutral color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__2.label"
+        },
+        {
+          "value":"color__bg-overlay-1 color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__3.label"
+        },
+        {
+          "value":"color__bg-overlay-2 color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__4.label"
+        },
+        {
+          "value":"color__bg-overlay-3 color__text",
+          "label":"t:sections.all.colors.settings.color_scheme.options__5.label"
+        },
+        {
+          "value":"color__bg-primary color__primary",
+          "label":"t:sections.all.colors.settings.color_scheme.options__6.label"
+        },
+        {
+          "value":"color__bg-secondary color__secondary",
+          "label":"t:sections.all.colors.settings.color_scheme.options__7.label"
+        },
+        {
+          "value":"color__bg-tertiary color__tertiary",
+          "label":"t:sections.all.colors.settings.color_scheme.options__8.label"
+        }
+      ],
+      "default":"color__bg-body color__text"
+    },
+    {
+      "type":"select",
+      "id":"color_border",
+      "label":"t:sections.all.colors.settings.color_border.label",
+      "options":[
+        {
+          "value":"color__border-divider-1",
+          "label":"t:sections.all.colors.settings.color_border.options__1.label"
+        },
+        {
+          "value":"color__border-selected-1",
+          "label":"t:sections.all.colors.settings.color_border.options__2.label"
+        }
+      ],
+      "default":"color__border-divider-1"
+    },
+    {
+      "type":"header",
+      "content":"t:sections.all.headers.header__2.content"
+    },
+    {
+      "type":"select",
+      "id":"style_border",
+      "label":"t:sections.all.styles.settings.style_border.label",
+      "options":[
+        {
+          "value":"",
+          "label":"t:sections.all.styles.settings.style_border.options__1.label"
+        },
+        {
+          "value":"border--t-width",
+          "label":"t:sections.all.styles.settings.style_border.options__2.label"
+        },
+        {
+          "value":"border--b-width",
+          "label":"t:sections.all.styles.settings.style_border.options__3.label"
+        },
+        {
+          "value":"border--b-width border--t-width",
+          "label":"t:sections.all.styles.settings.style_border.options__4.label"
+        }
+      ],
+      "default":"border--b-width"
+    },
+    {
+      "type":"header",
+      "content":"t:sections.all.headers.header__8.content"
+    },
+    {
+      "type":"select",
+      "id":"visibility",
+      "label":"t:sections.all.visibility.label",
+      "options":[
+        {
+          "value":"",
+          "label":"t:sections.all.visibility.options__1.label"
+        },
+        {
+          "value":"md:hidden",
+          "label":"t:sections.all.visibility.options__2.label"
+        },
+        {
+          "value":"hidden md:block",
+          "label":"t:sections.all.visibility.options__3.label"
+        }
+      ],
+      "default":""
+    }
+  ],
+  "presets":[
+    {
+      "name":"t:sections.recommendations_slider.name"
+    }
+  ],
+  "templates":[
+    "product"
+  ]
+}
+{% endschema %}

@@ -79,7 +79,7 @@
             "spacing_top": 10,
             "spacing_bottom": 10,
             "color_scheme": "color__bg-body color__text",
-            "style_border": "",
+            "style_border": "border--b-width",
             "position": "right",
             "enable_open": false
           }
@@ -112,8 +112,8 @@
             "products_count": 3,
             "intent": "related",
             "color_scheme": "color__bg-body color__text",
-            "style_border": "border--t-width",
-            "position": "left",
+            "style_border": "border--b-width",
+            "position": "right",
             "enable_open": true
           }
         },

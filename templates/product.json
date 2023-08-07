@@ -80,7 +80,7 @@
             "spacing_bottom": 10,
             "color_scheme": "color__bg-body color__text",
             "style_border": "",
-            "position": "left",
+            "position": "right",
             "enable_open": false
           }
         },

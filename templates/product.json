@@ -79,9 +79,9 @@
             "spacing_top": 10,
             "spacing_bottom": 10,
             "color_scheme": "color__bg-body color__text",
-            "style_border": "border--b-width",
-            "position": "right",
-            "enable_open": true
+            "style_border": "",
+            "position": "left",
+            "enable_open": false
           }
         },
         "9f1692ea-ccb9-4e4c-9c83-7a6ae53392aa": {
@@ -113,7 +113,7 @@
             "intent": "related",
             "color_scheme": "color__bg-body color__text",
             "style_border": "border--t-width",
-            "position": "right",
+            "position": "left",
             "enable_open": true
           }
         },
@@ -123,6 +123,19 @@
             "content": "<p>Remind customers of offers like free shipping and lifetime warranties.<\/p>",
             "color_scheme": "color__bg-overlay-1 color__text",
             "on_scroll": true
+          }
+        },
+        "9564515e-6e04-47da-8cea-17622bb8f73e": {
+          "type": "popup",
+          "settings": {
+            "option": "size",
+            "title": "See more",
+            "page": "",
+            "spacing_top": 10,
+            "spacing_bottom": 10,
+            "color_scheme": "color__bg-body color__text",
+            "style_border": "",
+            "position": "right"
           }
         }
       },
@@ -137,7 +150,8 @@
         "9f1692ea-ccb9-4e4c-9c83-7a6ae53392aa",
         "c18a6be5-7074-4b70-a8e1-d4f845a9e665",
         "76f2c051-662d-4c42-b036-d6658cf9616f",
-        "848f5aea-f7ad-4974-a5fb-020776e3e523"
+        "848f5aea-f7ad-4974-a5fb-020776e3e523",
+        "9564515e-6e04-47da-8cea-17622bb8f73e"
       ],
       "settings": {
         "enable_default_variant": true,

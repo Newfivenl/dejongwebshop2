@@ -36,7 +36,7 @@
         {% endif %}
       {% else %}
       <span class="!leading-tight"
-        x-show="defaultVariantPrice == 0" x-text="'Starting from ' + Shopify.formatMoney({{ product.price_min }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">Starting from {{ product.price_min | money }} </span>
+        x-show="defaultVariantPrice == 0" x-text="'{{ 'products.general.upp_from' | t }}' + ' ' + Shopify.formatMoney({{ product.price_min }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">{{ 'products.general.upp_from' | t }} {{ product.price_min | money }} </span>
       {% endif %}
     
     <span class="!leading-tight" 

@@ -74,7 +74,7 @@
             setTimeout(function(){ button_loading = false}, 500);" >
         <div class="btn__spinner btn--smaller !w-auto"
           :class="{ '!visible color__bg-overlay-1 z-10' : button_loading }">
-          {% render 'component__icon', icon: 'spinner', size: '16', class: '' %}
+          {% render 'component__icon', icon: 'spinner', size: '24', class: '' %}
         </div>
         <button class="btn btn--smaller btn--plain shrink-0 !rounded-none" 
           title="{{ 'cart.general.increase' | t }}"
@@ -182,7 +182,8 @@
         </span>
       {% endif %}
       </div>
-      <div class="btn__spinner">
+      <div class="btn__spinner btn--smaller !w-auto"
+        :class="{ '!visible color__bg-overlay-1 z-10' : button_loading }">
         {% render 'component__icon', icon: 'spinner', size: '24', class: '' %}
       </div>
     </button>

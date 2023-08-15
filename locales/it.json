@@ -90,6 +90,7 @@
   "products": {
     "general": {
       "from": "Da",
+      "upp_from": "Da",
       "each": "ogni",
       "sold_out": "Esaurito",
       "out_of_stock": "Esaurito",
@@ -99,7 +100,7 @@
       "short_add_label": "Aggiungere",
       "options": "Opzioni",
       "variants": "Varianti",
-      "variant_id":"Variant ID",
+      "variant_id": "Variant ID",
       "learn_more": "Ulteriori informazioni",
       "options_prompt": "Seleziona un'opzione per aggiungerlo al carrello",
       "choose_option": "Scegli un'opzione",
@@ -110,7 +111,8 @@
       "quantity": "Quantità",
       "save": "Salvare",
       "save_up_to": "Risparmia fino a",
-      "bundle_includes": "Das Bundle beinhaltet"
+      "bundle_includes": "Das Bundle beinhaltet",
+      "starting": "A partire da"
     },
     "inventory": {
       "only": "Soltanto",
@@ -289,8 +291,8 @@
     "cancel": "Annulla"
   },
   "back_in_stock": {
-      "notify": "Comunica",
-      "title": "Registrati per ricevere una notifica quando questo articolo è di nuovo disponibile"
+    "notify": "Comunica",
+    "title": "Registrati per ricevere una notifica quando questo articolo è di nuovo disponibile"
   },
   "countdown": {
     "days": "Giorni",

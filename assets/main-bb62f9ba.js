@@ -200,7 +200,8 @@ const globals = {
   filter_max_thumb: window.__initialData.filter_max_thumb,
   // Sets position of max price thumb
   // Store related properties
-  currency_symbol: window.__initialData.currency_symbol
+  currency_symbol: window.__initialData.currency_symbol,
+  button_loading: window.__initialData.button_loading
 };
 const cart = {
   // Update cart with note input
@@ -249,6 +250,7 @@ const cart = {
       this.cart.shipping_progress = this.cart.total_price / (this.progress_bar_threshold * (+window.Shopify.currency.rate || 1)) * 100 + "%";
       setTimeout(() => {
         this.cart_loading = false;
+        this.button_loading = false;
       }, 300);
       if (openCart == true) {
         this.cart_delay_width = "0%";
@@ -365,6 +367,7 @@ const cart = {
     if (this.enable_audio) {
       this.playSound(this.click_audio);
     }
+    this.button_loading = true;
     this.cart_loading = true;
     let formData = new FormData(form);
     let productArray = [];
@@ -450,6 +453,7 @@ const cart = {
       } else {
         this.error_title = data2.message, this.error_message = data2.description, this.show_alert = true;
         this.cart_loading = false;
+        this.button_loading = false;
       }
     }).catch((error2) => {
       console.error("Error:", error2);

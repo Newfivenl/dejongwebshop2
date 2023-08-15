@@ -75,7 +75,7 @@
   },
   "collections": {
     "general": {
-      "all":"All",
+      "all": "All",
       "collection_items": "items",
       "no_matches": "Sorry, there are no products in this collection"
     },
@@ -90,6 +90,7 @@
   "products": {
     "general": {
       "from": "from",
+      "upp_from":"From",
       "each": "each",
       "sold_out": "Sold Out",
       "out_of_stock": "Out of stock",
@@ -99,7 +100,7 @@
       "short_add_label": "Add",
       "options": "options",
       "variants": "Variants",
-      "variant_id":"Variant ID",
+      "variant_id": "Variant ID",
       "learn_more": "Learn more",
       "options_prompt": "Select an option to add this to your cart",
       "choose_option": "Choose an option",
@@ -144,10 +145,10 @@
       "updated": "Cart updated",
       "view_cart": "View cart",
       "upsell_title": "Popular add-ons",
-      "upgrade":"Cart upgrade",
-      "continue_shopping":"Continue shopping",
-      "edit":"Edit",
-      "edit_item":"Edit item"
+      "upgrade": "Cart upgrade",
+      "continue_shopping": "Continue shopping",
+      "edit": "Edit",
+      "edit_item": "Edit item"
     },
     "progress_bar": {
       "pre_text": "You're",
@@ -204,7 +205,7 @@
       "recover_success": "We've sent you an email with a link to reset your password.",
       "submit": "Submit",
       "name": "First name",
-      "last_name":"Last name",
+      "last_name": "Last name",
       "shipping": "Shipping address"
     },
     "order": {
@@ -264,10 +265,10 @@
       "qr_image_alt": "QR code - scan to redeem gift card"
     },
     "recipient": {
-      "email":"Recipient email",
+      "email": "Recipient email",
       "name": "Recipient name",
       "message": "Message",
-      "checkbox_label":"I want to send this as a gift"
+      "checkbox_label": "I want to send this as a gift"
     }
   },
   "contact": {
@@ -289,8 +290,8 @@
     "cancel": "Cancel"
   },
   "back_in_stock": {
-    "notify":"Notify Me",
-    "title":"Register to receive a notification when this item is back in stock"
+    "notify": "Notify Me",
+    "title": "Register to receive a notification when this item is back in stock"
   },
   "countdown": {
     "days": "Days",

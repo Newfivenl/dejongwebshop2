@@ -75,7 +75,7 @@
   },
   "collections": {
     "general": {
-      "all":"Tout",
+      "all": "Tout",
       "collection_items": "Articles",
       "no_matches": "Désolé, il n’y a aucun produit dans cette collection"
     },
@@ -90,6 +90,7 @@
   "products": {
     "general": {
       "from": "De",
+      "upp_from": "De",
       "each": "chaque",
       "sold_out": "Épuisé",
       "out_of_stock": "Rupture de stock",
@@ -99,7 +100,7 @@
       "short_add_label": "Ajouter",
       "options": "Options",
       "variants": "Variantes",
-      "variant_id":"Variant ID",
+      "variant_id": "Variant ID",
       "learn_more": "Pour en savoir plus",
       "options_prompt": "Sélectionnez une option pour l’ajouter à votre panier",
       "choose_option": "Choisissez une option",
@@ -110,7 +111,8 @@
       "quantity": "Quantité",
       "save": "Économiser",
       "save_up_to": "Économisez jusqu'à",
-      "bundle_includes": "Le bundle inclut"
+      "bundle_includes": "Le bundle inclut",
+      "starting": "À partir de"
     },
     "inventory": {
       "only": "Seulement",
@@ -288,9 +290,9 @@
     "confirm": "Confirmer",
     "cancel": "Annuler"
   },
-    "back_in_stock": {
-      "notify": "M’avertir",
-      "title": "Inscrivez-vous pour recevoir une notification lorsque cet article est de nouveau en stock"
+  "back_in_stock": {
+    "notify": "M’avertir",
+    "title": "Inscrivez-vous pour recevoir une notification lorsque cet article est de nouveau en stock"
   },
   "countdown": {
     "days": "Jours",

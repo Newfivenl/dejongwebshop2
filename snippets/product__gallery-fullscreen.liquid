@@ -54,8 +54,8 @@
   
   <div class="flex flex-col w-full"
     x-data="{
-      gallery_index: 0,
-      gallery_index_scroll: 0,
+      gallery_index: selectedImageIndex,
+      gallery_index_scroll: selectedImageIndex,
       gallery_index_size: {{ product.media.size | minus: 1 }},
       show_arrows: true,
       zoom: false,
@@ -99,10 +99,10 @@
         this.scrollToIndex(this.gallery_index_scroll);
       },
     
-      scrollToIndex(gallery_index_scroll) {
-        this.gallery_index = gallery_index_scroll;
+      scrollToIndex(index) {
+        this.gallery_index = index;
         let slider = this.$refs.slider;
-        let currentSlide = slider.querySelector('[data-slide=&quot;' + gallery_index_scroll + '&quot;]');
+        let currentSlide = slider.querySelector('[data-slide=&quot;' + index + '&quot;]');
     
         const checkIfHidden = (el, index) => {
           if(!el) {
@@ -122,7 +122,7 @@
         }
         let thumbnailSlider = this.$refs.thumbnail_slider;
         if (thumbnailSlider){
-          let currentThumb = thumbnailSlider.querySelector('[data-slide=&quot;' + gallery_index_scroll + '&quot;]');
+          let currentThumb = thumbnailSlider.querySelector('[data-slide=&quot;' + index + '&quot;]');
           if (currentThumb) {
             let currentThumbPosition = currentThumb.offsetTop;
             thumbnailSlider.scrollTo({
@@ -148,7 +148,7 @@
 
       {%- comment -%} slides {%- endcomment -%}
       <div class="whitespace-nowrap md:snap-x md:gap-4 scroll-smooth hidescrollbar inline-flex w-full gap-2 overflow-x-auto overflow-y-hidden"
-        x-init="setTimeout(function(){ if (isOverflown($el)) show_arrows = true}, 600);"  
+        x-init="$watch('selectedImageIndex', value => {gallery_index = value; gallery_index_scroll = value; scrollToIndex(value)}); setTimeout(function(){ if (isOverflown($el)) show_arrows = true}, 600);"  
         x-ref="slider">
         {{ slides }}
       </div>

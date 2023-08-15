@@ -265,13 +265,17 @@
 
                 <div class="flex flex-wrap items-center gap-1 mb-0.5
                   {{ settings.thumbnail_alignment }}">
-                  <span class="type--small" x-text="Shopify.formatMoney(item.price,currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">{{ product.price_min | money }}</span>
-                  {% if product.price_varies %}
-                    <span class="type--small" x-text="'- ' + Shopify.formatMoney({{ product.price_max }},currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">- {{ product.price_max | money }}</span>
+                  {% if settings.price_range_display == "show_range" %}
+                    <span class="type--small" x-text="Shopify.formatMoney(item.price_min, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">{{ product.price_min | money }}</span>
+                      <pre x-show="item.price_varies" class="type--small m-0" x-text="' - ' + Shopify.formatMoney(item.price_max, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')"> - {{ product.price_max | money }}</pre>
+                  {% else %}
+                  <span x-show="item.price_varies" class="type--small" x-text="'{{ 'products.general.upp_from' | t }}' + ' ' + Shopify.formatMoney(item.price_min, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">{{ 'products.general.upp_from' | t }} {{ product.price_min | money }} </span>
+                  <span x-show="!item.price_varies" class="type--small" x-text="Shopify.formatMoney(item.price_min, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">{{ 'products.general.upp_from' | t }} {{ product.price_min | money }} </span>
                   {% endif %}
-                  {% if product.compare_at_price_max > 0 %}
-                    <span class="type--small"><s x-text="Shopify.formatMoney({{ product.compare_at_price_max }},currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">{{ product.compare_at_price_max | money }}</s></span>
-                  {% endif %}
+
+                    <span x-show="item.compare_at_price_max > 0" class="type--small">
+                      <s x-text="Shopify.formatMoney(item.compare_at_price_max, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">{{ product.compare_at_price_max | money }}</s>
+                    </span>
                 </div>
               </a>
 

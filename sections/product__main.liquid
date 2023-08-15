@@ -195,11 +195,6 @@
                   {% render 'product__liquid', blocksettings: block.settings %}
                 {% endif %}
 
-              {% when '@app' %}
-                {% if block.settings.position == "left" %}
-                  {% render block %}
-                {% endif %}
-
             {%- endcase -%}
           {% endfor %}
         {% endform %}
@@ -386,9 +381,7 @@
                 {% endif %}
     
               {% when '@app' %}
-                {% if block.settings.position == "right" %}
-                  {% render block %}
-                {% endif %}
+                {% render block %}
                 
             {%- endcase -%}
           {% endfor %}
@@ -529,11 +522,6 @@
                 {% when 'liquid' %}
                   {% if block.settings.position == "left" %}
                     {% render 'product__liquid', blocksettings: block.settings %}
-                  {% endif %}
-
-                {% when '@app' %}
-                  {% if block.settings.position == "left" %}
-                    {% render block %}
                   {% endif %}
 
               {%- endcase -%}

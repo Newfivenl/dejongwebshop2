@@ -88,6 +88,7 @@
     // Collection and pagination related properties
     collection_loading: false,
     currency_symbol: {% if settings.currency_symbol == "symbol" %} '{{ cart.currency.symbol }}' {% else %} Shopify.currency.active {% endif %},
+    button_loading: false
   });
 </script>
 

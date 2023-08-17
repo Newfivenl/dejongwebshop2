@@ -40,15 +40,17 @@ Paper has a number of useful features that make it a developer friendly theme to
 4. Run `npm install` to install dependencies
 5. Run `npm run pull` to download the your theme (be sure to select the theme that has Paper installed)
 6. Run `npm run dev` to create a development preview
+6. Run `npm run tailwind` to watch and build tailwind separately
 7. Run `npm run build` to build production ready assets
 
 ### Command refferance
 
-| Task Name       | Description             |
-| :-------------- | :---------------------- |
-| `npm run dev`   | Run development preview |
-| `npm run build` | Build prodution assets  |
-| `npm run test`  | Run tests               |
+| Task Name             | Description             |
+| :--------------       | :---------------------- |
+| `npm run dev`         | Run development preview |
+| `npm run tailwind`    | Watch tailwind changes  |
+| `npm run build`       | Build prodution assets  |
+| `npm run test`        | Run tests               |
 
 ---
 

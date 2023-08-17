@@ -1,6 +1,6 @@
 /* ======= */
 /* tailwind layers */
-/* ! tailwindcss v3.3.0 | MIT License | https://tailwindcss.com */
+/* ! tailwindcss v3.2.7 | MIT License | https://tailwindcss.com */
 /*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
 2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
@@ -23,7 +23,6 @@
 3. Use a more readable tab size.
 4. Use the user's configured `sans` font-family by default.
 5. Use the user's configured `sans` font-feature-settings by default.
-6. Use the user's configured `sans` font-variation-settings by default.
 */
 html {
   line-height: 1.5; /* 1 */
@@ -33,7 +32,6 @@ html {
      tab-size: 4; /* 3 */
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* 4 */
   font-feature-settings: normal; /* 5 */
-  font-variation-settings: normal; /* 6 */
 }
 /*
 1. Remove the margin in all browsers.
@@ -1067,7 +1065,10 @@ img:after {
   position: sticky;
 }
 .inset-0 {
-  inset: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
 }
 .inset-y-0 {
   top: 0px;
@@ -2170,6 +2171,9 @@ img:after {
 .lowercase {
   text-transform: lowercase;
 }
+.capitalize {
+  text-transform: capitalize;
+}
 .normal-case {
   text-transform: none;
 }
@@ -2223,6 +2227,11 @@ img:after {
 .opacity-75 {
   opacity: 0.75;
 }
+.shadow {
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
 .shadow-lg {
   --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
@@ -2255,6 +2264,13 @@ img:after {
   --tw-backdrop-blur: blur(12px);
   -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
           backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
+.transition {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
 .transition-all {
   transition-property: all;
@@ -3547,6 +3563,19 @@ html {
 .peer:focus ~ .peer-focus\:block {
   display: block;
 }
+@media (prefers-color-scheme: dark) {
+  .dark\:bg-gray-800\/30 {
+    background-color: rgb(31 41 55 / 0.3);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .group:hover .dark\:group-hover\:bg-gray-800\/60 {
+      background-color: rgb(31 41 55 / 0.6);
+    }
+  }
+  .group:focus .dark\:group-focus\:ring-gray-800\/70 {
+    --tw-ring-color: rgb(31 41 55 / 0.7);
+  }
+}
 @media (min-width: 640px) {
   .sm\:block {
     display: block;
@@ -3850,18 +3879,5 @@ html {
   }
   .lg\:text-left {
     text-align: left;
-  }
-}
-@media (prefers-color-scheme: dark) {
-  .dark\:bg-gray-800\/30 {
-    background-color: rgb(31 41 55 / 0.3);
-  }
-  @media (hover: hover) and (pointer: fine) {
-    .group:hover .dark\:group-hover\:bg-gray-800\/60 {
-      background-color: rgb(31 41 55 / 0.6);
-    }
-  }
-  .group:focus .dark\:group-focus\:ring-gray-800\/70 {
-    --tw-ring-color: rgb(31 41 55 / 0.7);
   }
 }

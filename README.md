@@ -95,4 +95,3 @@ Section files follow a similar naming convention.
 - [Shopify Vite Plugin](https://shopify-vite.barrelny.com/)
 - [Alpine.js](https://alpinejs.dev/)
 - [Tailwind CSS](https://tailwindcss.com/)
-

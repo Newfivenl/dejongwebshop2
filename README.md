@@ -94,4 +94,4 @@ Section files follow a similar naming convention.
 - [Paper changelog](https://brickspacelab.notion.site/Paper-changelog-cdfeea8101ae465f8880ac90ce22e951)
 - [Shopify Vite Plugin](https://shopify-vite.barrelny.com/)
 - [Alpine.js](https://alpinejs.dev/)
-- [Tailwind CSS](https://tailwindcss.com/)
+- [Tailwind CSS](https://tailwindcss.com/) 

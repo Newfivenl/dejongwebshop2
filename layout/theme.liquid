@@ -6,8 +6,7 @@
   x-init="
     handleSharedCart(); 
     updateCart(false);">
-
-  <head>
+  <head> 
     {% render 'theme__meta' %}
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     {%- unless settings.type_font_heading.system? and settings.type_font_body.system? -%}
@@ -21,7 +20,7 @@
     {%- endunless -%}
     {% render 'theme__structured-data' %}
     {% render 'theme__styles' %}
-    {% render 'assets' with 'styles.css', preload_stylesheet: true %}
+    {{ 'styles.css' | asset_url | stylesheet_tag | preload: true }}
     {{ content_for_header }}
   </head>
   <body

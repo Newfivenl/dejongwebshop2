@@ -4,6 +4,7 @@
     "dev": "npm-run-all --parallel vite_dev shopify_dev",
     "pull": "shopify theme pull --nodelete --store $npm_package_config_store",
     "shopify_dev": "shopify theme dev --store $npm_package_config_store",
+    "tailwind": "npx tailwindcss -i ./src/cssentrypoint/styles.css -o ./assets/styles.css --watch",
     "vite_dev": "vite dev",
     "test": "vitest",
     "coverage": "vitest run --coverage",
@@ -27,8 +28,7 @@
     "postcss-import": "^15.1.0",
     "postcss-nested": "^6.0.1",
     "prettier": "^2.8.7",
-    "prettier-plugin-tailwindcss": "^0.2.6",
-    "tailwindcss": "^3.2.7",
+    "tailwindcss": "^3.3.3",
     "vite": "^4.2.0",
     "vite-plugin-shopify": "^2.0.2",
     "vitest": "^0.29.7"

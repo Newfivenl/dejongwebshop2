@@ -3,10 +3,5 @@
     "file": "main-bb62f9ba.js",
     "isEntry": true,
     "src": "src/entrypoints/main.js"
-  },
-  "src/entrypoints/styles.css": {
-    "file": "styles-dafdffb5.css",
-    "isEntry": true,
-    "src": "src/entrypoints/styles.css"
   }
 }

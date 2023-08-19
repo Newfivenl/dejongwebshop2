@@ -21,7 +21,7 @@
             "button_color": "btn",
             "button_label": "Button label",
             "button_url": "\/collections\/all",
-            "secondary_button_color": "btn btn--secondary",
+            "secondary_button_color": "btn btn--tertiary",
             "secondary_button_label": "Button label",
             "secondary_button_url": "\/collections\/all"
           }

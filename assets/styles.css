@@ -2178,12 +2178,6 @@ img:after {
 .align-bottom {
   vertical-align: bottom;
 }
-.text-\[20px\] {
-  font-size: 20px;
-}
-.text-\[1px\] {
-  font-size: 1px;
-}
 .uppercase {
   text-transform: uppercase;
 }

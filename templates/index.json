@@ -33,6 +33,7 @@
         "template--18730720428336__f96b8e1b-0fd4-4c65-856c-cdd01fe228cc-1681420271694828b0-2"
       ],
       "settings": {
+        "image_background_desktop": "shopify:\/\/shop_images\/250129_1.jpg",
         "show_entire_image": false,
         "enable_lazy_loading": false,
         "show_video_background_mobile": true,
@@ -456,6 +457,63 @@
         "layout_x_alignment": "justify-between",
         "visibility": ""
       }
+    },
+    "d6cac67f-bbc5-49e0-8103-05dc9ed2337c": {
+      "type": "collection-slider",
+      "blocks": {
+        "1c557cb2-530c-4cd7-8098-91959e454e2f": {
+          "type": "collection",
+          "settings": {
+            "collection": "bruinkraft-papier"
+          }
+        },
+        "3f4eb8cb-f0c7-4c08-8b98-9820019af4e6": {
+          "type": "collection",
+          "settings": {
+            "collection": "bekerdispensers"
+          }
+        },
+        "70bb54f4-ef61-4e14-970d-2995f6bf1ff1": {
+          "type": "collection",
+          "settings": {
+            "collection": "aluminiumfolie"
+          }
+        },
+        "b487e9e7-4e41-4936-bf97-c6a08feb9f0d": {
+          "type": "collection",
+          "settings": {
+            "collection": "de-jong"
+          }
+        },
+        "0332a510-60b6-4afd-8fe9-149828e70451": {
+          "type": "collection",
+          "settings": {
+            "collection": "food-container-deksels"
+          }
+        }
+      },
+      "block_order": [
+        "1c557cb2-530c-4cd7-8098-91959e454e2f",
+        "3f4eb8cb-f0c7-4c08-8b98-9820019af4e6",
+        "70bb54f4-ef61-4e14-970d-2995f6bf1ff1",
+        "b487e9e7-4e41-4936-bf97-c6a08feb9f0d",
+        "0332a510-60b6-4afd-8fe9-149828e70451"
+      ],
+      "settings": {
+        "heading": "Collection list slider",
+        "content": "<p>Describe a product, make announcements, or welcome customers to your store.<\/p>",
+        "button_label": "Button",
+        "button_url": "\/",
+        "spacing_top": 100,
+        "spacing_bottom": 100,
+        "color_scheme": "color__bg-body color__text",
+        "color_border": "color__border-divider-1",
+        "color_button": "btn btn--secondary",
+        "style_border": "border--b-width",
+        "layout_x_alignment": "justify-between",
+        "visibility": "",
+        "enable_collection_size_count": true
+      }
     }
   },
   "order": [
@@ -465,6 +523,7 @@
     "fa45b532-e64f-489b-9403-7046250c0e16",
     "f3fd7d15-8af4-4a33-810d-e1dbd27ed532",
     "2cf37121-3db2-489b-9610-3dcaac7dca12",
-    "53c4f92c-e30b-4dbc-a2e1-931a795928d6"
+    "53c4f92c-e30b-4dbc-a2e1-931a795928d6",
+    "d6cac67f-bbc5-49e0-8103-05dc9ed2337c"
   ]
 }

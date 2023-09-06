@@ -333,41 +333,6 @@
         "visibility": ""
       }
     },
-    "cd06c0e4-63bd-434f-887b-17562d19bd44": {
-      "type": "product-grid",
-      "blocks": {
-        "template--20644271554834__cd06c0e4-63bd-434f-887b-17562d19bd44-card-1": {
-          "type": "card",
-          "settings": {
-            "heading": "Block heading",
-            "content": "<p>Describe a product, make announcements, or inform customers about a promotion.<\/p>",
-            "button_label": "Button",
-            "button_url": "\/"
-          }
-        }
-      },
-      "block_order": [
-        "template--20644271554834__cd06c0e4-63bd-434f-887b-17562d19bd44-card-1"
-      ],
-      "settings": {
-        "collection": "frontpage",
-        "products_count": 7,
-        "heading": "Product grid",
-        "content": "<p>Describe a product, make announcements, or welcome customers to your store.<\/p>",
-        "button_label": "Button",
-        "button_url": "\/collections\/all",
-        "spacing_top": 100,
-        "spacing_bottom": 100,
-        "color_scheme": "color__bg-body color__text",
-        "color_border": "color__border-divider-1",
-        "color_button": "btn btn--secondary",
-        "style_border": "border--b-width",
-        "row_size_desktop": "md:grid-cols-4",
-        "row_size_mobile": "grid grid-cols-2",
-        "layout_x_alignment": "justify-between",
-        "visibility": ""
-      }
-    },
     "84c299e3-89f4-4122-ba7a-adec40bab641": {
       "type": "collection-grid",
       "blocks": {
@@ -532,6 +497,25 @@
         "layout_x_alignment": "justify-between",
         "visibility": ""
       }
+    },
+    "d7e3b662-c368-4636-9d51-e4d12b8168f7": {
+      "type": "product-slider",
+      "settings": {
+        "collection": "aluminium-bakjes",
+        "products_count": 4,
+        "heading": "Andere Suggesties…",
+        "content": "",
+        "button_label": "",
+        "button_url": "\/collections\/all",
+        "spacing_top": 100,
+        "spacing_bottom": 100,
+        "color_scheme": "color__bg-body color__text",
+        "color_border": "color__border-divider-1",
+        "color_button": "btn btn--secondary",
+        "style_border": "border--b-width",
+        "layout_x_alignment": "justify-between",
+        "visibility": ""
+      }
     }
   },
   "order": [
@@ -539,9 +523,9 @@
     "2cb9d59b-242d-48e7-821a-ae61144186e8",
     "0aee11fe-16ff-4cae-924b-b6dc71c8827b",
     "1e9b6aa9-2f3a-4ca0-a7b2-65d5c9c14d5f",
-    "cd06c0e4-63bd-434f-887b-17562d19bd44",
     "84c299e3-89f4-4122-ba7a-adec40bab641",
     "4957c6b2-3abe-4e8a-a342-c28fcddc4f97",
-    "96dcd7af-6180-401d-bf36-5aafc0ddf102"
+    "96dcd7af-6180-401d-bf36-5aafc0ddf102",
+    "d7e3b662-c368-4636-9d51-e4d12b8168f7"
   ]
 }

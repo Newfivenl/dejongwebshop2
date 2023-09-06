@@ -47,9 +47,114 @@
         "layout_x_alignment": "justify-center text-center",
         "visibility": ""
       }
+    },
+    "2cb9d59b-242d-48e7-821a-ae61144186e8": {
+      "type": "content-grid",
+      "blocks": {
+        "template--20644271554834__2cb9d59b-242d-48e7-821a-ae61144186e8-content-1": {
+          "type": "content",
+          "settings": {
+            "heading": "Disposables is ons vak",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed<\/p>",
+            "button_label": "Shop Frietbakjes",
+            "button_url": "shopify:\/\/collections",
+            "full_block_link": false,
+            "image_featured": "shopify:\/\/shop_images\/image-3-col.png",
+            "enable_autoplay": true,
+            "enable_mute_toggle": true,
+            "enable_loop": true,
+            "spacing_top": 0,
+            "spacing_bottom": 0,
+            "enable_padding": true,
+            "color_scheme": "color__bg-body color__text",
+            "color_border": "color__border-divider-1",
+            "color_text": "color__text",
+            "color_button": "btn",
+            "enable_gradient": false,
+            "layout_y_alignment": "items-end content-end",
+            "layout_x_alignment": "",
+            "layout_row_span": "row-span-1",
+            "layout_col_span": "col-span-1 md: md:col-span-1"
+          }
+        },
+        "template--20644271554834__2cb9d59b-242d-48e7-821a-ae61144186e8-content-2": {
+          "type": "content",
+          "settings": {
+            "heading": "Do eiusmod te",
+            "content": "<p>Tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam<\/p>",
+            "button_label": "Shop Pizzadozen",
+            "button_url": "shopify:\/\/collections\/all",
+            "full_block_link": false,
+            "image_featured": "shopify:\/\/shop_images\/image-3-col2.png",
+            "enable_autoplay": true,
+            "enable_mute_toggle": true,
+            "enable_loop": true,
+            "spacing_top": 0,
+            "spacing_bottom": 0,
+            "enable_padding": true,
+            "color_scheme": "color__bg-body color__text",
+            "color_border": "color__border-divider-1",
+            "color_text": "color__text",
+            "color_button": "btn",
+            "enable_gradient": false,
+            "layout_y_alignment": "items-end content-end",
+            "layout_x_alignment": "",
+            "layout_row_span": "row-span-1",
+            "layout_col_span": "col-span-1 md: md:col-span-1"
+          }
+        },
+        "template--20644271554834__2cb9d59b-242d-48e7-821a-ae61144186e8-content-3": {
+          "type": "content",
+          "settings": {
+            "heading": "Anim id est laborum",
+            "content": "<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui<\/p>",
+            "button_label": "Shop Foodtrays",
+            "button_url": "shopify:\/\/collections\/all",
+            "full_block_link": false,
+            "image_featured": "shopify:\/\/shop_images\/image-3-col3.png",
+            "enable_autoplay": true,
+            "enable_mute_toggle": true,
+            "enable_loop": true,
+            "spacing_top": 0,
+            "spacing_bottom": 0,
+            "enable_padding": true,
+            "color_scheme": "color__bg-body color__text",
+            "color_border": "color__border-divider-1",
+            "color_text": "color__text",
+            "color_button": "btn",
+            "enable_gradient": false,
+            "layout_y_alignment": "items-end content-end",
+            "layout_x_alignment": "",
+            "layout_row_span": "row-span-1",
+            "layout_col_span": "col-span-1 md: md:col-span-1"
+          }
+        }
+      },
+      "block_order": [
+        "template--20644271554834__2cb9d59b-242d-48e7-821a-ae61144186e8-content-1",
+        "template--20644271554834__2cb9d59b-242d-48e7-821a-ae61144186e8-content-2",
+        "template--20644271554834__2cb9d59b-242d-48e7-821a-ae61144186e8-content-3"
+      ],
+      "settings": {
+        "heading": "",
+        "content": "",
+        "button_label": "",
+        "button_url": "",
+        "spacing_top": 100,
+        "spacing_bottom": 100,
+        "color_scheme": "color__bg-body color__text",
+        "color_border": "color__border-divider-1",
+        "color_button": "btn btn--secondary",
+        "style_border": "border--b-width",
+        "row_size_desktop": "md:grid-cols-3",
+        "row_size_mobile": "grid-cols-1",
+        "layout_x_alignment": "justify-between",
+        "visibility": ""
+      }
     }
   },
   "order": [
-    "f96b8e1b-0fd4-4c65-856c-cdd01fe228cc"
+    "f96b8e1b-0fd4-4c65-856c-cdd01fe228cc",
+    "2cb9d59b-242d-48e7-821a-ae61144186e8"
   ]
 }

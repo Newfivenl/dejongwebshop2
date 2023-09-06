@@ -4,7 +4,7 @@
     "foreground_body_light": "#333333",
     "foreground_body_dark": "#fafafa",
     "border_light": "#d7d7d7",
-    "background_primary_light": "#0f83b3",
+    "background_primary_light": "#064a89",
     "foreground_primary_light": "#fafafa",
     "background_secondary_light": "#333333",
     "foreground_secondary_light": "#fdfdfd",
@@ -15,8 +15,8 @@
     "border_input_radius": 0,
     "border_element_radius": 0,
     "border_width": 1,
-    "type_font_body": "sans-serif",
-    "type_font_heading": "chivo_n9",
+    "type_font_body": "pt_sans_n4",
+    "type_font_heading": "pt_sans_n7",
     "type_font_nav": "sans-serif",
     "type_base_size": 16,
     "type_header": "body",
@@ -154,7 +154,7 @@
           "bottom_color_scheme": "color__bg-body color__text",
           "bottom_color_border": "color__border-divider-1",
           "bottom_button_color": "btn btn--plain",
-          "bottom_links": "legal"
+          "bottom_links": ""
         }
       },
       "theme__cart": {
@@ -163,7 +163,6 @@
           "dc415ec9-53ea-4c8e-aa82-79bb3e7f0b16": {
             "type": "Content",
             "settings": {
-              "image_featured": "shopify:\/\/shop_images\/badge-dollar-solid.png",
               "heading": "Buy 2 Get 10% Off",
               "content": "<p>Buy any two items and recieve 10% off your order until 10\/10<\/p>"
             }
@@ -171,7 +170,6 @@
           "62364748-86ba-4235-b149-37c37c3a382f": {
             "type": "Content",
             "settings": {
-              "image_featured": "shopify:\/\/shop_images\/box-heart-solid.png",
               "heading": "Free shipping",
               "content": "<p>Spend over $35 and recieve free shipping<\/p>"
             }
@@ -190,6 +188,7 @@
           "main_color_border": "color__border-divider-1",
           "main_enable_cart_note": true,
           "main_enable_cart_share": true,
+          "main_enable_cart_subtotals": true,
           "bottom_color_scheme": "color__bg-body color__text",
           "bottom_color_border": "color__border-divider-1",
           "bottom_color_button": "btn",
@@ -201,6 +200,8 @@
           "progress_bar_threshold": 99,
           "progress_bar_success": "Congrats! You unlocked free shipping.",
           "progress_bar_enable": true,
+          "main_cart_upgrade_product": "",
+          "main_cart_upgrade_text": "",
           "cart_upsell_products": "add-ons",
           "empty_button_label": "Shop all",
           "empty_button_url": "shopify:\/\/collections\/all"

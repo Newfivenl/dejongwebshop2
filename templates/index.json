@@ -423,81 +423,6 @@
         "visibility": ""
       }
     },
-    "96dcd7af-6180-401d-bf36-5aafc0ddf102": {
-      "type": "content-grid",
-      "blocks": {
-        "template--20644271554834__96dcd7af-6180-401d-bf36-5aafc0ddf102-content-1": {
-          "type": "content",
-          "settings": {
-            "heading": "Block heading",
-            "content": "<p>Describe a product, make announcements, or welcome customers to your store.<\/p>",
-            "button_label": "Button",
-            "button_url": "\/",
-            "full_block_link": false,
-            "enable_autoplay": true,
-            "enable_mute_toggle": true,
-            "enable_loop": true,
-            "spacing_top": 80,
-            "spacing_bottom": 0,
-            "enable_padding": true,
-            "color_scheme": "color__bg-body color__text",
-            "color_border": "color__border-selected-1",
-            "color_text": "color__text",
-            "color_button": "btn",
-            "enable_gradient": false,
-            "layout_y_alignment": "items-end content-end",
-            "layout_x_alignment": "",
-            "layout_row_span": "row-span-2",
-            "layout_col_span": "col-span-1 md: md:col-span-1"
-          }
-        },
-        "template--20644271554834__96dcd7af-6180-401d-bf36-5aafc0ddf102-content-6": {
-          "type": "content",
-          "settings": {
-            "heading": "Block heading",
-            "content": "<p>Describe a product, make announcements, or inform customers about a promotion.<\/p>",
-            "button_label": "Button",
-            "button_url": "shopify:\/\/collections\/all",
-            "full_block_link": false,
-            "enable_autoplay": true,
-            "enable_mute_toggle": true,
-            "enable_loop": true,
-            "spacing_top": 80,
-            "spacing_bottom": 0,
-            "enable_padding": true,
-            "color_scheme": "color__bg-body color__text",
-            "color_border": "color__border-selected-1",
-            "color_text": "color__text",
-            "color_button": "btn",
-            "enable_gradient": false,
-            "layout_y_alignment": "items-end content-end",
-            "layout_x_alignment": "",
-            "layout_row_span": "row-span-1",
-            "layout_col_span": "col-span-1 md: md:col-span-2"
-          }
-        }
-      },
-      "block_order": [
-        "template--20644271554834__96dcd7af-6180-401d-bf36-5aafc0ddf102-content-1",
-        "template--20644271554834__96dcd7af-6180-401d-bf36-5aafc0ddf102-content-6"
-      ],
-      "settings": {
-        "heading": "",
-        "content": "",
-        "button_label": "",
-        "button_url": "",
-        "spacing_top": 100,
-        "spacing_bottom": 100,
-        "color_scheme": "color__bg-body color__text",
-        "color_border": "color__border-divider-1",
-        "color_button": "btn btn--secondary",
-        "style_border": "border--b-width",
-        "row_size_desktop": "md:grid-cols-4",
-        "row_size_mobile": "grid-cols-1",
-        "layout_x_alignment": "justify-between",
-        "visibility": ""
-      }
-    },
     "d7e3b662-c368-4636-9d51-e4d12b8168f7": {
       "type": "product-slider",
       "settings": {
@@ -516,6 +441,82 @@
         "layout_x_alignment": "justify-between",
         "visibility": ""
       }
+    },
+    "96dcd7af-6180-401d-bf36-5aafc0ddf102": {
+      "type": "content-grid",
+      "blocks": {
+        "template--20644271554834__96dcd7af-6180-401d-bf36-5aafc0ddf102-content-1": {
+          "type": "content",
+          "settings": {
+            "heading": "",
+            "content": "",
+            "button_label": "",
+            "button_url": "",
+            "full_block_link": false,
+            "image_featured": "shopify:\/\/shop_images\/building.png",
+            "enable_autoplay": true,
+            "enable_mute_toggle": true,
+            "enable_loop": true,
+            "spacing_top": 0,
+            "spacing_bottom": 0,
+            "enable_padding": true,
+            "color_scheme": "color__bg-body color__text",
+            "color_border": "!color__border-transparent",
+            "color_text": "color__text",
+            "color_button": "btn",
+            "enable_gradient": false,
+            "layout_y_alignment": "items-end content-end",
+            "layout_x_alignment": "",
+            "layout_row_span": "row-span-1",
+            "layout_col_span": "col-span-1 md: md:col-span-1"
+          }
+        },
+        "template--20644271554834__96dcd7af-6180-401d-bf36-5aafc0ddf102-content-6": {
+          "type": "content",
+          "settings": {
+            "heading": "Over De Jong Disposables",
+            "content": "<p>Al meer dan 35 jaar hebben wij ervaring met disposables. Ons familiebedrijf staat voor kwaliteit, betrouwbaarheid, innovatie en duurzaamheid. En dat tegen een scherpe prijs. <\/p>",
+            "button_label": "Learn More",
+            "button_url": "shopify:\/\/collections\/all",
+            "full_block_link": false,
+            "enable_autoplay": true,
+            "enable_mute_toggle": true,
+            "enable_loop": true,
+            "spacing_top": 80,
+            "spacing_bottom": 0,
+            "enable_padding": true,
+            "color_scheme": "color__bg-body color__text",
+            "color_border": "color__border-divider-1",
+            "color_text": "color__text",
+            "color_button": "btn",
+            "enable_gradient": false,
+            "layout_y_alignment": "items-end content-end",
+            "layout_x_alignment": "",
+            "layout_row_span": "row-span-1",
+            "layout_col_span": "col-span-1 md: md:col-span-1"
+          }
+        }
+      },
+      "block_order": [
+        "template--20644271554834__96dcd7af-6180-401d-bf36-5aafc0ddf102-content-1",
+        "template--20644271554834__96dcd7af-6180-401d-bf36-5aafc0ddf102-content-6"
+      ],
+      "settings": {
+        "heading": "",
+        "content": "",
+        "button_label": "",
+        "button_url": "",
+        "spacing_top": 100,
+        "spacing_bottom": 100,
+        "color_scheme": "color__bg-overlay-1 color__text",
+        "color_border": "color__border-divider-1",
+        "color_button": "btn btn--secondary",
+        "style_border": "border--b-width",
+        "row_size_desktop": "md:grid-cols-2",
+        "row_size_mobile": "grid-cols-1",
+        "layout_x_alignment": "justify-between",
+        "visibility": ""
+      }
     }
   },
   "order": [
@@ -525,7 +526,7 @@
     "1e9b6aa9-2f3a-4ca0-a7b2-65d5c9c14d5f",
     "84c299e3-89f4-4122-ba7a-adec40bab641",
     "4957c6b2-3abe-4e8a-a342-c28fcddc4f97",
-    "96dcd7af-6180-401d-bf36-5aafc0ddf102",
-    "d7e3b662-c368-4636-9d51-e4d12b8168f7"
+    "d7e3b662-c368-4636-9d51-e4d12b8168f7",
+    "96dcd7af-6180-401d-bf36-5aafc0ddf102"
   ]
 }

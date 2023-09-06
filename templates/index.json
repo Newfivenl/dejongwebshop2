@@ -255,11 +255,89 @@
         "layout_x_alignment": "text-center justify-center flex-col items-center",
         "visibility": ""
       }
+    },
+    "1e9b6aa9-2f3a-4ca0-a7b2-65d5c9c14d5f": {
+      "type": "content-grid",
+      "blocks": {
+        "template--20644271554834__1e9b6aa9-2f3a-4ca0-a7b2-65d5c9c14d5f-content-1": {
+          "type": "content",
+          "settings": {
+            "heading": "",
+            "content": "",
+            "button_label": "Button",
+            "button_url": "",
+            "full_block_link": false,
+            "image_featured": "shopify:\/\/shop_images\/img-2col-box-1.png",
+            "enable_autoplay": true,
+            "enable_mute_toggle": true,
+            "enable_loop": true,
+            "spacing_top": 0,
+            "spacing_bottom": 0,
+            "enable_padding": true,
+            "color_scheme": "color__bg-body color__text",
+            "color_border": "!color__border-transparent",
+            "color_text": "color__text",
+            "color_button": "btn",
+            "enable_gradient": false,
+            "layout_y_alignment": "items-end content-end",
+            "layout_x_alignment": "",
+            "layout_row_span": "row-span-1",
+            "layout_col_span": "col-span-1 md: md:col-span-1"
+          }
+        },
+        "template--20644271554834__1e9b6aa9-2f3a-4ca0-a7b2-65d5c9c14d5f-content-3": {
+          "type": "content",
+          "settings": {
+            "heading": "",
+            "content": "",
+            "button_label": "",
+            "button_url": "",
+            "full_block_link": false,
+            "image_featured": "shopify:\/\/shop_images\/img-2col-box-2.png",
+            "enable_autoplay": true,
+            "enable_mute_toggle": true,
+            "enable_loop": true,
+            "spacing_top": 0,
+            "spacing_bottom": 0,
+            "enable_padding": true,
+            "color_scheme": "color__bg-body color__text",
+            "color_border": "!color__border-transparent",
+            "color_text": "color__text",
+            "color_button": "btn btn--plain",
+            "enable_gradient": false,
+            "layout_y_alignment": "items-end content-end",
+            "layout_x_alignment": "",
+            "layout_row_span": "row-span-1",
+            "layout_col_span": "col-span-1 md: md:col-span-1"
+          }
+        }
+      },
+      "block_order": [
+        "template--20644271554834__1e9b6aa9-2f3a-4ca0-a7b2-65d5c9c14d5f-content-1",
+        "template--20644271554834__1e9b6aa9-2f3a-4ca0-a7b2-65d5c9c14d5f-content-3"
+      ],
+      "settings": {
+        "heading": "Disposables bedrukken",
+        "content": "<p>Wilt u disposables bedrukken? De Jong Disposables onderscheidt zich binnen deze markt vooral door het aanbieden van het bedrukken van disposables, waarbij voor iedere klant een passend producten pakket wordt samengesteld.<br\/><br\/>Vaak worden deze disposables voorzien van een eigen bedrukking en indien er geen passend product voor handen is, kan dit speciaal ontwikkeld worden.<br\/><br\/>Praktisch al onze disposables zijn te voorzien van uw logo of design, voor alle mogelijkheden nodigen wij u graag uit bij ons op de showroom in Tynaarlo.<\/p>",
+        "button_label": "",
+        "button_url": "",
+        "spacing_top": 100,
+        "spacing_bottom": 100,
+        "color_scheme": "color__bg-body color__text",
+        "color_border": "color__border-divider-1",
+        "color_button": "btn btn--secondary",
+        "style_border": "border--b-width",
+        "row_size_desktop": "md:grid-cols-2",
+        "row_size_mobile": "grid-cols-1",
+        "layout_x_alignment": "text-center justify-center flex-col items-center",
+        "visibility": ""
+      }
     }
   },
   "order": [
     "f96b8e1b-0fd4-4c65-856c-cdd01fe228cc",
     "2cb9d59b-242d-48e7-821a-ae61144186e8",
-    "0aee11fe-16ff-4cae-924b-b6dc71c8827b"
+    "0aee11fe-16ff-4cae-924b-b6dc71c8827b",
+    "1e9b6aa9-2f3a-4ca0-a7b2-65d5c9c14d5f"
   ]
 }

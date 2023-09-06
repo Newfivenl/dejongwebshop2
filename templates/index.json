@@ -332,12 +332,104 @@
         "layout_x_alignment": "text-center justify-center flex-col items-center",
         "visibility": ""
       }
+    },
+    "cd06c0e4-63bd-434f-887b-17562d19bd44": {
+      "type": "product-grid",
+      "blocks": {
+        "template--20644271554834__cd06c0e4-63bd-434f-887b-17562d19bd44-card-1": {
+          "type": "card",
+          "settings": {
+            "heading": "Block heading",
+            "content": "<p>Describe a product, make announcements, or inform customers about a promotion.<\/p>",
+            "button_label": "Button",
+            "button_url": "\/"
+          }
+        }
+      },
+      "block_order": [
+        "template--20644271554834__cd06c0e4-63bd-434f-887b-17562d19bd44-card-1"
+      ],
+      "settings": {
+        "collection": "frontpage",
+        "products_count": 7,
+        "heading": "Product grid",
+        "content": "<p>Describe a product, make announcements, or welcome customers to your store.<\/p>",
+        "button_label": "Button",
+        "button_url": "\/collections\/all",
+        "spacing_top": 100,
+        "spacing_bottom": 100,
+        "color_scheme": "color__bg-body color__text",
+        "color_border": "color__border-divider-1",
+        "color_button": "btn btn--secondary",
+        "style_border": "border--b-width",
+        "row_size_desktop": "md:grid-cols-4",
+        "row_size_mobile": "grid grid-cols-2",
+        "layout_x_alignment": "justify-between",
+        "visibility": ""
+      }
+    },
+    "84c299e3-89f4-4122-ba7a-adec40bab641": {
+      "type": "collection-grid",
+      "blocks": {
+        "d6c40f26-381a-43b1-aa93-467d35e8cd57": {
+          "type": "collection",
+          "settings": {
+            "collection": "kartonnen-frietbakjes"
+          }
+        },
+        "104b014d-6fe7-413f-bec5-a74ddd5fc3a3": {
+          "type": "collection",
+          "settings": {
+            "collection": "toytrays"
+          }
+        },
+        "29e0abd3-6337-4acb-81e9-f7e4c95a5271": {
+          "type": "collection",
+          "settings": {
+            "collection": "toykits"
+          }
+        },
+        "127d4659-f2b7-4e01-b8be-17b3bd87db74": {
+          "type": "card",
+          "settings": {
+            "heading": "Alle categorieën",
+            "content": "<p>Not sure where to start? Shop<br\/>from our entire collection.<\/p>",
+            "button_label": "Shop now",
+            "button_url": "shopify:\/\/collections"
+          }
+        }
+      },
+      "block_order": [
+        "d6c40f26-381a-43b1-aa93-467d35e8cd57",
+        "104b014d-6fe7-413f-bec5-a74ddd5fc3a3",
+        "29e0abd3-6337-4acb-81e9-f7e4c95a5271",
+        "127d4659-f2b7-4e01-b8be-17b3bd87db74"
+      ],
+      "settings": {
+        "heading": "Alle categorieën",
+        "content": "",
+        "button_label": "",
+        "button_url": "\/collections\/all",
+        "spacing_top": 100,
+        "spacing_bottom": 100,
+        "color_scheme": "color__bg-body color__text",
+        "color_border": "color__border-divider-1",
+        "color_button": "btn btn--secondary",
+        "style_border": "border--b-width",
+        "row_size_desktop": "md:grid-cols-4",
+        "row_size_mobile": "grid grid-cols-2",
+        "layout_x_alignment": "justify-between",
+        "visibility": "",
+        "enable_collection_size_count": true
+      }
     }
   },
   "order": [
     "f96b8e1b-0fd4-4c65-856c-cdd01fe228cc",
     "2cb9d59b-242d-48e7-821a-ae61144186e8",
     "0aee11fe-16ff-4cae-924b-b6dc71c8827b",
-    "1e9b6aa9-2f3a-4ca0-a7b2-65d5c9c14d5f"
+    "1e9b6aa9-2f3a-4ca0-a7b2-65d5c9c14d5f",
+    "cd06c0e4-63bd-434f-887b-17562d19bd44",
+    "84c299e3-89f4-4122-ba7a-adec40bab641"
   ]
 }

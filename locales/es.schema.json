@@ -517,18 +517,18 @@
           "label": "Mostrar símbolo de moneda"
         },
         "currency_symbol": {
-            "label": "Símbolo de moneda",
-            "options__1": {
-              "label": "Símbolo ($)"
-            },
-            "options__2": {
-              "label": "Código Iso (USD)"
-            }
+          "label": "Símbolo de moneda",
+          "options__1": {
+            "label": "Símbolo ($)"
           },
-          "currency_subunit_value": {
-            "label": "Valor de la subunidad de moneda",
-            "info": "Use el valor 1000 si la subunidad de su moneda se mide en miles (1 KWD es 1000 fils)"
+          "options__2": {
+            "label": "Código Iso (USD)"
           }
+        },
+        "currency_subunit_value": {
+          "label": "Valor de la subunidad de moneda",
+          "info": "Use el valor 1000 si la subunidad de su moneda se mide en miles (1 KWD es 1000 fils)"
+        }
       }
     },
     "cart": {
@@ -2258,8 +2258,8 @@
               "label": "Mostrar cantidad de entrada"
             },
             "enable_notify_me": {
-                "label": "Habilitar el botón 'Notificarme'",
-                "info": "Cuando un producto está agotado, los clientes pueden ingresar su correo electrónico. Se agregará una etiqueta con el ID de variante del producto agotado al perfil del cliente."
+              "label": "Habilitar el botón 'Notificarme'",
+              "info": "Cuando un producto está agotado, los clientes pueden ingresar su correo electrónico. Se agregará una etiqueta con el ID de variante del producto agotado al perfil del cliente."
             },
             "enable_dynamic_checkout": {
               "label": "Habilitar el pago dinámico",

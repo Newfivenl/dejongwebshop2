@@ -35,12 +35,12 @@
     {%- endunless -%}
   </div>
   <div class="md:w-auto w-full">
-    {%- unless section.settings.button_url == blank -%}
+    {%- if section.settings.button_url != blank -%}
       <a href="{{ section.settings.button_url }}" 
         class="{{ section.settings.color_button }}">
         {{ section.settings.button_label }}
       </a>
-    {%- endunless -%}
+  {%- endif -%}
   </div>
 </div>
 {%- endif -%}

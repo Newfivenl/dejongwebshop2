@@ -516,19 +516,19 @@
         "enable_currency": {
           "label": "Währungssymbol anzeigen"
         },
-          "currency_symbol": {
-            "label": "Währungssymbol",
-            "options__1": {
-              "label": "Symbol ($)"
-            },
-            "options__2": {
-              "label": "ISO-Code (USD)"
-            }
+        "currency_symbol": {
+          "label": "Währungssymbol",
+          "options__1": {
+            "label": "Symbol ($)"
           },
-          "currency_subunit_value": {
-            "label": "Wert der Währungsuntereinheit",
-            "info": "Verwenden Sie den Wert 1000, wenn die Untereinheit Ihrer Währung in Tausendern gemessen wird (1 KWD ist 1000 Fils)"
+          "options__2": {
+            "label": "ISO-Code (USD)"
           }
+        },
+        "currency_subunit_value": {
+          "label": "Wert der Währungsuntereinheit",
+          "info": "Verwenden Sie den Wert 1000, wenn die Untereinheit Ihrer Währung in Tausendern gemessen wird (1 KWD ist 1000 Fils)"
+        }
       }
     },
     "cart": {
@@ -2257,9 +2257,9 @@
             "enable_quantity": {
               "label": "Mengeneingabe anzeigen"
             },
-              "enable_notify_me": {
-                "label": "Aktivieren Sie die Schaltfläche \"Benachrichtigen\"",
-                "info": "Wenn ein Produkt ausverkauft ist, können Kunden ihre E-Mail-Adresse eingeben. Ein Tag mit der Varianten-ID des ausverkauften Produkts wird dem Kundenprofil hinzugefügt."
+            "enable_notify_me": {
+              "label": "Aktivieren Sie die Schaltfläche \"Benachrichtigen\"",
+              "info": "Wenn ein Produkt ausverkauft ist, können Kunden ihre E-Mail-Adresse eingeben. Ein Tag mit der Varianten-ID des ausverkauften Produkts wird dem Kundenprofil hinzugefügt."
             },
             "enable_dynamic_checkout": {
               "label": "Dynamisches Auschecken aktivieren",

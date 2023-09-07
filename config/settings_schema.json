@@ -942,7 +942,7 @@
         "type": "select",
         "id": "currency_subunit_value",
         "label": "t:settings_schema.prices.settings.currency_subunit_value.label",
-        "info":"t:settings_schema.prices.settings.currency_subunit_value.info",
+        "info": "t:settings_schema.prices.settings.currency_subunit_value.info",
         "options": [
           {
             "value": "100",

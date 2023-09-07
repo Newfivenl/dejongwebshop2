@@ -90,7 +90,7 @@
   "products": {
     "general": {
       "from": "from",
-      "upp_from":"From",
+      "upp_from": "From",
       "each": "each",
       "sold_out": "Sold Out",
       "out_of_stock": "Out of stock",

@@ -65,6 +65,15 @@
   {{ type_font_heading | font_face: font_display: 'swap' }}
   {{ type_font_nav | font_face: font_display: 'swap' }}
 
+
+  @font-face {
+          font-family: 'SansaPro';
+          src: url({{ 'SansaPro-Normal.otf' | asset_url }}) format('opentype');
+          font-weight: normal;
+          font-style: normal;
+          font-display: swap;
+      }
+
   :root {
     --color__bg-body-light: {{ settings.background_body_light }};
     --color__bg-overlay-light-1: {{ settings.background_body_light | color_darken: 6 }};
@@ -108,12 +117,12 @@
     --sizes-border-width: {{ settings.border_width }}px;
     --sizes-gap-width: {{ settings.layout_gap_size }}px;
 
-    --type-font-body-family: {{ settings.type_font_body.family }}, {{ settings.type_font_body.fallback_families }};
+    --type-font-body-family: 'SansaPro';
     --type-font-body-style: {{ settings.type_font_body.style }};
     --type-font-body-weight: {{ settings.type_font_body.weight }};
-    --type-font-header-family: {{ settings.type_font_heading.family }}, {{ settings.type_font_heading.fallback_families }};
+    --type-font-header-family: 'SansaPro';
     --type-font-header-style: {{ settings.type_font_heading.style }};
-    --type-font-header-weight: {{ settings.type_font_heading.weight }};
+    --type-font-header-weight: 700;
     --type-font-nav-family: {{ settings.type_font_nav.family }}, {{ settings.type_font_nav.fallback_families }};
     --type-font-nav-style: {{ settings.type_font_nav.style }};
     --type-font-nav-weight: {{ settings.type_font_nav.weight }};

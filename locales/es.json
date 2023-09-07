@@ -90,7 +90,7 @@
   "products": {
     "general": {
       "from": "De",
-      "upp_from":"De",
+      "upp_from": "De",
       "each": "cada",
       "sold_out": "Agotado",
       "out_of_stock": "Agotado",

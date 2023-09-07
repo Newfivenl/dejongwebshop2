@@ -517,18 +517,18 @@
           "label": "Afficher le symbole de devise"
         },
         "currency_symbol": {
-            "label": "Symbole monétaire",
-            "options__1": {
-              "label": "Symbole ($)"
-            },
-            "options__2": {
-              "label": "Code ISO (USD)"
-            }
+          "label": "Symbole monétaire",
+          "options__1": {
+            "label": "Symbole ($)"
           },
-          "currency_subunit_value": {
-            "label": "Valeur de la sous-unité monétaire",
-            "info": "Utilisez la valeur 1000 si la sous-unité de votre monnaie est mesurée en milliers (1 KWD est 1000 fils)"
+          "options__2": {
+            "label": "Code ISO (USD)"
           }
+        },
+        "currency_subunit_value": {
+          "label": "Valeur de la sous-unité monétaire",
+          "info": "Utilisez la valeur 1000 si la sous-unité de votre monnaie est mesurée en milliers (1 KWD est 1000 fils)"
+        }
       }
     },
     "cart": {
@@ -2258,8 +2258,8 @@
               "label": "Afficher la quantité saisie"
             },
             "enable_notify_me": {
-                "label": "Activer le bouton « M’avertir »",
-                "info": "Lorsqu’un produit est épuisé, les clients peuvent entrer leur adresse e-mail. Une étiquette avec l’ID de variante du produit épuisé sera ajoutée au profil du client."
+              "label": "Activer le bouton « M’avertir »",
+              "info": "Lorsqu’un produit est épuisé, les clients peuvent entrer leur adresse e-mail. Une étiquette avec l’ID de variante du produit épuisé sera ajoutée au profil du client."
             },
             "enable_dynamic_checkout": {
               "label": "Activer le paiement dynamique",

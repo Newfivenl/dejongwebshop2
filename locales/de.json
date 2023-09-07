@@ -90,7 +90,7 @@
   "products": {
     "general": {
       "from": "Von",
-      "upp_from":"Von",
+      "upp_from": "Von",
       "each": "jeder",
       "sold_out": "Ausverkauft",
       "out_of_stock": "Nicht auf Lager",

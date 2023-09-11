@@ -1526,6 +1526,11 @@ img:after {
   margin-bottom: 1rem;
 }
 
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .-ml-2 {
   margin-left: -0.5rem;
 }
@@ -1890,6 +1895,10 @@ img:after {
   min-height: 100vh;
 }
 
+.min-h-\[50px\] {
+  min-height: 50px;
+}
+
 .\!w-5 {
   width: 1.25rem !important;
 }
@@ -2042,6 +2051,10 @@ img:after {
   width: 100vw;
 }
 
+.w-64 {
+  width: 16rem;
+}
+
 .\!min-w-0 {
   min-width: 0px !important;
 }
@@ -2098,12 +2111,20 @@ img:after {
   max-width: 20rem;
 }
 
+.max-w-\[500px\] {
+  max-width: 500px;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
 
 .flex-none {
   flex: none;
+}
+
+.flex-auto {
+  flex: 1 1 auto;
 }
 
 .flex-shrink {
@@ -2451,6 +2472,10 @@ img:after {
   border-width: 1px;
 }
 
+.border-0 {
+  border-width: 0px;
+}
+
 .\!border-b-0 {
   border-bottom-width: 0px !important;
 }
@@ -2480,6 +2505,15 @@ img:after {
 
 .bg-white\/30 {
   background-color: rgb(255 255 255 / 0.3);
+}
+
+.bg-transparent {
+  background-color: transparent;
+}
+
+.\!bg-\[\#F5F5F5\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(245 245 245 / var(--tw-bg-opacity)) !important;
 }
 
 .bg-opacity-25 {
@@ -2698,6 +2732,18 @@ img:after {
   padding-top: 2rem;
 }
 
+.\!pl-\[26px\] {
+  padding-left: 26px !important;
+}
+
+.\!pl-\[3rem\] {
+  padding-left: 3rem !important;
+}
+
+.\!pl-\[1rem\] {
+  padding-left: 1rem !important;
+}
+
 .text-left {
   text-align: left;
 }
@@ -2716,6 +2762,10 @@ img:after {
 
 .align-bottom {
   vertical-align: bottom;
+}
+
+.\!text-\[14px\] {
+  font-size: 14px !important;
 }
 
 .uppercase {
@@ -4553,6 +4603,12 @@ html {
   }
 }
 
+@media (min-width: 360px) {
+  .xs\:\!pl-\[1rem\] {
+    padding-left: 1rem !important;
+  }
+}
+
 @media (min-width: 640px) {
   .sm\:block {
     display: block;
@@ -4572,6 +4628,10 @@ html {
 
   .sm\:p-0 {
     padding: 0px;
+  }
+
+  .sm\:\!pl-\[1rem\] {
+    padding-left: 1rem !important;
   }
 }
 
@@ -4949,6 +5009,10 @@ html {
 
   .lg\:w-1\/4 {
     width: 25%;
+  }
+
+  .lg\:\!pl-\[3rem\] {
+    padding-left: 3rem !important;
   }
 
   .lg\:text-left {

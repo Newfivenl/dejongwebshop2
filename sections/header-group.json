@@ -46,7 +46,8 @@
       "settings": {
         "dropdown_links": "main-menu",
         "search_links": "",
-        "logo_desktop_height": 200,
+        "logo_light": "shopify:\/\/shop_images\/Logo-desktop-1024x266.png",
+        "logo_desktop_height": 51,
         "logo_mobile_height": 150,
         "bar_color_scheme": "color__bg-body color__text",
         "bar_color_border": "color__border-divider-1",

@@ -66,14 +66,14 @@
         <input type="hidden" name="type" value="{{ resources }}"> 
           
         {%- comment -%} search input {%- endcomment -%}
-        <div class="relative"
+        <div class="relative max-w-[500px] mx-auto"
           :class="{ 'z-10': search_active }">
           <label class="sr-only"
             for="search-desktop">
             {{ 'general.search.search' | t }}
           </label>
           <input id="search-desktop"
-            class="form-input !pl-8 py-2 color__text !min-h-0 max-h-[35px]
+            class="form-input !border-0 !pl-[1rem] lg:!pl-[3rem] py-2 color__text min-h-[50px] !bg-[#F5F5F5] !text-[14px]
               {{ section.settings.search_color_border }}" 
             type="text"
             name="q" 
@@ -93,9 +93,11 @@
               size: '20', class: '' %}
             </button>
           </div>
-          {% render 'component__icon', icon: 'search',
+          {%  render 'icon-search', size: '20', class: 'pointer-events-none absolute !flex items-center
+          top-0 left-2 h-full opacity-50 color__text' %} 
+          {% comment %} {% render 'component__icon', icon: 'search',
             size: '20', class: 'pointer-events-none absolute !flex items-center
-            top-0 left-2 h-full opacity-50 color__text' %}
+            top-0 left-2 h-full opacity-50 color__text' %} {% endcomment %}
         </div>
         
         {%- comment -%} search dropdown {%- endcomment -%}

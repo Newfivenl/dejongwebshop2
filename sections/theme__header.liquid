@@ -45,122 +45,127 @@
     {% if section.settings.bar_layout_desktop == "center-below" %}w-full justify-center{% endif %}
     {% if section.settings.bar_layout_desktop == "left-below" %}w-full{% endif %}
     {% if section.settings.bar_layout_desktop == "left-inline" %}pl-6 flex-grow{% endif %}">   
-
-    {%- for link in section.settings.dropdown_links.links -%}
-      <div class="flex-shrink">
-        <a 
-          href="{{ link.url }}"
-          onclick=""
-          class="header__link h-full flex items-center mr-2 block no-underline
-          {% if settings.type_header == 'body' %}type__body{% endif %}
-          {% if settings.type_header == 'heading' %}type__heading{% endif %}
-          {% if settings.type_header == 'navigation' %}type__nav{% endif %}
-          {{ settings.type_header_capitilization }}
-          {% if section.settings.bar_layout_desktop == "center-below" %}px-4 md:py-4 py-2 type--small{% endif %}
-          {% if section.settings.bar_layout_desktop == "left-below" %}pr-4 pt-2 pb-4 type--small{% endif %}
-          {% if section.settings.bar_layout_desktop == "left-inline" %}px-4 md:py-4 py-2{% endif %}
-          {% if link.child_active %}!underline{% endif %}
-          {% if link.active %}!underline{% endif %}
-          {% if section.settings.bar_layout_desktop == "center-below" %}
-            px-4 mx-2
-          {% else %}
-            mr-2 pr-4
-          {% endif %}">
-          {{ link.title }}
+    <div class="flex flex-wrap items-cetner flex-auto w-64">
+      {%- for link in section.settings.dropdown_links.links -%}
+        <div class="flex-shrink">
+          <a 
+            href="{{ link.url }}"
+            onclick=""
+            class="header__link h-full flex items-center mr-2 block no-underline
+            {% if settings.type_header == 'body' %}type__body{% endif %}
+            {% if settings.type_header == 'heading' %}type__heading{% endif %}
+            {% if settings.type_header == 'navigation' %}type__nav{% endif %}
+            {{ settings.type_header_capitilization }}
+            {% if section.settings.bar_layout_desktop == "center-below" %}px-4 md:py-4 py-2 type--small{% endif %}
+            {% if section.settings.bar_layout_desktop == "left-below" %}pr-4 pt-2 pb-4 type--small{% endif %}
+            {% if section.settings.bar_layout_desktop == "left-inline" %}px-4 md:py-4 py-2{% endif %}
+            {% if link.child_active %}!underline{% endif %}
+            {% if link.active %}!underline{% endif %}
+            {% if section.settings.bar_layout_desktop == "center-below" %}
+              px-4 mx-2
+            {% else %}
+              mr-2 pr-4
+            {% endif %}">
+            {{ link.title }}
+            {% if link.levels >= 1 %}
+              {% render 'component__icon', icon: 'chevron-down', class: 'ml-1', size: '16' %}
+            {% endif %}
+          </a>
+  
           {% if link.levels >= 1 %}
-            {% render 'component__icon', icon: 'chevron-down', class: 'ml-1', size: '16' %}
-          {% endif %}
-        </a>
-
-        {% if link.levels >= 1 %}
-          <div class="header__dropdown animation-300 absolute left-0 block w-full h-0 overflow-hidden normal-case opacity-0">
-            <div class="border--t-width border--b-width
-              {{ section.settings.dropdown_color_scheme }}
-              {{ section.settings.dropdown_color_border }}">
-
-              <div class="{{ settings.layout_horizontal }}">
-                <div class="flex justify-between overflow-hidden 
-                  {{ section.settings.dropdown_color_border }}">
-
-                  <div class="flex flex-wrap flex-grow">
-                    {% for child_link in link.links %}
-                      <div class="py-8 pr-12">
-                        <a href="{{ child_link.url }}" class="type__body--bold block mb-4 no-underline">
-                          {{ child_link.title }}
-                        </a>
-                        {% for grandchild_link in child_link.links %}
-                          <a href="{{ grandchild_link.url }}" class="type__body block mb-2 no-underline">
-                            {{ grandchild_link.title }}
+            <div class="header__dropdown animation-300 absolute left-0 block w-full h-0 overflow-hidden normal-case opacity-0">
+              <div class="border--t-width border--b-width
+                {{ section.settings.dropdown_color_scheme }}
+                {{ section.settings.dropdown_color_border }}">
+  
+                <div class="{{ settings.layout_horizontal }}">
+                  <div class="flex justify-between overflow-hidden 
+                    {{ section.settings.dropdown_color_border }}">
+  
+                    <div class="flex flex-wrap flex-grow">
+                      {% for child_link in link.links %}
+                        <div class="py-8 pr-12">
+                          <a href="{{ child_link.url }}" class="type__body--bold block mb-4 no-underline">
+                            {{ child_link.title }}
                           </a>
-                        {% endfor %}
-                      </div>
+                          {% for grandchild_link in child_link.links %}
+                            <a href="{{ grandchild_link.url }}" class="type__body block mb-2 no-underline">
+                              {{ grandchild_link.title }}
+                            </a>
+                          {% endfor %}
+                        </div>
+                      {% endfor %}
+                    </div>
+  
+                    {%- comment -%}slider{%- endcomment -%}
+                    {% assign block_count = 0 %}
+                    {% for block in section.blocks %}
+                      {% assign link_handle = link.handle | handle %}
+                      {% assign menu_handle = block.settings.menu | handle %}
+                      {% if link_handle == menu_handle %}
+                        {% assign block_count = block_count | plus: 1 %}
+                      {% endif %}
                     {% endfor %}
-                  </div>
-
-                  {%- comment -%}slider{%- endcomment -%}
-                  {% assign block_count = 0 %}
-                  {% for block in section.blocks %}
-                    {% assign link_handle = link.handle | handle %}
-                    {% assign menu_handle = block.settings.menu | handle %}
-                    {% if link_handle == menu_handle %}
-                      {% assign block_count = block_count | plus: 1 %}
-                    {% endif %}
-                  {% endfor %}
-                  
-                  {% if block_count > 0 %}
-                    {%- capture slides -%}
-                      {% assign block_count = 0 %}
-                      {% for block in section.blocks %}
-                        {% assign link_handle = link.handle | handle %}
-                        {% assign menu_handle = block.settings.menu | handle %}
-                        {% if link_handle == menu_handle %}
-                          {% assign block_count = block_count | plus: 1 %}
-                          <div class="md:snap-center flex justify-center flex-none max-w-[256px] whitespace-normal" 
-                            x-intersect:enter.full="index = {{ block_count | minus: 1 }};"
-                            x-bind:data-slide="{{ block_count | minus: 1 }}">
-                            {% render 'component__card', 
-                              url: block.settings.url,
-                              image: block.settings.image,
-                              title: block.settings.heading, 
-                              content: block.settings.content %}
-                          </div>
-                        {% endif %}
-                      {% endfor %}  
-                      {%- capture outer_class -%}
-                        py-8 max-w-[50%]
+                    
+                    {% if block_count > 0 %}
+                      {%- capture slides -%}
+                        {% assign block_count = 0 %}
+                        {% for block in section.blocks %}
+                          {% assign link_handle = link.handle | handle %}
+                          {% assign menu_handle = block.settings.menu | handle %}
+                          {% if link_handle == menu_handle %}
+                            {% assign block_count = block_count | plus: 1 %}
+                            <div class="md:snap-center flex justify-center flex-none max-w-[256px] whitespace-normal" 
+                              x-intersect:enter.full="index = {{ block_count | minus: 1 }};"
+                              x-bind:data-slide="{{ block_count | minus: 1 }}">
+                              {% render 'component__card', 
+                                url: block.settings.url,
+                                image: block.settings.image,
+                                title: block.settings.heading, 
+                                content: block.settings.content %}
+                            </div>
+                          {% endif %}
+                        {% endfor %}  
+                        {%- capture outer_class -%}
+                          py-8 max-w-[50%]
+                        {%- endcapture -%}
                       {%- endcapture -%}
-                    {%- endcapture -%}
-
-                    {%- if block_count > 2 -%}
-                      {%- capture show_arrows -%}true{%- endcapture -%}
-                    {%- else -%}
-                      {%- capture show_arrows -%}{%- endcapture -%}
-                    {%- endif -%}
-
-                    {%- if block_count > 0 -%}
-                      {% assign block_count = block_count | minus: 1 %}
-                    {%- endif -%}
-
-                    {% render 'component__slider',
-                      show_arrows: show_arrows,
-                      outer_class: outer_class,
-                      container_class: '',
-                      slider_size: block_count,
-                      slides: slides %}
-                      
-                  {% endif %}
-
+  
+                      {%- if block_count > 2 -%}
+                        {%- capture show_arrows -%}true{%- endcapture -%}
+                      {%- else -%}
+                        {%- capture show_arrows -%}{%- endcapture -%}
+                      {%- endif -%}
+  
+                      {%- if block_count > 0 -%}
+                        {% assign block_count = block_count | minus: 1 %}
+                      {%- endif -%}
+  
+                      {% render 'component__slider',
+                        show_arrows: show_arrows,
+                        outer_class: outer_class,
+                        container_class: '',
+                        slider_size: block_count,
+                        slides: slides %}
+                        
+                    {% endif %}
+  
+                  </div>
                 </div>
+                
               </div>
-              
             </div>
-          </div>
-        {% endif %}
-        
-      </div>
-    {%- endfor -%}
-
+          {% endif %}
+          
+        </div>
+      {%- endfor -%}
+    </div>
+    
+      <div class="flex items-center justify-end">
+    test
+   </div>
   </div>
+
 {% endcapture %}
 
 {% capture desktop_search %}

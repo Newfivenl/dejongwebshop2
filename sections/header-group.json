@@ -26,31 +26,6 @@
     },
     "theme_header": {
       "type": "theme__header",
-      "blocks": {
-        "e561cffb-e23b-4a10-8382-4959a1b99bf2": {
-          "type": "Content",
-          "settings": {
-            "menu": "shop",
-            "url": "shopify:\/\/collections\/all",
-            "heading": "Block heading",
-            "content": "<p>Describe a product, make announcements, or welcome customers to your store.<\/p>"
-          }
-        },
-        "215dda1c-354b-4a04-bdf1-7eede80f3c51": {
-          "type": "Content",
-          "settings": {
-            "menu": "tets",
-            "url": "shopify:\/\/pages\/contact",
-            "heading": "Block heading",
-            "content": "<p>Describe a product, make announcements, or inform customers about a promotion.<\/p>",
-            "image": "shopify:\/\/shop_images\/thuiswinkel.png"
-          }
-        }
-      },
-      "block_order": [
-        "e561cffb-e23b-4a10-8382-4959a1b99bf2",
-        "215dda1c-354b-4a04-bdf1-7eede80f3c51"
-      ],
       "custom_css": [
 
       ],

@@ -517,6 +517,80 @@
         "layout_x_alignment": "justify-between",
         "visibility": ""
       }
+    },
+    "153e1f9d-36b0-4e41-84cd-6510d2d62de1": {
+      "type": "icon-grid",
+      "blocks": {
+        "template--20644271554834__153e1f9d-36b0-4e41-84cd-6510d2d62de1-icon-3": {
+          "type": "icon",
+          "settings": {
+            "icon": "shopify:\/\/shop_images\/icon-usp-shipping_1.svg",
+            "icon_height": "h-14",
+            "heading": "Kwaliteit & prijs",
+            "content": "<p>Wij helpen u met producten van de hoogste kwaliteit voor de scherpste prijs.<\/p>",
+            "enable_padding": true,
+            "color_scheme": "color__bg-body color__text",
+            "color_border": "!color__border-transparent",
+            "layout_alignment": "flex-col",
+            "layout_x_alignment": "text-center justify-center",
+            "layout_row_span": "row-span-1",
+            "layout_col_span": "col-span-1 md:col-span-1"
+          }
+        },
+        "template--20644271554834__153e1f9d-36b0-4e41-84cd-6510d2d62de1-icon-2": {
+          "type": "icon",
+          "settings": {
+            "icon": "shopify:\/\/shop_images\/icon-usp-reward.svg",
+            "icon_height": "h-14",
+            "heading": "Betrouwbaar",
+            "content": "<p>Ons familiebedrijf is al meer dan 35 jaar wereldwijd actief. <\/p>",
+            "enable_padding": true,
+            "color_scheme": "color__bg-body color__text",
+            "color_border": "!color__border-transparent",
+            "layout_alignment": "flex-col",
+            "layout_x_alignment": "text-center justify-center",
+            "layout_row_span": "row-span-1",
+            "layout_col_span": "col-span-1 md:col-span-1"
+          }
+        },
+        "template--20644271554834__153e1f9d-36b0-4e41-84cd-6510d2d62de1-icon-1": {
+          "type": "icon",
+          "settings": {
+            "icon": "shopify:\/\/shop_images\/icon-usp-shipping_1.svg",
+            "icon_height": "h-14",
+            "heading": "Verzending",
+            "content": "<p>Vanaf € 250,- geen verzendkosten, levertijd circa 3 werkdagen.<br\/><\/p>",
+            "enable_padding": true,
+            "color_scheme": "color__bg-body color__text",
+            "color_border": "!color__border-transparent",
+            "layout_alignment": "flex-col",
+            "layout_x_alignment": "text-center justify-center",
+            "layout_row_span": "row-span-1",
+            "layout_col_span": "col-span-1 md:col-span-1"
+          }
+        }
+      },
+      "block_order": [
+        "template--20644271554834__153e1f9d-36b0-4e41-84cd-6510d2d62de1-icon-3",
+        "template--20644271554834__153e1f9d-36b0-4e41-84cd-6510d2d62de1-icon-2",
+        "template--20644271554834__153e1f9d-36b0-4e41-84cd-6510d2d62de1-icon-1"
+      ],
+      "settings": {
+        "heading": "",
+        "content": "",
+        "button_label": "",
+        "button_url": "",
+        "spacing_top": 100,
+        "spacing_bottom": 100,
+        "color_scheme": "color__bg-body color__text",
+        "color_border": "color__border-divider-1",
+        "color_button": "btn btn--secondary",
+        "style_border": "border--t-width",
+        "row_size_desktop": "md:grid-cols-3",
+        "row_size_mobile": "grid-cols-1",
+        "layout_x_alignment": "justify-between",
+        "visibility": ""
+      }
     }
   },
   "order": [
@@ -527,6 +601,7 @@
     "84c299e3-89f4-4122-ba7a-adec40bab641",
     "4957c6b2-3abe-4e8a-a342-c28fcddc4f97",
     "d7e3b662-c368-4636-9d51-e4d12b8168f7",
-    "96dcd7af-6180-401d-bf36-5aafc0ddf102"
+    "96dcd7af-6180-401d-bf36-5aafc0ddf102",
+    "153e1f9d-36b0-4e41-84cd-6510d2d62de1"
   ]
 }

@@ -57,7 +57,7 @@
         "6ad6b950-210d-4cf8-b231-62c67db4980e"
       ],
       "settings": {
-        "main_color_scheme": "color__bg-overlay-1 color__text",
+        "main_color_scheme": "color__bg-secondary color__secondary",
         "main_color_border": "color__border-divider-1",
         "main_color_button": "btn btn--secondary",
         "sub_color_scheme": "color__bg-overlay-1 color__text",

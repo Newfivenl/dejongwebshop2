@@ -5,6 +5,14 @@
     "theme_footer": {
       "type": "theme__footer",
       "blocks": {
+        "d570b6b7-400f-46b6-9295-c9e085ee33bc": {
+          "type": "logo",
+          "settings": {
+            "logo_light": "shopify:\/\/shop_images\/Logo-desktop-1024x266.png",
+            "logo_desktop_height": 51,
+            "logo_mobile_height": 51
+          }
+        },
         "78204a1a-1009-4f50-a9c8-4a9f0b2af321": {
           "type": "newsletter",
           "settings": {
@@ -15,13 +23,13 @@
             "success": "<p>Success! You’ve been subscribed.<\/p>"
           }
         },
-        "93a10caa-0edc-4bd5-82ac-2f3421fcbc79": {
+        "ddf76c2c-f27e-4cd5-b88b-5a8075e4659e": {
           "type": "menu",
           "settings": {
             "menu": ""
           }
         },
-        "d87893f7-81bb-4364-8373-de4b79c1ce47": {
+        "9054acf2-f22d-4dcf-bdd2-21ef99817d3c": {
           "type": "menu",
           "settings": {
             "menu": ""
@@ -41,9 +49,10 @@
         }
       },
       "block_order": [
+        "d570b6b7-400f-46b6-9295-c9e085ee33bc",
         "78204a1a-1009-4f50-a9c8-4a9f0b2af321",
-        "93a10caa-0edc-4bd5-82ac-2f3421fcbc79",
-        "d87893f7-81bb-4364-8373-de4b79c1ce47",
+        "ddf76c2c-f27e-4cd5-b88b-5a8075e4659e",
+        "9054acf2-f22d-4dcf-bdd2-21ef99817d3c",
         "150805eb-9862-49dd-b0c2-0111162d6fce",
         "6ad6b950-210d-4cf8-b231-62c67db4980e"
       ],

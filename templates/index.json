@@ -591,6 +591,54 @@
         "layout_x_alignment": "justify-between",
         "visibility": ""
       }
+    },
+    "78a339b1-cd3c-4871-898d-b86e6dc91a94": {
+      "type": "accordions",
+      "blocks": {
+        "template--20644271554834__78a339b1-cd3c-4871-898d-b86e6dc91a94-content-1": {
+          "type": "content",
+          "settings": {
+            "title": "How do I get free shipping?",
+            "content": "<p>Answer to help your customers feel more comfortable completing their purchase.<\/p>",
+            "icon": ""
+          }
+        },
+        "template--20644271554834__78a339b1-cd3c-4871-898d-b86e6dc91a94-content-2": {
+          "type": "content",
+          "settings": {
+            "title": "How much do I need to spend to get free shipping?",
+            "content": "<p>Answer to help your customers feel more comfortable completing their purchase.<\/p>",
+            "icon": ""
+          }
+        },
+        "template--20644271554834__78a339b1-cd3c-4871-898d-b86e6dc91a94-content-3": {
+          "type": "content",
+          "settings": {
+            "title": "How long does shipping take?",
+            "content": "<p>Answer to help your customers feel more comfortable completing their purchase.<\/p>",
+            "icon": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--20644271554834__78a339b1-cd3c-4871-898d-b86e6dc91a94-content-1",
+        "template--20644271554834__78a339b1-cd3c-4871-898d-b86e6dc91a94-content-2",
+        "template--20644271554834__78a339b1-cd3c-4871-898d-b86e6dc91a94-content-3"
+      ],
+      "settings": {
+        "heading": "FAQs",
+        "content": "",
+        "button_label": "Help Center",
+        "button_url": "\/",
+        "spacing_top": 100,
+        "spacing_bottom": 100,
+        "color_scheme": "color__bg-body color__text",
+        "color_border": "color__border-divider-1",
+        "color_button": "btn btn--secondary",
+        "style_border": "border--b-width",
+        "layout_x_alignment": "justify-between",
+        "visibility": ""
+      }
     }
   },
   "order": [
@@ -602,6 +650,7 @@
     "4957c6b2-3abe-4e8a-a342-c28fcddc4f97",
     "d7e3b662-c368-4636-9d51-e4d12b8168f7",
     "96dcd7af-6180-401d-bf36-5aafc0ddf102",
-    "153e1f9d-36b0-4e41-84cd-6510d2d62de1"
+    "153e1f9d-36b0-4e41-84cd-6510d2d62de1",
+    "78a339b1-cd3c-4871-898d-b86e6dc91a94"
   ]
 }

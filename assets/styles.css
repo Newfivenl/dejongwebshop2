@@ -640,8 +640,8 @@ html,
   p,
   pre,
   span {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
+    font-size: 1rem;
+    line-height: 1.25rem;
   }
 }
 
@@ -747,7 +747,7 @@ h4,
   font-style: var(--type-font-header-style);
   font-weight: var(--type-font-header-weight);
   font-size: 1.25rem;
-  line-height: 1.75rem;
+  line-height: 1.25rem;
   letter-spacing: 0em;
   text-underline-offset: 2px;
 }
@@ -773,8 +773,8 @@ h5,
   font-family: var(--type-font-header-family);
   font-style: var(--type-font-header-style);
   font-weight: var(--type-font-header-weight);
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+  font-size: 1rem;
+  line-height: 1.25rem;
   letter-spacing: 0em;
   text-underline-offset: 2px;
 }
@@ -784,7 +784,7 @@ h5,
   .h5,
   h5 > * {
     font-size: 1.25rem;
-    line-height: 1.75rem;
+    line-height: 1.25rem;
   }
 }
 
@@ -810,8 +810,8 @@ h6,
   h6,
   .h6,
   h6 > * {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
+    font-size: 1rem;
+    line-height: 1.25rem;
   }
 }
 
@@ -3271,8 +3271,8 @@ img:after {
   font-family: var(--type-font-header-family);
   font-style: var(--type-font-header-style);
   font-weight: var(--type-font-header-weight);
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+  font-size: 1rem;
+  line-height: 1.25rem;
   letter-spacing: 0em;
   text-underline-offset: 2px;
 }
@@ -3280,7 +3280,7 @@ img:after {
 @media (min-width: 768px) {
   .type__heading--bold-5 {
     font-size: 1.25rem;
-    line-height: 1.75rem;
+    line-height: 1.25rem;
   }
 }
 
@@ -3346,8 +3346,8 @@ img:after {
 
 @media (min-width: 768px) {
   .type--base {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
+    font-size: 1rem;
+    line-height: 1.25rem;
   }
 }
 
@@ -3358,8 +3358,8 @@ img:after {
   }
   @media (min-width: 768px) {
     * {
-      font-size: 1.125rem;
-      line-height: 1.75rem;
+      font-size: 1rem;
+      line-height: 1.25rem;
     }
   }
 }
@@ -3830,7 +3830,7 @@ img:after {
   }
   &--big {
     font-size: 1.25rem;
-    line-height: 1.75rem;
+    line-height: 1.25rem;
   }
   @media (min-width: 768px) {
     &--big {
@@ -3842,7 +3842,7 @@ img:after {
   }
   &--big > * {
     font-size: 1.25rem;
-    line-height: 1.75rem;
+    line-height: 1.25rem;
   }
   @media (min-width: 768px) {
     &--big > * {

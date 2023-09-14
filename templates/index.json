@@ -482,7 +482,7 @@
             "enable_autoplay": true,
             "enable_mute_toggle": true,
             "enable_loop": true,
-            "spacing_top": 80,
+            "spacing_top": 0,
             "spacing_bottom": 0,
             "enable_padding": true,
             "color_scheme": "color__bg-body color__text",

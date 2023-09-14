@@ -165,7 +165,7 @@
         {% for block in section.blocks %}
           {% if block.type == "nav_image" %}
             <div class="image_box flex items-center gap-[10px] pb-[24px]">
-              <img src="{{ block.settings.image | img_url: 'medium'   }}" />
+              <img class="max-h-[45px]" src="{{ block.settings.image | img_url: 'medium'   }}" />
               <div class="store--hours-info">
                 <div class="contact_info !text-[#064A89] !text-[16px] ">{{ block.settings.contact_info | strip_html }}</div>
                 <div class="store_hours !text-[#888888] max-w-[143px] !text-[14px]">{{ block.settings.store_hours | strip_html }}</div>

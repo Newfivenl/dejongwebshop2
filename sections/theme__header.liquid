@@ -164,11 +164,11 @@
       <div class="flex items-center justify-end gap-[32px]">
         {% for block in section.blocks %}
           {% if block.type == "nav_image" %}
-            <div class="image_box flex items-start gap-[10px]">
+            <div class="image_box flex items-center gap-[10px] pb-[24px]">
               <img src="{{ block.settings.image | img_url: 'medium'   }}" />
-              <div>
-                <div class="!peer-text-[#064A89] !peer-text-[16px]">{{ block.settings.contact_info }}</div>
-                <div class="!peer-text-[#888888] !peer-text-[12px]">{{ block.settings.store_hours }}</div>
+              <div class="store--hours-info">
+                <div class="contact_info !text-[#064A89] !text-[16px] ">{{ block.settings.contact_info | strip_html }}</div>
+                <div class="store_hours !text-[#888888] max-w-[143px] !text-[14px]">{{ block.settings.store_hours | strip_html }}</div>
               </div>
             </div>
           {% endif  %}
@@ -570,7 +570,17 @@
     </div>
   </div>
 </nav>
-
+<style>
+@media (min-width: 768px) {
+  .store--hours-info .contact_info{
+    font-size: 16px !important;
+  }
+  .store--hours-info .store_hours{
+    font-size: 12px !important;
+  }
+}
+  
+</style>
 {% schema %}
 {
   "name": "t:sections.theme_header.name",

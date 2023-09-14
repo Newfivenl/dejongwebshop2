@@ -1643,6 +1643,10 @@ img:after {
   margin-top: auto;
 }
 
+.mb-\[24px\] {
+  margin-bottom: 24px;
+}
+
 .block {
   display: block;
 }
@@ -2067,6 +2071,10 @@ img:after {
   min-width: 100%;
 }
 
+.max-w-\[143px\] {
+  max-width: 143px;
+}
+
 .max-w-\[150px\] {
   max-width: 150px;
 }
@@ -2369,16 +2377,12 @@ img:after {
   gap: 1rem;
 }
 
-.gap-\[32px\] {
-  gap: 32px;
-}
-
-.gap-\[10x\] {
-  gap: 10x;
-}
-
 .gap-\[10px\] {
   gap: 10px;
+}
+
+.gap-\[32px\] {
+  gap: 32px;
 }
 
 .gap-x-1 {
@@ -2736,6 +2740,10 @@ img:after {
   padding-top: 2rem;
 }
 
+.pb-\[24px\] {
+  padding-bottom: 24px;
+}
+
 .text-left {
   text-align: left;
 }
@@ -2760,20 +2768,12 @@ img:after {
   font-size: 14px !important;
 }
 
-.text-\[12px\] {
-  font-size: 12px;
-}
-
-.text-\[16px\] {
-  font-size: 16px;
-}
-
-.\!text-\[12px\] {
-  font-size: 12px !important;
-}
-
 .\!text-\[16px\] {
   font-size: 16px !important;
+}
+
+.\!text-\[20px\] {
+  font-size: 20px !important;
 }
 
 .uppercase {
@@ -2804,6 +2804,16 @@ img:after {
   line-height: 1;
 }
 
+.\!text-\[\#064A89\] {
+  --tw-text-opacity: 1 !important;
+  color: rgb(6 74 137 / var(--tw-text-opacity)) !important;
+}
+
+.\!text-\[\#888888\] {
+  --tw-text-opacity: 1 !important;
+  color: rgb(136 136 136 / var(--tw-text-opacity)) !important;
+}
+
 .text-red-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
@@ -2814,24 +2824,9 @@ img:after {
   color: rgb(220 38 38 / var(--tw-text-opacity));
 }
 
-.text-\[\#888888\] {
-  --tw-text-opacity: 1;
-  color: rgb(136 136 136 / var(--tw-text-opacity));
-}
-
 .text-\[\#064A89\] {
   --tw-text-opacity: 1;
   color: rgb(6 74 137 / var(--tw-text-opacity));
-}
-
-.\!text-\[\#064A89\] {
-  --tw-text-opacity: 1 !important;
-  color: rgb(6 74 137 / var(--tw-text-opacity)) !important;
-}
-
-.\!text-\[\#888888\] {
-  --tw-text-opacity: 1 !important;
-  color: rgb(136 136 136 / var(--tw-text-opacity)) !important;
 }
 
 .\!underline {
@@ -4109,6 +4104,10 @@ img:after {
 /* - apply base styles to set type */
 
 /* ======= */
+
+.store--hours-info p{
+  margin-bottom: 0;
+}
 
 /* FORMS */
 

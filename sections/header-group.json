@@ -27,29 +27,26 @@
     "theme_header": {
       "type": "theme__header",
       "blocks": {
-        "e561cffb-e23b-4a10-8382-4959a1b99bf2": {
-          "type": "Content",
+        "be71be81-afed-41c4-a9df-3d6f393ab842": {
+          "type": "nav_image",
           "settings": {
-            "menu": "shop",
-            "url": "shopify:\/\/collections\/all",
-            "heading": "Block heading",
-            "content": "<p>Describe a product, make announcements, or welcome customers to your store.<\/p>"
+            "image": "shopify:\/\/shop_images\/thuiswinkel.png",
+            "contact_info": "",
+            "store_hours": ""
           }
         },
-        "215dda1c-354b-4a04-bdf1-7eede80f3c51": {
-          "type": "Content",
+        "48e8f8dc-31c9-4a0d-bf76-1d36a757b1d6": {
+          "type": "nav_image",
           "settings": {
-            "menu": "tets",
-            "url": "shopify:\/\/pages\/contact",
-            "heading": "Block heading",
-            "content": "<p>Describe a product, make announcements, or inform customers about a promotion.<\/p>",
-            "image": "shopify:\/\/shop_images\/thuiswinkel.png"
+            "image": "shopify:\/\/shop_images\/profile-photo.png",
+            "contact_info": "<p>0592 54 18 64<\/p>",
+            "store_hours": "<p>Op werkdagen bereikbaar tot 17:00 uur<\/p>"
           }
         }
       },
       "block_order": [
-        "e561cffb-e23b-4a10-8382-4959a1b99bf2",
-        "215dda1c-354b-4a04-bdf1-7eede80f3c51"
+        "be71be81-afed-41c4-a9df-3d6f393ab842",
+        "48e8f8dc-31c9-4a0d-bf76-1d36a757b1d6"
       ],
       "custom_css": [
 

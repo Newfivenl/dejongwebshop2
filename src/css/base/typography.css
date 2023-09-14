@@ -128,3 +128,7 @@
     font-weight: bold;
   }
 }
+.store--hours-info p{
+  margin-bottom: 0;
+}
+

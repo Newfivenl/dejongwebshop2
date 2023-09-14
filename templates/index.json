@@ -37,7 +37,7 @@
         "show_entire_image": false,
         "enable_lazy_loading": true,
         "show_video_background_mobile": true,
-        "color_scheme": "color__bg-secondary color__secondary",
+        "color_scheme": "color__bg-primary color__primary",
         "color_text": "",
         "color_border": "color__border-divider-1",
         "enable_gradient": false,

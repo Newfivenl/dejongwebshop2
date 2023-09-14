@@ -1516,6 +1516,11 @@ img:after {
   margin-right: 0.5rem;
 }
 
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .my-2 {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -1524,11 +1529,6 @@ img:after {
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
-}
-
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .-ml-2 {
@@ -1803,10 +1803,6 @@ img:after {
   max-height: 32px;
 }
 
-.max-h-\[35px\] {
-  max-height: 35px;
-}
-
 .max-h-\[500px\] {
   max-height: 500px;
 }
@@ -1875,6 +1871,10 @@ img:after {
   min-height: 450px;
 }
 
+.min-h-\[50px\] {
+  min-height: 50px;
+}
+
 .min-h-\[550px\] {
   min-height: 550px;
 }
@@ -1893,10 +1893,6 @@ img:after {
 
 .min-h-screen {
   min-height: 100vh;
-}
-
-.min-h-\[50px\] {
-  min-height: 50px;
 }
 
 .\!w-5 {
@@ -2003,6 +1999,10 @@ img:after {
   width: 50%;
 }
 
+.w-64 {
+  width: 16rem;
+}
+
 .w-7\/12 {
   width: 58.333333%;
 }
@@ -2051,10 +2051,6 @@ img:after {
   width: 100vw;
 }
 
-.w-64 {
-  width: 16rem;
-}
-
 .\!min-w-0 {
   min-width: 0px !important;
 }
@@ -2087,6 +2083,10 @@ img:after {
   max-width: 50%;
 }
 
+.max-w-\[500px\] {
+  max-width: 500px;
+}
+
 .max-w-full {
   max-width: 100%;
 }
@@ -2111,20 +2111,16 @@ img:after {
   max-width: 20rem;
 }
 
-.max-w-\[500px\] {
-  max-width: 500px;
-}
-
 .flex-1 {
   flex: 1 1 0%;
 }
 
-.flex-none {
-  flex: none;
-}
-
 .flex-auto {
   flex: 1 1 auto;
+}
+
+.flex-none {
+  flex: none;
 }
 
 .flex-shrink {
@@ -2373,6 +2369,18 @@ img:after {
   gap: 1rem;
 }
 
+.gap-\[32px\] {
+  gap: 32px;
+}
+
+.gap-\[10x\] {
+  gap: 10x;
+}
+
+.gap-\[10px\] {
+  gap: 10px;
+}
+
 .gap-x-1 {
   -moz-column-gap: 0.25rem;
        column-gap: 0.25rem;
@@ -2472,10 +2480,6 @@ img:after {
   border-width: 1px;
 }
 
-.border-0 {
-  border-width: 0px;
-}
-
 .\!border-b-0 {
   border-bottom-width: 0px !important;
 }
@@ -2487,6 +2491,11 @@ img:after {
 .\!border-rose-500 {
   --tw-border-opacity: 1 !important;
   border-color: rgb(244 63 94 / var(--tw-border-opacity)) !important;
+}
+
+.\!bg-\[\#F5F5F5\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(245 245 245 / var(--tw-bg-opacity)) !important;
 }
 
 .\!bg-transparent {
@@ -2505,15 +2514,6 @@ img:after {
 
 .bg-white\/30 {
   background-color: rgb(255 255 255 / 0.3);
-}
-
-.bg-transparent {
-  background-color: transparent;
-}
-
-.\!bg-\[\#F5F5F5\] {
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(245 245 245 / var(--tw-bg-opacity)) !important;
 }
 
 .bg-opacity-25 {
@@ -2644,6 +2644,10 @@ img:after {
   padding-left: 2rem !important;
 }
 
+.\!pl-\[1rem\] {
+  padding-left: 1rem !important;
+}
+
 .\!pr-0 {
   padding-right: 0px !important;
 }
@@ -2732,18 +2736,6 @@ img:after {
   padding-top: 2rem;
 }
 
-.\!pl-\[26px\] {
-  padding-left: 26px !important;
-}
-
-.\!pl-\[3rem\] {
-  padding-left: 3rem !important;
-}
-
-.\!pl-\[1rem\] {
-  padding-left: 1rem !important;
-}
-
 .text-left {
   text-align: left;
 }
@@ -2766,6 +2758,22 @@ img:after {
 
 .\!text-\[14px\] {
   font-size: 14px !important;
+}
+
+.text-\[12px\] {
+  font-size: 12px;
+}
+
+.text-\[16px\] {
+  font-size: 16px;
+}
+
+.\!text-\[12px\] {
+  font-size: 12px !important;
+}
+
+.\!text-\[16px\] {
+  font-size: 16px !important;
 }
 
 .uppercase {
@@ -2804,6 +2812,26 @@ img:after {
 .text-red-600 {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+
+.text-\[\#888888\] {
+  --tw-text-opacity: 1;
+  color: rgb(136 136 136 / var(--tw-text-opacity));
+}
+
+.text-\[\#064A89\] {
+  --tw-text-opacity: 1;
+  color: rgb(6 74 137 / var(--tw-text-opacity));
+}
+
+.\!text-\[\#064A89\] {
+  --tw-text-opacity: 1 !important;
+  color: rgb(6 74 137 / var(--tw-text-opacity)) !important;
+}
+
+.\!text-\[\#888888\] {
+  --tw-text-opacity: 1 !important;
+  color: rgb(136 136 136 / var(--tw-text-opacity)) !important;
 }
 
 .\!underline {
@@ -4603,12 +4631,6 @@ html {
   }
 }
 
-@media (min-width: 360px) {
-  .xs\:\!pl-\[1rem\] {
-    padding-left: 1rem !important;
-  }
-}
-
 @media (min-width: 640px) {
   .sm\:block {
     display: block;
@@ -4628,10 +4650,6 @@ html {
 
   .sm\:p-0 {
     padding: 0px;
-  }
-
-  .sm\:\!pl-\[1rem\] {
-    padding-left: 1rem !important;
   }
 }
 

@@ -161,8 +161,18 @@
       {%- endfor -%}
     </div>
     
-      <div class="flex items-center justify-end">
-    test
+      <div class="flex items-center justify-end gap-[32px]">
+        {% for block in section.blocks %}
+          {% if block.type == "nav_image" %}
+            <div class="image_box flex items-start gap-[10px]">
+              <img src="{{ block.settings.image | img_url: 'medium'   }}" />
+              <div>
+                <div class="!peer-text-[#064A89] !peer-text-[16px]">{{ block.settings.contact_info }}</div>
+                <div class="!peer-text-[#888888] !peer-text-[12px]">{{ block.settings.store_hours }}</div>
+              </div>
+            </div>
+          {% endif  %}
+        {% endfor  %}
    </div>
   </div>
 
@@ -204,35 +214,7 @@
       {% endif %}
     {% endif %}
 
-    {%- if shop.customer_accounts_enabled -%}
-     {% unless section.settings.bar_button_login_type == "none" %}
-      {% if section.settings.bar_button_login_type == "text" %}
-        <a
-          class="hover:underline inline-flex pl-4 ml-2 no-underline
-          {% if settings.type_header == 'body' %}type__body{% endif %}
-          {% if settings.type_header == 'heading' %}type__heading{% endif %}
-          {% if settings.type_header == 'navigation' %}type__nav{% endif %}
-          {{ settings.type_header_capitilization }}"
-          href="{{ routes.account_url }}"
-          rel="nofollow">
-          {% if customer %}
-            {{ 'general.navigation.account' | t }}
-          {% else %}
-            {{ 'customer.account.log_in' | t }}
-          {% endif %}
-
-        </a>
-      {% else %}
-        <a
-          class="type__nav hover:underline inline-flex pl-4 ml-2 no-underline"
-          href="{{ routes.account_url }}"
-          rel="nofollow"
-          title=" {% if customer %}{{ 'general.navigation.account' | t }}{% else %}{{ 'customer.account.log_in' | t }}{% endif %}">
-          {% render 'component__icon', icon: 'account', size: '24', class: '' %} 
-        </a>
-      {% endif %}
-     {% endunless %}
-    {% endif %}
+    
 
     
     {% if section.settings.bar_button_cart_type == "text" %}
@@ -275,7 +257,35 @@
         </span>
       </a>
     {% endif %}
+    {%- if shop.customer_accounts_enabled -%}
+    {% unless section.settings.bar_button_login_type == "none" %}
+     {% if section.settings.bar_button_login_type == "text" %}
+       <a
+         class="hover:underline inline-flex pl-4 ml-2 no-underline
+         {% if settings.type_header == 'body' %}type__body{% endif %}
+         {% if settings.type_header == 'heading' %}type__heading{% endif %}
+         {% if settings.type_header == 'navigation' %}type__nav{% endif %}
+         {{ settings.type_header_capitilization }}"
+         href="{{ routes.account_url }}"
+         rel="nofollow">
+         {% if customer %}
+           {{ 'general.navigation.account' | t }}
+         {% else %}
+           {{ 'customer.account.log_in' | t }}
+         {% endif %}
 
+       </a>
+     {% else %}
+       <a
+         class="type__nav hover:underline inline-flex pl-4 ml-2 no-underline"
+         href="{{ routes.account_url }}"
+         rel="nofollow"
+         title=" {% if customer %}{{ 'general.navigation.account' | t }}{% else %}{{ 'customer.account.log_in' | t }}{% endif %}">
+         {% render 'component__icon', icon: 'account', size: '24', class: '' %} 
+       </a>
+     {% endif %}
+    {% endunless %}
+   {% endif %}
    
    
   </div>
@@ -964,6 +974,29 @@
           "id": "image",
           "label": "t:sections.theme_header.blocks.content.settings.image_picker.label",
           "info": "t:sections.theme_header.blocks.content.settings.image_picker.info"
+        }
+      ]
+    },
+    {
+      "type": "nav_image",
+      "name": "Right Nav Image Content",
+      "limit": 2,
+      "settings": [
+       
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "richtext",
+          "id": "contact_info",
+          "label": "Contact Info"
+        },
+        {
+          "type": "richtext",
+          "id": "store_hours",
+          "label": "Store Hours"
         }
       ]
     }

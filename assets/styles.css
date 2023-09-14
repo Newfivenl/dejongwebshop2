@@ -640,8 +640,7 @@ html,
   p,
   pre,
   span {
-    font-size: 1rem;
-    line-height: 1.25rem;
+    font-size: 16px;
   }
 }
 
@@ -737,6 +736,7 @@ h3,
 h3,
   .h3,
   h3 > * {
+  color: var(--color-primary-button-background-light);
   line-height: 1;
 }
 
@@ -747,7 +747,7 @@ h4,
   font-style: var(--type-font-header-style);
   font-weight: var(--type-font-header-weight);
   font-size: 1.25rem;
-  line-height: 1.25rem;
+  line-height: 1.75rem;
   letter-spacing: 0em;
   text-underline-offset: 2px;
 }
@@ -773,8 +773,8 @@ h5,
   font-family: var(--type-font-header-family);
   font-style: var(--type-font-header-style);
   font-weight: var(--type-font-header-weight);
-  font-size: 1rem;
-  line-height: 1.25rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
   letter-spacing: 0em;
   text-underline-offset: 2px;
 }
@@ -784,7 +784,7 @@ h5,
   .h5,
   h5 > * {
     font-size: 1.25rem;
-    line-height: 1.25rem;
+    line-height: 1.75rem;
   }
 }
 
@@ -810,8 +810,8 @@ h6,
   h6,
   .h6,
   h6 > * {
-    font-size: 1rem;
-    line-height: 1.25rem;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
   }
 }
 
@@ -1643,10 +1643,6 @@ img:after {
   margin-top: auto;
 }
 
-.mb-\[24px\] {
-  margin-bottom: 24px;
-}
-
 .block {
   display: block;
 }
@@ -1807,6 +1803,10 @@ img:after {
   max-height: 32px;
 }
 
+.max-h-\[45px\] {
+  max-height: 45px;
+}
+
 .max-h-\[500px\] {
   max-height: 500px;
 }
@@ -1845,10 +1845,6 @@ img:after {
 
 .max-h-screen {
   max-height: 100vh;
-}
-
-.max-h-\[45px\] {
-  max-height: 45px;
 }
 
 .\!min-h-0 {
@@ -2680,6 +2676,10 @@ img:after {
   padding-bottom: 2rem;
 }
 
+.pb-\[24px\] {
+  padding-bottom: 24px;
+}
+
 .pl-0 {
   padding-left: 0px;
 }
@@ -2742,10 +2742,6 @@ img:after {
 
 .pt-8 {
   padding-top: 2rem;
-}
-
-.pb-\[24px\] {
-  padding-bottom: 24px;
 }
 
 .text-left {
@@ -2818,6 +2814,11 @@ img:after {
   color: rgb(136 136 136 / var(--tw-text-opacity)) !important;
 }
 
+.text-\[\#064A89\] {
+  --tw-text-opacity: 1;
+  color: rgb(6 74 137 / var(--tw-text-opacity));
+}
+
 .text-red-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
@@ -2826,11 +2827,6 @@ img:after {
 .text-red-600 {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
-}
-
-.text-\[\#064A89\] {
-  --tw-text-opacity: 1;
-  color: rgb(6 74 137 / var(--tw-text-opacity));
 }
 
 .\!underline {
@@ -3223,6 +3219,7 @@ img:after {
   letter-spacing: 0em;
   text-underline-offset: 2px;
   line-height: 1.25;
+  color: var(--color-primary-button-background-light);
 }
 
 .type__heading--bold-2 {
@@ -3265,14 +3262,15 @@ img:after {
 
 .type__heading--bold-3 {
   line-height: 1.25;
+  color: var(--color-primary-button-background-light);
 }
 
 .type__heading--bold-5 {
   font-family: var(--type-font-header-family);
   font-style: var(--type-font-header-style);
   font-weight: var(--type-font-header-weight);
-  font-size: 1rem;
-  line-height: 1.25rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
   letter-spacing: 0em;
   text-underline-offset: 2px;
 }
@@ -3280,7 +3278,7 @@ img:after {
 @media (min-width: 768px) {
   .type__heading--bold-5 {
     font-size: 1.25rem;
-    line-height: 1.25rem;
+    line-height: 1.75rem;
   }
 }
 
@@ -3346,8 +3344,7 @@ img:after {
 
 @media (min-width: 768px) {
   .type--base {
-    font-size: 1rem;
-    line-height: 1.25rem;
+    font-size: 16px;
   }
 }
 
@@ -3358,8 +3355,7 @@ img:after {
   }
   @media (min-width: 768px) {
     * {
-      font-size: 1rem;
-      line-height: 1.25rem;
+      font-size: 16px;
     }
   }
 }
@@ -3830,7 +3826,7 @@ img:after {
   }
   &--big {
     font-size: 1.25rem;
-    line-height: 1.25rem;
+    line-height: 1.75rem;
   }
   @media (min-width: 768px) {
     &--big {
@@ -3842,7 +3838,7 @@ img:after {
   }
   &--big > * {
     font-size: 1.25rem;
-    line-height: 1.25rem;
+    line-height: 1.75rem;
   }
   @media (min-width: 768px) {
     &--big > * {
@@ -4108,6 +4104,14 @@ img:after {
 /* - apply base styles to set type */
 
 /* ======= */
+
+.store--hours-info .contact_info{
+  font-size: 16px !important;
+}
+
+.store--hours-info .store_hours{
+  font-size: 12px !important;
+}
 
 .store--hours-info p{
   margin-bottom: 0;

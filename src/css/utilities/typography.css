@@ -32,6 +32,7 @@
     font-weight: var(--type-font-header-weight);
     @apply underline-offset-2 tracking-normal;
     @apply leading-tight;
+    color: var(--color-primary-button-background-light);
   }
   .type__heading--bold-1 {
     font-family: var(--type-font-header-family);
@@ -53,6 +54,7 @@
     font-weight: var(--type-font-header-weight);
     @apply md:text-3xl underline-offset-2 text-2xl tracking-normal;
     @apply leading-tight;
+    color: var(--color-primary-button-background-light);
   }
   .type__heading--bold-4 {
     font-family: var(--type-font-header-family);
@@ -100,9 +102,9 @@
     }
   }
   .type--base {
-    @apply md:text-lg text-base;
+    @apply md:text-[16px] text-base;
     * {
-      @apply md:text-lg text-base;
+      @apply md:text-[16px] text-base;
     }
   }
   .type--big {

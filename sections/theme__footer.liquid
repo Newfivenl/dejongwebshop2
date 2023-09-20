@@ -467,6 +467,7 @@
           </ul>
         {% endif %}
         <div class="m-0--clear type--smaller w-full opacity-75">
+          {{ powered_by_link }}
           {% capture current_year %}{{ "now" | date: "%Y" }}{% endcapture %}
           {{ 'general.footer.copyright' | t: y: current_year }}
         </div>

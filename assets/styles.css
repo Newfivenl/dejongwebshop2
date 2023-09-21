@@ -2385,6 +2385,10 @@ img:after {
   gap: 32px;
 }
 
+.gap-5 {
+  gap: 1.25rem;
+}
+
 .gap-x-1 {
   -moz-column-gap: 0.25rem;
        column-gap: 0.25rem;
@@ -2518,6 +2522,11 @@ img:after {
 
 .bg-white\/30 {
   background-color: rgb(255 255 255 / 0.3);
+}
+
+.\!bg-\[\#D0D1D4\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(208 209 212 / var(--tw-bg-opacity)) !important;
 }
 
 .bg-opacity-25 {
@@ -2776,6 +2785,10 @@ img:after {
   font-size: 20px !important;
 }
 
+.text-\[12px\] {
+  font-size: 12px;
+}
+
 .uppercase {
   text-transform: uppercase;
 }
@@ -2827,6 +2840,11 @@ img:after {
 .text-red-600 {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+
+.text-\[\#0A0A0A\] {
+  --tw-text-opacity: 1;
+  color: rgb(10 10 10 / var(--tw-text-opacity));
 }
 
 .\!underline {

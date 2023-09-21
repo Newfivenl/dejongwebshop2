@@ -83,7 +83,7 @@
                 x-transition:leave-start="opacity-100"
                 x-transition:leave-end="opacity-0 translate-y-4"
               {% endif %}>
-              <span class="type--small type__nav m-0--clear">{{ block.settings.content }}</span>
+              <span class="announcement__text type--small type__nav m-0--clear">{{ block.settings.content }}</span>
 
               <button class="btn--smaller flex !p-0 ml-4 opacity-0"
                 :class="{ '!opacity-75' : index_size > 1 }"
@@ -138,7 +138,12 @@
       
   </div>
 </section>
-
+{% style %}
+.announcement__text p {
+  margin-bottom: 0;
+  font-size: 12px;
+}
+{% endstyle %}
 {% schema %}
 {
   "name":"t:sections.theme_announcement.name",

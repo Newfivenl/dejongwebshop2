@@ -35,7 +35,7 @@
 {% endfor %}
   
 
-<footer class="{{ section.settings.visibility }} relative md:z-30 {% if template.name == 'product' %} z-30 {% endif %}"
+<footer class="!bg-[#D0D1D4] text-[#0A0A0A] {{ section.settings.visibility }} relative md:z-30 {% if template.name == 'product' %} z-30 {% endif %}"
   x-intersect:enter="scroll_up_force = true;"
   x-intersect:leave="scroll_up_force = false;">
 
@@ -341,7 +341,12 @@
     <div class="flex flex-wrap w-full items-center justify-between gap-4 
       {{ settings.layout_horizontal }}">
 
-      <div class="md:w-auto flex items-center w-full gap-2">
+      <div class="md:w-auto flex items-center w-full gap-4">
+        {% unless settings.social_facebook_link == blank %}
+          <a href="{{ settings.social_facebook_link }}" target="_blank" title="Facebook" class="hover:no-underline inline-flex no-underline opacity-75">
+            {% render 'component__icon', icon: 'facebook', size: '20', class: '' %}
+          </a>
+        {% endunless %}
         {% unless settings.social_tiktok_link == blank %}
           <a href="{{ settings.social_tiktok_link }}" target="_blank" title="TikTok" class="hover:no-underline inline-flex no-underline opacity-75">
             {% render 'component__icon', icon: 'tiktok', size: '20', class: '' %}
@@ -357,11 +362,7 @@
             {% render 'component__icon', icon: 'twitter', size: '20', class: '' %}
           </a>
         {% endunless %}
-        {% unless settings.social_facebook_link == blank %}
-          <a href="{{ settings.social_facebook_link }}" target="_blank" title="Facebook" class="hover:no-underline inline-flex no-underline opacity-75">
-            {% render 'component__icon', icon: 'facebook', size: '20', class: '' %}
-          </a>
-        {% endunless %}
+        
         {% unless settings.social_pinterest_link == blank %}
           <a href="{{ settings.social_pinterest_link }}" target="_blank" title="Pinterest" class="hover:no-underline inline-flex no-underline opacity-75">
             {% render 'component__icon', icon: 'pinterest', size: '20', class: '' %}
@@ -467,7 +468,8 @@
           </ul>
         {% endif %}
         <div class="m-0--clear type--smaller w-full opacity-75">
-          {{ powered_by_link }}
+          {% comment %} {{ powered_by_link }} {% endcomment %}
+          {{ 'Powered by Newfive' }}
           {% capture current_year %}{{ "now" | date: "%Y" }}{% endcapture %}
           {{ 'general.footer.copyright' | t: y: current_year }}
         </div>

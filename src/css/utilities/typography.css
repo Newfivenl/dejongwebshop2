@@ -102,9 +102,9 @@
     }
   }
   .type--base {
-    @apply md:text-[16px] text-base;
+    @apply text-[16px];
     * {
-      @apply md:text-[16px] text-base;
+      @apply text-[16px] ;
     }
   }
   .type--big {

@@ -55,7 +55,7 @@
       class="md:block sticky top-0 hidden border--b-width color__border-divider-1
       {{ section.settings.color_scheme }}" 
       @change.prevent="handleFilterChange('js:desktopFilter');">
-      <div class="flex flex-row flex-wrap items-center justify-between gap-2 py-4">
+      <div class="flex flex-row flex-wrap items-center justify-between gap-2 py-[32px]">
         
         <div class="max-w-full"
           x-data="{
@@ -64,7 +64,7 @@
             index_size: {{ collection.filters.size }}
           }">
 
-          <div class="whitespace-nowrap md:snap-x inline-flex flex-wrap w-full gap-2" 
+          <div class="whitespace-nowrap md:snap-x inline-flex flex-wrap w-full gap-[15px]" 
             x-ref="slider">
             
             {%- if active_filter_count > 0 -%}

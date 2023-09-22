@@ -84,8 +84,8 @@
           {% capture badge_content %}{{ 'products.general.save' | t }} {{ discount_amount }}{% endcapture %}
         {% endif %}
         {% render 'component__badge', 
-          color: 'secondary',
-          text: 'secondary'
+          color: 'primary',
+          text: 'primary'
           icon: '',
           content: badge_content %}
       {% endif %}
@@ -261,7 +261,7 @@
       {% endif %}
     {% endif %}">
 
-    <h3 class="type--base !leading-tight mb-0.5
+    <h3 class="type--base !leading-tight mb-[13px]
       {{ settings.type_thumbnail_capitilization }}
       {% if settings.type_thumbnail == 'body' %}type__body{% endif %}
       {% if settings.type_thumbnail == 'heading' %}type__heading{% endif %}
@@ -298,9 +298,9 @@
     <div class="flex flex-wrap items-center gap-1 mb-0.5
       {{ settings.thumbnail_alignment }}">
       {% if settings.price_range_display == "show_range" %}
-        <span class="type--small" x-text="Shopify.formatMoney({{ product.price_min }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">{{ product.price_min | money }}</span>
+        <span class="type--small text-[#0A0A0A]" x-text="Shopify.formatMoney({{ product.price_min }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">{{ product.price_min | money }}</span>
         {% if product.price_varies %}
-          <pre class="type--small m-0" x-text="' - ' + Shopify.formatMoney({{ product.price_max }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')"> - {{ product.price_max | money }}</pre>
+          <pre class="type--base text-[#0A0A0A] m-0" x-text="' - ' + Shopify.formatMoney({{ product.price_max }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')"> - {{ product.price_max | money }}</pre>
         {% endif %}
       {% else %}
       {% if product.price_varies %}

@@ -625,35 +625,7 @@ html,
   line-height: 1.625;
   letter-spacing: 0em;
   text-underline-offset: 1px;
-  font-size: 1rem;
-  line-height: 1.5rem;
-}
-
-@media (min-width: 768px) {
-  html,
-  body,
-  blockquote,
-  dl,
-  dd,
-  hr,
-  figure,
-  p,
-  pre,
-  span {
-    font-size: 16px;
-  }
-}
-
-html,
-  body,
-  blockquote,
-  dl,
-  dd,
-  hr,
-  figure,
-  p,
-  pre,
-  span {
+  font-size: 16px;
 }
 
 /* headlines */
@@ -1643,6 +1615,10 @@ img:after {
   margin-top: auto;
 }
 
+.mb-\[13px\] {
+  margin-bottom: 13px;
+}
+
 .block {
   display: block;
 }
@@ -1783,10 +1759,6 @@ img:after {
   height: 100%;
 }
 
-.\!h-\[40px\] {
-  height: 40px !important;
-}
-
 .max-h-\[100vh\] {
   max-height: 100vh;
 }
@@ -1855,6 +1827,10 @@ img:after {
   min-height: 0px !important;
 }
 
+.\!min-h-\[40px\] {
+  min-height: 40px !important;
+}
+
 .min-h-\[100vh\] {
   min-height: 100vh;
 }
@@ -1901,10 +1877,6 @@ img:after {
 
 .min-h-screen {
   min-height: 100vh;
-}
-
-.\!min-h-\[40px\] {
-  min-height: 40px !important;
 }
 
 .\!w-5 {
@@ -2389,6 +2361,10 @@ img:after {
   gap: 10px;
 }
 
+.gap-\[15px\] {
+  gap: 15px;
+}
+
 .gap-\[32px\] {
   gap: 32px;
 }
@@ -2492,10 +2468,6 @@ img:after {
   border-width: 1px;
 }
 
-.border-0 {
-  border-width: 0px;
-}
-
 .\!border-b-0 {
   border-bottom-width: 0px !important;
 }
@@ -2507,6 +2479,11 @@ img:after {
 .\!border-rose-500 {
   --tw-border-opacity: 1 !important;
   border-color: rgb(244 63 94 / var(--tw-border-opacity)) !important;
+}
+
+.\!bg-\[\#EBEBEB\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(235 235 235 / var(--tw-bg-opacity)) !important;
 }
 
 .\!bg-\[\#F5F5F5\] {
@@ -2530,20 +2507,6 @@ img:after {
 
 .bg-white\/30 {
   background-color: rgb(255 255 255 / 0.3);
-}
-
-.bg-\[\#\#EBEBEB\] {
-  background-color: ##EBEBEB;
-}
-
-.bg-\[\#EBEBEB\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(235 235 235 / var(--tw-bg-opacity));
-}
-
-.\!bg-\[\#EBEBEB\] {
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(235 235 235 / var(--tw-bg-opacity)) !important;
 }
 
 .bg-opacity-25 {
@@ -2664,6 +2627,11 @@ img:after {
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.py-\[32px\] {
+  padding-top: 32px;
+  padding-bottom: 32px;
 }
 
 .\!pl-12 {
@@ -2802,10 +2770,6 @@ img:after {
   font-size: 20px !important;
 }
 
-.text-\[12px\] {
-  font-size: 12px;
-}
-
 .text-\[14px\] {
   font-size: 14px;
 }
@@ -2843,6 +2807,11 @@ img:after {
   color: rgb(6 74 137 / var(--tw-text-opacity)) !important;
 }
 
+.\!text-\[\#333333\] {
+  --tw-text-opacity: 1 !important;
+  color: rgb(51 51 51 / var(--tw-text-opacity)) !important;
+}
+
 .\!text-\[\#888888\] {
   --tw-text-opacity: 1 !important;
   color: rgb(136 136 136 / var(--tw-text-opacity)) !important;
@@ -2866,16 +2835,6 @@ img:after {
 .text-red-600 {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
-}
-
-.text-\[\#333333\] {
-  --tw-text-opacity: 1;
-  color: rgb(51 51 51 / var(--tw-text-opacity));
-}
-
-.\!text-\[\#333333\] {
-  --tw-text-opacity: 1 !important;
-  color: rgb(51 51 51 / var(--tw-text-opacity)) !important;
 }
 
 .\!underline {
@@ -3387,25 +3346,9 @@ img:after {
 }
 
 .type--base {
-  font-size: 1rem;
-  line-height: 1.5rem;
-}
-
-@media (min-width: 768px) {
-  .type--base {
-    font-size: 16px;
-  }
-}
-
-.type--base {
+  font-size: 16px;
   * {
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-  @media (min-width: 768px) {
-    * {
-      font-size: 16px;
-    }
+    font-size: 16px;
   }
 }
 

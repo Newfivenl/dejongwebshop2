@@ -8,7 +8,7 @@
         "f2232503-8685-46db-aaf1-b796c5ea14f9": {
           "type": "text",
           "settings": {
-            "content": "<p>affedd<\/p>"
+            "content": "<p>Get free shipping on all orders over $35<\/p>"
           }
         }
       },
@@ -16,7 +16,7 @@
         "f2232503-8685-46db-aaf1-b796c5ea14f9"
       ],
       "settings": {
-        "color_scheme": "color__bg-secondary color__secondary",
+        "color_scheme": "color__bg-primary color__primary",
         "layout_alignment": "left",
         "visibility": "",
         "announcement_delay": 10,

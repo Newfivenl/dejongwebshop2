@@ -39,10 +39,10 @@
         "button_url": "",
         "spacing_top": 80,
         "spacing_bottom": 20,
-        "color_scheme": "color__bg-secondary color__secondary",
+        "color_scheme": "color__bg-body color__text",
         "color_border": "color__border-divider-1",
         "color_button": "btn btn--secondary",
-        "style_border": "border--b-width",
+        "style_border": "border--t-width",
         "layout_x_alignment": "",
         "visibility": ""
       }
@@ -59,7 +59,7 @@
         "color_scheme": "color__bg-body color__text",
         "color_border": "color__border-divider-1",
         "color_button": "btn btn--secondary",
-        "style_border": "border--b-width",
+        "style_border": "",
         "layout_x_alignment": "",
         "visibility": ""
       }
@@ -76,7 +76,7 @@
         "color_scheme": "color__bg-body color__text",
         "color_border": "color__border-divider-1",
         "color_button": "btn btn--secondary",
-        "style_border": "border--b-width",
+        "style_border": "",
         "layout_x_alignment": "",
         "visibility": ""
       }
@@ -95,6 +95,19 @@
         "color_button": "btn btn--secondary",
         "style_border": "border--b-width",
         "layout_x_alignment": "",
+        "visibility": ""
+      }
+    },
+    "recent": {
+      "type": "recent-slider",
+      "settings": {
+        "heading": "Recently viewed",
+        "content": "",
+        "spacing_top": 100,
+        "spacing_bottom": 100,
+        "color_scheme": "color__bg-body color__text",
+        "color_border": "color__border-divider-1",
+        "style_border": "border--t-width",
         "visibility": ""
       }
     },
@@ -169,19 +182,6 @@
         "row_size_desktop": "md:grid-cols-3",
         "row_size_mobile": "grid-cols-1",
         "layout_x_alignment": "justify-between",
-        "visibility": ""
-      }
-    },
-    "recent": {
-      "type": "recent-slider",
-      "settings": {
-        "heading": "Recently viewed",
-        "content": "",
-        "spacing_top": 100,
-        "spacing_bottom": 100,
-        "color_scheme": "color__bg-body color__text",
-        "color_border": "color__border-divider-1",
-        "style_border": "border--t-width",
         "visibility": ""
       }
     }

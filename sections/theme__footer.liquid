@@ -35,7 +35,7 @@
 {% endfor %}
   
 
-<footer class="!bg-[#D0D1D4] text-[#0A0A0A] {{ section.settings.visibility }} relative md:z-30 {% if template.name == 'product' %} z-30 {% endif %}"
+<footer class="text-[#0A0A0A] {{ section.settings.visibility }} relative md:z-30 {% if template.name == 'product' %} z-30 {% endif %}"
   x-intersect:enter="scroll_up_force = true;"
   x-intersect:leave="scroll_up_force = false;">
 

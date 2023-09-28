@@ -75,7 +75,6 @@
   },
   "collections": {
     "general": {
-      "all": "Todo",
       "collection_items": "Artículos",
       "no_matches": "Lo sentimos, no hay productos en esta colección"
     },
@@ -90,7 +89,6 @@
   "products": {
     "general": {
       "from": "De",
-      "upp_from": "De",
       "each": "cada",
       "sold_out": "Agotado",
       "out_of_stock": "Agotado",
@@ -100,7 +98,6 @@
       "short_add_label": "Agregar",
       "options": "Opciones",
       "variants": "Variantes",
-      "variant_id": "Variant ID",
       "learn_more": "Aprende más",
       "options_prompt": "Seleccione una opción para agregar esto a su carrito",
       "choose_option": "Elige una opción",
@@ -110,9 +107,7 @@
       "subscription": "Suscripción",
       "quantity": "Cantidad",
       "save": "Salvare",
-      "save_up_to": "Risparmia fino a",
-      "bundle_includes": "El paquete incluye",
-      "starting": "A partir de"
+      "save_up_to": "Risparmia fino a"
     },
     "inventory": {
       "only": "Solamente",
@@ -133,23 +128,20 @@
   },
   "cart": {
     "general": {
-      "title": "Carrito",
+      "title": "Carro",
       "cart_heading": "Tu carrito",
-      "checkout": "Realizar pedido",
+      "checkout": "Caja",
       "decrease": "Disminuir cantidad",
       "increase": "Aumentar cantidad",
       "subtotal": "Subtotal",
       "total": "Total",
       "discount": "Descuento",
       "toggle": "Abrir carrito",
-      "empty": "Tu carrito está vacío",
+      "empty": "Su carrito está vacío",
       "updated": "Carrito actualizado",
       "view_cart": "Ver carrito",
       "upsell_title": "Complementos populares",
-      "upgrade": "Actualización del carrito",
-      "continue_shopping": "Continuar comprando",
-      "edit": "Editar",
-      "edit_item": "Editar elemento"
+      "continue_shopping": "Continuar comprando"
     },
     "progress_bar": {
       "pre_text": "Usted es",
@@ -206,7 +198,6 @@
       "recover_success": "Te hemos enviado un correo electrónico con un enlace para restablecer tu contraseña.",
       "submit": "Enviar",
       "name": "Nombre",
-      "last_name": "Apellido",
       "shipping": "Dirección de envío"
     },
     "order": {
@@ -268,8 +259,7 @@
     "recipient": {
       "email": "E-mail del destinatario",
       "name": "Nombre del destinatario",
-      "message": "Mensaje",
-      "checkbox_label": "Quiero enviar esto como regalo"
+      "message": "Mensaje"
     }
   },
   "contact": {
@@ -289,10 +279,6 @@
     "incomplete_error": "Por favor, complete el formulario de fecha.",
     "confirm": "Confirmar",
     "cancel": "Cancelar"
-  },
-  "back_in_stock": {
-    "notify": "Notificarme",
-    "title": "Regístrese para recibir una notificación cuando este artículo vuelva a estar disponible"
   },
   "countdown": {
     "days": "Días",

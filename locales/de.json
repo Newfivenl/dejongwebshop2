@@ -75,7 +75,6 @@
   },
   "collections": {
     "general": {
-      "all": "Alle",
       "collection_items": "Artikel",
       "no_matches": "Leider gibt es keine Artikel in dieser Kollektion"
     },
@@ -90,7 +89,6 @@
   "products": {
     "general": {
       "from": "Von",
-      "upp_from": "Von",
       "each": "jeder",
       "sold_out": "Ausverkauft",
       "out_of_stock": "Nicht auf Lager",
@@ -100,7 +98,6 @@
       "short_add_label": "Hinzufügen",
       "options": "Optionen",
       "variants": "Varianten",
-      "variant_id": "Variant ID",
       "learn_more": "Weitere Informationen",
       "options_prompt": "Wählen Sie eine Option, um dies Ihrem Warenkorb hinzuzufügen",
       "choose_option": "Wählen Sie eine Option",
@@ -110,8 +107,7 @@
       "subscription": "Abonnement",
       "quantity": "Menge",
       "save": "Sparen",
-      "save_up_to": "Bis zu sparen",
-      "bundle_includes": "Das Bundle beinhaltet"
+      "save_up_to": "Bis zu sparen"
     },
     "inventory": {
       "only": "Nur",
@@ -132,7 +128,7 @@
   },
   "cart": {
     "general": {
-      "title": "Warenkorb",
+      "title": "Karren",
       "cart_heading": "Ihr Warenkorb",
       "checkout": "Kasse",
       "decrease": "Menge verringern",
@@ -144,11 +140,10 @@
       "empty": "Ihr Warenkorb ist leer",
       "updated": "Warenkorb aktualisiert",
       "view_cart": "Warenkorb anzeigen",
-      "upsell_title": "Beliebte Zusatzleistungen",
-      "upgrade": "Warenkorb-Upgrade",
+      "upsell_title": "Beliebte Add-ons",
       "continue_shopping": "Weiter einkaufen",
-      "edit": "Redigieren",
-      "edit_item": "Artikel bearbeiten"
+      "continue_selling_text": "Bezorging: Maximaal 14 dagen"
+
     },
     "progress_bar": {
       "pre_text": "Biste",
@@ -204,8 +199,7 @@
       "reset_password": "Passwort zurücksetzen",
       "recover_success": "Wir haben Ihnen eine E-Mail mit einem Link zum Zurücksetzen Ihres Passworts gesendet.",
       "submit": "Senden",
-      "name": "Vorname",
-      "last_name": "Nachname",
+      "name": "Name",
       "shipping": "Lieferadresse"
     },
     "order": {
@@ -267,8 +261,7 @@
     "recipient": {
       "email": "E-Mail-Adresse des Empfängers",
       "name": "Name des Empfängers",
-      "message": "Nachricht",
-      "checkbox_label": "Ich möchte dies als Geschenk versenden"
+      "message": "Nachricht"
     }
   },
   "contact": {
@@ -288,10 +281,6 @@
     "incomplete_error": "Bitte füllen Sie das Datumsformular aus.",
     "confirm": "Bestätigen",
     "cancel": "Abbrechen"
-  },
-  "back_in_stock": {
-    "notify": "Benachrichtigen Sie mich",
-    "title": "Registrieren Sie sich, um eine Benachrichtigung zu erhalten, wenn dieser Artikel wieder auf Lager ist"
   },
   "countdown": {
     "days": "Tage",

@@ -75,7 +75,6 @@
   },
   "collections": {
     "general": {
-      "all": "Tout",
       "collection_items": "Articles",
       "no_matches": "Désolé, il n’y a aucun produit dans cette collection"
     },
@@ -90,7 +89,6 @@
   "products": {
     "general": {
       "from": "De",
-      "upp_from": "De",
       "each": "chaque",
       "sold_out": "Épuisé",
       "out_of_stock": "Rupture de stock",
@@ -100,7 +98,6 @@
       "short_add_label": "Ajouter",
       "options": "Options",
       "variants": "Variantes",
-      "variant_id": "Variant ID",
       "learn_more": "Pour en savoir plus",
       "options_prompt": "Sélectionnez une option pour l’ajouter à votre panier",
       "choose_option": "Choisissez une option",
@@ -110,9 +107,7 @@
       "subscription": "Abonnement",
       "quantity": "Quantité",
       "save": "Économiser",
-      "save_up_to": "Économisez jusqu'à",
-      "bundle_includes": "Le bundle inclut",
-      "starting": "À partir de"
+      "save_up_to": "Économisez jusqu'à"
     },
     "inventory": {
       "only": "Seulement",
@@ -133,23 +128,21 @@
   },
   "cart": {
     "general": {
-      "title": "Panier",
+      "title": "Charrette",
       "cart_heading": "Votre panier",
-      "checkout": "Passer à la caisse",
+      "checkout": "Caisse",
       "decrease": "Diminuer la quantité",
       "increase": "Augmenter la quantité",
       "subtotal": "Sous-total",
       "total": "Total",
-      "discount": "Remise",
+      "discount": "Rabais",
       "toggle": "Ouvrir le panier",
       "empty": "Votre panier est vide",
       "updated": "Panier mis à jour",
       "view_cart": "Voir le panier",
-      "upsell_title": "Options supplémentaires populaires",
-      "upgrade": "Mise à niveau du panier",
-      "continue_shopping": "Continuer vos achats",
-      "edit": "Éditer",
-      "edit_item": "Modifier l’élément"
+      "upsell_title": "Add-ons populaires",
+      "continue_shopping": "Continuer mes achats",
+      "continue_selling_text": "Livraison : Maximum 14 jours"
     },
     "progress_bar": {
       "pre_text": "Vous êtes",
@@ -205,8 +198,7 @@
       "reset_password": "Réinitialiser le mot de passe",
       "recover_success": "Nous vous avons envoyé un e-mail avec un lien pour réinitialiser votre mot de passe.",
       "submit": "Envoyer",
-      "name": "Prénom",
-      "last_name": "Nom de famille",
+      "name": "Nom",
       "shipping": "Adresse de livraison"
     },
     "order": {
@@ -237,13 +229,13 @@
       "address_2": "Numéro d’apt\/suite",
       "address_2_placeholder": "Unité 2",
       "city": "Ville",
-      "city_placeholder": "",
+      "city_placeholder": "Ville",
       "zip": "Fermeture éclair",
-      "zip_placeholder": "",
+      "zip_placeholder": "Code postal",
       "country": "Pays",
-      "country_placeholder": "",
+      "country_placeholder": "Pays",
       "region": "État \/ province",
-      "region_placeholder": "",
+      "region_placeholder": "Région",
       "default_address": "Définir comme adresse par défaut",
       "create_address": "Ajouter une nouvelle adresse",
       "cancel": "Annuler",
@@ -268,8 +260,7 @@
     "recipient": {
       "email": "E-mail du destinataire",
       "name": "Nom du destinataire",
-      "message": "Message",
-      "checkbox_label": "Je veux envoyer ceci en cadeau"
+      "message": "Message"
     }
   },
   "contact": {
@@ -289,10 +280,6 @@
     "incomplete_error": "Veuillez remplir le formulaire de date.",
     "confirm": "Confirmer",
     "cancel": "Annuler"
-  },
-  "back_in_stock": {
-    "notify": "M’avertir",
-    "title": "Inscrivez-vous pour recevoir une notification lorsque cet article est de nouveau en stock"
   },
   "countdown": {
     "days": "Jours",

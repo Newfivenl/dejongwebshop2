@@ -4,7 +4,7 @@
       "name": "Couleurs",
       "settings": {
         "paragraph__1": {
-          "content": "Lisez [notre guide](https:\/\/intercom.help\/brickspacelab\/en\/articles\/8118283-setting-up-your-color-palette) pour obtenir de l’aide sur la configuration de votre palette de couleurs."
+          "content": "Lisez [notre guide](https:\/\/brickspacelab.notion.site\/Setting-up-your-color-palette-8cf2c0a32f994605a84f3eb2948a8234) pour obtenir de l’aide sur la configuration de votre palette de couleurs."
         },
         "header__1": {
           "content": "Thème lumière"
@@ -72,7 +72,7 @@
         },
         "mobile_bar": {
           "label": "Bar mobile",
-          "info": "Ce paramètre contrôle la barre supérieure sur les appareils mobiles. [En savoir plus] (https:\/\/intercom.help\/brickspacelab\/en\/articles\/8168105-using-a-mobile-bar-color)."
+          "info": "Ce paramètre contrôle la barre supérieure sur les appareils mobiles. [En savoir plus] (https:\/\/www.notion.so\/brickspacelab\/Using-a-Mobile-bar-color-4c7316e73324432b97f3ceafe10f07d0)."
         },
         "background_body_dark": {
           "label": "Corps",
@@ -108,7 +108,7 @@
       "name": "Frontières",
       "settings": {
         "paragraph__1": {
-          "content": "Lisez [notre guide](https:\/\/intercom.help\/brickspacelab\/en\/articles\/8118301-selecting-your-border-settings) pour obtenir de l’aide sur la sélection de vos paramètres de bordure."
+          "content": "Lisez [notre guide](https:\/\/brickspacelab.notion.site\/Setting-up-your-border-settings-43aefd329f40442dadb67f945534ee8b) pour obtenir de l’aide sur la sélection de vos paramètres de bordure."
         },
         "header__1": {
           "content": "Rayon"
@@ -138,7 +138,7 @@
       "name": "Typographie",
       "settings": {
         "paragraph__1": {
-          "content": "Lisez [notre guide](https:\/\/intercom.help\/brickspacelab\/en\/articles\/8118310-selecting-your-typography-settings) pour obtenir de l’aide sur la sélection de vos paramètres de typographie, ainsi que des suggestions d’appariements de polices."
+          "content": "Lisez [notre guide](https:\/\/brickspacelab.notion.site\/Selecting-your-typography-settings-e4e4ca45570f42f9aa010befff3dad85) pour obtenir de l’aide sur la sélection de vos paramètres de typographie, ainsi que des suggestions d’appariements de polices."
         },
         "header__1": {
           "content": "Famille de polices"
@@ -433,7 +433,7 @@
         },
         "enable_tagline": {
           "label": "Activer le slogan du produit",
-          "info": "Afficher une brève description d’un produit. [En savoir plus] (https:\/\/intercom.help\/brickspacelab\/en\/articles\/8168130-adding-taglines-to-product-thumbnails)."
+          "info": "Afficher une brève description d’un produit. [En savoir plus] (https:\/\/brickspacelab.notion.site\/Adding-taglines-to-product-thumbnails-on-Paper-8fd4bcc7beca4b438c2220ced14858f9)."
         },
         "enable_sku": {
           "label": "Afficher le SKU du produit"
@@ -465,10 +465,6 @@
           "label": "Activer le prix dans les boutons",
           "info": "Les boutons Ajouter au panier afficheront le prix."
         },
-        "enable_alternative_options": {
-          "label": "Activer d’autres options de produits",
-          "info": "Activez cette option si vous utilisez une application pour afficher les options du produit."
-        },
         "product_variant_selection": {
           "label": "Sélecteur de variantes",
           "options__1": {
@@ -489,45 +485,6 @@
           "options__3": {
             "label": "Échantillons"
           }
-        }
-      }
-    },
-    "prices": {
-      "name": "Prix",
-      "settings": {
-        "price_format": {
-          "label": "Format d’affichage des prix",
-          "options__1": {
-            "label": "Avec des zéros à droite"
-          },
-          "options__2": {
-            "label": "Sans zéros à droite"
-          }
-        },
-        "price_range_display": {
-          "label": "Affichage de la gamme de prix",
-          "options__1": {
-            "label": "Afficher la gamme de prix"
-          },
-          "options__2": {
-            "label": "Afficher le prix de départ"
-          }
-        },
-        "enable_currency": {
-          "label": "Afficher le symbole de devise"
-        },
-        "currency_symbol": {
-          "label": "Symbole monétaire",
-          "options__1": {
-            "label": "Symbole ($)"
-          },
-          "options__2": {
-            "label": "Code ISO (USD)"
-          }
-        },
-        "currency_subunit_value": {
-          "label": "Valeur de la sous-unité monétaire",
-          "info": "Utilisez la valeur 1000 si la sous-unité de votre monnaie est mesurée en milliers (1 KWD est 1000 fils)"
         }
       }
     },
@@ -625,24 +582,6 @@
         },
         "search_vendor": {
           "label": "Activer la recherche par 'Fournisseur'"
-        },
-        "paragraph__2": {
-          "content": "Contrôler les résultats affichés lors de la recherche"
-        },
-        "search_enable_article": {
-          "label": "Activer les résultats du blog"
-        },
-        "search_enable_collection": {
-          "label": "Activer les résultats de la collecte"
-        },
-        "search_enable_page": {
-          "label": "Activer les résultats de page"
-        },
-        "search_enable_product": {
-          "label": "Activer les résultats du produit"
-        },
-        "search_enable_query": {
-          "label": "Activer les résultats de la requête"
         }
       }
     },
@@ -711,7 +650,7 @@
         },
         "maps_api_key": {
           "label": "Clé API Google Maps",
-          "info": "Vous devez enregistrer une clé API Google Maps pour afficher n’importe quelle carte. [En savoir plus] (https:\/\/intercom.help\/brickspacelab\/en\/articles\/8118328-generating-google-maps-api-key)."
+          "info": "Vous devez enregistrer une clé API Google Maps pour afficher n’importe quelle carte. [En savoir plus] (https:\/\/brickspacelab.notion.site\/Generating-Google-Maps-API-key-49a98551b8e8416fb98fdfa0e7412a09)."
         }
       }
     }
@@ -902,15 +841,6 @@
           "layout_col_span": {
             "label": "Étendue des colonnes",
             "info": "Étendez la largeur d’un bloc en le forçant à occuper plusieurs colonnes."
-          },
-          "position": {
-            "label": "Position",
-            "options__1": {
-              "label": "Colonne de gauche"
-            },
-            "options__2": {
-              "label": "Colonne de droite"
-            }
           }
         }
       },
@@ -1001,260 +931,6 @@
         },
         "options__3": {
           "label": "Afficher sur le bureau uniquement"
-        }
-      },
-      "icons": {
-        "name": "Icon",
-        "options": {
-          "none": {
-            "label": "None"
-          },
-          "activity": {
-            "label": "Activity"
-          },
-          "alert-circle": {
-            "label": "Alert Circle"
-          },
-          "alert-triangle": {
-            "label": "Alert Triangle"
-          },
-          "anchor": {
-            "label": "Anchor"
-          },
-          "archive": {
-            "label": "Archive"
-          },
-          "award": {
-            "label": "Award"
-          },
-          "at-sign": {
-            "label": "At Sign"
-          },
-          "bell": {
-            "label": "Bell"
-          },
-          "book-open": {
-            "label": "Book Open"
-          },
-          "book": {
-            "label": "Book"
-          },
-          "bookmark": {
-            "label": "Bookmark"
-          },
-          "box": {
-            "label": "Box"
-          },
-          "briefcase": {
-            "label": "Briefcase"
-          },
-          "calendar": {
-            "label": "Calendar"
-          },
-          "camera": {
-            "label": "Camera"
-          },
-          "check": {
-            "label": "Check"
-          },
-          "check-square": {
-            "label": "Check Square"
-          },
-          "clipboard": {
-            "label": "Clipboard"
-          },
-          "cloud": {
-            "label": "Cloud"
-          },
-          "coffee": {
-            "label": "Coffee"
-          },
-          "code": {
-            "label": "Code"
-          },
-          "cpu": {
-            "label": "CPU"
-          },
-          "droplet": {
-            "label": "Droplet"
-          },
-          "dollar-sign": {
-            "label": "Dollar Sign"
-          },
-          "edit": {
-            "label": "Edit"
-          },
-          "eye": {
-            "label": "Eye"
-          },
-          "file": {
-            "label": "File"
-          },
-          "filter": {
-            "label": "Filter"
-          },
-          "flag": {
-            "label": "Flag"
-          },
-          "folder": {
-            "label": "Folder"
-          },
-          "gift": {
-            "label": "Gift"
-          },
-          "globe": {
-            "label": "Globe"
-          },
-          "hash": {
-            "label": "Hash"
-          },
-          "headphones": {
-            "label": "Headphones"
-          },
-          "heart": {
-            "label": "Heart"
-          },
-          "help-circle": {
-            "label": "Help Circle"
-          },
-          "home": {
-            "label": "Home"
-          },
-          "image": {
-            "label": "Image"
-          },
-          "inbox": {
-            "label": "Inbox"
-          },
-          "info": {
-            "label": "Info"
-          },
-          "key": {
-            "label": "Key"
-          },
-          "life-buoy": {
-            "label": "Life Buoy"
-          },
-          "link": {
-            "label": "Link"
-          },
-          "lock": {
-            "label": "Lock"
-          },
-          "mail": {
-            "label": "Mail"
-          },
-          "map-pin": {
-            "label": "Map Pin"
-          },
-          "map": {
-            "label": "Map"
-          },
-          "meh": {
-            "label": "Meh"
-          },
-          "monitor": {
-            "label": "Monitor"
-          },
-          "mouse-pointer": {
-            "label": "Mouse Pointer"
-          },
-          "music": {
-            "label": "Music"
-          },
-          "package": {
-            "label": "Package"
-          },
-          "paperclip": {
-            "label": "Paperclip"
-          },
-          "save": {
-            "label": "Save"
-          },
-          "settings": {
-            "label": "Settings"
-          },
-          "shield": {
-            "label": "Shield"
-          },
-          "shopping-bag": {
-            "label": "Shopping Bag"
-          },
-          "slash": {
-            "label": "Slash"
-          },
-          "sliders": {
-            "label": "Sliders"
-          },
-          "smile": {
-            "label": "Smile"
-          },
-          "speaker": {
-            "label": "Speaker"
-          },
-          "star": {
-            "label": "Star"
-          },
-          "sun": {
-            "label": "Sun"
-          },
-          "sunrise": {
-            "label": "Sunrise"
-          },
-          "sunset": {
-            "label": "Sunset"
-          },
-          "table": {
-            "label": "Table"
-          },
-          "tag": {
-            "label": "Tag"
-          },
-          "thermometer": {
-            "label": "Thermometer"
-          },
-          "thumbs-up": {
-            "label": "Thumbs Up"
-          },
-          "thumbs-down": {
-            "label": "Thumbs Down"
-          },
-          "tool": {
-            "label": "Tool"
-          },
-          "trash": {
-            "label": "Trash"
-          },
-          "truck": {
-            "label": "Truck"
-          },
-          "tv": {
-            "label": "TV"
-          },
-          "umbrella": {
-            "label": "Umbrella"
-          },
-          "unlock": {
-            "label": "Unlock"
-          },
-          "user-check": {
-            "label": "User Check"
-          },
-          "user-plus": {
-            "label": "User Plus"
-          },
-          "user": {
-            "label": "User"
-          },
-          "users": {
-            "label": "Users"
-          },
-          "zap": {
-            "label": "Zap"
-          },
-          "trending-up": {
-            "label": "Trending Up"
-          }
         }
       }
     },
@@ -1501,7 +1177,7 @@
     "collection_main": {
       "name": "Grille de collecte",
       "paragraph__1": {
-        "content": "Les blocs peuvent être utilisés pour afficher du contenu promotionnel supplémentaire dans une grille de collecte. [En savoir plus] (https:\/\/intercom.help\/brickspacelab\/en\/articles\/8168110-adding-blocks-to-a-collection-grid)."
+        "content": "Les blocs peuvent être utilisés pour afficher du contenu promotionnel supplémentaire dans une grille de collecte. [En savoir plus] (https:\/\/brickspacelab.notion.site\/Adding-blocks-to-a-collection-grid-195f3355ae774a6f9da5a54af340418b)."
       },
       "settings": {
         "row_size_desktop": {
@@ -1579,9 +1255,6 @@
           }
         }
       }
-    },
-    "collection_vertical_filters": {
-      "name": "Grille de collecte (filtres verticaux)"
     },
     "collection_grid": {
       "name": "Grille de liste de collecte",
@@ -1735,10 +1408,6 @@
             },
             "button_url": {
               "label": "URL du bouton"
-            },
-            "full_block_link": {
-              "label": "Lien de bloc complet",
-              "info": "Activez ceci pour faire de l’ensemble du bloc un lien"
             }
           }
         }
@@ -1951,8 +1620,8 @@
     "navigation_slider": {
       "name": "Curseur de navigation",
       "settings": {
-        "show_arrows": {
-          "label": "Afficher les flèches"
+        "enable_navigation_slider": {
+          "label": "Afficher la section sur le bureau"
         }
       },
       "blocks": {
@@ -2092,7 +1761,7 @@
         },
         "enable_variant_images": {
           "label": "Afficher uniquement les images des variantes sélectionnées",
-          "info": "Le texte alternatif de chaque image devra être mis à jour pour refléter la variante correspondante. [En savoir plus] (https:\/\/intercom.help\/brickspacelab\/en\/articles\/8168145-showing-selected-variant-images)."
+          "info": "Le texte alternatif de chaque image devra être mis à jour pour refléter la variante correspondante. [En savoir plus] (https:\/\/brickspacelab.notion.site\/Showing-selected-variant-images-only-2379deb0ef3147cda65c52834bee433c)."
         },
         "media_color_scheme": {
           "label": "Arrière-plan",
@@ -2142,28 +1811,11 @@
         }
       },
       "blocks": {
-        "bundled_products": {
-          "name": "Produits groupés"
-        },
-        "linked_products": {
-          "name": "Produits liés",
-          "settings": {
-            "paragraph__1": {
-              "content": "Liez plusieurs produits ensemble et affichez-les comme des options. [En savoir plus](https:\/\/intercom.help\/brickspacelab\/en\/articles\/8168175-connect-products-using-the-linked-products-block)"
-            },
-            "linked_products": {
-              "label": "Produits"
-            },
-            "linked_products_title": {
-              "label": "Titre"
-            }
-          }
-        },
         "custom": {
           "name": "Champ personnalisé",
           "settings": {
             "paragraph__1": {
-              "content": "Collectez plus d’informations sur les produits avec des champs personnalisés. Par exemple, inclure un champ de gravure personnalisé pour permettre aux clients de personnaliser leur achat. [En savoir plus] (https:\/\/intercom.help\/brickspacelab\/en\/articles\/8168171-using-the-custom-field-product-block)."
+              "content": "Collectez plus d’informations sur les produits avec des champs personnalisés. Par exemple, inclure un champ de gravure personnalisé pour permettre aux clients de personnaliser leur achat. [En savoir plus] (https:\/\/brickspacelab.notion.site\/Using-the-Custom-field-product-block-2afb326ac2864532a42e76f24e1c2ed1)."
             },
             "required_field": {
               "label": "Activer le champ obligatoire"
@@ -2222,7 +1874,7 @@
           "name": "Tiroir de contenu",
           "settings": {
             "paragraph__1": {
-              "content": "Afficher un lien qui ouvre un tiroir coulissant. Utilisez-le pour présenter facilement les détails du produit, tels que les tableaux de taille. [En savoir plus] (https:\/\/intercom.help\/brickspacelab\/en\/articles\/8168193-using-the-content-drawer-product-block)."
+              "content": "Afficher un lien qui ouvre un tiroir coulissant. Utilisez-le pour présenter facilement les détails du produit, tels que les tableaux de taille. [En savoir plus] (https:\/\/brickspacelab.notion.site\/Using-the-content-drawer-product-block-9b0262c354fe4db99a12e5c664659fa8)."
             },
             "option": {
               "label": "Option",
@@ -2256,10 +1908,6 @@
           "settings": {
             "enable_quantity": {
               "label": "Afficher la quantité saisie"
-            },
-            "enable_notify_me": {
-              "label": "Activer le bouton « M’avertir »",
-              "info": "Lorsqu’un produit est épuisé, les clients peuvent entrer leur adresse e-mail. Une étiquette avec l’ID de variante du produit épuisé sera ajoutée au profil du client."
             },
             "enable_dynamic_checkout": {
               "label": "Activer le paiement dynamique",
@@ -2384,14 +2032,6 @@
         }
       }
     },
-    "coupon_banner": {
-      "name": "Bannière de coupon",
-      "blocks": {
-        "code": {
-          "name": "Code promo"
-        }
-      }
-    },
     "recent_slider": {
       "name": "Récemment consulté"
     },
@@ -2430,22 +2070,6 @@
         },
         "items_per_page": {
           "label": "Éléments par page"
-        }
-      }
-    },
-    "slideshow": {
-      "name": "Diaporama",
-      "settings": {
-        "auto_scroll": {
-          "label": "Défilement automatique"
-        },
-        "auto_scroll_delay": {
-          "label": "Délai de défilement automatique"
-        }
-      },
-      "blocks": {
-        "slide": {
-          "name": "Glisser"
         }
       }
     },
@@ -2577,12 +2201,6 @@
         "paragraph__1": {
           "content": "Remarque : La barre de progression ne fonctionne qu’avec la devise du magasin par défaut. Si vous avez un magasin multidevises, nous vous recommandons de désactiver cette fonctionnalité. Visitez notre centre d’aide pour trouver des solutions alternatives."
         },
-        "header__1": {
-          "content": "Case à cocher Vente incitative"
-        },
-        "header__2": {
-          "content": "Curseur de vente incitative"
-        },
         "progress_bar_threshold": {
           "label": "Montant minimum",
           "info": "Entrez la valeur sans symbole monétaire et utilisez une décimale pour séparer les dollars et les cents. Par exemple 10,00"
@@ -2610,16 +2228,6 @@
         "main_enable_cart_share": {
           "label": "Activer le partage de panier"
         },
-        "main_enable_cart_upgrade": {
-          "label": "Activer la mise à niveau du panier"
-        },
-        "main_cart_upgrade_product": {
-          "label": "ID de variante",
-          "info": "La case à cocher Upsell ne peut être utilisée qu’avec des variantes uniques"
-        },
-        "main_cart_upgrade_text": {
-          "label": "Étiquette"
-        },
         "cart_button_behavior": {
           "label": "Bouton d’action",
           "options__1": {
@@ -2634,7 +2242,7 @@
           "label": "Clause de non-responsabilité relative à la commande"
         },
         "cart_upsell_products": {
-          "label": "Produits",
+          "label": "Produits de vente incitative",
           "info": "Affiché dans le tiroir du panier."
         },
         "show_continue_shopping_button": {
@@ -2653,7 +2261,7 @@
           "name": "Contenu",
           "settings": {
             "paragraph__1": {
-              "content": "Les blocs peuvent être utilisés pour inclure du contenu promotionnel supplémentaire dans le tiroir du panier sur le bureau. [En savoir plus] (https:\/\/intercom.help\/brickspacelab\/en\/articles\/8168330-adding-text-blocks-to-the-cart-drawer)."
+              "content": "Les blocs peuvent être utilisés pour inclure du contenu promotionnel supplémentaire dans le tiroir du panier sur le bureau. [En savoir plus] (https:\/\/brickspacelab.notion.site\/Adding-text-blocks-to-the-cart-drawer-8e02dddd26364b9689b12628c68fe652)."
             },
             "paragraph__2": {
               "content": "Remarque : Les blocs de panier ne sont visibles que sur le bureau."
@@ -2680,9 +2288,6 @@
         },
         "sub_enable_payment_icons": {
           "label": "Afficher les icônes de paiement"
-        },
-        "enable_follow_on_shop": {
-          "label": "Activer Suivre sur Shop"
         }
       },
       "blocks": {
@@ -2828,7 +2433,7 @@
           "name": "Contenu",
           "settings": {
             "paragraph__1": {
-              "content": "Les blocs peuvent être utilisés pour afficher le contenu proposé dans la navigation déroulante du bureau. [En savoir plus] (https:\/\/intercom.help\/brickspacelab\/en\/articles\/8168095-adding-featured-images-to-the-dropdown-menu)."
+              "content": "Les blocs peuvent être utilisés pour afficher le contenu proposé dans la navigation déroulante du bureau. [En savoir plus] (https:\/\/brickspacelab.notion.site\/Adding-featured-blocks-to-the-dropdown-navigation-bar-2c456d0a802244fb822137f8ff3f6720)."
             },
             "menu": {
               "label": "Menu",
@@ -2909,21 +2514,6 @@
     "video": {
       "name": "Vidéo",
       "settings": {
-        "aspect_ratio": {
-          "label": "Rapport d'aspect",
-          "options__1": {
-            "label": "16\/9"
-          },
-          "options__2": {
-            "label": "2\/3"
-          },
-          "options__3": {
-            "label": "1\/1"
-          },
-          "options__4": {
-            "label": "9\/16"
-          }
-        },
         "auto_play": {
           "label": "Lecture automatique de la vidéo",
           "info": "La vidéo sera désactivée. Les clients cliqueront sur « Lecture » pour voir la vidéo complète avec son."

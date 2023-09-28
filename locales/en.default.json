@@ -42,7 +42,7 @@
     },
     "search": {
       "search": "Search",
-      "placeholder": "Search..",
+      "placeholder": "Search by products, colors, or more...",
       "view_all": "View all results",
       "cancel_search": "Cancel search",
       "top_searches": "Top searches",
@@ -90,7 +90,7 @@
   "products": {
     "general": {
       "from": "from",
-      "upp_from": "From",
+      "upp_from":"From",
       "each": "each",
       "sold_out": "Sold Out",
       "out_of_stock": "Out of stock",
@@ -147,6 +147,7 @@
       "upsell_title": "Popular add-ons",
       "upgrade": "Cart upgrade",
       "continue_shopping": "Continue shopping",
+      "continue_selling_text": "Bezorging: Maximaal 14 dagen",
       "edit": "Edit",
       "edit_item": "Edit item"
     },
@@ -298,6 +299,13 @@
     "hours": "Hours",
     "minutes": "Minutes",
     "seconds": "Seconds"
+  },
+  "klaviyo": {
+    "body_content": "Leave your email address here to receive an email when this item is available.",
+    "button_label": "Notify me when available",
+    "subscription_success_label": "Yes, you did it! We will let you know when the item is available.",
+    "newsletter_subscribe_label": "Yes, put me on the newsletter too.",
+    "product_page_text": "Notify me when available"
   },
   "theme_editor": {
     "help_and_documentation": "Help and documentation",

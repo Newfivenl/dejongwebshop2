@@ -75,7 +75,6 @@
   },
   "collections": {
     "general": {
-      "all": "Tutto",
       "collection_items": "Elementi",
       "no_matches": "Siamo spiacenti, non ci sono prodotti in questa collezione"
     },
@@ -90,7 +89,6 @@
   "products": {
     "general": {
       "from": "Da",
-      "upp_from": "Da",
       "each": "ogni",
       "sold_out": "Esaurito",
       "out_of_stock": "Esaurito",
@@ -100,7 +98,6 @@
       "short_add_label": "Aggiungere",
       "options": "Opzioni",
       "variants": "Varianti",
-      "variant_id": "Variant ID",
       "learn_more": "Ulteriori informazioni",
       "options_prompt": "Seleziona un'opzione per aggiungerlo al carrello",
       "choose_option": "Scegli un'opzione",
@@ -110,9 +107,7 @@
       "subscription": "Abbonamento",
       "quantity": "Quantità",
       "save": "Salvare",
-      "save_up_to": "Risparmia fino a",
-      "bundle_includes": "Das Bundle beinhaltet",
-      "starting": "A partire da"
+      "save_up_to": "Risparmia fino a"
     },
     "inventory": {
       "only": "Soltanto",
@@ -133,11 +128,11 @@
   },
   "cart": {
     "general": {
-      "title": "Carrello",
+      "title": "Carretto",
       "cart_heading": "Il tuo carrello",
-      "checkout": "Checkout",
-      "decrease": "Diminuisci quantità",
-      "increase": "Aumenta quantità",
+      "checkout": "Cassa",
+      "decrease": "Diminuire la quantità",
+      "increase": "Aumentare la quantità",
       "subtotal": "Subtotale",
       "total": "Totale",
       "discount": "Sconto",
@@ -145,11 +140,8 @@
       "empty": "Il tuo carrello è vuoto",
       "updated": "Carrello aggiornato",
       "view_cart": "Visualizza carrello",
-      "upsell_title": "Accessori popolari",
-      "upgrade": "Aggiorna carrello",
-      "continue_shopping": "Continua gli acquisti",
-      "edit": "Redigere",
-      "edit_item": "Modifica elemento"
+      "upsell_title": "Componenti aggiuntivi popolari",
+      "continue_shopping": "Continua lo shopping"
     },
     "progress_bar": {
       "pre_text": "Sei",
@@ -206,7 +198,6 @@
       "recover_success": "Ti abbiamo inviato un'email con un link per reimpostare la password.",
       "submit": "Invia",
       "name": "Nome",
-      "last_name": "Cognome",
       "shipping": "Indirizzo di spedizione"
     },
     "order": {
@@ -268,8 +259,7 @@
     "recipient": {
       "email": "E-mail del destinatario",
       "name": "Nome del destinatario",
-      "message": "Messaggio",
-      "checkbox_label": "Voglio inviarlo come regalo"
+      "message": "Messaggio"
     }
   },
   "contact": {
@@ -289,10 +279,6 @@
     "incomplete_error": "Si prega di compilare il modulo della data.",
     "confirm": "Confermare",
     "cancel": "Annulla"
-  },
-  "back_in_stock": {
-    "notify": "Comunica",
-    "title": "Registrati per ricevere una notifica quando questo articolo è di nuovo disponibile"
   },
   "countdown": {
     "days": "Giorni",

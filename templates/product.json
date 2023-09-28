@@ -26,9 +26,8 @@
         },
         "853ae7f0-85c9-45dc-8326-6e4044bcf5e5": {
           "type": "title",
-          "disabled": true,
           "settings": {
-            "content": "<p>✔ Product highlights<\/p>",
+            "content": "",
             "spacing_top": 20,
             "spacing_bottom": 10,
             "color_scheme": "color__bg-body color__text",

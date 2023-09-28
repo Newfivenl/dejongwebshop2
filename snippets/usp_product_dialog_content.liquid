@@ -1,0 +1,23 @@
+<dialog
+  id="usp-dialog-content-{{count_dialog}}"
+  class="usp-dialog-content sm:max-w-[100%]"
+  count_usp="{{count_dialog}}"
+  close
+>
+  <div class="flex items-center justify-center border-b border-w-[1px] border-[#E0E0E0] pb-4">
+    <div class="text-[16px] text-[#333333] font-bold text-center">
+      {{ usp_product_page_title }}
+    </div>
+    <div>
+      <button
+        id="usp-dialog-button-{{count_dialog}}"
+        class="usp-dialog-button bg-[#EBEBEB] cursor-pointer outline-0 border-0 absolute top-[15px] left-[20px] p-[10px]"
+      >
+        {% render 'icon-close' %}
+      </button>
+    </div>
+  </div>
+  <div class="mt-[40px]">
+    {{ usp_product_page_content }}
+  </div>
+</dialog>

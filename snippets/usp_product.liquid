@@ -1,0 +1,12 @@
+<div id="usp_product__item-{{count_usp}}" class="usp_product__item showDialog" count_usp="{{count_usp}}">
+  {%- if usp_product_icon_svg -%}
+    {{ usp_product_icon_svg }}
+  {%- endif -%}
+  <div>
+    <div class="usp_product__item--title">{{ usp_product_text }}</div>
+    {{ usp_product_description }}
+  </div>
+  <div class="usp_product__item--clickable">
+    {% render 'small-box' %}
+  </div>
+</div>

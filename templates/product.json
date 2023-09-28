@@ -26,6 +26,7 @@
         },
         "853ae7f0-85c9-45dc-8326-6e4044bcf5e5": {
           "type": "title",
+          "disabled": true,
           "settings": {
             "content": "<p>✔ Product highlights<\/p>",
             "spacing_top": 20,

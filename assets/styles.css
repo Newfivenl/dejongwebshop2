@@ -1559,6 +1559,10 @@ img:after {
   margin-bottom: 2rem;
 }
 
+.mb-\[13px\] {
+  margin-bottom: 13px;
+}
+
 .ml-0 {
   margin-left: 0px;
 }
@@ -1613,10 +1617,6 @@ img:after {
 
 .mt-auto {
   margin-top: auto;
-}
-
-.mb-\[13px\] {
-  margin-bottom: 13px;
 }
 
 .block {

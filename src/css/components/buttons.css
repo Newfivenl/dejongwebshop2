@@ -21,10 +21,7 @@
     &:hover {
       @apply border__button--hover no-underline opacity-75;
     }
-    &--focus,
-    &:focus {
-      @apply border__button--focus;
-    }
+    
     &--disabled,
     &:disabled {
       @apply opacity-50 cursor-not-allowed;

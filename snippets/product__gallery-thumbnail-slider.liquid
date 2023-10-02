@@ -23,9 +23,9 @@
 
 <div>
   <div class="md:flex-nowrap flex flex-wrap h-full"
-    style="
+    {% comment %} style="
       margin-top: {{ settings.layout_gap_size }}px;
-      margin-bottom: {{ settings.layout_gap_size }}px;">
+      margin-bottom: {{ settings.layout_gap_size }}px;" {% endcomment %}>
 
     {% comment %} thumbnails {% endcomment %}
     <div class="hidden md:flex flex-col basis-[10%] max-h-[500px] overflow-x-hidden overflow-y-auto"

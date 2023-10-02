@@ -28,7 +28,7 @@
     "header_position": "dynamic",
     "layout_alignment": "",
     "layout_horizontal": "window",
-    "layout_gap_size": 10,
+    "layout_gap_size": 20,
     "enable_audio": true,
     "enable_animations": true,
     "thumbmails_color_scheme": "color__bg-overlay-1 after:color__bg-overlay-1 color__text after:color__text",

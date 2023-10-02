@@ -8,7 +8,7 @@
           "settings": {
             "spacing_top": 10,
             "spacing_bottom": 0,
-            "color_scheme": "color__bg-body color__text",
+            "color_scheme": "color__bg-overlay-3 color__text",
             "style_border": "",
             "position": "right"
           }
@@ -43,7 +43,7 @@
           "settings": {
             "spacing_top": 0,
             "spacing_bottom": 20,
-            "color_scheme": "color__bg-body color__text",
+            "color_scheme": "color__bg-overlay-3 color__text",
             "style_border": "border--b-width",
             "position": "right"
           }
@@ -53,7 +53,7 @@
           "settings": {
             "spacing_top": 20,
             "spacing_bottom": 0,
-            "color_scheme": "color__bg-body color__text",
+            "color_scheme": "color__bg-overlay-3 color__text",
             "style_border": "",
             "position": "right"
           }
@@ -64,7 +64,7 @@
             "content": "<p>Remind customers of offers like free shipping and lifetime warranties.<\/p>",
             "spacing_top": 20,
             "spacing_bottom": 20,
-            "color_scheme": "color__bg-body color__text",
+            "color_scheme": "color__bg-overlay-3 color__text",
             "style_border": "",
             "position": "right",
             "enable_quantity": true,
@@ -75,6 +75,7 @@
         },
         "123fd04c-91f3-4248-a65a-614e2f64fdeb": {
           "type": "description",
+          "disabled": true,
           "settings": {
             "icon": "",
             "spacing_top": 0,
@@ -90,7 +91,7 @@
           "settings": {
             "spacing_top": 20,
             "spacing_bottom": 20,
-            "color_scheme": "color__bg-body color__text",
+            "color_scheme": "color__bg-overlay-3 color__text",
             "style_border": "border--b-width border--t-width",
             "position": "right",
             "threshold": 20
@@ -101,7 +102,7 @@
           "settings": {
             "spacing_top": 20,
             "spacing_bottom": 20,
-            "color_scheme": "color__bg-body color__text",
+            "color_scheme": "color__bg-overlay-3 color__text",
             "style_border": "",
             "position": "right"
           }
@@ -110,7 +111,7 @@
           "type": "stickyadd",
           "settings": {
             "content": "<p>Remind customers of offers like free shipping and lifetime warranties.<\/p>",
-            "color_scheme": "color__bg-overlay-1 color__text",
+            "color_scheme": "color__bg-overlay-3 color__text",
             "on_scroll": true
           }
         },
@@ -127,7 +128,7 @@
             "usp_product_icon_svg_4": "",
             "usp_product_text_5": "",
             "usp_product_icon_svg_5": "",
-            "usp_background_color": "",
+            "usp_background_color": "#ffffff",
             "usp_container_padding": 10,
             "usp_font_size": 10,
             "usp_font_color": "",
@@ -162,7 +163,7 @@
             "title": "Shipping and returns",
             "content": "<p>Include more information about your product details.<\/p>",
             "icon": "",
-            "color_scheme": "color__bg-body color__text",
+            "color_scheme": "color__bg-overlay-3 color__text",
             "style_border": "",
             "position": "right",
             "enable_open": false
@@ -174,7 +175,7 @@
             "title": "You may also like",
             "products_count": 3,
             "intent": "related",
-            "color_scheme": "color__bg-body color__text",
+            "color_scheme": "color__bg-overlay-3 color__text",
             "style_border": "border--t-width",
             "position": "right",
             "enable_open": true

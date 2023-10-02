@@ -93,9 +93,7 @@
       @apply underline opacity-50;
     }
 
-    &:focus {
-      @apply border--focus;
-    }
+   
   }
 
   /* spacing */

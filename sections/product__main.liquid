@@ -122,7 +122,7 @@
       gallery_style : section.settings.media_gallery_style %}
   {%- endcapture -%}
   
-  <div class="!px-0 md:!px-4 flex flex-row flex-wrap
+  <div class="md:mt-[52px] !px-0 md:!px-4 flex flex-row flex-wrap
     {{ settings.layout_horizontal }}"
     x-data="{{ script_product }}"
     x-init="
@@ -317,7 +317,7 @@
       {{ layout_detail_size }}">
       <div :class="{ 
         '-z-[1]' : reduce_product_zindex
-      }" class="sticky top-0 z-10" 
+      }" class="border border-solid border-[#E0E0E0] sticky top-0 z-10" 
         x-data="{ 
           button_loading: false 
         }">

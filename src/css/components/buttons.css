@@ -4,7 +4,7 @@
 @layer components {
   /* standard button */
   .btn {
-    @apply type__nav border__button--radius color__button-primary border__button animation-500 inline-flex items-center justify-center w-auto px-6 py-2 overflow-hidden text-center no-underline cursor-pointer min-h-[44px] min-w-[44px];
+    @apply type__nav border__button--radius color__button-primary border__button animation-500 inline-flex items-center justify-center w-auto px-2 py-2 overflow-hidden text-center no-underline cursor-pointer min-h-[25px] min-w-[30px];
     text-transform: var(--type-button-capiliziation);
 
     * {

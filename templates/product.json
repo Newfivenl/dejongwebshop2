@@ -30,7 +30,7 @@
             "content": "",
             "spacing_top": 20,
             "spacing_bottom": 10,
-            "color_scheme": "color__bg-body color__text",
+            "color_scheme": "color__bg-overlay-3 color__text",
             "style_border": "",
             "position": "right",
             "enable_thumbnails_product_type": false,
@@ -179,17 +179,6 @@
             "position": "right",
             "enable_open": true
           }
-        },
-        "606b72ef-c75a-4446-9038-f35470638fae": {
-          "type": "linked_products",
-          "settings": {
-            "color_scheme": "color__bg-body color__text",
-            "style_border": "",
-            "linked_products_title": "",
-            "spacing_top": 10,
-            "spacing_bottom": 0,
-            "position": "right"
-          }
         }
       },
       "block_order": [
@@ -206,8 +195,7 @@
         "6a3377bc-72e2-46cf-bceb-70a6e87ed2e9",
         "c6a34c12-6bd0-437c-8e8d-bddb51a5f3b3",
         "41ca4398-ca4a-48e9-a401-1ceeaac9e588",
-        "76f2c051-662d-4c42-b036-d6658cf9616f",
-        "606b72ef-c75a-4446-9038-f35470638fae"
+        "76f2c051-662d-4c42-b036-d6658cf9616f"
       ],
       "settings": {
         "enable_default_variant": true,
@@ -224,7 +212,7 @@
         "media_object-sizing": "cover",
         "enable_ratio": true,
         "show_product_badges": true,
-        "color_scheme": "color__bg-body",
+        "color_scheme": "color__bg-body color__text",
         "color_border": "!color__border-transparent",
         "layout_gallery_size": "w-full md:w-2\/3"
       }

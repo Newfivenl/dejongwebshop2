@@ -1,0 +1,52 @@
+{
+  "sections": {
+    "main": {
+      "type": "page__main",
+      "disabled": true,
+      "settings": {
+        "spacing_top": 60,
+        "spacing_bottom": 60,
+        "color_scheme": "color__bg-body color__text"
+      }
+    },
+    "0453a546-c198-4a99-9ee2-c77fe5cdbd42": {
+      "type": "product-grid",
+      "blocks": {
+        "template--21252865163538__0453a546-c198-4a99-9ee2-c77fe5cdbd42-card-1": {
+          "type": "card",
+          "settings": {
+            "heading": "Block heading",
+            "content": "<p>Describe a product, make announcements, or inform customers about a promotion.<\/p>",
+            "button_label": "Button",
+            "button_url": "\/"
+          }
+        }
+      },
+      "block_order": [
+        "template--21252865163538__0453a546-c198-4a99-9ee2-c77fe5cdbd42-card-1"
+      ],
+      "settings": {
+        "collection": "aluminium-bakjes",
+        "products_count": 20,
+        "heading": "Product grid",
+        "content": "<p>Describe a product, make announcements, or welcome customers to your store.<\/p>",
+        "button_label": "Button",
+        "button_url": "\/collections\/all",
+        "spacing_top": 100,
+        "spacing_bottom": 100,
+        "color_scheme": "color__bg-body color__text",
+        "color_border": "color__border-divider-1",
+        "color_button": "btn btn--secondary",
+        "style_border": "border--b-width",
+        "row_size_desktop": "md:grid-cols-5",
+        "row_size_mobile": "grid grid-cols-2",
+        "layout_x_alignment": "justify-between",
+        "visibility": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "0453a546-c198-4a99-9ee2-c77fe5cdbd42"
+  ]
+}

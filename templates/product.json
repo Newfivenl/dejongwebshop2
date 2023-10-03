@@ -218,54 +218,6 @@
         "layout_gallery_size": "w-full md:w-2\/3"
       }
     },
-    "165592515341576314": {
-      "type": "accordions",
-      "blocks": {
-        "165592515344a810fb-0": {
-          "type": "content",
-          "settings": {
-            "title": "How do I get free shipping?",
-            "content": "<p>Free shipping will automatically be applied to all domestic orders over $75. Simply add over $75 to your cart and you will see the discount while checking out.<\/p>",
-            "icon": ""
-          }
-        },
-        "165592515344a810fb-1": {
-          "type": "content",
-          "settings": {
-            "title": "How much is shipping?",
-            "content": "<p>Shipping is free for orders over $75. For all other domestic orders shipping is $10. International shipping is $20.<\/p>",
-            "icon": ""
-          }
-        },
-        "165592515344a810fb-2": {
-          "type": "content",
-          "settings": {
-            "title": "How long does shipping take?",
-            "content": "<p>We typically ship orders out within 1-2 business days of ordering. From there shipping may take 3-5 business days. For international orders shipping can take between 7-14 business days.<\/p>",
-            "icon": ""
-          }
-        }
-      },
-      "block_order": [
-        "165592515344a810fb-0",
-        "165592515344a810fb-1",
-        "165592515344a810fb-2"
-      ],
-      "settings": {
-        "heading": "FAQs",
-        "content": "",
-        "button_label": "Help center",
-        "button_url": "\/",
-        "spacing_top": 100,
-        "spacing_bottom": 100,
-        "color_scheme": "color__bg-body color__text",
-        "color_border": "color__border-divider-1",
-        "color_button": "btn btn--secondary",
-        "style_border": "border--b-width border--t-width",
-        "layout_x_alignment": "justify-between",
-        "visibility": ""
-      }
-    },
     "1649436645dda33170": {
       "type": "recent-slider",
       "settings": {
@@ -495,7 +447,6 @@
   },
   "order": [
     "1638995507af787164",
-    "165592515341576314",
     "1649436645dda33170",
     "1649436653425ff0fe",
     "96dcd7af-6180-401d-bf36-5aafc0ddf102",

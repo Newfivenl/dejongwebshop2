@@ -218,6 +218,53 @@
         "layout_gallery_size": "w-full md:w-2\/3"
       }
     },
+    "2809988b-8d52-4142-a35c-8b5aa6fac879": {
+      "type": "nf-text-with-table",
+      "blocks": {
+        "template--20644271259922__2809988b-8d52-4142-a35c-8b5aa6fac879-table-1": {
+          "type": "table",
+          "settings": {
+            "specification": "<p>Gewicht (per doos)<\/p>",
+            "details": "<p>15.21 kg<\/p>"
+          }
+        },
+        "cd9c54e4-1140-427e-a3e3-3db7c6e9f36c": {
+          "type": "table",
+          "settings": {
+            "specification": "<p>Afmetingen<\/p>",
+            "details": "<p>89 × 96 mm<\/p>"
+          }
+        },
+        "16a6dbd8-4217-4ffb-9e92-196e1b6e4a57": {
+          "type": "table",
+          "settings": {
+            "specification": "<p>Diameter<\/p>",
+            "details": "<p>89mm<\/p>"
+          }
+        },
+        "19d3f90e-4c4d-4275-9671-1dc56377b8c2": {
+          "type": "table",
+          "settings": {
+            "specification": "<p>Omschrijving<\/p>",
+            "details": "<p>milkshake bekers van karton 250cc<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--20644271259922__2809988b-8d52-4142-a35c-8b5aa6fac879-table-1",
+        "cd9c54e4-1140-427e-a3e3-3db7c6e9f36c",
+        "16a6dbd8-4217-4ffb-9e92-196e1b6e4a57",
+        "19d3f90e-4c4d-4275-9671-1dc56377b8c2"
+      ],
+      "settings": {
+        "product_header": "Omschrijving",
+        "product_subheader": "Milkshake bekers van karton",
+        "product_desc": "<p>Onze kartonnen milkshakebekers zijn gemaakt in een stevige kwaliteit en zijn geschikt voor koude dranken zoals milkshakes, frisdranken en vruchtensappen.<br\/>Deze milkshakebeker heeft een inhoudsmaat van 250ml en is eventueel te voorzien van een zeer goed sluitend deksel.<br\/>De deksels zijn verkrijgbaar met een inkeping en er zijn 2 hogere modellen beschikbaar.<br\/>Om het verhaal compleet te maken bestaat ons leveringsprogramma uit 2 verschillende formaten papieren milkshakerietjes.<\/p>",
+        "table_header": "Extra Informatie",
+        "spacing_top": 100,
+        "spacing_bottom": 100
+      }
+    },
     "1649436645dda33170": {
       "type": "recent-slider",
       "settings": {
@@ -447,6 +494,7 @@
   },
   "order": [
     "1638995507af787164",
+    "2809988b-8d52-4142-a35c-8b5aa6fac879",
     "1649436645dda33170",
     "1649436653425ff0fe",
     "96dcd7af-6180-401d-bf36-5aafc0ddf102",

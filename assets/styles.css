@@ -681,6 +681,7 @@ h2,
 h2,
   .h2,
   h2 > * {
+  color: var(--color-primary-button-background-light);
   line-height: 1;
 }
 
@@ -736,7 +737,6 @@ h4,
 h4,
   .h4,
   h4 > * {
-  color: var(--color-primary-button-background-light);
   line-height: 1.25;
 }
 
@@ -3383,6 +3383,7 @@ img:after {
 
 .type__heading--bold-2 {
   line-height: 1.25;
+  color: var(--color-primary-button-background-light);
 }
 
 .type__heading--bold-3 {
@@ -3426,7 +3427,6 @@ img:after {
 
 .type__heading--bold-4 {
   line-height: 1.25;
-  color: var(--color-primary-button-background-light);
 }
 
 .type__heading--bold-5 {

@@ -1,0 +1,122 @@
+<div class="{{ settings.layout_horizontal }}" style="
+padding-top:{{ section.settings.spacing_top }}px;
+padding-bottom:{{ section.settings.spacing_bottom }}px;" >
+    <div class="flex">
+        <div class="product-description md:max-w-[693px] w-full px-12">
+            <div class="product_header">
+                <h2>{{section.settings.product_header }}</h2>
+            </div>
+            <div class="product_sub_header">
+                <h4>{{section.settings.product_subheader }}</h4>
+
+            </div>
+            <div class="description_box">
+                {{ section.settings.product_desc }}
+            </div>
+        </div>
+        <div class="table__sepcs ">
+           <div class="w-full table-auto bg-[#E5ECF3] border-solid border-[#D0D1D4] py-[15px] md:px-[15px]  md:py-[30px] md:px-[26px]">
+                <div class="text-left pb-[18px] md:pb-[24px] text-base text-[#333]">{{ section.settings.table_header }}</div>
+                {% for block in section.blocks %}
+                <div class="{% cycle 'bg-white', 'bg-[#E5ECF3]' %}">
+                <div class="flex justify-between">
+                        <div class="p-4 text-left text-[#333]">{{ block.settings.specification }}</div>
+                        <div class="p-4 text-right text-[#888888]">{{ block.settings.details }}</div>
+                </div>
+                </div>
+                {% endfor %}
+           </div>
+        </div>
+    </div>
+</div>
+{%  style  %}
+.table__sepcs p{
+    margin-bottom: 0;
+}
+  {% endstyle %}
+{% schema %}
+{
+  "name": "Rich Text With Table",
+  "settings": [
+    {
+      "type": "text",
+      "id": "product_header",
+      "label": "Product Header",
+      "default": "Omschrijving"
+    },
+    {
+      "type": "text",
+      "id": "product_subheader",
+      "label": "Product Subheader",
+      "default": "Milkshake bekers van karton"
+    },
+    {
+        "type": "richtext",
+        "id": "product_desc",
+        "label": "Product Description"
+    },
+    {
+      "type": "text",
+      "id": "table_header",
+      "label": "Table Header",
+      "default": "Extra Informatie"
+    },
+    {
+      "type":"range",
+      "id":"spacing_top",
+      "min":0,
+      "max":300,
+      "step":20,
+      "unit":"px",
+      "label":"t:sections.all.layout.settings.spacing.label_top",
+      "default":100
+    },
+    {
+      "type":"range",
+      "id":"spacing_bottom",
+      "min":0,
+      "max":300,
+      "step":20,
+      "unit":"px",
+      "label":"t:sections.all.layout.settings.spacing.label_bottom",
+      "default":100
+    }
+  ],
+  "blocks": [
+    {
+      "type": "table",
+      "name": "Table",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "specification",
+          "label": "Specification"
+        },
+        {
+          "type": "richtext",
+          "id": "details",
+          "label": "Details"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rich Text With Table",
+      "settings": {
+        "table_header": "Extra Informatie"
+      },
+      "blocks": [
+        {
+          "type": "table",
+          "settings": {
+            "specification": "<p>Gewicht (per doos)</p>",
+            "details": "<p>15.21 kg</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+ {% endschema %}
+        

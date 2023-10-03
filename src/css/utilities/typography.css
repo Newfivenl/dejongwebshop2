@@ -49,8 +49,6 @@
     font-weight: var(--type-font-header-weight);
     @apply md:text-4xl underline-offset-2 text-3xl tracking-normal;
     @apply leading-tight;
-    color: var(--color-primary-button-background-light);
-
   }
   .type__heading--bold-3 {
     font-family: var(--type-font-header-family);

@@ -125,7 +125,7 @@
                       x-data="{ 
                         button_loading: false
                       }">
-                      <button class="btn btn--smaller btn--plain shrink-0 !rounded-none" 
+                      <button class="btn btn--smaller btn--plain shrink-0 !rounded-none !pr-0 !pl-0 !bg-[#E0E0E0] !border-[#E0E0E0] !text-[#333]" 
                         :disabled="button_loading"
                         title="{{ 'cart.general.decrease' | t }}"
                         @click.prevent="
@@ -138,7 +138,7 @@
                       </button>
                       <label :for="'cart-' + item.key + '-quantity'" class="sr-only">{{ 'products.general.quantity' | t }}</label>
                       <input :id="'cart-' + item.key + '-quantity'" placeholder="1" type="text" 
-                        class="form-input !border-0 text-center !rounded-none" 
+                        class="form-input !border-0 text-center !rounded-none !bg-[#E0E0E0] !text-[#333] !text-[16px]" 
                         @change.debounce="
                           changeCartItemQuantity(item.key, item.quantity, false);
                           button_loading = true; 
@@ -148,7 +148,7 @@
                         :class="{ '!visible color__bg-overlay-1 z-10' : button_loading }">
                         {% render 'component__icon', icon: 'spinner', size: '16', class: '' %}
                       </div>
-                      <button class="btn btn--smaller btn--plain shrink-0 !rounded-none" 
+                      <button class="btn btn--smaller btn--plain shrink-0 !rounded-none !pr-0 !pl-0 !bg-[#E0E0E0] !border-[#E0E0E0] !text-[#333]" 
                         :disabled="button_loading"
                         title="{{ 'cart.general.increase' | t }}"
                         @click.prevent="

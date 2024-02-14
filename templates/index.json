@@ -358,8 +358,8 @@
           "type": "card",
           "settings": {
             "heading": "Alle categorieën",
-            "content": "<p>Not sure where to start? Shop<br\/>from our entire collection.<\/p>",
-            "button_label": "Shop now",
+            "content": "<p>Bekijk hier al onze categorieën!<\/p>",
+            "button_label": "Alle  categorieën",
             "button_url": "shopify:\/\/collections"
           }
         }

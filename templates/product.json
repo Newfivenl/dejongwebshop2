@@ -110,7 +110,7 @@
         "848f5aea-f7ad-4974-a5fb-020776e3e523": {
           "type": "stickyadd",
           "settings": {
-            "content": "<p>Remind customers of offers like free shipping and lifetime warranties.<\/p>",
+            "content": "<p>Gratis verzending vanaf € 250<\/p>",
             "color_scheme": "color__bg-overlay-3 color__text",
             "on_scroll": true
           }

@@ -618,12 +618,21 @@
             "content": "<p>Al onze goederen worden verzonden door een betrouwbare partner waar wij al jaren tevreden zaken mee doen, afhankelijk van de ordergrootte versturen wij onze goederen op europallets (80 x 120cm), halve pallets (80 x 60cm) of als losse colli(s).<br\/>Onze levertijden zijn na ontvangst van betaling en indien op voorraad ca. met 3 werkdagen, indien iets onverhoopt (tijdelijk) niet op voorraad is nemen wij zo spoedig mogelijk contact met u op voor een oplossing.<\/p>",
             "icon": ""
           }
+        },
+        "content_MwXGz8": {
+          "type": "content",
+          "settings": {
+            "title": "Kan ik mijn bestelling op een latere datum ontvangen?",
+            "content": "<p>Bij het afronden van uw order kunt u in het opmerkingen veld aangeven wanneer u de bestelling kunt ontvangen, met uitzondering van zaterdagen en zondagen. Indien wij niet aan deze leverdatum kunnen voldoen nemen wij contact met u op.<\/p>",
+            "icon": ""
+          }
         }
       },
       "block_order": [
         "template--20644271554834__78a339b1-cd3c-4871-898d-b86e6dc91a94-content-1",
         "template--20644271554834__78a339b1-cd3c-4871-898d-b86e6dc91a94-content-2",
-        "template--20644271554834__78a339b1-cd3c-4871-898d-b86e6dc91a94-content-3"
+        "template--20644271554834__78a339b1-cd3c-4871-898d-b86e6dc91a94-content-3",
+        "content_MwXGz8"
       ],
       "settings": {
         "heading": "FAQs",

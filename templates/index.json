@@ -634,6 +634,14 @@
             "content": "<p>Onze transporteur werkt met een track en trace systeem, de avond voor de dag van aflevering ontvangt u een e-mail van onze transporteur met daarin de link voor de track en trace omgeving.<\/p>",
             "icon": ""
           }
+        },
+        "content_eE9mmc": {
+          "type": "content",
+          "settings": {
+            "title": "Zijn de prijzen inclusief of exclusief btw?",
+            "content": "<p>Alle prijzen op de product en categorie pagina’s zijn exclusief btw, in uw winkelwagen ziet u het bedrag wat u aan btw moet betalen.<\/p>",
+            "icon": ""
+          }
         }
       },
       "block_order": [
@@ -641,7 +649,8 @@
         "template--20644271554834__78a339b1-cd3c-4871-898d-b86e6dc91a94-content-2",
         "template--20644271554834__78a339b1-cd3c-4871-898d-b86e6dc91a94-content-3",
         "content_MwXGz8",
-        "content_QcAmL9"
+        "content_QcAmL9",
+        "content_eE9mmc"
       ],
       "settings": {
         "heading": "FAQs",

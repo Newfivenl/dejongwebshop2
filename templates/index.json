@@ -642,6 +642,14 @@
             "content": "<p>Alle prijzen op de product en categorie pagina’s zijn exclusief btw, in uw winkelwagen ziet u het bedrag wat u aan btw moet betalen.<\/p>",
             "icon": ""
           }
+        },
+        "content_knWVDj": {
+          "type": "content",
+          "settings": {
+            "title": "Zijn de Disposables ook te bedrukken met eigen logo?",
+            "content": "<p>Praktisch het gehele assortiment is te bedrukken met eigen logo, neem vrijblijvend contact met ons op voor een fantastisch voorstel.<\/p>",
+            "icon": ""
+          }
         }
       },
       "block_order": [
@@ -650,7 +658,8 @@
         "template--20644271554834__78a339b1-cd3c-4871-898d-b86e6dc91a94-content-3",
         "content_MwXGz8",
         "content_QcAmL9",
-        "content_eE9mmc"
+        "content_eE9mmc",
+        "content_knWVDj"
       ],
       "settings": {
         "heading": "FAQs",

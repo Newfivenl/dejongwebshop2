@@ -61,7 +61,7 @@
         "b78b560b-e1c2-428d-ad73-fb5f8aac6d53": {
           "type": "add",
           "settings": {
-            "content": "<p>Remind customers of offers like free shipping and lifetime warranties.<\/p>",
+            "content": "<p>Al onze prijzen zijn ALTIJD inclusief mogelijk milieutoeslagen. Dus nooit verassingen achteraf waarbij u bij het afrekenen nog extra moeten betalen.<\/p>",
             "spacing_top": 20,
             "spacing_bottom": 20,
             "color_scheme": "color__bg-overlay-3 color__text",
@@ -88,6 +88,7 @@
         },
         "9f1692ea-ccb9-4e4c-9c83-7a6ae53392aa": {
           "type": "inventory",
+          "disabled": true,
           "settings": {
             "spacing_top": 20,
             "spacing_bottom": 20,

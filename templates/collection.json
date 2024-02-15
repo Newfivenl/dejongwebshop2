@@ -27,7 +27,7 @@
         "row_size_mobile": "grid-cols-2",
         "enable_sort": true,
         "enable_filter": true,
-        "products_per_page": 8
+        "products_per_page": 24
       }
     },
     "6de8e6ab-8c94-4e9f-b76e-c22d4580d234": {

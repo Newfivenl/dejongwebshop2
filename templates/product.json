@@ -160,6 +160,7 @@
         },
         "41ca4398-ca4a-48e9-a401-1ceeaac9e588": {
           "type": "accordion",
+          "disabled": true,
           "settings": {
             "title": "Altijd inclusief alle toeslagen!",
             "content": "<p>Onze prijzen zijn ALTIJD inclusief mogelijk milieutoeslagen. Dus nooit verassingen achteraf waarbij u bij het afrekenen nog extra moeten betalen.<\/p>",

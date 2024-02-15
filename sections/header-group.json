@@ -21,7 +21,7 @@
         "visibility": "",
         "announcement_delay": 10,
         "show_account_link": true,
-        "show_localization": true
+        "show_localization": false
       }
     },
     "theme_header": {

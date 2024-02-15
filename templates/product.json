@@ -160,9 +160,9 @@
         "41ca4398-ca4a-48e9-a401-1ceeaac9e588": {
           "type": "accordion",
           "settings": {
-            "title": "Shipping and returns",
-            "content": "<p>Include more information about your product details.<\/p>",
-            "icon": "",
+            "title": "Altijd inclusief alle toeslagen!",
+            "content": "<p>Onze prijzen zijn ALTIJD inclusief mogelijk milieutoeslagen. Dus nooit verassingen achteraf waarbij u bij het afrekenen nog extra moeten betalen.<\/p>",
+            "icon": "check",
             "color_scheme": "color__bg-overlay-3 color__text",
             "style_border": "",
             "position": "right",

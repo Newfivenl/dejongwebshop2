@@ -598,16 +598,16 @@
         "template--20644271554834__78a339b1-cd3c-4871-898d-b86e6dc91a94-content-1": {
           "type": "content",
           "settings": {
-            "title": "How do I get free shipping?",
-            "content": "<p>Answer to help your customers feel more comfortable completing their purchase.<\/p>",
+            "title": "Vanaf welk bedrag worden er geen verzendkosten in rekening gebracht?",
+            "content": "<p>In Nederland, België en Duitsland berekenen wij vanaf € 250,- exclusief btw geen verzendkosten, orders tot € 250,- worden belast met € 15,- exclusief btw aan verzendkosten.<\/p>",
             "icon": ""
           }
         },
         "template--20644271554834__78a339b1-cd3c-4871-898d-b86e6dc91a94-content-2": {
           "type": "content",
           "settings": {
-            "title": "How much do I need to spend to get free shipping?",
-            "content": "<p>Answer to help your customers feel more comfortable completing their purchase.<\/p>",
+            "title": "Kan ik mijn bestelling ook afhalen?",
+            "content": "<p>U kunt uw bestelling zonder verzendkosten afhalen in Tynaarlo, dit kunt u aangeven tijdens het afrekenen.<\/p>",
             "icon": ""
           }
         },

@@ -626,13 +626,22 @@
             "content": "<p>Bij het afronden van uw order kunt u in het opmerkingen veld aangeven wanneer u de bestelling kunt ontvangen, met uitzondering van zaterdagen en zondagen. Indien wij niet aan deze leverdatum kunnen voldoen nemen wij contact met u op.<\/p>",
             "icon": ""
           }
+        },
+        "content_QcAmL9": {
+          "type": "content",
+          "settings": {
+            "title": "Kan ik mijn bestelling volgen?",
+            "content": "<p>Onze transporteur werkt met een track en trace systeem, de avond voor de dag van aflevering ontvangt u een e-mail van onze transporteur met daarin de link voor de track en trace omgeving.<\/p>",
+            "icon": ""
+          }
         }
       },
       "block_order": [
         "template--20644271554834__78a339b1-cd3c-4871-898d-b86e6dc91a94-content-1",
         "template--20644271554834__78a339b1-cd3c-4871-898d-b86e6dc91a94-content-2",
         "template--20644271554834__78a339b1-cd3c-4871-898d-b86e6dc91a94-content-3",
-        "content_MwXGz8"
+        "content_MwXGz8",
+        "content_QcAmL9"
       ],
       "settings": {
         "heading": "FAQs",

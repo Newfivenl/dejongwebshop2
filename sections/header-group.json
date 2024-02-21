@@ -29,6 +29,7 @@
       "blocks": {
         "be71be81-afed-41c4-a9df-3d6f393ab842": {
           "type": "nav_image",
+          "disabled": true,
           "settings": {
             "image": "shopify:\/\/shop_images\/Thuiswinkel_Zakelijk_Kleur_Horizontaal_RGB.svg",
             "contact_info": "",

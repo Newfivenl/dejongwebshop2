@@ -502,6 +502,7 @@
     },
     "d7e3b662-c368-4636-9d51-e4d12b8168f7": {
       "type": "product-slider",
+      "disabled": true,
       "settings": {
         "collection": "aluminium-bakjes",
         "products_count": 4,

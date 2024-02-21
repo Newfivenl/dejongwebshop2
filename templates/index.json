@@ -464,6 +464,40 @@
         "enable_collection_size_count": true
       }
     },
+    "product_slider_FjtiUm": {
+      "type": "product-slider",
+      "blocks": {
+        "card_RBRfnE": {
+          "type": "card",
+          "disabled": true,
+          "settings": {
+            "heading": "Block heading",
+            "content": "<p>Describe a product, make announcements, or welcome customers to your store.<\/p>",
+            "button_label": "Button",
+            "button_url": "\/"
+          }
+        }
+      },
+      "block_order": [
+        "card_RBRfnE"
+      ],
+      "settings": {
+        "collection": "suikerriet-frietbakjes",
+        "products_count": 7,
+        "heading": "Hardlopers",
+        "content": "",
+        "button_label": "",
+        "button_url": "\/collections\/all",
+        "spacing_top": 100,
+        "spacing_bottom": 100,
+        "color_scheme": "color__bg-body color__text",
+        "color_border": "color__border-divider-1",
+        "color_button": "btn btn--secondary",
+        "style_border": "border--b-width",
+        "layout_x_alignment": "justify-between",
+        "visibility": ""
+      }
+    },
     "4957c6b2-3abe-4e8a-a342-c28fcddc4f97": {
       "type": "product-grid",
       "blocks": {
@@ -481,9 +515,10 @@
       "block_order": [
         "template--20644271554834__4957c6b2-3abe-4e8a-a342-c28fcddc4f97-card-1"
       ],
+      "disabled": true,
       "settings": {
-        "collection": "bestekzakjes",
-        "products_count": 7,
+        "collection": "suikerriet-frietbakjes",
+        "products_count": 9,
         "heading": "Hardlopers",
         "content": "",
         "button_label": "Alle hardlopers",
@@ -762,6 +797,7 @@
     "1e9b6aa9-2f3a-4ca0-a7b2-65d5c9c14d5f",
     "84c299e3-89f4-4122-ba7a-adec40bab641",
     "collection_slider_dH638W",
+    "product_slider_FjtiUm",
     "4957c6b2-3abe-4e8a-a342-c28fcddc4f97",
     "d7e3b662-c368-4636-9d51-e4d12b8168f7",
     "96dcd7af-6180-401d-bf36-5aafc0ddf102",

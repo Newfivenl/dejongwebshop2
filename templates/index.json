@@ -354,13 +354,22 @@
             "collection": "toykits"
           }
         },
-        "127d4659-f2b7-4e01-b8be-17b3bd87db74": {
-          "type": "card",
+        "collection_ftGwaf": {
+          "type": "collection",
           "settings": {
-            "heading": "Alle categorieën",
-            "content": "<p>Bekijk hier al onze categorieën!<\/p>",
-            "button_label": "Alle  categorieën",
-            "button_url": "shopify:\/\/collections"
+            "collection": ""
+          }
+        },
+        "collection_rXAFVD": {
+          "type": "collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "collection_tPRFtB": {
+          "type": "collection",
+          "settings": {
+            "collection": ""
           }
         }
       },
@@ -368,8 +377,11 @@
         "d6c40f26-381a-43b1-aa93-467d35e8cd57",
         "104b014d-6fe7-413f-bec5-a74ddd5fc3a3",
         "29e0abd3-6337-4acb-81e9-f7e4c95a5271",
-        "127d4659-f2b7-4e01-b8be-17b3bd87db74"
+        "collection_ftGwaf",
+        "collection_rXAFVD",
+        "collection_tPRFtB"
       ],
+      "disabled": true,
       "settings": {
         "heading": "Alle categorieën",
         "content": "",
@@ -388,11 +400,76 @@
         "enable_collection_size_count": true
       }
     },
+    "collection_slider_dH638W": {
+      "type": "collection-slider",
+      "blocks": {
+        "collection_Eewm4q": {
+          "type": "collection",
+          "settings": {
+            "collection": "aluminium-bakjes"
+          }
+        },
+        "collection_DhQYLC": {
+          "type": "collection",
+          "settings": {
+            "collection": "aluminium-menuschalen"
+          }
+        },
+        "collection_FiFame": {
+          "type": "collection",
+          "settings": {
+            "collection": "aluminium-schaaltjes"
+          }
+        },
+        "collection_KwXeie": {
+          "type": "collection",
+          "settings": {
+            "collection": "aluminiumfolie"
+          }
+        },
+        "collection_RtehXf": {
+          "type": "collection",
+          "settings": {
+            "collection": "apet-vleeswarenschaaltjes"
+          }
+        },
+        "collection_BFJMmm": {
+          "type": "collection",
+          "settings": {
+            "collection": "bakpapier"
+          }
+        }
+      },
+      "block_order": [
+        "collection_Eewm4q",
+        "collection_DhQYLC",
+        "collection_FiFame",
+        "collection_KwXeie",
+        "collection_RtehXf",
+        "collection_BFJMmm"
+      ],
+      "settings": {
+        "heading": "Alle categorieën",
+        "content": "",
+        "button_label": "Bekijk alles",
+        "button_url": "shopify:\/\/collections",
+        "spacing_top": 100,
+        "spacing_bottom": 100,
+        "color_scheme": "color__bg-body color__text",
+        "color_border": "color__border-divider-1",
+        "color_button": "btn btn--secondary",
+        "style_border": "border--b-width",
+        "layout_x_alignment": "justify-between",
+        "visibility": "",
+        "enable_collection_size_count": true
+      }
+    },
     "4957c6b2-3abe-4e8a-a342-c28fcddc4f97": {
       "type": "product-grid",
       "blocks": {
         "template--20644271554834__4957c6b2-3abe-4e8a-a342-c28fcddc4f97-card-1": {
           "type": "card",
+          "disabled": true,
           "settings": {
             "heading": "Block heading",
             "content": "<p>Describe a product, make announcements, or inform customers about a promotion.<\/p>",
@@ -683,6 +760,7 @@
     "0aee11fe-16ff-4cae-924b-b6dc71c8827b",
     "1e9b6aa9-2f3a-4ca0-a7b2-65d5c9c14d5f",
     "84c299e3-89f4-4122-ba7a-adec40bab641",
+    "collection_slider_dH638W",
     "4957c6b2-3abe-4e8a-a342-c28fcddc4f97",
     "d7e3b662-c368-4636-9d51-e4d12b8168f7",
     "96dcd7af-6180-401d-bf36-5aafc0ddf102",

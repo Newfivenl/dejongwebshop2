@@ -483,10 +483,10 @@
       ],
       "settings": {
         "collection": "suikerriet-frietbakjes",
-        "products_count": 7,
+        "products_count": 16,
         "heading": "Hardlopers",
         "content": "",
-        "button_label": "",
+        "button_label": "test",
         "button_url": "\/collections\/all",
         "spacing_top": 100,
         "spacing_bottom": 100,

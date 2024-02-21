@@ -16,11 +16,11 @@
         "78204a1a-1009-4f50-a9c8-4a9f0b2af321": {
           "type": "newsletter",
           "settings": {
-            "heading": "Newsletter",
-            "content": "<p>Tell customers why they should subscribe to your newsletter.<\/p>",
-            "button": "Subscribe",
+            "heading": "Nieuwsbrief",
+            "content": "<p>Schrijf je in voor de nieuwsbrief!<\/p>",
+            "button": "Aanmelden",
             "disclaimer": "<p>Include an additional disclaimer to clarify how you will use a subscribers email.<\/p>",
-            "success": "<p>Success! You’ve been subscribed.<\/p>"
+            "success": "<p>Je bent succesvol aangemeld!<\/p>"
           }
         },
         "ddf76c2c-f27e-4cd5-b88b-5a8075e4659e": {

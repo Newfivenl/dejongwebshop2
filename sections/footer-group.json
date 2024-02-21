@@ -43,6 +43,7 @@
         },
         "6ad6b950-210d-4cf8-b231-62c67db4980e": {
           "type": "menu",
+          "disabled": true,
           "settings": {
             "menu": "my-account"
           }

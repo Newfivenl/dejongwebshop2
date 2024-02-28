@@ -54,10 +54,10 @@
         "template--20644271554834__2cb9d59b-242d-48e7-821a-ae61144186e8-content-1": {
           "type": "content",
           "settings": {
-            "heading": "Disposables is ons vak",
-            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed<\/p>",
+            "heading": "Bekijk onze frietbakjes",
+            "content": "<p>Zie hier ons brede assortiment frietbakjes.<\/p>",
             "button_label": "Shop Frietbakjes",
-            "button_url": "shopify:\/\/collections",
+            "button_url": "shopify:\/\/collections\/frietbakjes",
             "full_block_link": false,
             "image_featured": "shopify:\/\/shop_images\/image-3-col.png",
             "enable_autoplay": true,
@@ -106,8 +106,8 @@
         "template--20644271554834__2cb9d59b-242d-48e7-821a-ae61144186e8-content-3": {
           "type": "content",
           "settings": {
-            "heading": "Anim id est laborum",
-            "content": "<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui<\/p>",
+            "heading": "Bekijk onze foodtrays",
+            "content": "<p>Zie hier ons brede assortiment aan verschillende foodtrays ed d ed dde de dede<\/p>",
             "button_label": "Shop Foodtrays",
             "button_url": "shopify:\/\/collections\/all",
             "full_block_link": false,
@@ -160,8 +160,8 @@
           "settings": {
             "heading": "Disposables is ons vak",
             "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed<\/p>",
-            "button_label": "Shop Reitjes",
-            "button_url": "shopify:\/\/collections\/all",
+            "button_label": "Shop Ritjes",
+            "button_url": "shopify:\/\/collections\/rietjes",
             "full_block_link": false,
             "image_featured": "shopify:\/\/shop_images\/img-2col-1.png",
             "enable_autoplay": true,
@@ -187,7 +187,7 @@
             "heading": "Disposables is ons vak",
             "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed<\/p>",
             "button_label": "Shop Clear Cups",
-            "button_url": "shopify:\/\/products\/toykits-boer-zoekt",
+            "button_url": "shopify:\/\/collections\/clear-cups",
             "full_block_link": false,
             "image_featured": "shopify:\/\/shop_images\/img-2col-2.png",
             "enable_autoplay": true,
@@ -243,7 +243,7 @@
         "heading": "Disposables is ons vak",
         "content": "<p>Duurzame disposables zijn in deze huidige tijd “natuurlijk” niet meer weg te denken, het is een thema die hoog op onze agenda staat. Ons uitgebreide duurzame disposable assortiment is wederom een serie topproducten dat niet te vergelijken is met de traditionele disposables. Het programma is uitgevoerd in een stevige kwaliteit papier, karton en suikerriet (bagasse). Daarnaast bevat ons assortiment een serie duurzaam bestek zoals, bamboe snack vorkjes en ijslepeltjes.<br\/><br\/>De meeste producten zijn gemaakt van volledig hernieuwbare grondstoffen, die volledig composteerbaar zijn. Met deze milieuvriendelijke disposables zetten wij een nieuwe standaard voor kwaliteit en duurzaamheid.<br\/><\/p>",
         "button_label": "",
-        "button_url": "",
+        "button_url": "shopify:\/\/collections\/clear-cups",
         "spacing_top": 100,
         "spacing_bottom": 100,
         "color_scheme": "color__bg-body color__text",

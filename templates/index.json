@@ -83,7 +83,7 @@
             "heading": "Bekijk onze pizzadozen",
             "content": "<p>Zie hier onze brede assortiment aan pizzadozen<\/p>",
             "button_label": "Shop Pizzadozen",
-            "button_url": "shopify:\/\/collections\/all",
+            "button_url": "shopify:\/\/collections\/pizzadozen",
             "full_block_link": false,
             "image_featured": "shopify:\/\/shop_images\/image-3-col2.png",
             "enable_autoplay": true,

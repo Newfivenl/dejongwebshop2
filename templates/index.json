@@ -55,7 +55,7 @@
           "type": "content",
           "settings": {
             "heading": "Bekijk onze frietbakjes",
-            "content": "<p>Zie hier ons brede assortiment frietbakjes<\/p>",
+            "content": "<p>Zie hier ons brede assortiment aan frietbakjes<\/p>",
             "button_label": "Shop Frietbakjes",
             "button_url": "shopify:\/\/collections\/frietbakjes",
             "full_block_link": false,

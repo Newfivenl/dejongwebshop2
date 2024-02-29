@@ -279,7 +279,7 @@
             "color_text": "color__text",
             "color_button": "btn",
             "enable_gradient": false,
-            "layout_y_alignment": "items-end content-end",
+            "layout_y_alignment": "items-start content-start",
             "layout_x_alignment": "",
             "layout_row_span": "row-span-1",
             "layout_col_span": "col-span-1 md: md:col-span-1"
@@ -318,7 +318,7 @@
       ],
       "settings": {
         "heading": "Disposables bedrukken",
-        "content": "<p>Wilt u disposables bedrukken? De Jong Disposables onderscheidt zich binnen deze markt vooral door het aanbieden van het bedrukken van disposables, waarbij voor iedere klant een passend producten pakket wordt samengesteld.<br\/><br\/>Vaak worden deze disposables voorzien van een eigen bedrukking en indien er geen passend product voor handen is, kan dit speciaal ontwikkeld worden.<br\/><br\/>Praktisch al onze disposables zijn te voorzien van uw logo of design, voor alle mogelijkheden nodigen wij u graag uit bij ons op de showroom in Tynaarlo.<\/p>",
+        "content": "<p>Wilt u <a href=\"https:\/\/dejongwebshop.nl\/product-category\/disposables-bedrukken\/\">disposables bedrukken<\/a>? De Jong Disposables onderscheidt zich binnen deze markt vooral door het aanbieden van het bedrukken van disposables, waarbij voor iedere klant een passend producten pakket wordt samengesteld.<\/p><p>Vaak worden deze disposables voorzien van een eigen bedrukking en indien er geen passend product voor handen is, kan dit speciaal ontwikkeld worden.<\/p><p>Praktisch al onze disposables zijn te voorzien van uw logo of design, voor alle mogelijkheden nodigen wij u graag uit bij ons op de showroom in Tynaarlo.<\/p><p><\/p><p><\/p><p><\/p>",
         "button_label": "",
         "button_url": "shopify:\/\/collections\/disposables-bedrukken",
         "spacing_top": 100,

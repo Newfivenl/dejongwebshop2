@@ -55,7 +55,7 @@
           "type": "content",
           "settings": {
             "heading": "Bekijk onze frietbakjes",
-            "content": "<p>Zie hier ons brede assortiment frietbakjes.<\/p>",
+            "content": "<p>Zie hier ons brede assortiment frietbakjes<\/p>",
             "button_label": "Shop Frietbakjes",
             "button_url": "shopify:\/\/collections\/frietbakjes",
             "full_block_link": false,
@@ -70,32 +70,6 @@
             "color_border": "color__border-divider-1",
             "color_text": "color__text",
             "color_button": "btn",
-            "enable_gradient": false,
-            "layout_y_alignment": "items-end content-end",
-            "layout_x_alignment": "",
-            "layout_row_span": "row-span-1",
-            "layout_col_span": "col-span-1 md: md:col-span-1"
-          }
-        },
-        "content_piKywT": {
-          "type": "content",
-          "disabled": true,
-          "settings": {
-            "heading": "Block heading",
-            "content": "<p>Describe a product, make announcements, or inform customers about a promotion.<\/p>",
-            "button_label": "Button",
-            "button_url": "",
-            "full_block_link": false,
-            "enable_autoplay": true,
-            "enable_mute_toggle": true,
-            "enable_loop": true,
-            "spacing_top": 80,
-            "spacing_bottom": 0,
-            "enable_padding": true,
-            "color_scheme": "color__bg-body color__text",
-            "color_border": "color__border-divider-1",
-            "color_text": "color__text",
-            "color_button": "btn btn--secondary",
             "enable_gradient": false,
             "layout_y_alignment": "items-end content-end",
             "layout_x_alignment": "",
@@ -133,7 +107,7 @@
           "type": "content",
           "settings": {
             "heading": "Bekijk onze foodtrays",
-            "content": "<p>Zie hier ons brede assortiment aan verschillende foodtrays <\/p>",
+            "content": "<p>Zie hier ons brede assortiment aan  foodtrays <\/p>",
             "button_label": "Shop Foodtrays",
             "button_url": "shopify:\/\/collections\/all",
             "full_block_link": false,
@@ -158,7 +132,6 @@
       },
       "block_order": [
         "template--20644271554834__2cb9d59b-242d-48e7-821a-ae61144186e8-content-1",
-        "content_piKywT",
         "template--20644271554834__2cb9d59b-242d-48e7-821a-ae61144186e8-content-2",
         "template--20644271554834__2cb9d59b-242d-48e7-821a-ae61144186e8-content-3"
       ],

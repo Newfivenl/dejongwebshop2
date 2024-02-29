@@ -77,11 +77,37 @@
             "layout_col_span": "col-span-1 md: md:col-span-1"
           }
         },
+        "content_piKywT": {
+          "type": "content",
+          "disabled": true,
+          "settings": {
+            "heading": "Block heading",
+            "content": "<p>Describe a product, make announcements, or inform customers about a promotion.<\/p>",
+            "button_label": "Button",
+            "button_url": "",
+            "full_block_link": false,
+            "enable_autoplay": true,
+            "enable_mute_toggle": true,
+            "enable_loop": true,
+            "spacing_top": 80,
+            "spacing_bottom": 0,
+            "enable_padding": true,
+            "color_scheme": "color__bg-body color__text",
+            "color_border": "color__border-divider-1",
+            "color_text": "color__text",
+            "color_button": "btn btn--secondary",
+            "enable_gradient": false,
+            "layout_y_alignment": "items-end content-end",
+            "layout_x_alignment": "",
+            "layout_row_span": "row-span-1",
+            "layout_col_span": "col-span-1 md: md:col-span-1"
+          }
+        },
         "template--20644271554834__2cb9d59b-242d-48e7-821a-ae61144186e8-content-2": {
           "type": "content",
           "settings": {
-            "heading": "Do eiusmod te",
-            "content": "<p>Tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam<\/p>",
+            "heading": "Bekijk onze pizzadozen",
+            "content": "<p>Zie hier onze brede assortiment aan pizzadozen<\/p>",
             "button_label": "Shop Pizzadozen",
             "button_url": "shopify:\/\/collections\/all",
             "full_block_link": false,
@@ -132,12 +158,13 @@
       },
       "block_order": [
         "template--20644271554834__2cb9d59b-242d-48e7-821a-ae61144186e8-content-1",
+        "content_piKywT",
         "template--20644271554834__2cb9d59b-242d-48e7-821a-ae61144186e8-content-2",
         "template--20644271554834__2cb9d59b-242d-48e7-821a-ae61144186e8-content-3"
       ],
       "settings": {
         "heading": "",
-        "content": "",
+        "content": "<p><\/p><p><\/p>",
         "button_label": "",
         "button_url": "",
         "spacing_top": 100,

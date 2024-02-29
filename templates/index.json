@@ -689,7 +689,7 @@
         "template--20644271554834__153e1f9d-36b0-4e41-84cd-6510d2d62de1-icon-1"
       ],
       "settings": {
-        "heading": "We're the one",
+        "heading": "We’re the one",
         "content": "",
         "button_label": "",
         "button_url": "",
@@ -701,7 +701,7 @@
         "style_border": "border--t-width",
         "row_size_desktop": "md:grid-cols-3",
         "row_size_mobile": "grid-cols-1",
-        "layout_x_alignment": "justify-between",
+        "layout_x_alignment": "text-center justify-center flex-col items-center",
         "visibility": ""
       }
     },

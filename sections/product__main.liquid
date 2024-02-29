@@ -701,19 +701,60 @@ padding-bottom: 100px;">
           {{ section.settings.product_desc }}
         </div> {% endcomment %}
       </div>
-      {% comment %} <div class="table__sepcs ">
+      <div class="table__sepcs max-w-[427px] w-full">
         <div class="w-full table-auto bg-[#E5ECF3] border-solid border-[#D0D1D4] py-[15px] md:px-[15px]  md:py-[30px] md:px-[26px]">
-          <div class="text-left pb-[18px] md:pb-[24px] text-base text-[#333]">{{ section.settings.table_header }}</div>
-          {% for block in section.blocks %}
-            <div class="{% cycle 'bg-white', 'bg-[#E5ECF3]' %}">
-              <div class="flex justify-between">
-                <div class="p-4 text-left text-[#333]">{{ block.settings.specification }}</div>
-                <div class="p-4 text-right text-[#888888]">{{ block.settings.details }}</div>
-              </div>
+          <div class="text-left pb-[18px] md:pb-[24px] text-base text-[#333]">Extra Informatie
             </div>
-          {% endfor %}
+            {% if product.metafields.woo.id_.value %}
+              <div class="even:bg-[#E5ECF3] odd:bg-white">
+                <div class="flex justify-between">
+                <div class="p-4 text-left text-[#333]">SKU</div>
+                <div class="p-4 text-right text-[#888888]">{{  product.metafields.woo.id_.value }}</div>
+              </div>
+              </div>
+            {% endif %}
+            {% if product.metafields.woo.short_description_plain.value %}
+              <div class="even:bg-[#E5ECF3] odd:bg-white">
+                <div class="flex justify-between">
+                <div class="p-4 text-left text-[#333]">Stuks per doos</div>
+                <div class="p-4 text-right text-[#888888]">{{  product.metafields.woo.short_description_plain.value }}</div>
+              </div>
+              </div>
+            {% endif %}
+              {% if product.metafields.woo.length.value %}
+              <div class="even:bg-[#E5ECF3] odd:bg-white">
+                <div class="flex justify-between">
+                <div class="p-4 text-left text-[#333]">Lengte</div>
+                <div class="p-4 text-right text-[#888888]">{{  product.metafields.woo.length.value }}</div>
+              </div>
+              </div>
+            {% endif %}
+            {% if product.metafields.woo.height.value %}
+              <div class="even:bg-[#E5ECF3] odd:bg-white">
+                <div class="flex justify-between">
+                <div class="p-4 text-left text-[#333]">Hoogte</div>
+                <div class="p-4 text-right text-[#888888]">{{  product.metafields.woo.height.value }}</div>
+              </div>
+              </div>
+            {% endif %}
+            {% if product.metafields.woo.width.value %}
+              <div class="even:bg-[#E5ECF3] odd:bg-white">
+                <div class="flex justify-between">
+                <div class="p-4 text-left text-[#333]">Breedte</div>
+                <div class="p-4 text-right text-[#888888]">{{  product.metafields.woo.width.value }}</div>
+              </div>
+              </div>
+            {% endif %}
+            {% if product.metafields.woo_attribute.Diameter.value %}
+              <div class="even:bg-[#E5ECF3] odd:bg-white">
+                <div class="flex justify-between">
+                  <div class="p-4 text-left text-[#333]">Diameter</div>
+                  <div class="p-4 text-right text-[#888888]">{{  product.metafields.woo_attribute.Diameter.value }}</div>
+                </div>
+              </div>
+            {% endif %}
         </div>
-      </div> {% endcomment %}
+      </div> 
     </div>
   </div>
 

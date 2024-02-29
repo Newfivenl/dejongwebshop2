@@ -1768,6 +1768,10 @@ img:after {
   height: 100%;
 }
 
+.h-20 {
+  height: 5rem;
+}
+
 .max-h-\[100vh\] {
   max-height: 100vh;
 }
@@ -2042,6 +2046,10 @@ img:after {
 
 .w-screen {
   width: 100vw;
+}
+
+.w-20 {
+  width: 5rem;
 }
 
 .\!min-w-0 {
@@ -2366,6 +2374,10 @@ img:after {
   gap: 5rem;
 }
 
+.gap-3 {
+  gap: 0.75rem;
+}
+
 .gap-4 {
   gap: 1rem;
 }
@@ -2380,6 +2392,10 @@ img:after {
 
 .gap-\[32px\] {
   gap: 32px;
+}
+
+.gap-5 {
+  gap: 1.25rem;
 }
 
 .gap-x-1 {
@@ -2710,6 +2726,11 @@ img:after {
 .py-\[32px\] {
   padding-top: 32px;
   padding-bottom: 32px;
+}
+
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 
 .\!pb-4 {

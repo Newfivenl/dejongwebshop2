@@ -82,9 +82,19 @@
                   <div class="flex justify-between overflow-hidden 
                     {{ section.settings.dropdown_color_border }}">
   
-                    <div class="flex flex-wrap flex-grow">
+                    <div class="py-8 grid grid-cols-3 gap-3 ">
                       {% for child_link in link.links %}
-                        <div class="py-8 pr-12">
+                        <div class="py-3 pr-12 flex gap-2 items-center">
+                          {% unless child_link.title contains "Andere categorieën" %}
+                          <div>
+                            <img class="w-20 h-20"
+                            height="25"
+                            width="25"
+                            loading="lazy"
+                            src="{{ child_link.title |  handleize |  append: '.jpg' | file_img_url: "master" }}" 
+                            alt="{{ child_link.title }}" />
+                          </div>
+                          {% endunless %}
                           <a href="{{ child_link.url }}" class="type__body--bold block mb-4 no-underline">
                             {{ child_link.title }}
                           </a>

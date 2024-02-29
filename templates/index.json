@@ -107,7 +107,7 @@
           "type": "content",
           "settings": {
             "heading": "Bekijk onze foodtrays",
-            "content": "<p>Zie hier ons brede assortiment aan verschillende foodtrays ed d ed dde de dede<\/p>",
+            "content": "<p>Zie hier ons brede assortiment aan verschillende foodtrays <\/p>",
             "button_label": "Shop Foodtrays",
             "button_url": "shopify:\/\/collections\/all",
             "full_block_link": false,

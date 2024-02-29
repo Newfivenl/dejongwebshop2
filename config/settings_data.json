@@ -29,7 +29,7 @@
     "layout_alignment": "",
     "layout_horizontal": "window",
     "layout_gap_size": 20,
-    "enable_audio": true,
+    "enable_audio": false,
     "enable_animations": true,
     "thumbmails_color_scheme": "color__bg-overlay-1 after:color__bg-overlay-1 color__text after:color__text",
     "thumbnails_color_border": "border--width color__border-divider-1",

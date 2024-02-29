@@ -109,7 +109,7 @@
             "heading": "Bekijk onze foodtrays",
             "content": "<p>Zie hier ons brede assortiment aan  foodtrays <\/p>",
             "button_label": "Shop Foodtrays",
-            "button_url": "shopify:\/\/collections\/all",
+            "button_url": "shopify:\/\/collections\/foodtrays",
             "full_block_link": false,
             "image_featured": "shopify:\/\/shop_images\/image-3-col3.png",
             "enable_autoplay": true,

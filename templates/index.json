@@ -223,7 +223,7 @@
             "spacing_bottom": 0,
             "enable_padding": true,
             "color_scheme": "color__bg-body color__text",
-            "color_border": "!color__border-transparent",
+            "color_border": "color__border-divider-1",
             "color_text": "color__text",
             "color_button": "btn btn--plain",
             "enable_gradient": false,

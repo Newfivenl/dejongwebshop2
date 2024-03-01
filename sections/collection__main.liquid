@@ -76,6 +76,7 @@
 
           {% render 'component__product-item', product: product, source: 'col_main' %}
         {% endfor %}
+      
       </section>
 
       {% if collection.all_products_count == 0 %}
@@ -87,8 +88,13 @@
       {% endif %}
 
     {% endpaginate %}
-
+    {%- unless collection.description == blank %}
+      <div class="py-8">
+        {{ collection.description }}
+      </div>
+    {%- endunless -%}
   </div>
+  
   
 </section>
 

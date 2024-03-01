@@ -2080,6 +2080,10 @@ img:after {
   max-width: 256px;
 }
 
+.max-w-\[427px\] {
+  max-width: 427px;
+}
+
 .max-w-\[45\%\] {
   max-width: 45%;
 }
@@ -2114,14 +2118,6 @@ img:after {
 
 .max-w-xs {
   max-width: 20rem;
-}
-
-.max-w-\[427\[x\]\] {
-  max-width: 427[x];
-}
-
-.max-w-\[427px\] {
-  max-width: 427px;
 }
 
 .flex-1 {

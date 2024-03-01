@@ -108,7 +108,7 @@
     </div>
 
     {% comment %} account and localization button right algined {% endcomment %}
-    <div class="lg:flex lg:w-1/4 items-center justify-end hidden">
+    <div class=" lg:flex lg:w-1/4 items-center justify-end hidden">
       {% if section.settings.layout_alignment == "left" %}
         {% if section.settings.show_localization %}
           {% if settings.enable_region or settings.enable_language %}
@@ -125,13 +125,13 @@
       {% endif %}
 
       {% if section.settings.show_account_link and shop.customer_accounts_enabled %}
-        <a rel="nofollow" href="{{ routes.account_url }}" class="type--smaller ml-2 !no-underline">
+        <button class="nf_show_dialog" class="type--smaller ml-2 !no-underline">
           {% if customer %}
             {{ 'general.navigation.account' | t }}
           {% else %}
             {{ 'customer.account.log_in' | t }}
           {% endif %}
-        </a>
+        </button>
       {% endif %}
     
     </div>

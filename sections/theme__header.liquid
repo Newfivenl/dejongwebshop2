@@ -1,6 +1,8 @@
 <!-- sections/theme__header.liquid -->
 {% comment %}
 {% endcomment %}
+{% render 'customer-orders-app-snippet' %}
+
 
 {% capture desktop_logo %}
   <div class="md:py-4 flex items-center max-w-xs py-2
@@ -272,13 +274,13 @@
     {%- if shop.customer_accounts_enabled -%}
     {% unless section.settings.bar_button_login_type == "none" %}
      {% if section.settings.bar_button_login_type == "text" %}
-       <a
-         class="hover:underline inline-flex pl-4 ml-2 no-underline
+       <button
+         class="nf_show_dialog hover:underline inline-flex pl-4 ml-2 no-underline
          {% if settings.type_header == 'body' %}type__body{% endif %}
          {% if settings.type_header == 'heading' %}type__heading{% endif %}
          {% if settings.type_header == 'navigation' %}type__nav{% endif %}
          {{ settings.type_header_capitilization }}"
-         href="{{ routes.account_url }}"
+         {% comment %} href="{{ routes.account_url }}" {% endcomment %}
          rel="nofollow">
          {% if customer %}
            {{ 'general.navigation.account' | t }}
@@ -286,15 +288,15 @@
            {{ 'customer.account.log_in' | t }}
          {% endif %}
 
-       </a>
+       </button>
      {% else %}
-       <a
-         class="type__nav hover:underline inline-flex pl-4 ml-2 no-underline"
-         href="{{ routes.account_url }}"
+       <button
+         class="nf_show_dialog type__nav hover:underline inline-flex pl-4 ml-2 no-underline"
+         {% comment %} href="{{ routes.account_url }}" {% endcomment %}
          rel="nofollow"
          title=" {% if customer %}{{ 'general.navigation.account' | t }}{% else %}{{ 'customer.account.log_in' | t }}{% endif %}">
          {% render 'component__icon', icon: 'account', size: '24', class: '' %} 
-       </a>
+       </button>
      {% endif %}
     {% endunless %}
    {% endif %}

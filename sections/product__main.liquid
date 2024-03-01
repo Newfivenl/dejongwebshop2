@@ -721,7 +721,7 @@ padding-bottom: 100px;">
               </div>
               </div>
             {% endif %}
-              {% if product.metafields.woo.length.value %}
+              {% if product.metafields.woo.length.value and product.metafields.woo.length.value != "0" %}
               <div class="even:bg-[#E5ECF3] odd:bg-white">
                 <div class="flex justify-between">
                 <div class="p-4 text-left text-[#333]">Lengte</div>
@@ -729,7 +729,7 @@ padding-bottom: 100px;">
               </div>
               </div>
             {% endif %}
-            {% if product.metafields.woo.height.value %}
+            {% if product.metafields.woo.height.value and product.metafields.woo.height.value != "0" %}
               <div class="even:bg-[#E5ECF3] odd:bg-white">
                 <div class="flex justify-between">
                 <div class="p-4 text-left text-[#333]">Hoogte</div>
@@ -737,7 +737,7 @@ padding-bottom: 100px;">
               </div>
               </div>
             {% endif %}
-            {% if product.metafields.woo.width.value %}
+            {% if product.metafields.woo.width.value and product.metafields.woo.width.value != "0" %}
               <div class="even:bg-[#E5ECF3] odd:bg-white">
                 <div class="flex justify-between">
                 <div class="p-4 text-left text-[#333]">Breedte</div>

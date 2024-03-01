@@ -9,8 +9,8 @@
         "enable_gradient": false,
         "style_border": "border--b-width",
         "layout_y_spacing": "min-h-[250px] md:min-h-[350px]",
-        "layout_y_alignment": "items-end",
-        "layout_x_alignment": "justify-start",
+        "layout_y_alignment": "items-center",
+        "layout_x_alignment": "justify-center text-center",
         "visibility": "",
         "enable_description": false,
         "enable_image": true

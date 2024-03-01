@@ -12,8 +12,8 @@
         "layout_y_alignment": "items-end",
         "layout_x_alignment": "justify-start",
         "visibility": "",
-        "enable_description": true,
-        "enable_image": false
+        "enable_description": false,
+        "enable_image": true
       }
     },
     "grid": {

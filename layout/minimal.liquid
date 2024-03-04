@@ -1,3 +1,7 @@
+{%- comment %}<locksmith:cb18>{% endcomment -%}
+  {%- include 'locksmith' -%}
+{%- comment %}</locksmith:cb18>{% endcomment -%}
+
 <!DOCTYPE html>
 <html 
   class="min-h-[100vh]"
@@ -8,6 +12,7 @@
     updateCart(false);">
 
   <head>
+    {{ locksmith_initializations }}
     {% render 'theme__meta' %}
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     {%- unless settings.type_font_heading.system? and settings.type_font_body.system? -%}

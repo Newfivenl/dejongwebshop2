@@ -243,6 +243,27 @@
       "edit": "Éditer",
       "all_addresses": "Toutes les adresses",
       "billing_address": "Adresse de facturation"
+    },
+    "log_in": "Connexion",
+    "log_out": "Déconnexion",
+    "login_page": {
+      "cancel": "Annuler",
+      "create_account": "Créer un compte",
+      "email": "E-mail",
+      "forgot_password": "Mot de passe oublié?",
+      "guest_continue": "Continuer",
+      "guest_title": "Continuer en tant qu'invité(e)",
+      "password": "Mot de passe",
+      "title": "Connexion",
+      "sign_in": "Connexion",
+      "submit": "Envoyer",
+      "new_account_title": "Nouveau! Connexion sans mot de passe",
+      "new_account_p": "Vous recevrez un code par e-mail avec lequel vous pourrez vous connecter.",
+      "new_account_explain_title": "Se souvenir des mots de passe appartient au passé!",
+      "new_account_explain_p": "Que vous ayez un compte ou non, vous connecter sans mot de passe est toujours possible. Visualisez toutes les commandes historiques et commandez facilement à partir de votre liste de commandes personnelle. Vous voulez en savoir plus sur cette nouvelle façon de vous connecter?",
+      "new_account_explain_more": "Vous l'avez lu ici!",
+      "new_account_explain_p_html": "Que vous ayez ou non un compte, la connexion sans mot de passe est toujours possible. Consultez toutes vos commandes précédentes et passez facilement des commandes à partir de votre liste de commandes personnalisée. Vous voulez en savoir plus sur cette nouvelle méthode de connexion?",
+      "new_account_explain_html": "<a href=\"https:\/\/takeaware.nl\/pages\/inloggen-zonder-wachtwoord\">Vous pouvez le lire ici!<\/a>"
     }
   },
   "gift_cards": {

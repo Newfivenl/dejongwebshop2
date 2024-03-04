@@ -1,0 +1,107 @@
+{%- comment -%}
+  ----
+  This snippet file is part of TakeAware COA. Hosted the Authorization Setup for Logged-in Customer.
+  In this snippet file the steps process are:
+  - Prepare and assign variables to compose the data to be use on auth token.
+  - Generate hash and add the prefix for the auth token.
+  - Expose the token on windows object.
+
+  Created by: Dash Reyes - November 2, 2023
+  ----
+{%- endcomment -%}
+{% if customer %}
+
+{%- comment -%} Define constants used for data composition and token generation. {%- endcomment -%}
+{% assign CO_DATA_SEPARATOR = ':::' %}
+
+{%- comment -%} Extract customer ID, email and shop ID. {%- endcomment -%}
+{% assign customerID = customer.id %}
+{% assign customerEmail = customer.email %}
+{% assign shopId = shop.id %}
+
+{% assign customerIDAppended = customerID | append: CO_DATA_SEPARATOR %}
+{% assign customerEmailAppended = customerEmail | append: CO_DATA_SEPARATOR %}
+{% assign shopIdAppended = shopId | append: CO_DATA_SEPARATOR %}
+
+{% assign xCOAppPayload = customerIDAppended | append: customerEmailAppended %}
+{% assign xCOAppPayload = xCOAppPayload | append: shopIdAppended %}
+{% assign xCOAppPayload = xCOAppPayload | base64_encode %}
+
+{%- comment -%} Expose the authentication token and payload data on the global `window` object for frontend use. {%- endcomment -%}
+<script>
+  window.customerOrdersApp = {
+    url: '{{ settings.customer_orders_app_api_base_url | default: 'https://de-jong-coa--development.gadget.app/' }}',
+    urlProxy: '/apps/de-jong-coa-proxy/',
+    authToken: null,
+    payload: '{{ xCOAppPayload }}',
+  };
+
+  const getToken = async () => {
+    const headers = new Headers({
+      'X-COApp-Payload': '{{ xCOAppPayload }}'
+    });
+    const fetchOptions = {
+      method: 'GET',
+      headers,
+      redirect: 'follow',
+    };
+    const tokenResponse = await fetch('/apps/de-jong-coa-proxy/token', fetchOptions);
+    const tokenBody = await tokenResponse.text();
+    const token = JSON.parse(tokenBody);
+
+    // Store the token and its expiration time if it's valid
+    if (token && typeof token.token !== 'undefined') {
+      window.customerOrdersApp['authToken'] = token.token;
+      const now = new Date();
+      // Assuming the token is valid for 300 seconds (5 minutes)
+      const expirationTime = now.getTime() + (300 * 1000);
+      sessionStorage.setItem('customer_orders_app_token', token.token);
+      sessionStorage.setItem('customer_orders_app_token_expiry', expirationTime);
+    }
+  };
+
+  const shouldFetchToken = () => {
+    const exp = sessionStorage.getItem('customer_orders_app_token_expiry');
+    const now = new Date();
+    // Check if the token is expired or not present
+    return !exp || now.getTime() > parseInt(exp);
+  };
+
+  // Fetch the token if it's expired or not present
+  if (shouldFetchToken()) {
+    getToken();
+  } else {
+    // If the token should not be fetched, set it from session storage to the window object
+    const storedToken = sessionStorage.getItem('customer_orders_app_token');
+    if (storedToken) {
+      window.customerOrdersApp['authToken'] = storedToken;
+    }
+  }
+
+  window.refreshTokenIfNeeded = async function() {
+    if (shouldFetchToken()) {
+      await getToken();
+    }
+  }
+</script>
+<script>
+  window.Shopify.theme.stylesheetUrl = '{{ "nf-dialog.css" | asset_url }}';
+  window.Shopify.theme.loading = '{{ "component-loading-overlay.css" | asset_url }}';
+
+  window.pageIcon = `{% render 'icon-caret-new' %}`;
+  window.icon_truck_solid = `{% render 'icon-truck-solid', width: '20px' %}`;
+  window.boxIcon = `{% render 'icon-box'  width: '10px' %}`;
+  window.backButton = `{% render 'icon-arrow' %} {{ 'customer.account_drawer.return_to_account' | t }}`;
+
+  window.String.customerOrder = "{{ 'customer.account_drawer.order' | t }}";
+  window.String.customerTrack_and_trace = "{{ 'customer.account_drawer.track_and_trace' | t }}";
+  window.String.customerDate = "{{ 'customer.account_drawer.date' | t }}";
+  window.String.customerTotal = "{{ 'customer.account_drawer.total' | t }}";
+  window.String.customerOrderDate = "{{ 'customer.order.account_date_html' | t }}";
+
+  window.String.orders_tab = "{{ 'customer.account_drawer.orders_tab' | t }}";
+  window.String.order_list_title = "{{ 'customer.account_drawer.order_list_title' | t }}";
+  window.String.favorites_tab = "{{ 'customer.account_drawer.favorites_tab' | t }}";
+  window.String.reOrderSelectedItems = "{{ 'customer.account_drawer.re_order_selected_items' | t }}";
+</script>
+{% endif %}

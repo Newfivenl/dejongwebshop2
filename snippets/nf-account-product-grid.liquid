@@ -1,0 +1,181 @@
+<div class="account-product__grid">
+  <div class="wishlist_row" data-variant="{{ product.variants[0].id }}">
+    <div class="product-image-box">
+      <a href="{{ product.url }}" class="no-decor">
+        <div class="image-box">
+          <div class="image_wrapper">
+            {{ product.featured_image | image_url: width: 100 | image_tag }}
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="desc-box">
+      <div>
+        <a href="{{ product.url }}">
+          <p class="product_title">{{ product.title }}</p>
+        </a>
+      </div>
+      <div class="price-box">
+        {% if product.variants[0].available %}
+          <p class="price">{{ product.price | money }}</p>
+        {% else %}
+          <div class="account-outofstock">UITVERKOCHT</div>
+        {% endif %}
+      </div>
+      {%- assign current_variant = product.selected_or_first_available_variant -%}
+      <div class="inventory-box">
+        <div class="volume_stocks align-items-center">
+          {% if product.metafields.other.Pieces_per_box.value != blank %}
+            <div class="account-content">
+              <span>{% render 'icon-box-adjusted' %}</span>
+              {{ 'products.product.inhoud_stuks' | t: stuks: product.metafields.other.Pieces_per_box.value }}
+            </div>
+          {% endif %}
+
+          {% if product.variants[0].available %}
+            {% if current_variant.sku != blank %}
+              &nbsp; | &nbsp;
+              <div class="sku">SKU: {{ current_variant.sku }}</div>
+            {% endif %}
+                        {% if product.metafields.other.specifications_dozen_op_pallet.value != blank %}
+              &nbsp; | &nbsp;
+              <div class="sku">{{ product.metafields.other.specifications_dozen_op_pallet.value }} {{ 'products.product.characteristics_label_boxesperpallet' | t }}   </div>
+            {% endif %}
+          {% endif %}
+          {% if customer.tags contains 'custom' %}
+            &nbsp; | &nbsp;
+            {%- assign inventory_count = 0 -%}
+            {%- for variant in product.variants -%}
+              {%- assign inventory_count = inventory_count | plus: variant.inventory_quantity -%}
+            {%- endfor -%}
+            <div class="sku">{{ 'customer.account_drawer.stocked' | t }}: {{ inventory_count }}</div>
+          {% endif %}
+        </div>
+        {% unless product.variants[0].available %}
+          <div class="alternative__products">
+            <details data-target="{{ product.id }}">
+              <summary class="facets__summary caption-large focus-offset">
+                <div>
+                  <div class="alternate-box">
+                    {% render 'icon-caret' %}
+                    <span>Toon alternatieve producten</span>
+                  </div>
+                </div>
+              </summary>
+            </details>
+          </div>
+        {% endunless %}
+      </div>
+
+      {% if product.variants[0].available %}
+        <div class="quantity-spinner orderlist-quantity-spinner">
+          <div class="quantity__box">
+            <button class="minus__button orderlist-minus__button {% unless product.variants[0].available  %}not-allowed disabled  {% endunless %}" type="button">
+              &mdash;
+            </button>
+            <input
+              class="quantity__input orderlist-quantity__input {% unless product.variants[0].available  %}not-allowed disabled  {% endunless %}"
+              type="number"
+              value="0"
+              min="0"
+              tabindex="1">
+            <button class="plus__button orderlist-plus__button {% unless product.variants[0].available  %}not-allowed disabled  {% endunless %}" type="button">
+              +
+            </button>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  {% unless product.variants[0].available %}
+    <div id="{{ product.id }}" class="alternative__product-box">
+      <span class="alternative__products-title">Alternatieve producten</span>
+      {% for item in product.metafields.custom.alternatief.value %}
+        <div class="wishlist_row" data-variant="{{ item.variants[0].id }}">
+          <div class="product-image-box">
+            <a href="{{ item.url }}" class="no-decor">
+              <div class="image-box">
+                <div class="image_wrapper">
+                  <img style="width: 100%" src="{{ item.featured_image | img_url: 100 }}">
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="desc-box">
+            <div>
+              <a href="{{ item.url }}">
+                <p class="product_title">{{ item.title }}</p>
+              </a>
+            </div>
+            {% unless item.variants[0].available %}
+              <div class="account-outofstock">UITVERKOCHT</div>
+            {% endunless %}
+            {% if item.variants[0].available %}
+              <div class="price-box">
+                <p class="price">{{ item.price | money }}</p>
+              </div>
+            {% endif %}
+            {%- assign current_variant = item.selected_or_first_available_variant -%}
+            <div class="inventory-box">
+              <div class="volume_stocks align-items-center">
+                {% if item.metafields.other.Pieces_per_box.value != blank %}
+                  <div class="account-content">
+                    <span>{% render 'icon-box-adjusted' %}</span>
+                    {{ 'products.product.inhoud_stuks' | t: stuks: item.metafields.other.Pieces_per_box.value }}
+                  </div>
+                {% endif %}
+
+                {% if item.variants[0].available %}
+                  {% if current_variant.sku != blank %}
+                    &nbsp; | &nbsp;
+                    <div class="sku">SKU: {{ current_variant.sku }}</div>
+                  {% endif %}
+                {% endif %}
+                {% if customer.tags contains 'custom' %}
+                  &nbsp; | &nbsp;
+                  {%- assign inventory_count = 0 -%}
+                  {%- for variant in product.variants -%}
+                    {%- assign inventory_count = inventory_count | plus: variant.inventory_quantity -%}
+                  {%- endfor -%}
+                  <div class="sku">{{ 'customer.account_drawer.stocked' | t }}: {{ inventory_count }}</div>
+                {% endif %}
+              </div>
+            </div>
+
+            {% if item.variants[0].available %}
+              <div class="quantity-spinner orderlist-quantity-spinner">
+                <div class="quantity__box">
+                  <button class="minus__button orderlist-minus__button {% unless item.variants[0].available  %}not-allowed disabled  {% endunless %}" type="button">
+                    &mdash;
+                  </button>
+                  <input
+                    class="quantity__input orderlist-quantity__input {% unless item.variants[0].available  %}not-allowed disabled  {% endunless %}"
+                    type="number"
+                    value="0"
+                    min="0"
+                    tabindex="1">
+                  <button class="plus__button orderlist-plus__button {% unless item.variants[0].available  %}not-allowed disabled  {% endunless %}" type="button">
+                    +
+                  </button>
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endunless %}
+</div>
+<script>
+  document.querySelectorAll('details').forEach(function (details) {
+    details.addEventListener('toggle', function () {
+      var targetId = this.getAttribute('data-target');
+      var targetContent = document.getElementById(targetId);
+      if (this.open) {
+        targetContent.style.display = 'block';
+      } else {
+        targetContent.style.display = 'none';
+      }
+    });
+  });
+</script>

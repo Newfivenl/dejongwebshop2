@@ -1,44 +1,63 @@
 {%- comment %}<locksmith:e0d8>{% endcomment -%}
-  {%- include 'locksmith' -%}
+{%- include 'locksmith' -%}
 {%- comment %}</locksmith:e0d8>{% endcomment -%}
 
 <!DOCTYPE html>
-<html 
+<html
   class="min-h-[100vh]"
   lang="{{ request.locale.iso_code }}"
-  x-data="app()" 
+  x-data="app()"
   x-init="
     handleSharedCart(); 
     updateCart(false);">
-  <head> 
+  <head>
     {{ locksmith_initializations }}
     {% render 'theme__meta' %}
-    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link
+      rel="preconnect"
+      href="https://cdn.shopify.com"
+      crossorigin>
     {%- unless settings.type_font_heading.system? and settings.type_font_body.system? -%}
-      <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+      <link
+        rel="preconnect"
+        href="https://fonts.shopifycdn.com"
+        crossorigin>
     {%- endunless -%}
     {%- unless settings.type_font_body.system? -%}
-      <link rel="preload" as="font" href="{{ settings.type_font_body | font_url }}" type="font/woff2" crossorigin>
+      <link
+        rel="preload"
+        as="font"
+        href="{{ settings.type_font_body | font_url }}"
+        type="font/woff2"
+        crossorigin>
     {%- endunless -%}
     {%- unless settings.type_font_heading.system? -%}
-      <link rel="preload" as="font" href="{{ settings.type_font_heading | font_url }}" type="font/woff2" crossorigin>
+      <link
+        rel="preload"
+        as="font"
+        href="{{ settings.type_font_heading | font_url }}"
+        type="font/woff2"
+        crossorigin>
     {%- endunless -%}
     {% render 'theme__structured-data' %}
     {% render 'theme__styles' %}
     {{ 'styles.css' | asset_url | stylesheet_tag | preload: true }}
     {{ content_for_header }}
+    <link
+      rel="stylesheet"
+      href="{{ 'nf-dialog.css' | asset_url }}"
+      media="print"
+      onload="this.media='all'">
   </head>
-  <body
-    x-init="initScroll()" 
-     class="min-h-[100vh] break-words 
+  <body x-init="initScroll()" class="min-h-[100vh] break-words 
     {{ template | handle }}">
 
-    <a href="#root"
-      class="top-4 left-4 color__bg-body focus:translate-y-0 border__button--radius fixed z-50 px-4 py-2 no-underline transform -translate-y-20 shadow-md">
+    <a href="#root" class="top-4 left-4 color__bg-body focus:translate-y-0 border__button--radius fixed z-50 px-4 py-2 no-underline transform -translate-y-20 shadow-md">
       {{ 'general.accessibility.skip_to_content' | t }}
     </a>
 
-    <header class="z-30
+    <header
+      class="z-30
       {{ settings.header_position }}
       {% if settings.header_position == 'dynamic' %}sticky top-0 left-0 right-0 animation-300{% endif %} 
       {% if settings.header_position == 'sticky' %}sticky top-0{% endif %}"
@@ -47,7 +66,7 @@
       }"
       x-ref="header"
       {% if settings.header_position == 'dynamic' %}
-        x-bind:style="is_scrolled ? 
+      x-bind:style="is_scrolled ? 
           'transform: translateY(-2rem); opacity: 0; pointer-events: none;' : 
           'transform: none; opacity: 1;'
         "
@@ -70,6 +89,14 @@
     {% render 'theme__error-popup' %}
     {% render 'assets' with 'main.js' %}
     {% render 'theme__scripts' %}
+    <script
+      defer
+      type="module"
+      src="{{ 'nf-dialog.js' | asset_url }}"></script>
+    {% unless customer.tags contains 'b2b' or canonical_url contains 'login' or canonical_url contains 'register' %}
+      {% render 'nf-dialog' %}
+    {% endunless %}
+
   </body>
 
 </html>

@@ -1,6 +1,8 @@
 <!-- sections/theme__header.liquid -->
 {% comment %}
 {% endcomment %}
+{% render 'customer-orders-app-snippet' %}
+
 
 {% capture desktop_logo %}
   <div class="md:py-4 flex items-center max-w-xs py-2
@@ -238,56 +240,17 @@
     
 
     
-    {% if section.settings.bar_button_cart_type == "text" %}
-      <a
-        class="inline-flex pl-4 ml-2 no-underline items-center
-        {% if settings.type_header == 'body' %}type__body{% endif %}
-        {% if settings.type_header == 'heading' %}type__heading{% endif %}
-        {% if settings.type_header == 'navigation' %}type__nav{% endif %}
-        {{ settings.type_header_capitilization }}"
-        {% if settings.cart_icon_behavior == "open_cart_drawer" %} @click.prevent="cart_drawer = true; if(enable_audio) { playSound(click_audio)}"{% endif %}
-        href="{{ routes.cart_url }}"
-        rel="nofollow"
-        >
-        {{ 'cart.general.title' | t }} 
-        <span class="ml-1
-        {% if settings.type_header == 'body' %}type__body{% endif %}
-        {% if settings.type_header == 'heading' %}type__heading{% endif %}
-        {% if settings.type_header == 'navigation' %}type__nav{% endif %}
-        {{ settings.type_header_capitilization }}" 
-          x-show="cart.item_count > 0" 
-          x-cloak>(<span class="
-          {% if settings.type_header == 'body' %}type__body{% endif %}
-          {% if settings.type_header == 'heading' %}type__heading{% endif %}
-          {% if settings.type_header == 'navigation' %}type__nav{% endif %}
-          {{ settings.type_header_capitilization }}" x-text="cart.item_count">{{ cart.item_count }}</span>)</span>
-      </a>
-    {% else %}
-      <a
-        class="type__nav relative inline-flex items-center pl-4 ml-2 !no-underline"
-        href="{{ routes.cart_url }}"
-        rel="nofollow"
-        title="{{ 'cart.general.title' | t }}"
-        {% if settings.cart_icon_behavior == "open_cart_drawer" %}@click.prevent="cart_drawer = true; if(enable_audio) { playSound(click_audio)}"{% endif %}>
-        {% render 'component__icon', icon: 'cart', size: '24', class: '' %} 
-        <span 
-          class="type__nav type--smaller color__bg-primary color__primary ml-1 px-2 py-0.5 border__button--radius"
-          x-show="cart.item_count > 0" 
-          x-cloak>
-          <span class="type__nav" x-text="cart.item_count">{{ cart.item_count }}</span>
-        </span>
-      </a>
-    {% endif %}
+    
     {%- if shop.customer_accounts_enabled -%}
     {% unless section.settings.bar_button_login_type == "none" %}
      {% if section.settings.bar_button_login_type == "text" %}
-       <a
-         class="hover:underline inline-flex pl-4 ml-2 no-underline
+       <button
+         class="nf_show_dialog hover:underline inline-flex pl-4 ml-2 no-underline
          {% if settings.type_header == 'body' %}type__body{% endif %}
          {% if settings.type_header == 'heading' %}type__heading{% endif %}
          {% if settings.type_header == 'navigation' %}type__nav{% endif %}
          {{ settings.type_header_capitilization }}"
-         href="{{ routes.account_url }}"
+         {% comment %} href="{{ routes.account_url }}" {% endcomment %}
          rel="nofollow">
          {% if customer %}
            {{ 'general.navigation.account' | t }}
@@ -295,19 +258,58 @@
            {{ 'customer.account.log_in' | t }}
          {% endif %}
 
-       </a>
+       </button>
      {% else %}
-       <a
-         class="type__nav hover:underline inline-flex pl-4 ml-2 no-underline"
-         href="{{ routes.account_url }}"
+       <button
+         class="nf_show_dialog type__nav hover:underline inline-flex pl-4 ml-2 no-underline"
+         {% comment %} href="{{ routes.account_url }}" {% endcomment %}
          rel="nofollow"
          title=" {% if customer %}{{ 'general.navigation.account' | t }}{% else %}{{ 'customer.account.log_in' | t }}{% endif %}">
          {% render 'component__icon', icon: 'account', size: '24', class: '' %} 
-       </a>
+       </button>
      {% endif %}
     {% endunless %}
    {% endif %}
-   
+   {% if section.settings.bar_button_cart_type == "text" %}
+    <a
+      class="inline-flex pl-4 ml-2 no-underline items-center
+      {% if settings.type_header == 'body' %}type__body{% endif %}
+      {% if settings.type_header == 'heading' %}type__heading{% endif %}
+      {% if settings.type_header == 'navigation' %}type__nav{% endif %}
+      {{ settings.type_header_capitilization }}"
+      {% if settings.cart_icon_behavior == "open_cart_drawer" %} @click.prevent="cart_drawer = true; if(enable_audio) { playSound(click_audio)}"{% endif %}
+      href="{{ routes.cart_url }}"
+      rel="nofollow"
+      >
+      {{ 'cart.general.title' | t }} 
+      <span class="ml-1
+      {% if settings.type_header == 'body' %}type__body{% endif %}
+      {% if settings.type_header == 'heading' %}type__heading{% endif %}
+      {% if settings.type_header == 'navigation' %}type__nav{% endif %}
+      {{ settings.type_header_capitilization }}" 
+        x-show="cart.item_count > 0" 
+        x-cloak>(<span class="
+        {% if settings.type_header == 'body' %}type__body{% endif %}
+        {% if settings.type_header == 'heading' %}type__heading{% endif %}
+        {% if settings.type_header == 'navigation' %}type__nav{% endif %}
+        {{ settings.type_header_capitilization }}" x-text="cart.item_count">{{ cart.item_count }}</span>)</span>
+    </a>
+  {% else %}
+    <a
+      class="type__nav relative inline-flex items-center pl-4 ml-2 !no-underline"
+      href="{{ routes.cart_url }}"
+      rel="nofollow"
+      title="{{ 'cart.general.title' | t }}"
+      {% if settings.cart_icon_behavior == "open_cart_drawer" %}@click.prevent="cart_drawer = true; if(enable_audio) { playSound(click_audio)}"{% endif %}>
+      {% render 'component__icon', icon: 'cart', size: '24', class: '' %} 
+      <span 
+        class="type__nav type--smaller color__bg-primary color__primary ml-1 px-2 py-0.5 border__button--radius"
+        x-show="cart.item_count > 0" 
+        x-cloak>
+        <span class="type__nav" x-text="cart.item_count">{{ cart.item_count }}</span>
+      </span>
+    </a>
+  {% endif %}
    
   </div>
 {% endcapture %}

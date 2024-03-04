@@ -166,6 +166,7 @@
         "blocks": {
           "dc415ec9-53ea-4c8e-aa82-79bb3e7f0b16": {
             "type": "Content",
+            "disabled": true,
             "settings": {
               "heading": "Buy 2 Get 10% Off",
               "content": "<p>Buy any two items and recieve 10% off your order until 10\/10<\/p>"
@@ -173,6 +174,7 @@
           },
           "62364748-86ba-4235-b149-37c37c3a382f": {
             "type": "Content",
+            "disabled": true,
             "settings": {
               "heading": "Free shipping",
               "content": "<p>Spend over $35 and recieve free shipping<\/p>"

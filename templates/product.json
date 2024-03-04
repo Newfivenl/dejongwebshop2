@@ -51,7 +51,7 @@
         "text_ALtDtT": {
           "type": "text",
           "settings": {
-            "content": "<p>Highlight key selling features of your product<\/p>",
+            "content": "",
             "spacing_top": 10,
             "spacing_bottom": 10,
             "color_scheme": "color__bg-body color__text",

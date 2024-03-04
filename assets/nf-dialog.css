@@ -1476,7 +1476,7 @@ svg {
   display: block;
   width: 80%;
   max-width: 1200px;
-  margin-top: 100px;
+  margin: 100px auto 0 auto;
 }
 
 
@@ -1549,7 +1549,7 @@ svg {
 }
 
 #new_login_blurp p {
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 .nf-my-orders__wrapper .nf-my-orders__table .order__id {
@@ -1737,3 +1737,5 @@ svg {
     top: 12vw;
   }
 }
+
+

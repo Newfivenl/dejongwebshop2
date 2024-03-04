@@ -290,8 +290,27 @@
       "edit": "Edit",
       "all_addresses": "All addresses",
       "billing_address": "Billing address"
+    },
+    "log_in": "Inloggen \/ Mijn account",
+    "log_out": "Log out",
+    "login_page": {
+      "cancel": "Cancel",
+      "create_account": "Create account",
+      "email": "Email",
+      "forgot_password": "Forgot your password?",
+      "guest_continue": "Continue",
+      "guest_title": "Continue as a guest",
+      "password": "Password",
+      "title": "Login",
+      "sign_in": "Sign in",
+      "submit": "Submit",
+      "new_account_title": "New! Login new account",
+      "new_account_p": "You will receive a code via email with which you can log in.",
+      "new_account_explain_title": "Remembering passwords is a thing of the past!",
+      "new_account_explain_p_html": "Whether you have an account or not, logging in without a password is always possible. View all historical orders and order easily from your personal order list. <br>Want to know more about this new way of logging in?",
+      "new_account_explain_html": "<a href=\"https:\/\/takeaware.nl\/pages\/inloggen-zonder-wachtwoord\">Your read it here!<\/a>"
     }
-  },
+    },
   "gift_cards": {
     "issued": {
       "subtext": "Your gift card!",

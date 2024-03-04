@@ -310,7 +310,7 @@
       "new_account_explain_p_html": "Whether you have an account or not, logging in without a password is always possible. View all historical orders and order easily from your personal order list. <br>Want to know more about this new way of logging in?",
       "new_account_explain_html": "<a href=\"https:\/\/takeaware.nl\/pages\/inloggen-zonder-wachtwoord\">Your read it here!<\/a>"
     }
-    },
+  },
   "gift_cards": {
     "issued": {
       "subtext": "Your gift card!",

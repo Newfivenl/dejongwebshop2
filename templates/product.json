@@ -48,6 +48,29 @@
             "position": "right"
           }
         },
+        "text_ALtDtT": {
+          "type": "text",
+          "settings": {
+            "content": "<p>Highlight key selling features of your product<\/p>",
+            "spacing_top": 10,
+            "spacing_bottom": 10,
+            "color_scheme": "color__bg-body color__text",
+            "style_border": "",
+            "position": "right"
+          }
+        },
+        "liquid_RUKbKy": {
+          "type": "liquid",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": "<span>{{ shop.name }} <\/span>",
+            "spacing_top": 10,
+            "spacing_bottom": 10,
+            "color_scheme": "color__bg-body color__text",
+            "style_border": "",
+            "position": "right"
+          }
+        },
         "b78b560b-e1c2-428d-ad73-fb5f8aac6d58": {
           "type": "options",
           "settings": {
@@ -189,6 +212,8 @@
         "bef9bd40-2a8e-45c2-ae54-59c9ef6f0e26",
         "853ae7f0-85c9-45dc-8326-6e4044bcf5e5",
         "62c29cd6-a0b5-4f8b-86c0-a48660869d22",
+        "text_ALtDtT",
+        "liquid_RUKbKy",
         "b78b560b-e1c2-428d-ad73-fb5f8aac6d58",
         "b78b560b-e1c2-428d-ad73-fb5f8aac6d53",
         "123fd04c-91f3-4248-a65a-614e2f64fdeb",

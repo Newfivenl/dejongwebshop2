@@ -59,6 +59,9 @@
     {{ section.settings.main_color_scheme }}">
 
     {%- for link in section.settings.main_links.links -%}
+      {%- comment %}<locksmith:d109>{% endcomment -%}
+        {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: section.settings.main_links, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+      {%- comment %}</locksmith:d109>{% endcomment -%}
       <div 
         class="w-full"
         :class="{ 
@@ -104,9 +107,15 @@
             </div>
 
             {% for child_link in link.links %}
+              {%- comment %}<locksmith:069d>{% endcomment -%}
+                {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: child_link, subject_parent: link, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+              {%- comment %}</locksmith:069d>{% endcomment -%}
               {% if child_link.links != blank %}
                 {% capture accordion_content %}
                   {% for grandchild_link in child_link.links %}
+                    {%- comment %}<locksmith:8dda>{% endcomment -%}
+                      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: grandchild_link, subject_parent: child_link, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                    {%- comment %}</locksmith:8dda>{% endcomment -%}
                     <a href="{{ grandchild_link.url }}" class="type__body border--t-width {{ section.settings.main_color_border }} flex items-center justify-between w-full px-4 py-4 pl-8 no-underline">
                       {{ grandchild_link.title }}
                     </a>
@@ -185,6 +194,9 @@
       <div class="border--t-width {{ section.settings.bottom_color_border }} w-full">
         <p class="type--small px-4 py-2 m-0">
           {%- for link in section.settings.bottom_links.links -%}
+            {%- comment %}<locksmith:fdde>{% endcomment -%}
+              {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: section.settings.bottom_links, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+            {%- comment %}</locksmith:fdde>{% endcomment -%}
             <a href="{{ link.url }}" class="mr-2">{{ link.title }}</a>
           {%- endfor -%}
          </p>

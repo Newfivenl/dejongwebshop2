@@ -21,6 +21,9 @@
   {% endif %}
   <div class="whitespace-nowrap md:snap-x scroll-smooth hidescrollbar inline-flex w-full gap-2 py-2 overflow-x-auto overflow-y-hidden">
     {% for linked_product in product.metafields.custom.linked_collection.value.products %}
+      {%- comment %}<locksmith:57b2>{% endcomment -%}
+        {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: linked_product, subject_parent: product.metafields.custom.linked_collection.value, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+      {%- comment %}</locksmith:57b2>{% endcomment -%}
       <button aria-label="{{ value }}" type="button" 
         class="btn btn--plain btn--small bg-center !w-8 !h-8 bg-contain"
         {% if in_focus %} btn--plain border--focus {% else %} btn--plain {% endif %}

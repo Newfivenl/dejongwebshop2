@@ -33,12 +33,18 @@
 
       <div class="whitespace-nowrap md:snap-x inline-flex w-full gap-2 overflow-x-auto" 
         x-ref="slider">
+        {%- comment %}<locksmith:3dd6>{% endcomment -%}
+          {%- assign locksmith_bba1_forloop__size = 0 %}{%- for collection in sub_collections -%}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: collection, variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_bba1_forloop__size = locksmith_bba1_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_bba1_forloop__index = nil -%}
+        {%- comment %}</locksmith:3dd6>{% endcomment -%}
         {%- for collection in sub_collections -%}
+          {%- comment %}<locksmith:3d29>{% endcomment -%}
+            {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: collection, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_bba1_forloop__index == nil %}{% assign locksmith_bba1_forloop__index = 1 %}{% assign locksmith_bba1_forloop__index0 = 0 %}{% else %}{% assign locksmith_bba1_forloop__index = locksmith_bba1_forloop__index | plus: 1 %}{% assign locksmith_bba1_forloop__index0 = locksmith_bba1_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_bba1_forloop__index == 1 %}{% assign locksmith_bba1_forloop__first = true %}{% else %}{% assign locksmith_bba1_forloop__first = false %}{% endif %}{% if locksmith_bba1_forloop__index == locksmith_bba1_forloop__size %}{% assign locksmith_bba1_forloop__last = true %}{% else %}{% assign locksmith_bba1_forloop__last = false %}{% endif %}{% assign locksmith_bba1_forloop__rindex = locksmith_bba1_forloop__size | minus: locksmith_bba1_forloop__index | minus: 1 %}{% assign locksmith_bba1_forloop__rindex0 = locksmith_bba1_forloop__size | minus: locksmith_bba1_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
+          {%- comment %}</locksmith:3d29>{% endcomment -%}
           <div class="md:snap-center flex justify-center flex-none
-            {% if forloop.index0 == 0 %}ml-0{% endif %}
-            {% if forloop.last == true %}mr-4 md:mr-0{% endif %}" 
-            x-intersect:enter.full="index = {{ forloop.index0 }};"
-            x-bind:data-slide="{{ forloop.index0 }}">
+            {% if locksmith_bba1_forloop__index0 == 0 %}ml-0{% endif %}
+            {% if locksmith_bba1_forloop__last == true %}mr-4 md:mr-0{% endif %}" 
+            x-intersect:enter.full="index = {{ locksmith_bba1_forloop__index0 }};"
+            x-bind:data-slide="{{ locksmith_bba1_forloop__index0 }}">
             <div class="flex w-full">
               <a class="btn btn--secondary" href="{{ collection | split: ',' | last }}">
                 {{ collection | split: ',' | first }}

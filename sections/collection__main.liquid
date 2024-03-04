@@ -36,9 +36,16 @@
           column-gap: {{ settings.layout_gap_size }}px;
           row-gap: {{ settings.layout_gap_size | times: 1.5 }}px;
           padding-top:{{ section.settings.spacing_top }}px;">
+        {%- comment %}<locksmith:9b36>{% endcomment -%}
+          {%- assign locksmith_4885_forloop__size = 0 %}{% for product in collection.products %}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collection, variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_4885_forloop__size = locksmith_4885_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_4885_forloop__index = nil -%}
+        {%- comment %}</locksmith:9b36>{% endcomment -%}
         {% for product in collection.products %}
 
-          {% assign gridIndex = forloop.index %}
+          {%- comment %}<locksmith:613d>{% endcomment -%}
+            {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collection, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_4885_forloop__index == nil %}{% assign locksmith_4885_forloop__index = 1 %}{% assign locksmith_4885_forloop__index0 = 0 %}{% else %}{% assign locksmith_4885_forloop__index = locksmith_4885_forloop__index | plus: 1 %}{% assign locksmith_4885_forloop__index0 = locksmith_4885_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_4885_forloop__index == 1 %}{% assign locksmith_4885_forloop__first = true %}{% else %}{% assign locksmith_4885_forloop__first = false %}{% endif %}{% if locksmith_4885_forloop__index == locksmith_4885_forloop__size %}{% assign locksmith_4885_forloop__last = true %}{% else %}{% assign locksmith_4885_forloop__last = false %}{% endif %}{% assign locksmith_4885_forloop__rindex = locksmith_4885_forloop__size | minus: locksmith_4885_forloop__index | minus: 1 %}{% assign locksmith_4885_forloop__rindex0 = locksmith_4885_forloop__size | minus: locksmith_4885_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
+          {%- comment %}</locksmith:613d>{% endcomment -%}
+
+          {% assign gridIndex = locksmith_4885_forloop__index %}
           {% if paginate.current_page == 1 %}
             {% for block in section.blocks %}
               {%- case block.type -%}

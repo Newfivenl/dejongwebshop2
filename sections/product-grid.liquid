@@ -25,6 +25,9 @@
         row-gap: {{ settings.layout_gap_size | times: 1.5 }}px;">
       
       {% for product in collections[section.settings.collection].products limit: section.settings.products_count %}
+        {%- comment %}<locksmith:4f3c>{% endcomment -%}
+          {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collections[section.settings.collection], variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+        {%- comment %}</locksmith:4f3c>{% endcomment -%}
         {% render 'component__product-item', product: product, source: 'prod-grid' %}
       {% endfor %}
 

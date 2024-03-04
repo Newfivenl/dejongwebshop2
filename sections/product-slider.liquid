@@ -22,9 +22,15 @@
     {% assign slider_size = collections[section.settings.collection].products.size | at_most: section.settings.products_count | minus: 1 %}
     
     {%- capture slides -%}
+      {%- comment %}<locksmith:d9d0>{% endcomment -%}
+        {%- assign locksmith_5fb3_forloop__size = 0 %}{% for product in collections[section.settings.collection].products limit: section.settings.products_count %}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collections[section.settings.collection], variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_5fb3_forloop__size = locksmith_5fb3_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_5fb3_forloop__index = nil -%}
+      {%- comment %}</locksmith:d9d0>{% endcomment -%}
       {% for product in collections[section.settings.collection].products limit: section.settings.products_count %}
+        {%- comment %}<locksmith:be85>{% endcomment -%}
+          {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collections[section.settings.collection], variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_5fb3_forloop__index == nil %}{% assign locksmith_5fb3_forloop__index = 1 %}{% assign locksmith_5fb3_forloop__index0 = 0 %}{% else %}{% assign locksmith_5fb3_forloop__index = locksmith_5fb3_forloop__index | plus: 1 %}{% assign locksmith_5fb3_forloop__index0 = locksmith_5fb3_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_5fb3_forloop__index == 1 %}{% assign locksmith_5fb3_forloop__first = true %}{% else %}{% assign locksmith_5fb3_forloop__first = false %}{% endif %}{% if locksmith_5fb3_forloop__index == locksmith_5fb3_forloop__size %}{% assign locksmith_5fb3_forloop__last = true %}{% else %}{% assign locksmith_5fb3_forloop__last = false %}{% endif %}{% assign locksmith_5fb3_forloop__rindex = locksmith_5fb3_forloop__size | minus: locksmith_5fb3_forloop__index | minus: 1 %}{% assign locksmith_5fb3_forloop__rindex0 = locksmith_5fb3_forloop__size | minus: locksmith_5fb3_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
+        {%- comment %}</locksmith:be85>{% endcomment -%}
         <div class="md:w-[26%] flex justify-center flex-none w-8/12" 
-          x-bind:data-slide="{{ forloop.index0 }}">
+          x-bind:data-slide="{{ locksmith_5fb3_forloop__index0 }}">
           {% render 'component__product-item', product: product, source: 'prod-slider' %}
         </div>
       {% endfor %}

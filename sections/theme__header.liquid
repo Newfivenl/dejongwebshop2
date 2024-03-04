@@ -47,6 +47,9 @@
     {% if section.settings.bar_layout_desktop == "left-inline" %}pl-6 flex-grow{% endif %}">   
     <div class="flex flex-wrap items-cetner flex-auto w-64">
       {%- for link in section.settings.dropdown_links.links -%}
+        {%- comment %}<locksmith:2e15>{% endcomment -%}
+          {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: section.settings.dropdown_links, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+        {%- comment %}</locksmith:2e15>{% endcomment -%}
         <div class="flex-shrink">
           <a 
             href="{{ link.url }}"
@@ -84,6 +87,9 @@
   
                     <div class="py-4 grid grid-cols-3 gap-3 ">
                       {% for child_link in link.links %}
+                        {%- comment %}<locksmith:a1e3>{% endcomment -%}
+                          {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: child_link, subject_parent: link, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                        {%- comment %}</locksmith:a1e3>{% endcomment -%}
                         <div class="py-3 pr-12 flex gap-2 items-center">
                           {% unless child_link.title contains "Andere categorieën" %}
                             <a href="{{ child_link.url }}" class="">
@@ -101,6 +107,9 @@
                             {{ child_link.title }}
                           </a>
                           {% for grandchild_link in child_link.links %}
+                            {%- comment %}<locksmith:17b4>{% endcomment -%}
+                              {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: grandchild_link, subject_parent: child_link, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                            {%- comment %}</locksmith:17b4>{% endcomment -%}
                             <a href="{{ grandchild_link.url }}" class="type__body block mb-2 no-underline">
                               {{ grandchild_link.title }}
                             </a>
@@ -415,6 +424,9 @@
 
           <div class="peer-focus:block hover:block focus-within:block hidden bottom-0 fixed color__bg-body w-full left-0 right-0 -z-10 max-h-[70vh] mt-28 border--t-width color__border-divider-1 overflow-scroll">
             {%- for link in section.settings.dropdown_links.links -%}
+              {%- comment %}<locksmith:f9ae>{% endcomment -%}
+                {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: section.settings.dropdown_links, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+              {%- comment %}</locksmith:f9ae>{% endcomment -%}
               <a
                 class="border--b-width color__border-divider-1 block w-full p-4 no-underline"
                 href="{{ link.url }}"
@@ -422,6 +434,9 @@
                 {{- link.title -}}
               </a>
               {% for child_link in link.links %}
+                {%- comment %}<locksmith:0a4c>{% endcomment -%}
+                  {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: child_link, subject_parent: link, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                {%- comment %}</locksmith:0a4c>{% endcomment -%}
                 <a
                   class="border--b-width color__border-divider-1 block w-full p-4 !pl-8 no-underline"
                   href="{{ child_link.url }}"
@@ -429,6 +444,9 @@
                   {{- child_link.title -}}
                 </a>
                 {% for grandchild_link in child_link.links %}
+                  {%- comment %}<locksmith:a7f9>{% endcomment -%}
+                    {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: grandchild_link, subject_parent: child_link, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                  {%- comment %}</locksmith:a7f9>{% endcomment -%}
                   <a
                     class="border--b-width color__border-divider-1 block w-full p-4 !pl-12 no-underline"
                     href="{{ grandchild_link.url }}"

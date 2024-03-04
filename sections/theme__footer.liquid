@@ -157,15 +157,25 @@
       <nav class="md:hidden {{ section.settings.main_color_scheme }}">
         {%- for link in block.settings.menu.links -%}
 
+          {%- comment %}<locksmith:92f4>{% endcomment -%}
+            {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: block.settings.menu, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+          {%- comment %}</locksmith:92f4>{% endcomment -%}
+
           {% if link.levels >= 1 %}
             {% capture accordion_content %}
               {% for child_link in link.links %}
+                {%- comment %}<locksmith:1adb>{% endcomment -%}
+                  {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: child_link, subject_parent: link, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                {%- comment %}</locksmith:1adb>{% endcomment -%}
                 <a href="{{ child_link.url }}" 
                   class="type__body border--t-width flex items-center justify-between w-full px-4 py-4 pl-8 no-underline
                     {{ section.settings.main_color_border }}">
                   {{ child_link.title }}
                 </a>
                 {% for grandchild_link in child_link.links %}
+                  {%- comment %}<locksmith:147c>{% endcomment -%}
+                    {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: grandchild_link, subject_parent: child_link, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                  {%- comment %}</locksmith:147c>{% endcomment -%}
                   <a href="{{ grandchild_link.url }}" 
                     class="type__body border--t-width flex items-center justify-between w-full px-4 py-4 pl-12 no-underline
                       {{ section.settings.main_color_border }}">
@@ -190,8 +200,14 @@
             <noscript>
               <a class="border--t-width {{ section.settings.main_color_border }} block w-full p-4 no-underline" href="{{ link.url }}">{{ link.title }}</a>
               {% for child_link in link.links %}
+                {%- comment %}<locksmith:cfc1>{% endcomment -%}
+                  {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: child_link, subject_parent: link, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                {%- comment %}</locksmith:cfc1>{% endcomment -%}
                 <a class="border--t-width {{ section.settings.main_color_border }} block w-full p-4 !pl-8 no-underline" href="{{ child_link.url }}">{{ child_link.title }}</a>
                 {% for grandchild_link in child_link.links %}
+                  {%- comment %}<locksmith:ea8f>{% endcomment -%}
+                    {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: grandchild_link, subject_parent: child_link, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                  {%- comment %}</locksmith:ea8f>{% endcomment -%}
                   <a class="border--t-width {{ section.settings.main_color_border }} block w-full p-4 !pl-12 no-underline" href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
                 {% endfor %}
               {% endfor %}
@@ -306,16 +322,28 @@
 
               {%- when 'menu' -%}
                 <div class="">
+                  {%- comment %}<locksmith:5872>{% endcomment -%}
+                    {%- assign locksmith_e7c2_forloop__size = 0 %}{%- for link in block.settings.menu.links -%}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: block.settings.menu, variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_e7c2_forloop__size = locksmith_e7c2_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_e7c2_forloop__index = nil -%}
+                  {%- comment %}</locksmith:5872>{% endcomment -%}
                   {%- for link in block.settings.menu.links -%}
+                    {%- comment %}<locksmith:6464>{% endcomment -%}
+                      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: block.settings.menu, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_e7c2_forloop__index == nil %}{% assign locksmith_e7c2_forloop__index = 1 %}{% assign locksmith_e7c2_forloop__index0 = 0 %}{% else %}{% assign locksmith_e7c2_forloop__index = locksmith_e7c2_forloop__index | plus: 1 %}{% assign locksmith_e7c2_forloop__index0 = locksmith_e7c2_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_e7c2_forloop__index == 1 %}{% assign locksmith_e7c2_forloop__first = true %}{% else %}{% assign locksmith_e7c2_forloop__first = false %}{% endif %}{% if locksmith_e7c2_forloop__index == locksmith_e7c2_forloop__size %}{% assign locksmith_e7c2_forloop__last = true %}{% else %}{% assign locksmith_e7c2_forloop__last = false %}{% endif %}{% assign locksmith_e7c2_forloop__rindex = locksmith_e7c2_forloop__size | minus: locksmith_e7c2_forloop__index | minus: 1 %}{% assign locksmith_e7c2_forloop__rindex0 = locksmith_e7c2_forloop__size | minus: locksmith_e7c2_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
+                    {%- comment %}</locksmith:6464>{% endcomment -%}
                     <a href="{{ link.url }}" class="block mb-4 no-underline type__body--bold 
-                      {% if forloop.index > 1 %}mt-6{% endif %}">
+                      {% if locksmith_e7c2_forloop__index > 1 %}mt-6{% endif %}">
                       {{ link.title }}
                     </a>
                     {% for child_link in link.links %}
+                      {%- comment %}<locksmith:723d>{% endcomment -%}
+                        {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: child_link, subject_parent: link, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                      {%- comment %}</locksmith:723d>{% endcomment -%}
                       <a href="{{ child_link.url }}" class="block mb-2 no-underline">
                         {{ child_link.title }}
                       </a>
                       {% for grandchild_link in child_link.links %}
+                        {%- comment %}<locksmith:d8a2>{% endcomment -%}
+                          {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: grandchild_link, subject_parent: child_link, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                        {%- comment %}</locksmith:d8a2>{% endcomment -%}
                         <a href="{{ grandchild_link.url }}" class="block mb-2 no-underline">
                           {{ grandchild_link.title }}
                         </a>
@@ -414,6 +442,9 @@
       <div class="md:w-auto md:text-right w-full">
         <p class="type--small flex flex-wrap gap-2 mb-0">
           {%- for link in section.settings.sub_links.links -%}
+            {%- comment %}<locksmith:d086>{% endcomment -%}
+              {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: section.settings.sub_links, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+            {%- comment %}</locksmith:d086>{% endcomment -%}
             <a href="{{ link.url }}">{{ link.title }}</a>
           {%- endfor -%}
         </p>

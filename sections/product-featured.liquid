@@ -28,8 +28,14 @@
         column-gap: {{ settings.layout_gap_size }}px;
         row-gap: {{ settings.layout_gap_size | times: 1.5 }}px;">
 
+      {%- comment %}<locksmith:9e58>{% endcomment -%}
+        {%- assign locksmith_88d1_forloop__size = 0 %}{% for product in collections[section.settings.collection].products limit: section.settings.products_count %}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collections[section.settings.collection], variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_88d1_forloop__size = locksmith_88d1_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_88d1_forloop__index = nil -%}
+      {%- comment %}</locksmith:9e58>{% endcomment -%}
       {% for product in collections[section.settings.collection].products limit: section.settings.products_count %}
-        {% assign animate_index = forloop.index %}
+        {%- comment %}<locksmith:d267>{% endcomment -%}
+          {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collections[section.settings.collection], variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_88d1_forloop__index == nil %}{% assign locksmith_88d1_forloop__index = 1 %}{% assign locksmith_88d1_forloop__index0 = 0 %}{% else %}{% assign locksmith_88d1_forloop__index = locksmith_88d1_forloop__index | plus: 1 %}{% assign locksmith_88d1_forloop__index0 = locksmith_88d1_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_88d1_forloop__index == 1 %}{% assign locksmith_88d1_forloop__first = true %}{% else %}{% assign locksmith_88d1_forloop__first = false %}{% endif %}{% if locksmith_88d1_forloop__index == locksmith_88d1_forloop__size %}{% assign locksmith_88d1_forloop__last = true %}{% else %}{% assign locksmith_88d1_forloop__last = false %}{% endif %}{% assign locksmith_88d1_forloop__rindex = locksmith_88d1_forloop__size | minus: locksmith_88d1_forloop__index | minus: 1 %}{% assign locksmith_88d1_forloop__rindex0 = locksmith_88d1_forloop__size | minus: locksmith_88d1_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
+        {%- comment %}</locksmith:d267>{% endcomment -%}
+        {% assign animate_index = locksmith_88d1_forloop__index %}
         {% render 'component__product-featured-item', 
           product: product,
           animate_index: animate_index %}

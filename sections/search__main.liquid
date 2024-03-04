@@ -60,6 +60,9 @@
           column-gap: {{ settings.layout_gap_size }}px;
           row-gap: {{ settings.layout_gap_size | times: 1.5 }}px;">
         {% for item in search.results %}
+          {%- comment %}<locksmith:17b3>{% endcomment -%}
+            {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: item, subject_parent: search, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+          {%- comment %}</locksmith:17b3>{% endcomment -%}
           {% render 'component__search-item', item: item %}
         {% endfor %}
       </section>

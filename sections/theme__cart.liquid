@@ -532,10 +532,16 @@
                     </div>
                     
                     <div class="whitespace-nowrap md:snap-x md:gap-4 hidescrollbar inline-flex w-full gap-2 px-4 overflow-x-auto" x-ref="slider">
+                      {%- comment %}<locksmith:f1da>{% endcomment -%}
+                        {%- assign locksmith_a9d2_forloop__size = 0 %}{% for product in collections[section.settings.cart_upsell_products].products limit: 5 %}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collections[section.settings.cart_upsell_products], variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_a9d2_forloop__size = locksmith_a9d2_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_a9d2_forloop__index = nil -%}
+                      {%- comment %}</locksmith:f1da>{% endcomment -%}
                       {% for product in collections[section.settings.cart_upsell_products].products limit: 5 %}
+                        {%- comment %}<locksmith:03b8>{% endcomment -%}
+                          {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collections[section.settings.cart_upsell_products], variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_a9d2_forloop__index == nil %}{% assign locksmith_a9d2_forloop__index = 1 %}{% assign locksmith_a9d2_forloop__index0 = 0 %}{% else %}{% assign locksmith_a9d2_forloop__index = locksmith_a9d2_forloop__index | plus: 1 %}{% assign locksmith_a9d2_forloop__index0 = locksmith_a9d2_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_a9d2_forloop__index == 1 %}{% assign locksmith_a9d2_forloop__first = true %}{% else %}{% assign locksmith_a9d2_forloop__first = false %}{% endif %}{% if locksmith_a9d2_forloop__index == locksmith_a9d2_forloop__size %}{% assign locksmith_a9d2_forloop__last = true %}{% else %}{% assign locksmith_a9d2_forloop__last = false %}{% endif %}{% assign locksmith_a9d2_forloop__rindex = locksmith_a9d2_forloop__size | minus: locksmith_a9d2_forloop__index | minus: 1 %}{% assign locksmith_a9d2_forloop__rindex0 = locksmith_a9d2_forloop__size | minus: locksmith_a9d2_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
+                        {%- comment %}</locksmith:03b8>{% endcomment -%}
                         {% render 'component__upsell-slider-item', 
                           product: product, 
-                          index: forloop.index0 %}
+                          index: locksmith_a9d2_forloop__index0 %}
                       {% endfor %}
                     </div>
               

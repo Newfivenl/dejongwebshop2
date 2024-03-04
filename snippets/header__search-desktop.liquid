@@ -118,6 +118,9 @@
                     <strong>{{ 'general.search.top_searches' | t }}</strong>
                   </span>
                   {%- for link in section.settings.search_links.links -%}
+                    {%- comment %}<locksmith:788b>{% endcomment -%}
+                      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: section.settings.search_links, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                    {%- comment %}</locksmith:788b>{% endcomment -%}
                     <a class="block no-underline"
                       href="{{ link.url }}">
                       {{ link.title }}

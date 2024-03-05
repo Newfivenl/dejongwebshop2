@@ -17,42 +17,18 @@
         "enable_image": true
       }
     },
-    "banner_alternative_H8LxUL": {
-      "type": "banner-alternative",
-      "blocks": {
-        "heading_mUq6pR": {
-          "type": "heading",
-          "disabled": true,
-          "settings": {
-            "content": "Heading"
-          }
-        },
-        "buttons_MpX889": {
-          "type": "buttons",
-          "disabled": true,
-          "settings": {
-            "button_color": "btn",
-            "button_label": "Button label",
-            "button_url": "\/collections\/all",
-            "secondary_button_color": "btn btn--neutral",
-            "secondary_button_label": "Button label",
-            "secondary_button_url": "\/collections\/all"
-          }
-        }
-      },
-      "block_order": [
-        "heading_mUq6pR",
-        "buttons_MpX889"
-      ],
+    "banner_zVr6KF": {
+      "type": "banner",
       "settings": {
         "image_background_desktop": "shopify:\/\/shop_images\/Banner_Toykits.png",
+        "show_entire_image": false,
         "enable_lazy_loading": false,
+        "show_video_background_mobile": true,
         "color_scheme": "color__bg-overlay-1 color__text",
         "color_text": "",
         "color_border": "color__border-divider-1",
+        "enable_gradient": false,
         "style_border": "border--b-width",
-        "content_width": 10,
-        "image_position": "left",
         "layout_y_spacing": "min-h-[250px] md:min-h-[350px]",
         "layout_y_alignment": "items-center",
         "layout_x_alignment": "justify-center text-center",
@@ -181,7 +157,7 @@
   },
   "order": [
     "banner",
-    "banner_alternative_H8LxUL",
+    "banner_zVr6KF",
     "grid",
     "6de8e6ab-8c94-4e9f-b76e-c22d4580d234",
     "recent",

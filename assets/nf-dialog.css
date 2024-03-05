@@ -1500,13 +1500,23 @@ svg {
 #old_login,
 #new_login {
   position: relative;
-  float: left;
-  width: 45%;
+  /* float: left;
+  width: 45%; */
 }
 
 #new_login {
   margin-left: 10%;
 }
+#new_login .new_login_header{
+  font-weight:800;
+  font-size: 30px;
+  text-align: center;
+}
+#new_login .new_login_description{
+  margin-top: 30px;
+  text-align: center;
+}
+
 
 @media screen and (max-width: 1200px) {
 

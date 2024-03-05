@@ -35,7 +35,7 @@
   }
 {%- endstyle -%}
 <div class="customer login section-{{ section.id }}-padding">
-  <div id="old_login">
+  {% comment %} <div id="old_login">
     <h1
       id="recover"
       tabindex="-1"
@@ -228,12 +228,12 @@
 
       {%- endform -%}
     </div>
-  </div>
+  </div> {% endcomment %}
 
   <div id="new_login">
     <div class="center" style="margin-top:20px;">
-      <h1 style="font-weight:800; font-size: 30px;">{{ 'customer.login_page.new_account_title' | t }}</h1>
-      <p style="margin-top: 30px;">{{ 'customer.login_page.new_account_p' | t }}</p>
+      <h1 class="new_login_header" style="">{{ 'customer.login_page.new_account_title' | t }}</h1>
+      <p  class="new_login_description" style="">{{ 'customer.login_page.new_account_p' | t }}</p>
       <a
         href="/customer_identity/sso_hint{% if request.locale.iso_code == 'nl' %}?lang=NL{% endif %}"
         class="btn btn-primary btn-block button button-login"

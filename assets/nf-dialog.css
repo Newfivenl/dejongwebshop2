@@ -1647,7 +1647,7 @@ svg {
 
 .nf-tab--container{
   display: grid;
-  grid-gap: 3rem;
+  grid-gap: 1.5rem;
   align-items: center;
   grid-template-columns: auto 1fr 0.05fr;
   background-color: #f5f5f5;

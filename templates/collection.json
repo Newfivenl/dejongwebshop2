@@ -27,13 +27,6 @@
             "content": "Heading"
           }
         },
-        "content_6xUdUN": {
-          "type": "content",
-          "disabled": true,
-          "settings": {
-            "content": "<p>Describe a product, make announcements, or welcome customers to your store.<\/p>"
-          }
-        },
         "buttons_MpX889": {
           "type": "buttons",
           "disabled": true,
@@ -49,21 +42,20 @@
       },
       "block_order": [
         "heading_mUq6pR",
-        "content_6xUdUN",
         "buttons_MpX889"
       ],
       "settings": {
-        "image_background_desktop": "shopify:\/\/shop_images\/toykits.jpg",
+        "image_background_desktop": "shopify:\/\/shop_images\/Banner_Toykits.png",
         "enable_lazy_loading": false,
         "color_scheme": "color__bg-overlay-1 color__text",
         "color_text": "",
         "color_border": "color__border-divider-1",
         "style_border": "border--b-width",
-        "content_width": 40,
+        "content_width": 10,
         "image_position": "left",
         "layout_y_spacing": "min-h-[250px] md:min-h-[350px]",
-        "layout_y_alignment": "items-end",
-        "layout_x_alignment": "justify-start",
+        "layout_y_alignment": "items-center",
+        "layout_x_alignment": "justify-center text-center",
         "visibility": ""
       }
     },

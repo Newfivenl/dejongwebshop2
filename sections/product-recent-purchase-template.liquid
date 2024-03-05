@@ -1,0 +1,79 @@
+
+
+<div
+  class="account-product__grid"
+>
+{% render 'nf-account-product-grid-recent', product: product %}
+</div>
+{% comment %} <div
+  id="recent-order-wrapper-{{ product.id }}"
+  class="recent_order_row"
+  data-variant="{{ product.variants[0].id }}"
+>
+  <div class="image-box">
+    <a href="{{ product.url }}">
+      <div class="image_wrapper">
+        <img style="width: 100%" src="{{ product.featured_image | img_url: 'square' }}">
+      </div>
+    </a>
+  </div>
+  <div class="desc-box">
+    <a href="{{ product.url }}" class="no-decor">
+      <p class="product_title">{{ product.title }}</p>
+    </a>
+    <div class="large-up-hide">
+      <p class="price">{{ line_item.price | money }}</p>
+    </div>
+    {%- assign current_variant = product.selected_or_first_available_variant -%}
+    <div class="volume_stocks align-items-center">
+      {% if product.metafields.other.Pieces_per_box.value != blank %}
+        <div class="account-content">
+          <span>{% render 'icon-box' %}</span>
+          {{ 'products.product.inhoud_stuks' | t: stuks: product.metafields.other.Pieces_per_box.value }}
+        </div>
+      {% endif %}
+      {% if current_variant.sku != blank %}
+        &nbsp;|&nbsp;
+        {% if product.variants[0].available %}
+          {% if current_variant.sku != blank %}
+            <div class="sku">SKU: {{ current_variant.sku }}</div>
+          {% endif %}
+        {% else %}
+          <small class=""><strong>Out of Stock</strong></small>
+        {% endif %}
+      {% endif %}
+      &nbsp;|&nbsp;
+      <div id="purchase-count-{{ product.id }}" class="sku"></div>
+    </div>
+
+    {% unless product.variants[0].available %}
+      <small class=""><strong>Out of Stock</strong></small>
+    {% endunless %}
+    <div>
+      <div class="recent-quantity-spinner">
+        <button
+          class="minus__button recentMinus-btn {% unless product.variants[0].available  %}not-allowed disabled  {% endunless %}"
+          type="button"
+        >
+          &mdash;
+        </button>
+        <input
+          class="quantity__input recentQuantity-input {% unless product.variants[0].available  %}not-allowed disabled  {% endunless %}"
+          type="number"
+          value="0"
+          min="0"
+          tabindex="1"
+        >
+        <button
+          class="plus__button recentPlus-btn {% unless product.variants[0].available  %}not-allowed disabled  {% endunless %}"
+          type="button"
+        >
+          +
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="price-box small-hide medium-hide">
+    <p class="price">{{ product.price | money }}</p>
+  </div>
+</div> {% endcomment %}

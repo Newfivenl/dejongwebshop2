@@ -5299,4 +5299,4 @@ html {
 
 
 .hc-branding-text {display:none;}
-.hc-faq-content-wrapper {max-width: 800px;}
+.hc-faq-content-wrapper {width: 100%; max-width: 800px;}

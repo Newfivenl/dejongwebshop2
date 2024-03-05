@@ -199,7 +199,14 @@
       "recover_success": "Nous vous avons envoyé un e-mail avec un lien pour réinitialiser votre mot de passe.",
       "submit": "Envoyer",
       "name": "Nom",
-      "shipping": "Adresse de livraison"
+      "shipping": "Adresse de livraison",
+      "title": "Compte",
+      "details": "Détails du compte",
+      "view_addresses": "Voir les adresses",
+      "recent_orders": "Mes produits commandés",
+      "my_wishlist": "Mon liste d'envies",
+      "my_orders": "Mes commandes",
+      "times_ordered": "Nombre de fois commandé:"
     },
     "order": {
       "order_heading": "Commande",

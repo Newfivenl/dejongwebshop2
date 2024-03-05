@@ -558,8 +558,8 @@
             <span>{{ 'customer.account_drawer.order_list_title' | t }}</span>
           </button>
         {% comment %} <button class="tab" data-target="wishlist">
-                                                                                  <span>{{ 'customer.account_drawer.favorites_tab' | t }}</span>
-                                                                  </button> {% endcomment %}
+                                                                                                                <span>{{ 'customer.account_drawer.favorites_tab' | t }}</span>
+                                                                                          </button> {% endcomment %}
         </div>
         <div id="orders" class="tab-content active">
           <div class="nf-section nf-my-orders__wrapper">
@@ -599,9 +599,9 @@
                   <h1>{{ 'customer.account_drawer.order_list_text' | t }}</h1>
                 </div>
               </div>
-              {% if customer.metafields.customer.product_list.value %}
+              {% if customer.metafields.custom.product_list.value %}
                 <div class="nf-my-orders__table recently_ordered">
-                  {%- for product in customer.metafields.customer.product_list.value -%}
+                  {%- for product in customer.metafields.custom.product_list.value -%}
                     {% render 'nf-account-product-grid'
                       , product: product %}
                   {% endfor %}
@@ -618,71 +618,71 @@
           </div>
         </div>
       {% comment %} <div id="wishlist" class="tab-content">
-                                                          <div class="nf-section nf-my-orders__wrapper">
-                                                            <div class="nf-section-heading">
-                                                              <div>
-                                                                <h1>{{ 'customer.account_drawer.my_wishlist' | t }}</h1>
-                                                              </div>
-                                                            </div>
-                                                            <div class="nf-my-orders__table recently_ordered wishlist_grid">
-                                                              <div class="wishlist-new-wrapper">
-                                                                <div
-                                                                  class="test"
-                                                                  {%- if customer -%}
-                                                                  x-data="
-                                                                        {
-                                                                          productIds: window.productIds,
-                                                                          wishlistList: wishlistProductListObj,
-                                                                            wishlistRemoveItem(value) {
-                                                                            let newProductIds = this.productIds.filter((item) => item !== value);
-                                                                            let newWishlist = this.wishlistList.filter((item) => item.id !== value)
-                                                                            const ravenObj = {%- render 'raven-mac-gen-2', resource_id: customer.id, raven_id: 'dJARg7k' -%};
-                                                                            const valueObj = { value: JSON.stringify(newProductIds) };
-                                                                            const requestParams = { raven: Object.assign({}, ravenObj, valueObj) };
-                                                                            const response = fetch('/apps/raven/create_metafield', {
-                                                                              method: 'PUT',
-                                                                              headers: { 'Content-Type': 'application/json' },
-                                                                              body: JSON.stringify(requestParams)
-                                                                            })
-                                                                            response
-                                                                            .then(res => {
-                                                                              if (res.status === 200) {
-                                                                                this.wishlistList = newWishlist;
-                                                                                this.productIds = newProductIds;
-                                                                                document.querySelector('.wishlist--count-bubble').innerHTML = this.productIds.length;
-                                                                              } else {
-                                                                                console.error('😞', res)
-                                                                              }
-                                                                            })
+                                                                                  <div class="nf-section nf-my-orders__wrapper">
+                                                                                    <div class="nf-section-heading">
+                                                                                      <div>
+                                                                                        <h1>{{ 'customer.account_drawer.my_wishlist' | t }}</h1>
+                                                                                      </div>
+                                                                                    </div>
+                                                                                    <div class="nf-my-orders__table recently_ordered wishlist_grid">
+                                                                                      <div class="wishlist-new-wrapper">
+                                                                                        <div
+                                                                                          class="test"
+                                                                                          {%- if customer -%}
+                                                                                          x-data="
+                                                                                                {
+                                                                                                  productIds: window.productIds,
+                                                                                                  wishlistList: wishlistProductListObj,
+                                                                                                    wishlistRemoveItem(value) {
+                                                                                                    let newProductIds = this.productIds.filter((item) => item !== value);
+                                                                                                    let newWishlist = this.wishlistList.filter((item) => item.id !== value)
+                                                                                                    const ravenObj = {%- render 'raven-mac-gen-2', resource_id: customer.id, raven_id: 'dJARg7k' -%};
+                                                                                                    const valueObj = { value: JSON.stringify(newProductIds) };
+                                                                                                    const requestParams = { raven: Object.assign({}, ravenObj, valueObj) };
+                                                                                                    const response = fetch('/apps/raven/create_metafield', {
+                                                                                                      method: 'PUT',
+                                                                                                      headers: { 'Content-Type': 'application/json' },
+                                                                                                      body: JSON.stringify(requestParams)
+                                                                                                    })
+                                                                                                    response
+                                                                                                    .then(res => {
+                                                                                                      if (res.status === 200) {
+                                                                                                        this.wishlistList = newWishlist;
+                                                                                                        this.productIds = newProductIds;
+                                                                                                        document.querySelector('.wishlist--count-bubble').innerHTML = this.productIds.length;
+                                                                                                      } else {
+                                                                                                        console.error('😞', res)
+                                                                                                      }
+                                                                                                    })
 
-                                                                          },
-                                                                          isPresent(value) {
-                                                                            return this.wishlistList.map(i => i.id).includes(value)
-                                                                          }
-                                                                        }
-                                                                      "
-                                                                  x-init="
-                                                                        wishlistList.forEach(function(item) {
-                                                                            productIds.push(item.id);
-                                                                        });
-                                                                      "
-                                                                  {%- endif -%}>
-                                                                  {% for product in wishlist_product_list %}
-                                                                    <div x-show="isPresent({{ product.id }})">
-                                                                      {% render 'nf-account-product-grid-wishlist'
-                                                                        , product: product %}
-                                                                    </div>
-                                                                  {% endfor %}
-                                                                </div>
-                                                              </div>
-                                                            </div>
-                                                            <div class="re-order-cta-btn--wrapper">
-                                                              <button class="re-order-cta wishlist-re-order-btn disabled">
-                                                                {{ 'customer.account_drawer.re_order_selected_items' | t }}
-                                                              </button>
-                                                            </div>
-                                                          </div>
-                                            </div>  {% endcomment %}
+                                                                                                  },
+                                                                                                  isPresent(value) {
+                                                                                                    return this.wishlistList.map(i => i.id).includes(value)
+                                                                                                  }
+                                                                                                }
+                                                                                              "
+                                                                                          x-init="
+                                                                                                wishlistList.forEach(function(item) {
+                                                                                                    productIds.push(item.id);
+                                                                                                });
+                                                                                              "
+                                                                                          {%- endif -%}>
+                                                                                          {% for product in wishlist_product_list %}
+                                                                                            <div x-show="isPresent({{ product.id }})">
+                                                                                              {% render 'nf-account-product-grid-wishlist'
+                                                                                                , product: product %}
+                                                                                            </div>
+                                                                                          {% endfor %}
+                                                                                        </div>
+                                                                                      </div>
+                                                                                    </div>
+                                                                                    <div class="re-order-cta-btn--wrapper">
+                                                                                      <button class="re-order-cta wishlist-re-order-btn disabled">
+                                                                                        {{ 'customer.account_drawer.re_order_selected_items' | t }}
+                                                                                      </button>
+                                                                                    </div>
+                                                                                  </div>
+                                                              </div>  {% endcomment %}
       {% else %}
         {% render 'nf-account-drawer-login' %}
       {% endif %}

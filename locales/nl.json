@@ -238,7 +238,14 @@
       "recover_success": "We hebben u een e-mail gestuurd met een link om uw wachtwoord opnieuw in te stellen.",
       "submit": "Verzenden",
       "name": "Naam",
-      "shipping": "Verzendadres"
+      "shipping": "Verzendadres",
+      "title": "Hallo {{ customer }}",
+      "details": "Accountgegevens",
+      "view_addresses": "Adressen bekijken",
+      "my_wishlist": "Mijn verlanglijst",
+      "my_orders": "Mijn bestellingen",
+      "recent_orders": "Mijn bestelde producten",
+      "times_ordered": "Aantal keren besteld:"
     },
     "order": {
       "order_heading": "Bestelling",

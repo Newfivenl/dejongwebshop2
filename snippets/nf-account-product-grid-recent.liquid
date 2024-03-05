@@ -34,16 +34,17 @@
               <span>{% render 'icon-box-adjusted' %}</span>
               {{ 'products.product.inhoud_stuks' | t: stuks: product.metafields.other.Pieces_per_box.value }}
             </div>
+            &nbsp; | &nbsp;
           {% endif %}
           {% if product.variants[0].available %}
             {% if current_variant.sku != blank %}
-              &nbsp; | &nbsp;
               <div class="sku">SKU: {{ current_variant.sku }}</div>
             {% endif %}
-             {% if product.metafields.other.specifications_dozen_op_pallet.value != blank %}
+            {% if product.metafields.other.specifications_dozen_op_pallet.value != blank %}
               &nbsp; | &nbsp;
-              <div class="sku">{{ product.metafields.other.specifications_dozen_op_pallet.value }} {{ 'products.product.characteristics_label_boxesperpallet' | t }}   </div>
-            {% endif %} 
+              <div class="sku">{{ product.metafields.other.specifications_dozen_op_pallet.value }} {{ 'products.product.characteristics_label_boxesperpallet' | t }}
+              </div>
+            {% endif %}
           {% endif %}
           &nbsp; | &nbsp;
           <div id="purchase-count-{{ product.id }}" class="sku"></div>

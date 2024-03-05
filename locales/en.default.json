@@ -246,8 +246,16 @@
       "submit": "Submit",
       "name": "First name",
       "last_name": "Last name",
-      "shipping": "Shipping address"
+      "shipping": "Shipping address",
+      "title": "Account",
+      "details": "Account details",
+      "view_addresses": "View addresses",
+      "recent_orders": "recent_orders",
+      "my_wishlist": "My wishlist",
+      "my_orders": "My orders",
+      "times_ordered": "Times ordered:"
     },
+
     "order": {
       "order_heading": "Order",
       "orders_heading": "Orders",

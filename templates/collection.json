@@ -48,57 +48,6 @@
         "visibility": ""
       }
     },
-    "0e89127a-40ad-4772-9c39-fee113541231": {
-      "type": "text",
-      "settings": {
-        "heading": "Draagtray voor 2 bekers",
-        "content": "<p>Bent u op zoek om op een veilige manier uw koude of warme dranken in mee te geven? Voor het meegeven van 2 koffie of milkshake bekers is deze milieuvriendelijke draagtray een ideale oplossing.<br\/><br\/>Het is misschien niet het mooiste product uit ons leveringsprogramma, ze zijn echter bijzonder praktisch in gebruik. Door eigen import kunnen wij u dit service product voor een zeer scherpe prijs aanbieden!<br\/><\/p>",
-        "button_label": "",
-        "button_url": "",
-        "spacing_top": 20,
-        "spacing_bottom": 20,
-        "color_scheme": "color__bg-body color__text",
-        "color_border": "color__border-divider-1",
-        "color_button": "btn btn--secondary",
-        "style_border": "",
-        "layout_x_alignment": "",
-        "visibility": ""
-      }
-    },
-    "92e60a0c-5fa2-4d24-abd8-2a8419b5e773": {
-      "type": "text",
-      "settings": {
-        "heading": "Draagtray voor 4 bekers",
-        "content": "<p>Met deze tray verleent u extra service omdat u 4 bekers in één keer kunt meegeven. Draagtrays vergroten de veiligheid voor uw klant omdat hij hete of koude dranken makkelijker kan meenemen. Bovendien kunt u zelf veel efficiënter werken.<br\/><\/p>",
-        "button_label": "",
-        "button_url": "",
-        "spacing_top": 20,
-        "spacing_bottom": 20,
-        "color_scheme": "color__bg-body color__text",
-        "color_border": "color__border-divider-1",
-        "color_button": "btn btn--secondary",
-        "style_border": "",
-        "layout_x_alignment": "",
-        "visibility": ""
-      }
-    },
-    "3cba5b85-93d8-4138-a108-42af8e06a0d6": {
-      "type": "text",
-      "settings": {
-        "heading": "Draagtray geschikt bierbekers",
-        "content": "<p>Deze kartonnen draagtray hebben wij speciaal ontwikkeld voor het veilig meenemen van 6 plastic bierbekers in 1 keer. Op een evenement of catering zijn deze draagtrays onmisbaar, het vergroot uw omzet en het gemak voor de consument.<br\/><br\/>Daarnaast beschikt ons assortiment over een unieke 1 meter biertray, hier kunt u maar liefst 11 bekers in één keer in mee geven. Om u van het complete pakket te voorzien verwijzen wij u naar onze categorie plastic bierglazen.<br\/><br\/>Van goedkope PROPPY (433) bierbekers tot aan luxe PET bierglazen, u vindt het bij De Jong Disposables allemaal.<\/p>",
-        "button_label": "",
-        "button_url": "",
-        "spacing_top": 20,
-        "spacing_bottom": 80,
-        "color_scheme": "color__bg-body color__text",
-        "color_border": "color__border-divider-1",
-        "color_button": "btn btn--secondary",
-        "style_border": "border--b-width",
-        "layout_x_alignment": "",
-        "visibility": ""
-      }
-    },
     "recent": {
       "type": "recent-slider",
       "settings": {
@@ -191,9 +140,6 @@
     "banner",
     "grid",
     "6de8e6ab-8c94-4e9f-b76e-c22d4580d234",
-    "0e89127a-40ad-4772-9c39-fee113541231",
-    "92e60a0c-5fa2-4d24-abd8-2a8419b5e773",
-    "3cba5b85-93d8-4138-a108-42af8e06a0d6",
     "recent",
     "153e1f9d-36b0-4e41-84cd-6510d2d62de1"
   ]

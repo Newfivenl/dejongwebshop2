@@ -1754,5 +1754,5 @@ svg {
 }
 
 details > summary::-webkit-details-marker {
-  display: none;
+  display: none !important;
 }

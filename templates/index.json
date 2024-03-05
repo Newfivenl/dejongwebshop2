@@ -212,7 +212,7 @@
           "settings": {
             "heading": "",
             "content": "",
-            "button_label": "Shop hier onze Milkshake Bekers",
+            "button_label": "Shop Milkshake Bekers",
             "button_url": "shopify:\/\/collections\/milkshake-bekers",
             "full_block_link": true,
             "image_featured": "shopify:\/\/shop_images\/img-1col.png",
@@ -243,7 +243,7 @@
         "heading": "Duurzame disposables",
         "content": "<p>Duurzame disposables zijn in deze huidige tijd \"natuurlijk\" niet meer weg te denken, het is een thema die hoog op onze agenda staat. Ons uitgebreide duurzame disposable assortiment is wederom een serie topproducten dat niet te vergelijken is met de traditionele disposables. Het programma is uitgevoerd in een stevige kwaliteit papier, karton en suikerriet (bagasse). Daarnaast bevat ons assortiment een serie duurzaam bestek zoals, bamboe snack vorkjes en ijslepeltjes.<\/p>",
         "button_label": "",
-        "button_url": "shopify:\/\/collections\/clear-cups",
+        "button_url": "",
         "spacing_top": 100,
         "spacing_bottom": 100,
         "color_scheme": "color__bg-body color__text",
@@ -588,8 +588,8 @@
           "type": "content",
           "settings": {
             "heading": "Over De Jong Disposables",
-            "content": "<p>Al meer dan 35 jaar hebben wij ervaring met disposables. Ons familiebedrijf staat voor kwaliteit, betrouwbaarheid, innovatie en duurzaamheid. En dat tegen een scherpe prijs. We bieden u een groot assortiment aan producten voor eenmalig gebruik. Onze producten voelen prettig aan, zijn stevig en met de nieuwste inzichten en technieken in duurzaamheid gemaakt.<\/p>",
-            "button_label": "Meer informatie",
+            "content": "<p>Al meer dan 35 jaar staat ons familiebedrijf staat kwaliteit, betrouwbaarheid, innovatie en duurzaamheid. En dat tegen een scherpe prijs. Onze producten voelen prettig aan, zijn stevig en met de nieuwste inzichten en technieken in duurzaamheid gemaakt. We werken al jaren voor sectoren als de catering, overheid, fastfood, scholen, evenementen, bioscopen, attractieparken en stadions. Daarbij staat een goede relatie centraal, want wij koesteren u als klant. Ons vaste team helpt u graag met uw vragen en wensen.<\/p><p><\/p>",
+            "button_label": "",
             "button_url": "shopify:\/\/collections\/all",
             "full_block_link": false,
             "enable_autoplay": true,
@@ -774,6 +774,7 @@
         "content_eE9mmc",
         "content_knWVDj"
       ],
+      "disabled": true,
       "settings": {
         "heading": "FAQs",
         "content": "",

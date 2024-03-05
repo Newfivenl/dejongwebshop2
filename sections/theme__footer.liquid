@@ -363,7 +363,7 @@
   </nav>
 
   {%- comment -%}sub footer{%- endcomment -%}
-  <section class="py-4 border--t-width flex flex-wrap gap-4
+  {%- comment -%}  <section class="py-4 border--t-width flex flex-wrap gap-4
     {{ section.settings.sub_color_scheme }}
     {{ section.settings.sub_color_border }}">
     <div class="flex flex-wrap w-full items-center justify-between gap-4 
@@ -507,7 +507,9 @@
       </div>
 
     </div>
+     
   </section>
+   {%- endcomment -%}
 </footer>
 
 {% schema %}

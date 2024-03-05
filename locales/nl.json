@@ -75,7 +75,7 @@
   },
   "collections": {
     "general": {
-      "collection_items": "items",
+      "collection_items": "producten",
       "no_matches": "Sorry, er zijn geen producten in deze collectie"
     },
     "sorting": {

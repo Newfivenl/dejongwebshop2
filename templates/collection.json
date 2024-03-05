@@ -2,6 +2,7 @@
   "sections": {
     "banner": {
       "type": "collection__banner",
+      "disabled": true,
       "settings": {
         "color_scheme": "color__bg-overlay-1 color__text",
         "color_text": "color__text",
@@ -14,6 +15,56 @@
         "visibility": "",
         "enable_description": false,
         "enable_image": true
+      }
+    },
+    "banner_alternative_H8LxUL": {
+      "type": "banner-alternative",
+      "blocks": {
+        "heading_mUq6pR": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "content": "Heading"
+          }
+        },
+        "content_6xUdUN": {
+          "type": "content",
+          "disabled": true,
+          "settings": {
+            "content": "<p>Describe a product, make announcements, or welcome customers to your store.<\/p>"
+          }
+        },
+        "buttons_MpX889": {
+          "type": "buttons",
+          "disabled": true,
+          "settings": {
+            "button_color": "btn",
+            "button_label": "Button label",
+            "button_url": "\/collections\/all",
+            "secondary_button_color": "btn btn--neutral",
+            "secondary_button_label": "Button label",
+            "secondary_button_url": "\/collections\/all"
+          }
+        }
+      },
+      "block_order": [
+        "heading_mUq6pR",
+        "content_6xUdUN",
+        "buttons_MpX889"
+      ],
+      "settings": {
+        "image_background_desktop": "shopify:\/\/shop_images\/toykits.jpg",
+        "enable_lazy_loading": false,
+        "color_scheme": "color__bg-overlay-1 color__text",
+        "color_text": "",
+        "color_border": "color__border-divider-1",
+        "style_border": "border--b-width",
+        "content_width": 40,
+        "image_position": "left",
+        "layout_y_spacing": "min-h-[250px] md:min-h-[350px]",
+        "layout_y_alignment": "items-end",
+        "layout_x_alignment": "justify-start",
+        "visibility": ""
       }
     },
     "grid": {
@@ -138,6 +189,7 @@
   },
   "order": [
     "banner",
+    "banner_alternative_H8LxUL",
     "grid",
     "6de8e6ab-8c94-4e9f-b76e-c22d4580d234",
     "recent",

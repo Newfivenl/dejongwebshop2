@@ -27,7 +27,7 @@
     "type_seperator": "dot",
     "header_position": "dynamic",
     "layout_alignment": "",
-    "layout_horizontal": "window",
+    "layout_horizontal": "window--narrow",
     "layout_gap_size": 20,
     "enable_audio": false,
     "enable_animations": true,

@@ -175,10 +175,9 @@
           },
           "62364748-86ba-4235-b149-37c37c3a382f": {
             "type": "Content",
-            "disabled": true,
             "settings": {
-              "heading": "Free shipping",
-              "content": "<p>Spend over $35 and recieve free shipping<\/p>"
+              "heading": "Gratis verzenden!",
+              "content": "<p>Bij bestellingen boven € 250 verzenden wij gratis!<\/p>"
             }
           }
         },

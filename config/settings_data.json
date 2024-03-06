@@ -44,7 +44,7 @@
     "enable_thumbnails_product_type": false,
     "enable_thumbnails_vendor": false,
     "enable_color_swatches": true,
-    "enable_sku": true,
+    "enable_sku": false,
     "enable_tagline": true,
     "enable_quick_mobile": true,
     "enable_quick_desktop": true,
@@ -175,6 +175,7 @@
           },
           "62364748-86ba-4235-b149-37c37c3a382f": {
             "type": "Content",
+            "disabled": true,
             "settings": {
               "heading": "Gratis verzenden!",
               "content": "<p>Bij bestellingen boven € 250 verzenden wij gratis!<\/p>"

@@ -76,7 +76,8 @@
   "collections": {
     "general": {
       "collection_items": "producten",
-      "no_matches": "Sorry, er zijn geen producten in deze collectie"
+      "no_matches": "Sorry, er zijn geen producten in deze collectie",
+      "all": ""
     },
     "sorting": {
       "sort_by": "Sorteren op",
@@ -107,7 +108,10 @@
       "subscription": "Abonnement",
       "quantity": "Aantal dozen",
       "save": "SALE",
-      "save_up_to": "Tot wel"
+      "save_up_to": "Tot wel",
+      "upp_from": "",
+      "variant_id": "",
+      "bundle_includes": ""
     },
     "inventory": {
       "only": "Alleen",
@@ -142,7 +146,10 @@
       "view_cart": "Bekijk Winkelmand",
       "upsell_title": "Populaire add-ons",
       "continue_shopping": "Doorgaan met winkelen",
-      "continue_selling_text": "Bezorging: Maximaal 14 dagen"
+      "continue_selling_text": "Bezorging: Maximaal 14 dagen",
+      "upgrade": "",
+      "edit": "",
+      "edit_item": ""
     },
     "progress_bar": {
       "pre_text": "Je bent",
@@ -245,7 +252,8 @@
       "my_wishlist": "Mijn verlanglijst",
       "my_orders": "Mijn bestellingen",
       "recent_orders": "Mijn bestelde producten",
-      "times_ordered": "Aantal keren besteld:"
+      "times_ordered": "Aantal keren besteld:",
+      "last_name": ""
     },
     "order": {
       "order_heading": "Bestelling",
@@ -325,7 +333,8 @@
     "recipient": {
       "email": "E-mailadres ontvanger",
       "name": "Naam ontvanger",
-      "message": "Bericht"
+      "message": "Bericht",
+      "checkbox_label": ""
     }
   },
   "contact": {
@@ -380,6 +389,9 @@
       "alternative_payment_method_banner": {
         "express_checkout": "Versneld afrekenen",
         "or": "Of ga verder betaal met iDeal, creditcard of Afterpay"
+      },
+      "delivery_options": {
+        "pick_up": "Ophalen (magazijn locatie Peizerweg 109 Groningen)"
       }
     }
   },
@@ -394,5 +406,9 @@
     "order_details": {
       "marketing_checkbox_label": "Aanmelden nieuwsbrief voor nieuws, handige tips, inspiratie en de beste aanbiedingen."
     }
+  },
+  "back_in_stock": {
+    "notify": "",
+    "title": ""
   }
 }

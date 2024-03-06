@@ -19,6 +19,7 @@
     },
     "banner_zVr6KF": {
       "type": "banner",
+      "disabled": true,
       "settings": {
         "image_background_desktop": "shopify:\/\/shop_images\/Banner_Toykits.png",
         "show_entire_image": false,

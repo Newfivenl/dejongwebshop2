@@ -97,6 +97,74 @@
       {% render 'nf-dialog' %}
     {% endunless %}
 
+    <script>
+
+      document.addEventListener('DOMContentLoaded', function () {
+        const drawer = document.querySelector('#nf_drawer');
+        document.body.addEventListener('click', (event) => {
+          const closeDrawerButton = event.target.closest('.nf-close-dialog');
+          if (closeDrawerButton) {
+            drawer.removeAttribute('open');
+          }
+        });
+        document.body.addEventListener('click', (event) => {
+          const openDrawerButton = event.target.closest('.nf_show_dialog');
+          if (openDrawerButton) {
+            drawer.setAttribute('open', '');
+          }
+        });
+        document.querySelector('.nf-drawer').addEventListener('click', (event) => {
+          if (event.target === document.querySelector('.nf-drawer')) {
+            drawer.removeAttribute('open');
+          }
+        });
+        const tabs = document.querySelectorAll('.tab');
+        const contentPanels = document.querySelectorAll('.tab-content');
+        tabs.forEach((tab) => {
+          tab.addEventListener('click', () => {
+            const target = tab.getAttribute('data-target');
+            tabs.forEach((t) => t.classList.remove('active'));
+            contentPanels.forEach((p) => p.classList.remove('active'));
+            tab.classList.add('active');
+            document.querySelector(`#${target}`).classList.add('active');
+          });
+        });
+
+        var dropdown = document.querySelector('.nf-dropdown');
+        var content = document.querySelector('.nf-dropdown-content');
+        var caret = document.querySelector('.nf-dropdown-caret');
+        dropdown.addEventListener('click', function (event) {
+          event.stopPropagation();
+          content.classList.toggle('active');
+          caret.classList.toggle('active');
+        });
+
+        document.addEventListener('click', function (event) {
+          if (content.classList.contains('active')) {
+            content.classList.remove('active');
+            caret.classList.remove('active');
+          }
+        });
+        console.log('referrer', document.referrer)
+        if (document.referrer.indexOf('/account') !== -1) {
+          drawer.setAttribute('open', '');
+        }
+      });
+      var isUserLoggedIn = {{ customer | json }};
+      var loggedIn = localStorage.getItem('loggedIn');
+      var logoutLink = document.querySelector('.logout_link');
+      if (isUserLoggedIn && !loggedIn) {
+        document.querySelector('#nf_drawer').setAttribute('open', '');
+        localStorage.setItem('loggedIn', 'true');
+      } 
+      
+      logoutLink.addEventListener('click', function (event) {
+        localStorage.removeItem('loggedIn');
+        console.log('logout__');
+      });
+    </script>
+
+
   </body>
 
 </html>

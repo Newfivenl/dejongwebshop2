@@ -326,7 +326,7 @@
         "color_scheme": "color__bg-body color__text",
         "color_border": "color__border-divider-1",
         "color_button": "btn btn--secondary",
-        "style_border": "border--b-width",
+        "style_border": "",
         "row_size_desktop": "md:grid-cols-2",
         "row_size_mobile": "grid-cols-1",
         "layout_x_alignment": "text-center justify-center flex-col items-center",
@@ -458,7 +458,7 @@
         "color_scheme": "color__bg-body color__text",
         "color_border": "color__border-divider-1",
         "color_button": "btn btn--tertiary",
-        "style_border": "border--b-width",
+        "style_border": "",
         "layout_x_alignment": "text-center justify-center flex-col items-center",
         "visibility": "",
         "enable_collection_size_count": true

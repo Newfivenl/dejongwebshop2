@@ -453,7 +453,7 @@
 
       <div class="md:w-auto flex flex-wrap w-full gap-2">
 
-
+ {%- comment -%}
       {%- if shop.customer_accounts_enabled -%}
         <a href="{{ routes.account_url }}" rel="nofollow" class="btn btn--smaller 
           {{ section.settings.sub_color_button }}">
@@ -464,6 +464,7 @@
           {% endif %}
         </a>
       {% endif %}
+ {%- endcomment -%}
       {% if settings.enable_audio %}
         <div class="md:block hidden">
           <button  

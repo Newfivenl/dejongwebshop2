@@ -231,7 +231,7 @@
         "spacing_top": 0,
         "spacing_bottom": 0,
         "media_gallery_style": "thumbnail-slider",
-        "image_border": "color__border-divider-1",
+        "image_border": "!color__border-transparent",
         "enable_zoom": true,
         "enable_alt": false,
         "enable_variant_images": false,

@@ -142,7 +142,7 @@
         "liquid_DqECCn": {
           "type": "liquid",
           "settings": {
-            "custom_liquid": "{% for tag in product.tags %}\nTags:  <span class=\"product-tags-productpage\"><a href=\"\/collections\/all\/{{ tag | handleize }}\">{{ tag }}<\/a><\/span>\n  {% endfor %}",
+            "custom_liquid": "<div class=\"product-tags\">{% for tag in product.tags %}\nTags:  <span class=\"product-tags-productpage\"><a href=\"\/collections\/all\/{{ tag | handleize }}\">{{ tag }}<\/a><\/span>\n  {% endfor %}\n<\/div>",
             "spacing_top": 10,
             "spacing_bottom": 10,
             "color_scheme": "color__bg-overlay-3 color__text",

@@ -7,17 +7,25 @@
       "blocks": {
         "f2232503-8685-46db-aaf1-b796c5ea14f9": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "content": "<p>Geen verborgen kosten bij De Jong Disposables betreffende afvalbeheerbijdragen!<\/p>"
+          }
+        },
+        "text_aELWTz": {
+          "type": "text",
+          "settings": {
+            "content": "<p>Wij hebben een nieuwe website. <a href=\"\/pages\/wij-hebben-een-nieuwe-website-alles-wat-u-moet-weten\" title=\"Wij hebben een nieuwe website: Alles wat u moet weten!\">Lees hier alles wat u moet weten!<\/a><\/p>"
           }
         }
       },
       "block_order": [
-        "f2232503-8685-46db-aaf1-b796c5ea14f9"
+        "f2232503-8685-46db-aaf1-b796c5ea14f9",
+        "text_aELWTz"
       ],
       "settings": {
         "color_scheme": "color__bg-primary color__primary",
-        "layout_alignment": "left",
+        "layout_alignment": "center",
         "visibility": "",
         "announcement_delay": 10,
         "show_account_link": true,

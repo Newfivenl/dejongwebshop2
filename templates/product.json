@@ -320,7 +320,7 @@
       "settings": {
         "heading": "Recent bekeken",
         "content": "",
-        "spacing_top": 100,
+        "spacing_top": 40,
         "spacing_bottom": 100,
         "color_scheme": "color__bg-body color__text",
         "color_border": "color__border-divider-1",
@@ -335,7 +335,7 @@
         "products_count": 10,
         "heading": "Verkocht als warme broodjes",
         "content": "",
-        "spacing_top": 100,
+        "spacing_top": 40,
         "spacing_bottom": 100,
         "color_scheme": "color__bg-body color__text",
         "color_border": "color__border-divider-1",

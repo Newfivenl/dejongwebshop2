@@ -64,7 +64,7 @@
       {{ section.settings.layout_x_alignment }}
       {{ section.settings.layout_y_alignment }}
       {{ section.settings.layout_y_spacing }}
-      {% assign colors = section.settings.color_scheme | split: " " %}{{ colors[2] }}">
+      {% assign colors = section.settings.color_scheme | split: " " %}{{ colors[1] }}">
 
       <div class="max-w-prose gap-4 flex flex-col
         {% if section.settings.layout_x_alignment contains 'text-center' %}items-center{% endif %}

@@ -2657,6 +2657,10 @@ img:after {
 }
 
 .p-4 {
+  padding: 1rem;
+}
+
+table__specs .p-4 {
   padding: 0.5rem;
 }
 

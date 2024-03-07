@@ -4354,16 +4354,17 @@ table__specs .p-4 {
 
 /* tagsnippet productpage */
 
-.product-tags-productpage
+.product-tags {
+  border-bottom: 1px solid var(--color-neutral-button-background-light);
+}
 
+.product-tags-productpage
 {
   background-color: var(--color-neutral-button-background-light);
   padding: 6px;
   border-radius: 6px;
   font-size: 12px;
-  
 }
-
 
 .product-tags-productpage a, 
 .product-tags-productpage a:visited
@@ -4378,7 +4379,6 @@ table__specs .p-4 {
 {
   text-decoration: underline;
   opacity: 1;
-  
 }
 
 

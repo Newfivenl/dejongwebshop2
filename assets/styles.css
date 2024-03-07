@@ -4385,6 +4385,7 @@ table__specs .p-4 {
   padding: 6px;
   border-radius: 6px;
   font-size: 12px;
+  lineheight: 40px;
 }
 
 .product-tags-productpage a, 

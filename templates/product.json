@@ -18,8 +18,8 @@
           "settings": {
             "spacing_top": 10,
             "spacing_bottom": 10,
-            "color_scheme": "color__bg-body color__text",
-            "style_border": "border--b-width border--t-width",
+            "color_scheme": "color__bg-overlay-3 color__text",
+            "style_border": "border--b-width",
             "position": "right"
           }
         },

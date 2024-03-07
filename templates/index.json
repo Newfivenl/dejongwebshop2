@@ -54,7 +54,7 @@
         "template--20644271554834__2cb9d59b-242d-48e7-821a-ae61144186e8-content-1": {
           "type": "content",
           "settings": {
-            "heading": "Bekijk onze frietbakjes",
+            "heading": "Frietbakjes",
             "content": "<p>Frietbakjes van plastic, karton en suikerriet.<\/p>",
             "button_label": "Bekijk frietbakjes",
             "button_url": "shopify:\/\/collections\/frietbakjes",
@@ -80,7 +80,7 @@
         "template--20644271554834__2cb9d59b-242d-48e7-821a-ae61144186e8-content-2": {
           "type": "content",
           "settings": {
-            "heading": "Bekijk onze pizzadozen",
+            "heading": "Pizzadozen",
             "content": "<p>Pizzadozen in verschillende formaten, inclusief calzone doos.<\/p>",
             "button_label": "Bekijk pizzadozen",
             "button_url": "shopify:\/\/collections\/pizzadozen",
@@ -106,7 +106,7 @@
         "template--20644271554834__2cb9d59b-242d-48e7-821a-ae61144186e8-content-3": {
           "type": "content",
           "settings": {
-            "heading": "Bekijk onze foodtrays",
+            "heading": "Foodtrays",
             "content": "<p>Foodtrays in verschillende formaten, met bijpassende deksels.<\/p>",
             "button_label": "Bekijk foodtrays",
             "button_url": "shopify:\/\/collections\/foodtrays",

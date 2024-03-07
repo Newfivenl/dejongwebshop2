@@ -4352,6 +4352,19 @@ table__specs .p-4 {
 
 /* ======= */
 
+/* tagsnippet productpage */
+
+.product-tags-productpage
+
+{
+  background-color: var(--color-neutral-button-background-light);
+padding: 4px;
+  border-radius: 6px;
+  font-size: 12px;
+  
+}
+
+
 .store--hours-info .contact_info{
   font-size: 16px !important;
 }

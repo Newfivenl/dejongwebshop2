@@ -64,7 +64,7 @@
         "sub_color_scheme": "color__bg-secondary color__secondary",
         "sub_color_border": "!color__border-transparent",
         "sub_color_button": "btn btn--secondary",
-        "sub_links": "privacy",
+        "sub_links": "",
         "sub_enable_payment_icons": true,
         "enable_follow_on_shop": true,
         "visibility": ""

@@ -9,6 +9,12 @@
             "content": "Disposables is ons vak"
           }
         },
+        "template--18730720428336__f96b8e1b-0fd4-4c65-856c-cdd01fe228cc-1681420271694828b0-1": {
+          "type": "content",
+          "settings": {
+            "content": "<p>De Jong Disposables is een toonaangevende en innoverende importeur en leverancier van disposables, voor uiteenlopende sectoren. Denk aan de food-sector, attractieparken, bioscopen, fastfood outlets, sportkantines, hotels en grootschalige evenementen. Hierbij is een eigen bedrukking ook mogelijk.<\/p>"
+          }
+        },
         "template--18730720428336__f96b8e1b-0fd4-4c65-856c-cdd01fe228cc-1681420271694828b0-2": {
           "type": "buttons",
           "settings": {
@@ -19,18 +25,12 @@
             "secondary_button_label": "",
             "secondary_button_url": ""
           }
-        },
-        "template--18730720428336__f96b8e1b-0fd4-4c65-856c-cdd01fe228cc-1681420271694828b0-1": {
-          "type": "content",
-          "settings": {
-            "content": "<p>De Jong Disposables is een toonaangevende en innoverende importeur en leverancier van disposables, voor uiteenlopende sectoren. Denk aan de food-sector, attractieparken, bioscopen, fastfood outlets, sportkantines, hotels en grootschalige evenementen. Hierbij is een eigen bedrukking ook mogelijk.<\/p>"
-          }
         }
       },
       "block_order": [
         "template--18730720428336__f96b8e1b-0fd4-4c65-856c-cdd01fe228cc-1681420271694828b0-0",
-        "template--18730720428336__f96b8e1b-0fd4-4c65-856c-cdd01fe228cc-1681420271694828b0-2",
-        "template--18730720428336__f96b8e1b-0fd4-4c65-856c-cdd01fe228cc-1681420271694828b0-1"
+        "template--18730720428336__f96b8e1b-0fd4-4c65-856c-cdd01fe228cc-1681420271694828b0-1",
+        "template--18730720428336__f96b8e1b-0fd4-4c65-856c-cdd01fe228cc-1681420271694828b0-2"
       ],
       "settings": {
         "image_background_desktop": "shopify:\/\/shop_images\/dejongheader.png",

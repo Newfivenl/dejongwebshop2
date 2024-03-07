@@ -84,7 +84,7 @@
           "type": "add",
           "settings": {
             "content": "",
-            "spacing_top": 20,
+            "spacing_top": 0,
             "spacing_bottom": 20,
             "color_scheme": "color__bg-overlay-3 color__text",
             "style_border": "",

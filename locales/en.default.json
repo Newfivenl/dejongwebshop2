@@ -85,10 +85,6 @@
       "filter_and_sort": "Filter and sort",
       "remove_filter": "Clear",
       "remove_all_filters": "Clear all"
-    },
-    "filter": {
-      "filter_availability": "Availability",
-      "filter_price": "Price"
     }
   },
   "products": {

@@ -4414,6 +4414,9 @@ table__specs .p-4 {
 .breadcrumb, .breadcrumb span, .breadcrumb a
 {
   opacity: 0.7;
+    white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .breadcrumb a:hover
 {

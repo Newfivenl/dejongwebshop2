@@ -4394,6 +4394,7 @@ table__specs .p-4 {
 {
   text-decoration: none;
   opacity: 0.7;
+  white-space: nowrap;
 }
 .product-tags-productpage a:hover, 
 .product-tags-productpage a:active

@@ -487,6 +487,7 @@
       
       </div>
       <div class="md:w-auto md:text-right flex flex-wrap flex-1 w-full gap-1">
+        {% if section.settings.sub_enable_payment_icons %}
           <ul class="md:justify-end flex flex-wrap w-full gap-2 p-0 list-none" role="list">
             {%- for type in shop.enabled_payment_types -%}
               <li>
@@ -494,6 +495,7 @@
               </li>
             {%- endfor -%}
           </ul>
+        {% endif %}
         <div class="m-0--clear type--smaller w-full opacity-75">
           {% comment %} {{ powered_by_link }} 
           {{ 'Powered by Newfive' }}{% endcomment %}

@@ -25,21 +25,21 @@
   {%- comment -%}product price{%- endcomment -%}
   <span class="flex items-center">
     <span
-      class="!leading-tight"
+      class="!leading-tight productprice"
       x-text="Shopify.formatMoney(defaultVariantPrice, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')"
       x-show="defaultVariantPrice > 0"></span>
     {% if settings.price_range_display == "show_range" %}
       <span
-        class="!leading-tight"
+        class="!leading-tight productprice-range"
         x-show="defaultVariantPrice == 0"
         x-text="Shopify.formatMoney({{ product.price_min }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">{{ product.price_min | money }}</span>
       {% if product.price_varies %}
-<pre class="!leading-tight m-0" 
+<pre class="!leading-tight m-0 productprice-varies" 
             x-show="defaultVariantPrice == 0" x-text="' - ' + Shopify.formatMoney({{ product.price_max }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')"> - {{ product.price_max | money }}</pre>
       {% endif %}
     {% else %}
       <span
-        class="!leading-tight"
+        class="!leading-tight prodtcprice-default"
         x-show="defaultVariantPrice == 0"
         x-text="'{{ 'products.general.upp_from' | t }}' + ' ' + Shopify.formatMoney({{ product.price_min }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">{{ 'products.general.upp_from' | t }} {{ product.price_min | money }}
       </span>

@@ -233,7 +233,7 @@
             "products_count": 3,
             "intent": "related",
             "color_scheme": "color__bg-overlay-3 color__text",
-            "style_border": "border--t-width",
+            "style_border": "",
             "position": "right",
             "enable_open": true
           }

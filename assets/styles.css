@@ -4356,6 +4356,8 @@ table__specs .p-4 {
 
 .product-tags {
   border-bottom: 1px solid var(--color-neutral-button-background-light);
+  padding: 10px;
+  font-size: 12px;
 }
 
 .product-tags-productpage

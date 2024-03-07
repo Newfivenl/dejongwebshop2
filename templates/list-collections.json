@@ -14,6 +14,7 @@
         "82dc43ff-a8dd-484c-a794-1064d07c5d26"
       ],
       "settings": {
+        "image_background_desktop": "shopify:\/\/shop_images\/dejongheader.png",
         "show_entire_image": false,
         "enable_lazy_loading": false,
         "show_video_background_mobile": true,

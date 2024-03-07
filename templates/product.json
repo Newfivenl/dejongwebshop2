@@ -73,7 +73,7 @@
         "b78b560b-e1c2-428d-ad73-fb5f8aac6d58": {
           "type": "options",
           "settings": {
-            "spacing_top": 0,
+            "spacing_top": 10,
             "spacing_bottom": 0,
             "color_scheme": "color__bg-overlay-3 color__text",
             "style_border": "",
@@ -85,7 +85,7 @@
           "settings": {
             "content": "",
             "spacing_top": 0,
-            "spacing_bottom": 20,
+            "spacing_bottom": 10,
             "color_scheme": "color__bg-overlay-3 color__text",
             "style_border": "",
             "position": "right",

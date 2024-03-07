@@ -123,6 +123,7 @@
         },
         "c18a6be5-7074-4b70-a8e1-d4f845a9e665": {
           "type": "pickup",
+          "disabled": true,
           "settings": {
             "spacing_top": 20,
             "spacing_bottom": 20,

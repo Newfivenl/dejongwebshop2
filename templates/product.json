@@ -235,7 +235,7 @@
         "enable_zoom": true,
         "enable_alt": false,
         "enable_variant_images": false,
-        "media_color_scheme": "color__bg-overlay-1 color__text",
+        "media_color_scheme": "color__bg-body color__text",
         "media_ratio": "aspect-[1\/1] aspect-w-1 aspect-h-1",
         "media_object-sizing": "cover",
         "enable_ratio": true,

@@ -4420,7 +4420,9 @@ table__specs .p-4 {
   opacity: 1;
 }
 .breadcrumb span
-{text-overflow: ellipsis;
+{  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* FORMS */

@@ -66,7 +66,7 @@
         "sub_color_button": "btn btn--neutral",
         "sub_links": "",
         "sub_enable_payment_icons": true,
-        "enable_follow_on_shop": true,
+        "enable_follow_on_shop": false,
         "visibility": ""
       }
     }

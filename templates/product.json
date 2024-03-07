@@ -188,7 +188,7 @@
             "title": "Altijd inclusief alle toeslagen!",
             "content": "<p>Onze prijzen zijn ALTIJD inclusief mogelijk milieutoeslagen. Dus nooit verassingen achteraf waarbij u bij het afrekenen nog extra moeten betalen.<\/p>",
             "icon": "check",
-            "color_scheme": "color__bg-overlay-3 color__text",
+            "color_scheme": "color__bg-body color__text",
             "style_border": "",
             "position": "right",
             "enable_open": false

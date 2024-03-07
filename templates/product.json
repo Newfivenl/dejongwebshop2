@@ -41,7 +41,7 @@
           "type": "price",
           "settings": {
             "spacing_top": 0,
-            "spacing_bottom": 0,
+            "spacing_bottom": 5,
             "color_scheme": "color__bg-overlay-3 color__text",
             "style_border": "",
             "position": "right"
@@ -51,7 +51,7 @@
           "type": "text",
           "settings": {
             "content": "<p>{{ product.metafields.woo.short_description_plain | metafield_tag }}<\/p>",
-            "spacing_top": 10,
+            "spacing_top": 0,
             "spacing_bottom": 10,
             "color_scheme": "color__bg-overlay-3 color__text",
             "style_border": "",

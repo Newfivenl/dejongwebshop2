@@ -4358,11 +4358,32 @@ table__specs .p-4 {
 
 {
   background-color: var(--color-neutral-button-background-light);
-padding: 4px;
+  padding: 6px;
   border-radius: 6px;
   font-size: 12px;
   
 }
+
+
+.product-tags-productpage a, 
+.product-tags-productpage a:visited
+
+{
+  text-decoration: none;
+  
+}
+.product-tags-productpage a:hover, 
+.product-tags-productpage a:active
+
+{
+  text-decoration: underline;
+  font-color: 
+  
+}
+
+
+
+
 
 
 .store--hours-info .contact_info{

@@ -1656,6 +1656,16 @@ img:after {
   display: flex;
 }
 
+.contentflex {
+  display: block;
+}
+@media (min-width: 768px) {
+.contentflex {
+  display: flex;
+}
+}
+
+
 .inline-flex {
   display: inline-flex;
 }

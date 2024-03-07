@@ -139,6 +139,17 @@
             "on_scroll": true
           }
         },
+        "liquid_DqECCn": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "{% for tag in product.tags %}\n  <span class=\"product-tags-productpage\"><a href=\"\/collections\/all\/{{ tag | handleize }}\">{{ tag }}<\/a><\/span>\n  {% endfor %}\n<\/ul>",
+            "spacing_top": 10,
+            "spacing_bottom": 10,
+            "color_scheme": "color__bg-overlay-3 color__text",
+            "style_border": "",
+            "position": "right"
+          }
+        },
         "usp_product_nyhgyp": {
           "type": "usp-product",
           "settings": {
@@ -241,6 +252,7 @@
         "9f1692ea-ccb9-4e4c-9c83-7a6ae53392aa",
         "c18a6be5-7074-4b70-a8e1-d4f845a9e665",
         "848f5aea-f7ad-4974-a5fb-020776e3e523",
+        "liquid_DqECCn",
         "usp_product_nyhgyp",
         "6a3377bc-72e2-46cf-bceb-70a6e87ed2e9",
         "c6a34c12-6bd0-437c-8e8d-bddb51a5f3b3",
@@ -336,7 +348,7 @@
         "heading": "Verkocht als warme broodjes",
         "content": "",
         "spacing_top": 40,
-        "spacing_bottom": 100,
+        "spacing_bottom": 40,
         "color_scheme": "color__bg-body color__text",
         "color_border": "color__border-divider-1",
         "style_border": "",

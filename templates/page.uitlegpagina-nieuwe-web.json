@@ -3,7 +3,9 @@
     "main": {
       "type": "page__main",
       "settings": {
-        "color_scheme": "color__bg-body color__text"
+        "spacing_top": 60,
+        "spacing_bottom": 60,
+        "color_scheme": "color__bg-primary color__primary"
       }
     }
   },

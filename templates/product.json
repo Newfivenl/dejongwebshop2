@@ -15,12 +15,11 @@
         },
         "bef9bd40-2a8e-45c2-ae54-59c9ef6f0e26": {
           "type": "breadcrumb",
-          "disabled": true,
           "settings": {
             "spacing_top": 10,
             "spacing_bottom": 10,
             "color_scheme": "color__bg-body color__text",
-            "style_border": "border--b-width",
+            "style_border": "border--b-width border--t-width",
             "position": "right"
           }
         },

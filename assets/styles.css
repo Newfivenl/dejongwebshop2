@@ -2098,6 +2098,12 @@ img:after {
   max-width: 427px;
 }
 
+@media (max-width: 1023px) {
+.max-w-\[427px\] {
+  max-width: 100%;
+}
+}
+
 .max-w-\[45\%\] {
   max-width: 45%;
 }

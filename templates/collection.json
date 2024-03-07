@@ -46,7 +46,7 @@
         "row_size_desktop": "md:grid-cols-3",
         "row_size_mobile": "grid-cols-1",
         "enable_sort": true,
-        "enable_filter": true,
+        "enable_filter": false,
         "products_per_page": 24
       }
     },

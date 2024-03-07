@@ -4405,12 +4405,14 @@ table__specs .p-4 {
 /* productprice productpage */
 
 .productprice
-{font-size: 20px;
+{
+  font-size: 20px;
   font-weight: 600;
 }
 /* breadcrumb */
 
 .breadcrumb
+{
   opacity: 0.7;
 
 }

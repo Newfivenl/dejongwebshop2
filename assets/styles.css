@@ -4383,9 +4383,12 @@ table__specs .p-4 {
   opacity: 1;
 }
 
+/* productprice productpage */
 
-
-
+.pproductprice
+{
+  font-weight: 600;
+}
 
 
 .store--hours-info .contact_info{

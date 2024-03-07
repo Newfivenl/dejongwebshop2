@@ -256,6 +256,70 @@
         "visibility": ""
       }
     },
+    "collection_slider_dH638W": {
+      "type": "collection-slider",
+      "blocks": {
+        "collection_Eewm4q": {
+          "type": "collection",
+          "settings": {
+            "collection": "toykits"
+          }
+        },
+        "collection_DhQYLC": {
+          "type": "collection",
+          "settings": {
+            "collection": "toytrays"
+          }
+        },
+        "collection_FiFame": {
+          "type": "collection",
+          "settings": {
+            "collection": "kidsboxen"
+          }
+        },
+        "collection_KwXeie": {
+          "type": "collection",
+          "settings": {
+            "collection": "aluminiumfolie"
+          }
+        },
+        "collection_RtehXf": {
+          "type": "collection",
+          "settings": {
+            "collection": "apet-vleeswarenschaaltjes"
+          }
+        },
+        "collection_BFJMmm": {
+          "type": "collection",
+          "settings": {
+            "collection": "bakpapier"
+          }
+        }
+      },
+      "block_order": [
+        "collection_Eewm4q",
+        "collection_DhQYLC",
+        "collection_FiFame",
+        "collection_KwXeie",
+        "collection_RtehXf",
+        "collection_BFJMmm"
+      ],
+      "settings": {
+        "heading": "Alle categorieën",
+        "content": "",
+        "button_label": "",
+        "button_url": "",
+        "spacing_top": 40,
+        "spacing_bottom": 40,
+        "color_scheme": "color__bg-body color__text",
+        "color_border": "color__border-divider-1",
+        "color_button": "btn btn--tertiary",
+        "style_border": "",
+        "layout_x_alignment": "text-center justify-center flex-col items-center",
+        "visibility": "",
+        "enable_collection_size_count": true
+      }
+    },
     "1e9b6aa9-2f3a-4ca0-a7b2-65d5c9c14d5f": {
       "type": "content-grid",
       "blocks": {
@@ -396,70 +460,6 @@
         "row_size_desktop": "md:grid-cols-4",
         "row_size_mobile": "grid grid-cols-2",
         "layout_x_alignment": "justify-between",
-        "visibility": "",
-        "enable_collection_size_count": true
-      }
-    },
-    "collection_slider_dH638W": {
-      "type": "collection-slider",
-      "blocks": {
-        "collection_Eewm4q": {
-          "type": "collection",
-          "settings": {
-            "collection": "toykits"
-          }
-        },
-        "collection_DhQYLC": {
-          "type": "collection",
-          "settings": {
-            "collection": "toytrays"
-          }
-        },
-        "collection_FiFame": {
-          "type": "collection",
-          "settings": {
-            "collection": "kidsboxen"
-          }
-        },
-        "collection_KwXeie": {
-          "type": "collection",
-          "settings": {
-            "collection": "aluminiumfolie"
-          }
-        },
-        "collection_RtehXf": {
-          "type": "collection",
-          "settings": {
-            "collection": "apet-vleeswarenschaaltjes"
-          }
-        },
-        "collection_BFJMmm": {
-          "type": "collection",
-          "settings": {
-            "collection": "bakpapier"
-          }
-        }
-      },
-      "block_order": [
-        "collection_Eewm4q",
-        "collection_DhQYLC",
-        "collection_FiFame",
-        "collection_KwXeie",
-        "collection_RtehXf",
-        "collection_BFJMmm"
-      ],
-      "settings": {
-        "heading": "Alle categorieën",
-        "content": "",
-        "button_label": "",
-        "button_url": "",
-        "spacing_top": 40,
-        "spacing_bottom": 40,
-        "color_scheme": "color__bg-body color__text",
-        "color_border": "color__border-divider-1",
-        "color_button": "btn btn--tertiary",
-        "style_border": "",
-        "layout_x_alignment": "text-center justify-center flex-col items-center",
         "visibility": "",
         "enable_collection_size_count": true
       }
@@ -795,9 +795,9 @@
     "f96b8e1b-0fd4-4c65-856c-cdd01fe228cc",
     "2cb9d59b-242d-48e7-821a-ae61144186e8",
     "0aee11fe-16ff-4cae-924b-b6dc71c8827b",
+    "collection_slider_dH638W",
     "1e9b6aa9-2f3a-4ca0-a7b2-65d5c9c14d5f",
     "84c299e3-89f4-4122-ba7a-adec40bab641",
-    "collection_slider_dH638W",
     "product_slider_FjtiUm",
     "4957c6b2-3abe-4e8a-a342-c28fcddc4f97",
     "d7e3b662-c368-4636-9d51-e4d12b8168f7",

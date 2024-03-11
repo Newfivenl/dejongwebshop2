@@ -370,7 +370,7 @@
         "button_label": "",
         "button_url": "",
         "spacing_top": 0,
-        "spacing_bottom": 100,
+        "spacing_bottom": 20,
         "color_scheme": "color__bg-body color__text",
         "color_border": "color__border-divider-1",
         "color_button": "btn btn--secondary",
@@ -384,6 +384,101 @@
     },
     "collection_grid_agzkUf": {
       "type": "collection-grid",
+      "blocks": {
+        "collection_LBYYTc": {
+          "type": "collection",
+          "settings": {
+            "collection": "wok-to-go-bekers"
+          }
+        },
+        "collection_XNTdke": {
+          "type": "collection",
+          "settings": {
+            "collection": "hemddraagtassen"
+          }
+        },
+        "collection_ihMe9X": {
+          "type": "collection",
+          "settings": {
+            "collection": "kartonnen-schaaltjes"
+          }
+        },
+        "collection_d7VwEa": {
+          "type": "collection",
+          "settings": {
+            "collection": "rietjes"
+          }
+        },
+        "collection_MF7HrA": {
+          "type": "collection",
+          "settings": {
+            "collection": "folies"
+          }
+        },
+        "collection_jRkzkq": {
+          "type": "collection",
+          "settings": {
+            "collection": "cpet-trays"
+          }
+        },
+        "collection_wdEXVR": {
+          "type": "collection",
+          "settings": {
+            "collection": "servetten"
+          }
+        },
+        "collection_ViiiBF": {
+          "type": "collection",
+          "settings": {
+            "collection": "tafelpapier"
+          }
+        },
+        "collection_BfdEU3": {
+          "type": "collection",
+          "settings": {
+            "collection": "poetsrollen"
+          }
+        },
+        "collection_DgRaF3": {
+          "type": "collection",
+          "settings": {
+            "collection": "plastic-zakken"
+          }
+        },
+        "collection_KTaPJH": {
+          "type": "collection",
+          "settings": {
+            "collection": "hygiene-producten"
+          }
+        },
+        "collection_cc6Wia": {
+          "type": "collection",
+          "settings": {
+            "collection": "suikerriet-menuschalen"
+          }
+        },
+        "collection_tqzga4": {
+          "type": "collection",
+          "settings": {
+            "collection": "disposables-bedrukken"
+          }
+        }
+      },
+      "block_order": [
+        "collection_LBYYTc",
+        "collection_XNTdke",
+        "collection_ihMe9X",
+        "collection_d7VwEa",
+        "collection_MF7HrA",
+        "collection_jRkzkq",
+        "collection_wdEXVR",
+        "collection_ViiiBF",
+        "collection_BfdEU3",
+        "collection_DgRaF3",
+        "collection_KTaPJH",
+        "collection_cc6Wia",
+        "collection_tqzga4"
+      ],
       "settings": {
         "heading": "",
         "content": "",

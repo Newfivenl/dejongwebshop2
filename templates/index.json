@@ -20,7 +20,7 @@
           "settings": {
             "button_color": "btn",
             "button_label": "Bekijk assortiment",
-            "button_url": "shopify:\/\/collections\/all",
+            "button_url": "shopify:\/\/collections\/onze-categorieen",
             "secondary_button_color": "btn btn--tertiary",
             "secondary_button_label": "",
             "secondary_button_url": ""
@@ -241,7 +241,7 @@
       ],
       "settings": {
         "heading": "Duurzame disposables",
-        "content": "<p>Duurzame disposables zijn in deze huidige tijd \"natuurlijk\" niet meer weg te denken, het is een thema die hoog op onze agenda staat. Ons uitgebreide duurzame disposable assortiment is wederom een serie topproducten dat niet te vergelijken is met de traditionele disposables. Het programma is uitgevoerd in een stevige kwaliteit papier, karton en suikerriet (bagasse). Daarnaast bevat ons assortiment een serie duurzaam bestek zoals, bamboe snack vorkjes en ijslepeltjes.<\/p>",
+        "content": "<p>Duurzame disposables zijn in deze huidige tijd \"natuurlijk\" niet meer weg te denken, het is een thema dat hoog op onze agenda staat. Ons uitgebreide duurzame disposable assortiment is wederom een serie topproducten dat niet te vergelijken is met de traditionele disposables. Het programma is uitgevoerd in een stevige kwaliteit papier, karton en suikerriet (bagasse). Daarnaast bevat ons assortiment een serie duurzaam bestek zoals, bamboe snack vorkjes en ijslepeltjes.<\/p>",
         "button_label": "",
         "button_url": "",
         "spacing_top": 100,

@@ -220,6 +220,150 @@
     },
     "collection_grid_VbEJnd": {
       "type": "collection-grid",
+      "blocks": {
+        "collection_jeLDCp": {
+          "type": "collection",
+          "settings": {
+            "collection": "suikerriet-borden"
+          }
+        },
+        "collection_FdV3W7": {
+          "type": "collection",
+          "settings": {
+            "collection": "wegwerp-bestek"
+          }
+        },
+        "collection_MK6MQH": {
+          "type": "collection",
+          "settings": {
+            "collection": "papieren-tasjes"
+          }
+        },
+        "collection_KPJatA": {
+          "type": "collection",
+          "settings": {
+            "collection": "snackzakken"
+          }
+        },
+        "collection_w7nLJB": {
+          "type": "collection",
+          "settings": {
+            "collection": "frietzakken"
+          }
+        },
+        "collection_NdfnY6": {
+          "type": "collection",
+          "settings": {
+            "collection": "hamburger-zakjes"
+          }
+        },
+        "collection_3BbGaf": {
+          "type": "collection",
+          "settings": {
+            "collection": "hamburger-bakjes-karton"
+          }
+        },
+        "collection_QRk9Qd": {
+          "type": "collection",
+          "settings": {
+            "collection": "loempia-bakjes-karton"
+          }
+        },
+        "collection_cgV8ig": {
+          "type": "collection",
+          "settings": {
+            "collection": "vensterzakken"
+          }
+        },
+        "collection_HWbLqW": {
+          "type": "collection",
+          "settings": {
+            "collection": "take-away-doosjes"
+          }
+        },
+        "collection_LBzVN4": {
+          "type": "collection",
+          "settings": {
+            "collection": "bestekzakjes"
+          }
+        },
+        "collection_XqxhCq": {
+          "type": "collection",
+          "settings": {
+            "collection": "inpakpapier"
+          }
+        },
+        "collection_grJ3Qb": {
+          "type": "collection",
+          "settings": {
+            "collection": "catering-dozen"
+          }
+        },
+        "collection_DBrrQ7": {
+          "type": "collection",
+          "settings": {
+            "collection": "gebaksdozen"
+          }
+        },
+        "collection_bFabzU": {
+          "type": "collection",
+          "settings": {
+            "collection": "kipzakken"
+          }
+        },
+        "collection_Rg9JrY": {
+          "type": "collection",
+          "settings": {
+            "collection": "warmhoudzakken"
+          }
+        },
+        "collection_8QJJLb": {
+          "type": "collection",
+          "settings": {
+            "collection": "food-buckets"
+          }
+        },
+        "collection_Wg9pYN": {
+          "type": "collection",
+          "settings": {
+            "collection": "food-containers"
+          }
+        },
+        "collection_t6xX4f": {
+          "type": "collection",
+          "settings": {
+            "collection": "saladebakken-en-bowls"
+          }
+        },
+        "collection_DADhem": {
+          "type": "collection",
+          "settings": {
+            "collection": "soepbekers"
+          }
+        }
+      },
+      "block_order": [
+        "collection_jeLDCp",
+        "collection_FdV3W7",
+        "collection_MK6MQH",
+        "collection_KPJatA",
+        "collection_w7nLJB",
+        "collection_NdfnY6",
+        "collection_3BbGaf",
+        "collection_QRk9Qd",
+        "collection_cgV8ig",
+        "collection_HWbLqW",
+        "collection_LBzVN4",
+        "collection_XqxhCq",
+        "collection_grJ3Qb",
+        "collection_DBrrQ7",
+        "collection_bFabzU",
+        "collection_Rg9JrY",
+        "collection_8QJJLb",
+        "collection_Wg9pYN",
+        "collection_t6xX4f",
+        "collection_DADhem"
+      ],
       "settings": {
         "heading": "",
         "content": "",

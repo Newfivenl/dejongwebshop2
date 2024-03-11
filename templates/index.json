@@ -409,6 +409,12 @@
             "collection": "toykits"
           }
         },
+        "collection_c77dQX": {
+          "type": "collection",
+          "settings": {
+            "collection": "frietbakjes"
+          }
+        },
         "collection_DhQYLC": {
           "type": "collection",
           "settings": {
@@ -438,15 +444,65 @@
           "settings": {
             "collection": "bakpapier"
           }
+        },
+        "collection_iJeyJc": {
+          "type": "collection",
+          "settings": {
+            "collection": "papieren-tasjes"
+          }
+        },
+        "collection_DdDCYY": {
+          "type": "collection",
+          "settings": {
+            "collection": "milkshake-bekers"
+          }
+        },
+        "collection_APEUjf": {
+          "type": "collection",
+          "settings": {
+            "collection": "koffie-bekers-en-deksels"
+          }
+        },
+        "collection_DP3PnX": {
+          "type": "collection",
+          "settings": {
+            "collection": "rpet-flessen-met-dop"
+          }
+        },
+        "collection_NmDUkD": {
+          "type": "collection",
+          "settings": {
+            "collection": "pizzadozen"
+          }
+        },
+        "collection_8ePCqa": {
+          "type": "collection",
+          "settings": {
+            "collection": "sausbakjes"
+          }
+        },
+        "collection_FjAtj3": {
+          "type": "collection",
+          "settings": {
+            "collection": "wegwerp-bestek"
+          }
         }
       },
       "block_order": [
         "collection_Eewm4q",
+        "collection_c77dQX",
         "collection_DhQYLC",
         "collection_FiFame",
         "collection_KwXeie",
         "collection_RtehXf",
-        "collection_BFJMmm"
+        "collection_BFJMmm",
+        "collection_iJeyJc",
+        "collection_DdDCYY",
+        "collection_APEUjf",
+        "collection_DP3PnX",
+        "collection_NmDUkD",
+        "collection_8ePCqa",
+        "collection_FjAtj3"
       ],
       "settings": {
         "heading": "Alle categorieën",

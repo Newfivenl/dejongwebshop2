@@ -223,9 +223,9 @@
       "settings": {
         "heading": "",
         "content": "",
-        "button_label": "Button",
-        "button_url": "\/collections\/all",
-        "spacing_top": 100,
+        "button_label": "",
+        "button_url": "",
+        "spacing_top": 0,
         "spacing_bottom": 100,
         "color_scheme": "color__bg-body color__text",
         "color_border": "color__border-divider-1",

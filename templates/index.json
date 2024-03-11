@@ -54,9 +54,9 @@
         "template--20644271554834__2cb9d59b-242d-48e7-821a-ae61144186e8-content-1": {
           "type": "content",
           "settings": {
-            "heading": "Bekijk onze frietbakjes",
+            "heading": "Frietbakjes",
             "content": "<p>Zie hier ons brede assortiment aan frietbakjes<\/p>",
-            "button_label": "Shop Frietbakjes",
+            "button_label": "Bekijk",
             "button_url": "shopify:\/\/collections\/frietbakjes",
             "full_block_link": false,
             "image_featured": "shopify:\/\/shop_images\/image-3-col.png",
@@ -80,9 +80,9 @@
         "template--20644271554834__2cb9d59b-242d-48e7-821a-ae61144186e8-content-2": {
           "type": "content",
           "settings": {
-            "heading": "Bekijk onze pizzadozen",
+            "heading": "Pizzadozen",
             "content": "<p>Zie hier onze brede assortiment aan pizzadozen<\/p>",
-            "button_label": "Shop Pizzadozen",
+            "button_label": "Bekijk",
             "button_url": "shopify:\/\/collections\/pizzadozen",
             "full_block_link": false,
             "image_featured": "shopify:\/\/shop_images\/image-3-col2.png",
@@ -106,9 +106,9 @@
         "template--20644271554834__2cb9d59b-242d-48e7-821a-ae61144186e8-content-3": {
           "type": "content",
           "settings": {
-            "heading": "Bekijk onze foodtrays",
+            "heading": "Foodtrays",
             "content": "<p>Zie hier ons brede assortiment aan  foodtrays <\/p>",
-            "button_label": "Shop Foodtrays",
+            "button_label": "Bekijk",
             "button_url": "shopify:\/\/collections\/foodtrays",
             "full_block_link": false,
             "image_featured": "shopify:\/\/shop_images\/image-3-col3.png",

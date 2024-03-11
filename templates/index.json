@@ -158,10 +158,10 @@
         "template--20644271554834__0aee11fe-16ff-4cae-924b-b6dc71c8827b-content-1": {
           "type": "content",
           "settings": {
-            "heading": "Rietjes",
-            "content": "<p>Zie hier ons assortiment aan verschillende kartonnen rietjes<\/p>",
-            "button_label": "Bekijk",
-            "button_url": "shopify:\/\/collections\/rietjes",
+            "heading": "",
+            "content": "",
+            "button_label": "",
+            "button_url": "",
             "full_block_link": true,
             "image_featured": "shopify:\/\/shop_images\/img-2col-1.png",
             "enable_autoplay": true,
@@ -184,10 +184,10 @@
         "template--20644271554834__0aee11fe-16ff-4cae-924b-b6dc71c8827b-content-2": {
           "type": "content",
           "settings": {
-            "heading": "Clear Cups",
-            "content": "<p>Zie hier ons assortiment aan verschillende Clear Cups en deksels<\/p>",
+            "heading": "",
+            "content": "",
             "button_label": "Bekijk",
-            "button_url": "shopify:\/\/collections\/clear-cups",
+            "button_url": "",
             "full_block_link": true,
             "image_featured": "shopify:\/\/shop_images\/img-2col-2.png",
             "enable_autoplay": true,
@@ -210,10 +210,10 @@
         "template--20644271554834__0aee11fe-16ff-4cae-924b-b6dc71c8827b-content-3": {
           "type": "content",
           "settings": {
-            "heading": "Milkshake Bekers",
+            "heading": "",
             "content": "",
-            "button_label": "Bekijk",
-            "button_url": "shopify:\/\/collections\/milkshake-bekers",
+            "button_label": "",
+            "button_url": "",
             "full_block_link": true,
             "image_featured": "shopify:\/\/shop_images\/img-1col.png",
             "enable_autoplay": true,

@@ -36,18 +36,168 @@
         "visibility": ""
       }
     },
-    "grid": {
-      "type": "collection__main",
+    "collection_grid_Tk9Apq": {
+      "type": "collection-grid",
+      "blocks": {
+        "collection_XKxaca": {
+          "type": "collection",
+          "settings": {
+            "collection": "toykits"
+          }
+        },
+        "collection_gcAAYJ": {
+          "type": "collection",
+          "settings": {
+            "collection": "toytrays"
+          }
+        },
+        "collection_i39BwH": {
+          "type": "collection",
+          "settings": {
+            "collection": "kidsboxen"
+          }
+        },
+        "collection_QKRdEf": {
+          "type": "collection",
+          "settings": {
+            "collection": "milkshake-bekers"
+          }
+        },
+        "collection_tM8gPU": {
+          "type": "collection",
+          "settings": {
+            "collection": "clear-cups"
+          }
+        },
+        "collection_hcDNAA": {
+          "type": "collection",
+          "settings": {
+            "collection": "plastic-glazen"
+          }
+        },
+        "collection_zHnR8N": {
+          "type": "collection",
+          "settings": {
+            "collection": "koffie-bekers-en-deksels"
+          }
+        },
+        "collection_hzhReG": {
+          "type": "collection",
+          "settings": {
+            "collection": "draagtray"
+          }
+        },
+        "collection_CyrkH4": {
+          "type": "collection",
+          "settings": {
+            "collection": "rpet-flessen-met-dop"
+          }
+        },
+        "collection_r9RJ4M": {
+          "type": "collection",
+          "settings": {
+            "collection": "sausbakjes"
+          }
+        },
+        "collection_Dcc4Cg": {
+          "type": "collection",
+          "settings": {
+            "collection": "portion-containers"
+          }
+        },
+        "collection_Xm8zyw": {
+          "type": "collection",
+          "settings": {
+            "collection": "octaviewboxen"
+          }
+        },
+        "collection_qQMFtf": {
+          "type": "collection",
+          "settings": {
+            "collection": "clear-pac"
+          }
+        },
+        "collection_WEAP46": {
+          "type": "collection",
+          "settings": {
+            "collection": "frietbakjes"
+          }
+        },
+        "collection_KXCnB4": {
+          "type": "collection",
+          "settings": {
+            "collection": "kibbelingbakjes-c71"
+          }
+        },
+        "collection_PxeJDL": {
+          "type": "collection",
+          "settings": {
+            "collection": "foodtrays"
+          }
+        },
+        "collection_Xqgy6N": {
+          "type": "collection",
+          "settings": {
+            "collection": "menuboxen-suikerriet"
+          }
+        },
+        "collection_TrMGcn": {
+          "type": "collection",
+          "settings": {
+            "collection": "pizzadozen"
+          }
+        },
+        "collection_xjVRrr": {
+          "type": "collection",
+          "settings": {
+            "collection": "sparerib-dozen"
+          }
+        },
+        "collection_ay4kKe": {
+          "type": "collection",
+          "settings": {
+            "collection": "aluminium-trays"
+          }
+        }
+      },
+      "block_order": [
+        "collection_XKxaca",
+        "collection_gcAAYJ",
+        "collection_i39BwH",
+        "collection_QKRdEf",
+        "collection_tM8gPU",
+        "collection_hcDNAA",
+        "collection_zHnR8N",
+        "collection_hzhReG",
+        "collection_CyrkH4",
+        "collection_r9RJ4M",
+        "collection_Dcc4Cg",
+        "collection_Xm8zyw",
+        "collection_qQMFtf",
+        "collection_WEAP46",
+        "collection_KXCnB4",
+        "collection_PxeJDL",
+        "collection_Xqgy6N",
+        "collection_TrMGcn",
+        "collection_xjVRrr",
+        "collection_ay4kKe"
+      ],
       "settings": {
-        "spacing_top": 60,
-        "spacing_bottom": 60,
+        "heading": "Onze categorieën",
+        "content": "",
+        "button_label": "",
+        "button_url": "\/collections\/all",
+        "spacing_top": 100,
+        "spacing_bottom": 100,
         "color_scheme": "color__bg-body color__text",
         "color_border": "color__border-divider-1",
-        "row_size_desktop": "md:grid-cols-3",
-        "row_size_mobile": "grid-cols-1",
-        "enable_sort": true,
-        "enable_filter": false,
-        "products_per_page": 24
+        "color_button": "btn btn--secondary",
+        "style_border": "border--b-width",
+        "row_size_desktop": "md:grid-cols-4",
+        "row_size_mobile": "grid grid-cols-2",
+        "layout_x_alignment": "justify-between",
+        "visibility": "",
+        "enable_collection_size_count": true
       }
     },
     "6de8e6ab-8c94-4e9f-b76e-c22d4580d234": {
@@ -159,7 +309,7 @@
   "order": [
     "banner",
     "banner_zVr6KF",
-    "grid",
+    "collection_grid_Tk9Apq",
     "6de8e6ab-8c94-4e9f-b76e-c22d4580d234",
     "recent",
     "153e1f9d-36b0-4e41-84cd-6510d2d62de1"

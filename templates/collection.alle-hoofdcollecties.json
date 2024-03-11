@@ -192,7 +192,7 @@
         "color_scheme": "color__bg-body color__text",
         "color_border": "color__border-divider-1",
         "color_button": "btn btn--secondary",
-        "style_border": "border--b-width",
+        "style_border": "",
         "row_size_desktop": "md:grid-cols-4",
         "row_size_mobile": "grid grid-cols-2",
         "layout_x_alignment": "justify-between",
@@ -218,17 +218,24 @@
         "visibility": ""
       }
     },
-    "recent": {
-      "type": "recent-slider",
+    "collection_grid_VbEJnd": {
+      "type": "collection-grid",
       "settings": {
-        "heading": "Recently viewed",
+        "heading": "",
         "content": "",
+        "button_label": "Button",
+        "button_url": "\/collections\/all",
         "spacing_top": 100,
         "spacing_bottom": 100,
         "color_scheme": "color__bg-body color__text",
         "color_border": "color__border-divider-1",
-        "style_border": "border--t-width",
-        "visibility": ""
+        "color_button": "btn btn--secondary",
+        "style_border": "",
+        "row_size_desktop": "md:grid-cols-4",
+        "row_size_mobile": "grid grid-cols-2",
+        "layout_x_alignment": "justify-between",
+        "visibility": "",
+        "enable_collection_size_count": true
       }
     },
     "153e1f9d-36b0-4e41-84cd-6510d2d62de1": {
@@ -311,7 +318,7 @@
     "banner_zVr6KF",
     "collection_grid_Tk9Apq",
     "6de8e6ab-8c94-4e9f-b76e-c22d4580d234",
-    "recent",
+    "collection_grid_VbEJnd",
     "153e1f9d-36b0-4e41-84cd-6510d2d62de1"
   ]
 }

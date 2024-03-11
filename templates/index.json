@@ -427,6 +427,12 @@
             "collection": "kidsboxen"
           }
         },
+        "collection_APEUjf": {
+          "type": "collection",
+          "settings": {
+            "collection": "koffie-bekers-en-deksels"
+          }
+        },
         "collection_KwXeie": {
           "type": "collection",
           "settings": {
@@ -449,18 +455,6 @@
           "type": "collection",
           "settings": {
             "collection": "papieren-tasjes"
-          }
-        },
-        "collection_DdDCYY": {
-          "type": "collection",
-          "settings": {
-            "collection": "milkshake-bekers"
-          }
-        },
-        "collection_APEUjf": {
-          "type": "collection",
-          "settings": {
-            "collection": "koffie-bekers-en-deksels"
           }
         },
         "collection_DP3PnX": {
@@ -486,6 +480,12 @@
           "settings": {
             "collection": "wegwerp-bestek"
           }
+        },
+        "collection_DdDCYY": {
+          "type": "collection",
+          "settings": {
+            "collection": "milkshake-bekers"
+          }
         }
       },
       "block_order": [
@@ -493,16 +493,16 @@
         "collection_c77dQX",
         "collection_DhQYLC",
         "collection_FiFame",
+        "collection_APEUjf",
         "collection_KwXeie",
         "collection_RtehXf",
         "collection_BFJMmm",
         "collection_iJeyJc",
-        "collection_DdDCYY",
-        "collection_APEUjf",
         "collection_DP3PnX",
         "collection_NmDUkD",
         "collection_8ePCqa",
-        "collection_FjAtj3"
+        "collection_FjAtj3",
+        "collection_DdDCYY"
       ],
       "settings": {
         "heading": "Alle categorieën",

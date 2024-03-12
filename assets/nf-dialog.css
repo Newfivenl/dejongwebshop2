@@ -1526,7 +1526,7 @@ svg {
 }
 
 .icon-checkmark-green  {
-display: inline-flex;
+  display: inline-flex;
  }
 .icon-checkmark-green svg {
   width: 15px;
@@ -1534,10 +1534,11 @@ display: inline-flex;
   margin-top: 5px;
  }
 .login-usp {
-padding-left: 10px;
+  padding-left: 10px;
  }
 .login-uspblock {
-display: inline-flex;
+  display: inline-flex;
+  width: 100%;
  }
 @media screen and (max-width: 1200px) {
 

@@ -4412,7 +4412,7 @@ table__specs .p-4 {
   font-weight: 600;
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1024px) {
 .product-description
 {
   padding-right: 2 rem;

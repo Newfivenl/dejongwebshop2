@@ -4404,12 +4404,19 @@ table__specs .p-4 {
   opacity: 1;
 }
 
-/* productprice productpage */
+/* productpage */
 
 .productprice
 {
   font-size: 20px;
   font-weight: 600;
+}
+
+@media (min-width: 1280px) {
+.product-description
+{
+  padding-right: 2 rem;
+}
 }
 /* breadcrumb */
 

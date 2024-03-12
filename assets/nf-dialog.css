@@ -1549,7 +1549,7 @@ svg {
 }
 
 #new_login_blurp h3 {
-  color: rgb(65, 203, 66);
+  color: #43a047;
   font-size: 20px;
   font-weight: 700;
 }
@@ -1560,7 +1560,7 @@ svg {
   width: auto;
   font-size: 16px;
   font-weight: 700;
-  color: rgb(65, 203, 66);
+  color: #43a047;
 }
 
 #new_login_blurp p {

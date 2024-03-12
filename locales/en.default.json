@@ -312,6 +312,8 @@
       "sign_in": "Sign in",
       "submit": "Submit",
       "new_account_title": "New! Login new account",
+      "new_account_usp1": "See historical orders",
+      "new_account_usp2": "Use your personal orderlist",
       "new_account_p": "You will receive a code via email with which you can log in.",
       "new_account_explain_title": "Remembering passwords is a thing of the past!",
       "new_account_explain_p_html": "Whether you have an account or not, logging in without a password is always possible. View all historical orders and order easily from your personal order list. <br>Want to know more about this new way of logging in?",

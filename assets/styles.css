@@ -4356,8 +4356,6 @@ table__specs .p-4 {
 
 /* ======= */
 
-
-
 .store--hours-info .contact_info{
   font-size: 16px !important;
 }
@@ -4600,6 +4598,8 @@ html {
   margin: 0 auto;
   width: -moz-fit-content;
   width: fit-content;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .login a[href='#recover'] {

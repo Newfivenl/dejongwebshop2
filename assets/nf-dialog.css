@@ -1519,7 +1519,10 @@ svg {
   text-align: left;
 }
 
-
+.icon-checkmark-green svg {
+  width: 15px;
+  height: 15px;
+ }
 @media screen and (max-width: 1200px) {
 
   #old_login,

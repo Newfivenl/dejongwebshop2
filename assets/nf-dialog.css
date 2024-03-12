@@ -1522,7 +1522,12 @@ svg {
 .icon-checkmark-green svg {
   width: 15px;
   height: 15px;
+display: inine-flex;
  }
+.login-usp {
+padding-left: 10px;
+ }
+
 @media screen and (max-width: 1200px) {
 
   #old_login,

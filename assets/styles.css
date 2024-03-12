@@ -2140,6 +2140,9 @@ img:after {
 .max-w-xl {
   max-width: 36rem;
 }
+.max-w-xxl {
+  max-width: 85ch;
+}
 
 .max-w-xs {
   max-width: 20rem;

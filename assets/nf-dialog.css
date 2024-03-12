@@ -1511,11 +1511,11 @@ svg {
 #new_login .new_login_header{
   font-weight:800;
   font-size: 30px;
-  text-align: center;
+  text-align: left;
 }
 #new_login .new_login_description{
   margin-top: 30px;
-  text-align: center;
+  text-align: left;
 }
 
 

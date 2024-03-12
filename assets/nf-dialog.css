@@ -1520,7 +1520,7 @@ svg {
 }
 
 .icon-checkmark-green  {
-display: inine-flex;
+display: inline-flex;
  }
 .icon-checkmark-green svg {
   width: 15px;

@@ -1519,10 +1519,12 @@ svg {
   text-align: left;
 }
 
+.icon-checkmark-green  {
+display: inine-flex;
+ }
 .icon-checkmark-green svg {
   width: 15px;
   height: 15px;
-display: inine-flex;
  }
 .login-usp {
 padding-left: 10px;

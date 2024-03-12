@@ -4371,7 +4371,7 @@ table__specs .p-4 {
 }
 
 
-/* tagsnippet productpage */
+/* productpage */
 
 .product-tags {
   border-bottom: 1px solid var(--color-neutral-button-background-light);
@@ -4403,8 +4403,6 @@ table__specs .p-4 {
   text-decoration: underline;
   opacity: 1;
 }
-
-/* productpage */
 
 .productprice
 {

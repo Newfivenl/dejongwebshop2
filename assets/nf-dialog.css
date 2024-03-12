@@ -1529,7 +1529,9 @@ display: inline-flex;
 .login-usp {
 padding-left: 10px;
  }
-
+.login-uspblock {
+display: inline-flex;
+ }
 @media screen and (max-width: 1200px) {
 
   #old_login,

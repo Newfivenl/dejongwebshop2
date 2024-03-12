@@ -1542,7 +1542,7 @@ svg {
 #new_login_blurp {
   margin-top: 50px;
   padding: 5px 20px;
-  color: rgb(65, 203, 66);
+  color: #43a047;
   text-align: left;
   background-color: rgb(65, 203, 66, 0.07);
   border-left: 5px solid rgb(65, 203, 66);

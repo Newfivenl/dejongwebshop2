@@ -882,8 +882,13 @@ blockquote,
   margin-bottom: 0.5rem;
 }
 
-  .py-8 h3{
- margin-top: 2rem;
+.py-8 h3{
+  margin-top: 2rem;
+}
+
+
+.blue{
+  color: var(--color-primary-button-background-light);
 }
 
 @media (min-width: 768px) {

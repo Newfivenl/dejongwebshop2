@@ -4595,7 +4595,6 @@ html {
 
 .login a {
   display: block;
-  margin: 0 auto;
   width: -moz-fit-content;
   width: fit-content;
   padding-left: 10px;

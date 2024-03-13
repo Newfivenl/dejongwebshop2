@@ -52,6 +52,7 @@
           {% endif %}
         </div>
         {% unless product.variants[0].available %}
+          {% if product.metafields.custom.alternatief.value != blank %}
           <div class="alternative__products">
             <details data-target="{{ product.id }}">
               <summary class="facets__summary caption-large focus-offset">
@@ -64,6 +65,7 @@
               </summary>
             </details>
           </div>
+          {% endif %}
         {% endunless %}
       </div>
 

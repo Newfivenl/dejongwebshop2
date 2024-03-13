@@ -50,6 +50,8 @@
           <div id="purchase-count-{{ product.id }}" class="sku"></div>
         </div>
         {% unless product.variants[0].available %}
+          {% if product.metafields.custom.alternatief.value != blank %}
+
           <div class="alternative__products">
             <details class="recent-details" data-target="{{ product.id }}">
               <summary class="facets__summary caption-large focus-offset">
@@ -62,6 +64,7 @@
               </summary>
             </details>
           </div>
+          {% endif %}
         {% endunless %}
       </div>
 

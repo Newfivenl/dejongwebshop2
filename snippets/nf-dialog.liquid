@@ -31,7 +31,7 @@
           fetchOptions
         );
         const orders = await ordersResponse.json();
-        const orderId = orders[0]?.id;
+        const orderId = orders?.data[0]?.id;
 
         if (orderId) {
           const orderLineItemsResponse = await fetch(

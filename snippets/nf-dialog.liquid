@@ -39,9 +39,10 @@
             fetchOptions
           );
           const orderLineItems = await orderLineItemsResponse.json();
+          const lineItems = orderLineItems?.data;
 
-          if (Array.isArray(orderLineItems)) {
-            recentPurchasedItemsJson = orderLineItems.map(({ product, quantity }) => ({
+          if (Array.isArray(lineItems)) {
+            recentPurchasedItemsJson = lineItems.map(({ product, quantity }) => ({
               id: product?.id,
               handle: product?.handle,
               quantity

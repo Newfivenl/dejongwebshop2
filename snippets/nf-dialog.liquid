@@ -190,6 +190,7 @@
     };
 
     const recentOrderSetupGrid = async (grid) => {
+      console.log('recentPurchasedItemsJson', recentPurchasedItemsJson);
       if (recentPurchasedItemsJson == null ) {
         grid.innerHTML = 'No Recent Orders';
         grid.classList.add(GRID_LOADED_CLASS);

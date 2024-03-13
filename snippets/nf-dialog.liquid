@@ -300,6 +300,7 @@
         const recentOrders = recentPurchasedItemsJson;
         let newRecentOrders = [];
         let getHandle = [];
+        console.log('recentOrders', recentOrders);
         let result = recentOrders.reduce((acc, curr) => {
           let item = acc.find(item => item.id === curr.id);
           if (item) {
@@ -311,6 +312,7 @@
 
           return acc;
         }, []);
+        console.log('recentOrders result', result);
         result.forEach(item => {
           getHandle.push(item.handle);
         });

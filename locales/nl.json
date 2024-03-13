@@ -395,6 +395,9 @@
       },
       "delivery_options": {
         "pick_up": "Afhalen (locatie Groningen)"
+      },
+      "stock": {
+        "product_column_header": "Producten."
       }
     }
   },

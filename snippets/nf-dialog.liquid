@@ -1,11 +1,10 @@
-{% assign recent_purchased_items = customer.metafields.custom.order_json.value %}
 {% assign wishlist_product_list = customer.metafields.fields_raven.wishlist_product_list.value | reverse %}
 
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 <script type="text/javascript">
     window.wishlistProductListObj = {{ wishlist_product_list | json | default: '[]' }};
     window.productIds = [];
-    let recentPurchasedItemsJson = {{ recent_purchased_items | json }};
+    let recentPurchasedItemsJson = null;
     const GRID_LOADED_CLASS = 'loaded';
     var newRecentPurchasedItemsJson = [];
     const recentOrdersSelectors = {
@@ -13,7 +12,48 @@
       grid_viewAll: '[grid-recent-orders-all]',
       productCard: '.recent_order_row_wrapper'
     };
-    
+
+    const fetchRecentOrder = async () => {
+      const { urlProxy, authToken } = window.customerOrdersApp;
+      const headers = new Headers({
+        'Authorization': `Bearer ${authToken}`
+      });
+
+      const fetchOptions = {
+        method: 'GET',
+        headers,
+        redirect: 'follow'
+      };
+
+      try {
+        const ordersResponse = await fetch(
+          `${urlProxy}api/v1/customer/orders?items=1&sort=desc`,
+          fetchOptions
+        );
+        const orders = await ordersResponse.json();
+        const orderId = orders[0]?.id;
+
+        if (orderId) {
+          const orderLineItemsResponse = await fetch(
+            `${urlProxy}api/v1/order/line-items?order_id=${orderId}`,
+            fetchOptions
+          );
+          const orderLineItems = await orderLineItemsResponse.json();
+
+          if (Array.isArray(orderLineItems)) {
+            recentPurchasedItemsJson = orderLineItems.map(({ product, quantity }) => ({
+              id: product?.id,
+              handle: product?.handle,
+              quantity
+            }));
+          }
+        }
+
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
     function initTabs() {
       const tabLinks = document.querySelectorAll('.nf-tab-links li');
       const tabContent = document.querySelectorAll('.nf-tab-content .tab');
@@ -447,11 +487,12 @@
       });
     });
 
-    document.addEventListener('DOMContentLoaded', () => {
-          initTabs();
-          initDialog();
-          recentOrderInitGrid();
-      });
+    document.addEventListener('DOMContentLoaded', async () => {
+      await fetchRecentOrder();
+      initTabs();
+      initDialog();
+      recentOrderInitGrid();
+    });
 </script>
 <div id="nf_drawer">
   <div class="nf-drawer nf-dialog">

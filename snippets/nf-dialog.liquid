@@ -19,32 +19,35 @@
         'Authorization': `Bearer ${authToken}`
       });
 
+      const fetchOptions = {
+        method: 'GET',
+        headers,
+        redirect: 'follow'
+      };
+
       try {
         const ordersResponse = await fetch(
-          `${urlProxy}api/v1/customer/orders?items=1&sort=desc`, 
-          {
-            method: 'GET',
-            headers,
-            redirect: 'follow'
-          }
+          `${urlProxy}api/v1/customer/orders?items=1&sort=desc`,
+          fetchOptions
         );
         const orders = await ordersResponse.json();
-      
-        const orderLineItemsResponse = await fetch(
-          `${urlProxy}api/v1/order/line-items?order_id=${orders[0]?.id}`, 
-          {
-            method: 'GET',
-            headers,
-            redirect: 'follow'
+        const orderId = orders[0]?.id;
+
+        if (orderId) {
+          const orderLineItemsResponse = await fetch(
+            `${urlProxy}api/v1/order/line-items?order_id=${orderId}`,
+            fetchOptions
+          );
+          const orderLineItems = await orderLineItemsResponse.json();
+
+          if (Array.isArray(orderLineItems)) {
+            recentPurchasedItemsJson = orderLineItems.map(({ product, quantity }) => ({
+              id: product?.id,
+              handle: product?.handle,
+              quantity
+            }));
           }
-        );
-        const orderLineItems = await orderLineItemsResponse.json();
-      
-        const recentPurchasedItemsJson = orderLineItems.map(({product, quantity}) => ({
-            id: product?.id,
-            handle: product?.handle,
-            quantity
-        }));
+        }
 
       } catch (error) {
         console.error(error);

@@ -185,7 +185,7 @@
   },
   "customer": {
     "account_drawer": {
-      "orders_tab": "Bestellingen",
+      "orders_tab": "Bestellingen.",
       "account_tab": "Account",
       "close": "Sluit",
       "my_orders": "Overzicht van mijn bestellingen.",

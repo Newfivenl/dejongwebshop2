@@ -262,7 +262,8 @@
       "shipping": "Verzending",
       "discounts": "Kortingen",
       "taxes": "Belastingen",
-      "refund": "Terugbetaling"
+      "refund": "Terugbetaling",
+      "account_date_html": "Geplaatst op"
     },
     "sign_in": {
       "title": "Inloggen",

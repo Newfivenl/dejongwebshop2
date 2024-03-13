@@ -1,7 +1,7 @@
 {% assign recent_purchased_items = customer.metafields.custom.order_json_v2.value %}
 {% assign wishlist_product_list = customer.metafields.fields_raven.wishlist_product_list.value | reverse %}
 
-<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+{% comment %} <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script> {% endcomment %}
 <script type="text/javascript">
     window.wishlistProductListObj = {{ wishlist_product_list | json | default: '[]' }};
     window.productIds = [];
@@ -43,7 +43,7 @@
           }, false);
       };
     }
-
+    
     const quantitySpinnerElem = (quantitySpinners, minusButton, plusButton, quantityInputField, atcButton) => {
       quantitySpinners.forEach((quantitySpinner) => {
         const minusBtn = quantitySpinner.querySelector(minusButton);
@@ -352,52 +352,52 @@
           console.error('Error:', error);
         });
     }
-    window.addEventListener('DOMContentLoaded', function () {
-      const quantitySpinners = document.querySelectorAll('.wishlist-quantity-spinner');
-      let wishListCartData = [];
-      let newWishlistData = [];
-      quantitySpinnerElem(quantitySpinners, ".wishlist-minus__button", ".wishlist-plus__button", ".wishlist-quantity__input", ".wishlist-re-order-btn" );
-      document.querySelector('.wishlist-re-order-btn').addEventListener('click', function (event) {
-        this.classList.add('loading');
-        this.innerHTML = `<div class="loading-overlay__spinner">
-        <svg
-          aria-hidden="true"
-          focusable="false"
-          role="presentation"
-          class="spinner"
-          viewBox="0 0 66 66"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-        </svg>
-      </div>`;
-        quantitySpinners.forEach((quantitySpinner) => {
-          const quantityInput = quantitySpinner.querySelector('.wishlist-quantity__input');
-          let item = quantitySpinner.parentNode.parentNode.dataset.variant;
-          let quantityValue = quantityInput.value;
-          wishListCartData.push({
-            id: item,
-            quantity: quantityValue,
-          });
-        });
-        const reducedWishlistCartData = wishListCartData;
-        let result = reducedWishlistCartData.reduce((acc, curr) => {
-          let item = acc.find((item) => item.id === curr.id);
-          if (item) {
-            item.quantity = curr.quantity;
-          } else {
-            acc.push(curr);
-            newWishlistData.push(curr);
-          }
-          return acc;
-        }, []);
-        newWishlistData = newWishlistData.filter((item) => item.quantity > 0);
-        var data = {
-          items: newWishlistData,
-        };
-        addToCart(data, this);
-      });
-    });
+    // window.addEventListener('DOMContentLoaded', function () {
+    //   const quantitySpinners = document.querySelectorAll('.wishlist-quantity-spinner');
+    //   let wishListCartData = [];
+    //   let newWishlistData = [];
+    //   quantitySpinnerElem(quantitySpinners, ".wishlist-minus__button", ".wishlist-plus__button", ".wishlist-quantity__input", ".wishlist-re-order-btn" );
+    //   document.querySelector('.wishlist-re-order-btn').addEventListener('click', function (event) {
+    //     this.classList.add('loading');
+    //     this.innerHTML = `<div class="loading-overlay__spinner">
+    //     <svg
+    //       aria-hidden="true"
+    //       focusable="false"
+    //       role="presentation"
+    //       class="spinner"
+    //       viewBox="0 0 66 66"
+    //       xmlns="http://www.w3.org/2000/svg"
+    //     >
+    //       <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+    //     </svg>
+    //   </div>`;
+    //     quantitySpinners.forEach((quantitySpinner) => {
+    //       const quantityInput = quantitySpinner.querySelector('.wishlist-quantity__input');
+    //       let item = quantitySpinner.parentNode.parentNode.dataset.variant;
+    //       let quantityValue = quantityInput.value;
+    //       wishListCartData.push({
+    //         id: item,
+    //         quantity: quantityValue,
+    //       });
+    //     });
+    //     const reducedWishlistCartData = wishListCartData;
+    //     let result = reducedWishlistCartData.reduce((acc, curr) => {
+    //       let item = acc.find((item) => item.id === curr.id);
+    //       if (item) {
+    //         item.quantity = curr.quantity;
+    //       } else {
+    //         acc.push(curr);
+    //         newWishlistData.push(curr);
+    //       }
+    //       return acc;
+    //     }, []);
+    //     newWishlistData = newWishlistData.filter((item) => item.quantity > 0);
+    //     var data = {
+    //       items: newWishlistData,
+    //     };
+    //     addToCart(data, this);
+    //   });
+    // });
     document.addEventListener('DOMContentLoaded', function () {
       const quantitySpinners = document.querySelectorAll('.orderlist-quantity-spinner');
       let wishListCartData = [];

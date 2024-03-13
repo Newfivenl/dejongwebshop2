@@ -262,7 +262,8 @@
       "shipping": "Shipping",
       "discounts": "Discounts",
       "taxes": "Taxes",
-      "refund": "Refund"
+      "refund": "Refund",
+      "account_date_html": "Placed on"
     },
     "sign_in": {
       "title": "Sign in",

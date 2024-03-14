@@ -151,6 +151,7 @@ class NFCustomerOrders extends HTMLElement {
       const inventoryQuantity = item.variant?.inventoryQuantity ? item.variant.inventoryQuantity : '';
       const productUrl = item.product && item.product?.onlineStoreUrl ? item.product.onlineStoreUrl : '';
       const productID = item.product ? item.product.id : ''; 
+      const productUrl = productID ? `/products/${productID}` : '';
       const imageUrl = item.product && item.product?.featuredImage && item.product.featuredImage.url ? item.product.featuredImage.url + '&width=100&height=100' : '';
       const productPrice = item.price ? item.price : '';
       const minusButton = this.shadowRoot.querySelectorAll('.minus__button');

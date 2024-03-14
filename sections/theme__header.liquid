@@ -266,6 +266,13 @@
          rel="nofollow"
          title=" {% if customer %}{{ 'general.navigation.account' | t }}{% else %}{{ 'customer.account.log_in' | t }}{% endif %}">
          {% render 'component__icon', icon: 'account', size: '24', class: '' %} 
+                                 <span>
+                          {%- liquid
+                            if customer
+                              echo customer.first_name
+                              endif
+                          -%}
+                        </span>
        </button>
      {% endif %}
     {% endunless %}

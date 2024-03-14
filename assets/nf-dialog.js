@@ -167,7 +167,12 @@ class NFCustomerOrders extends HTMLElement {
       `;
     }
 
-    this.shadowRoot.innerHTML = content;
+    this.shadowRoot.innerHTML = `
+      <style>
+        /* Your CSS styles here */
+      </style>
+      ${content}
+    `;
   }
 }
 

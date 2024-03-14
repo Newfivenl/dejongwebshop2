@@ -45,9 +45,9 @@
               &nbsp; | &nbsp;
               <div class="sku">{{ product.metafields.other.specifications_dozen_op_pallet.value }} {{ 'products.product.characteristics_label_boxesperpallet' | t }}
               </div>
+          &nbsp; | &nbsp;
             {% endif %}
           {% endif %}
-          &nbsp; | &nbsp;
           <div id="purchase-count-{{ product.id }}" class="sku"></div>
         </div>
         {% unless product.variants[0].available %}
@@ -130,9 +130,10 @@
                   {% if current_variant.sku != blank %}
                     &nbsp; | &nbsp;
                     <div class="sku">SKU: {{ current_variant.sku }}</div>
+                    &nbsp;|&nbsp;
                   {% endif %}
                 {% endif %}
-                &nbsp;|&nbsp;
+                
                 <div id="purchase-count-{{ product.id }}" class="sku"></div>
               </div>
             </div>

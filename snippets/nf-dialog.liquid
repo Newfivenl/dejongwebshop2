@@ -150,7 +150,7 @@
 
     const recentOrderSetupGrid = async (grid) => {
       if (recentPurchasedItemsJson == null ) {
-        grid.innerHTML = 'No Recent Orders';
+        grid.innerHTML = '0 orders';
         grid.classList.add(GRID_LOADED_CLASS);
       } else {
         const recent_order = getRecentOrder();

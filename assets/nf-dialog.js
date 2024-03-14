@@ -76,6 +76,9 @@ class NFCustomerOrders extends HTMLElement {
   }
 
   renderOrders() {
+    if (this.state.orders.length === 0) {
+      return '';
+    }
     return this.state.orders.map(order => `
     <tr
     class="order_item" data-order-id="${order.id}"
@@ -150,30 +153,22 @@ class NFCustomerOrders extends HTMLElement {
       // Implement rendering for line items view
     } else {
       content = `
-        <table class="nf-my-orders__table">
-          <thead>
-            <tr>
-              <th>${window.String.customerOrder}</th>
-              <th>${window.String.customerTrack_and_trace}</th>
-              <th colspan="2">${window.String.customerDate}</th>
-              <th>${window.String.customerTotal}</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${this.renderOrders()}
-          </tbody>
-        </table>
-        ${this.renderPagination()}
+        <div class="nf-customer-orders">
+          <table class="nf-my-orders__table">
+            <thead>
+              <tr>
+                <th>${window.String.customerOrder}</th>
+                <th>${window.String.customerTrack_and_trace}</th>
+                <th colspan="2">${window.String.customerDate}</th>
+                <th>${window.String.customerTotal}</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${this.renderOrders()}
+            </tbody>
+          </table>
+          ${this.renderPagination()}
+        </div>
       `;
     }
 
-    this.shadowRoot.innerHTML = `
-      <style>
-        /* Your CSS styles here */
-      </style>
-      ${content}
-    `;
-  }
-}
-
-customElements.define('nf-customer-orders', NFCustomerOrders);

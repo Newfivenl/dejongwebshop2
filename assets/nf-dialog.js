@@ -157,7 +157,7 @@ class NFCustomerOrders extends HTMLElement {
       const minusButton = this.shadowRoot.querySelectorAll('.minus__button');
       const plusButton = this.shadowRoot.querySelectorAll('.plus__button');
       const addToCartButton = this.shadowRoot.querySelectorAll('.add-to-cart-button');
-      const isAvailable = inventoryQuantity >= 0;
+      const isAvailable = inventoryQuantity > 0;
       minusButton.forEach(button => {
         button.addEventListener('click', () => {
           this.updateQuantity(button, false);

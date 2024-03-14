@@ -1786,3 +1786,8 @@ summary::-webkit-details-marker {
 summary::marker {
   content: '';
 }
+
+/* Pagination */
+.nf-my-orders__wrapper #pagination{
+  margin-bottom: 20px;
+} 

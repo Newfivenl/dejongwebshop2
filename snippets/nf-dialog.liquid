@@ -588,12 +588,12 @@
           <button class="tab active" data-target="orders">
             <span>{{ 'customer.account_drawer.orders_tab' | t }}</span>
           </button>
-          <button class="tab" data-target="top-ordered__tab">
+        {% comment %} <button class="tab" data-target="top-ordered__tab">
             <span>{{ 'customer.account_drawer.top_ordered_tab' | t }}</span>
-          </button>
-        {% comment %} <button class="tab" data-target="order-lists">
+          </button>  {% endcomment %}
+       <button class="tab" data-target="order-lists">
                                 <span>{{ 'customer.account_drawer.order_list_title' | t }}</span>
-                          </button> {% endcomment %}
+                          </button> 
         {% comment %} <button class="tab" data-target="wishlist">
                                                                                                                                                                                                                                                                       <span>{{ 'customer.account_drawer.favorites_tab' | t }}</span>
                                                                                                                                                                                                                   </button> {% endcomment %}
@@ -642,6 +642,14 @@
                     {% render 'nf-account-product-grid'
                       , product: product %}
                   {% endfor %}
+                </div><div id="pagination">
+                  <button id="prevPage">
+                    {% render 'icon-caret-new' %}
+                  </button>
+                  {% comment %} <span id="pageNumbers"></span> {% endcomment %}
+                  <button id="nextPage">
+                    {% render 'icon-caret-new' %}
+                  </button>
                 </div>
                 <div class="re-order-cta-btn--wrapper">
                   <button class="re-order-cta orderlist-re-order-btn disabled">

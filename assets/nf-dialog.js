@@ -47,6 +47,119 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
+  // Pagination for order list 
+  const itemsPerPage = 48;
+      const items = document.querySelectorAll('#order-lists .account-product__grid');
+      const totalItems = items.length;
+      let currentPage = 1;
+      if (totalItems > itemsPerPage) {
+        document.getElementById('pagination').style.display = 'block';
+      } else {
+        document.getElementById('pagination').style.display = 'none';
+      }
+      const totalPages = Math.ceil(totalItems / itemsPerPage);
+      function showPage(page) {
+        const startIndex = (page - 1) * itemsPerPage;
+        const endIndex = page * itemsPerPage;
+
+        items.forEach((item, index) => {
+          if (index >= startIndex && index < endIndex) {
+            item.style.display = 'grid';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      }
+      showPage(currentPage);
+      function updatePageNumbers() {
+        const pageNumbers = document.getElementById('pageNumbers');
+        pageNumbers.innerHTML = '';
+
+        if (totalPages <= 7) {
+          for (let i = 1; i <= totalPages; i++) {
+            const pageNumber = document.createElement('span');
+            pageNumber.classList.add('page-number');
+            if (i === currentPage) {
+              pageNumber.classList.add('active');
+            }
+            pageNumber.textContent = i;
+            pageNumber.addEventListener('click', function () {
+              currentPage = i;
+              showPage(currentPage);
+              updatePageNumbers();
+            });
+            pageNumbers.appendChild(pageNumber);
+          }
+        } else {
+          for (let i = 1; i <= 3; i++) {
+            const pageNumber = document.createElement('span');
+            pageNumber.classList.add('page-number');
+            if (i === currentPage) {
+              pageNumber.classList.add('active');
+            }
+            pageNumber.textContent = i;
+            pageNumber.addEventListener('click', function () {
+              currentPage = i;
+              showPage(currentPage);
+              updatePageNumbers();
+            });
+            pageNumbers.appendChild(pageNumber);
+          }
+
+          if (currentPage > 3) {
+            const ellipsis = document.createElement('span');
+            ellipsis.textContent = '...';
+            pageNumbers.appendChild(ellipsis);
+          }
+
+          for (let i = Math.max(4, currentPage - 1); i <= Math.min(currentPage + 1, totalPages - 2); i++) {
+            const pageNumber = document.createElement('span');
+            pageNumber.classList.add('page-number');
+            if (i === currentPage) {
+              pageNumber.classList.add('active');
+            }
+            pageNumber.textContent = i;
+            pageNumber.addEventListener('click', function () {
+              currentPage = i;
+              showPage(currentPage);
+              updatePageNumbers();
+            });
+            pageNumbers.appendChild(pageNumber);
+          }
+
+          if (currentPage < totalPages - 2) {
+            const ellipsis = document.createElement('span');
+            ellipsis.textContent = '...';
+            pageNumbers.appendChild(ellipsis);
+          }
+
+          for (let i = totalPages - 2; i <= totalPages; i++) {
+            const pageNumber = document.createElement('span');
+            pageNumber.classList.add('page-number');
+            if (i === currentPage) {
+              pageNumber.classList.add('active');
+            }
+            pageNumber.textContent = i;
+            pageNumber.addEventListener('click', function () {
+              currentPage = i;
+              showPage(currentPage);
+              updatePageNumbers();
+            });
+            pageNumbers.appendChild(pageNumber);
+          }
+        }
+      }
+      document.getElementById('nextPage').addEventListener('click', function () {
+        currentPage = (currentPage % totalPages) + 1;
+        showPage(currentPage);
+        updatePageNumbers();
+      });
+      document.getElementById('prevPage').addEventListener('click', function () {
+        currentPage = ((currentPage - 2 + totalPages) % totalPages) + 1;
+        showPage(currentPage);
+        updatePageNumbers();
+      });
+      updatePageNumbers();
 });
 
 

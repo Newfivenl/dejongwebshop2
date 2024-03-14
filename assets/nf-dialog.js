@@ -150,6 +150,7 @@ class NFCustomerOrders extends HTMLElement {
       const productTitle = item.product && item.product.title ? item.product.title : '';
       const inventoryQuantity = item.variant?.inventoryQuantity ? item.variant.inventoryQuantity : '';
       const productUrl = item.product && item.product?.onlineStoreUrl ? item.product.onlineStoreUrl : '';
+      const productHandle = item.product ? item.product.handle : ''; 
       const imageUrl = item.product && item.product?.featuredImage && item.product.featuredImage.url ? item.product.featuredImage.url + '&width=100&height=100' : '';
       const productPrice = item.price ? item.price : '';
       const minusButton = this.shadowRoot.querySelectorAll('.minus__button');
@@ -178,7 +179,7 @@ class NFCustomerOrders extends HTMLElement {
       return `
       ${item ? `<div class="wishlist_row" data-variant-id="${variantId}" data-available="${isAvailable}">
       <div class="product-image-box">
-        <a href="{{ product.url }}" class="no-decor">
+        <a href="${productUrl}" class="no-decor">
           ${imageUrl ? `<div class="image-box">
           <div class="image_wrapper">
             <img style="width: 100px" src="${imageUrl}">
@@ -188,7 +189,7 @@ class NFCustomerOrders extends HTMLElement {
       </div>
       <div class="desc-box">
         <div>
-          <a href="{{ product.url }}">
+          <a href="${productUrl}">
             <p class="product_title">${productTitle}</p>
           </a>
         </div>

@@ -109,11 +109,11 @@
                     <span>{% render 'icon-box-adjusted' %}</span>
                     {{ 'products.product.inhoud_stuks' | t: stuks: item.metafields.other.Pieces_per_box.value }}
                   </div>
+                  &nbsp; | &nbsp;
                 {% endif %}
 
                 {% if item.variants[0].available %}
                   {% if current_variant.sku != blank %}
-                    &nbsp; | &nbsp;
                     <div class="sku">SKU: {{ current_variant.sku }}</div>
                   {% endif %}
                 {% endif %}

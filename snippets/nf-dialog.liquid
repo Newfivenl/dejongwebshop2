@@ -131,15 +131,9 @@ class NFCustomerOrders extends HTMLElement {
     } else if (this.state.view === 'lineItems') {
       // Your existing rendering logic for line items view
     } else {
-      const orders = this.state.orders;
-      const heading = orders.length > 0 ?
-        `<h1>{{ 'customer.account_drawer.my_orders' | t }}</h1>` :
-        `<h1>{{ 'customer.account_drawer.no_orders' | t }}</h1>`;
-
       content = `
-        ${heading}
         <table class="nf-my-orders__table">
-          ${this.renderOrders()}
+          ${this.renderOrders()} <!-- Render orders here -->
         </table>
         ${this.renderPagination()}
       `;

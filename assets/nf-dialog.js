@@ -168,7 +168,6 @@ class NFCustomerOrders extends HTMLElement {
           console.log('plusButton');
         });
       });
-console.log(item.product)
       addToCartButton.forEach(button => {
         button.addEventListener('click', () => {
           const quantityInput = button.closest('.quantity-spinner').querySelector('.quantity__input');
@@ -179,7 +178,7 @@ console.log(item.product)
       return `
       ${item ? `<div class="wishlist_row" data-variant-id="${variantId}" data-available="${isAvailable}">
       <div class="product-image-box">
-        <a href="${productUrl}" class="no-decor">
+        <a href="{{ product.url }}" class="no-decor">
           ${imageUrl ? `<div class="image-box">
           <div class="image_wrapper">
             <img style="width: 100px" src="${imageUrl}">

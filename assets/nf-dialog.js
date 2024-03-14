@@ -149,15 +149,14 @@ class NFCustomerOrders extends HTMLElement {
     } else if (this.state.view === 'lineItems') {
       // Implement rendering for line items view
     } else {
-      // Render table head only if there are orders
-      content = this.state.orders.length > 0 ? `
+      content = `
         <table class="nf-my-orders__table">
           <thead>
             <tr>
-            <th>${window.String.customerOrder}</th>
-            <th>${window.String.customerTrack_and_trace}</th>
-            <th colspan="2">${window.String.customerDate}</th>
-            <th>${window.String.customerTotal}</th>
+              <th>${window.String.customerOrder}</th>
+              <th>${window.String.customerTrack_and_trace}</th>
+              <th colspan="2">${window.String.customerDate}</th>
+              <th>${window.String.customerTotal}</th>
             </tr>
           </thead>
           <tbody>
@@ -165,11 +164,10 @@ class NFCustomerOrders extends HTMLElement {
           </tbody>
         </table>
         ${this.renderPagination()}
-      ` : '';
+      `;
     }
 
     this.shadowRoot.innerHTML = content;
-    // Attach event listeners and styles as before
   }
 }
 

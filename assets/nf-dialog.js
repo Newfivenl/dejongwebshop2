@@ -187,7 +187,7 @@ class NFCustomerOrders extends HTMLElement {
         </div>` : ""}        
         </a>
       </div>
-      <div class="desc-box">
+      <div class="desc-boxx">
         <div>
           <a href="${productUrl}">
             <p class="product_title">${productTitle}</p>

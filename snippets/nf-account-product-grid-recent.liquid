@@ -40,8 +40,9 @@
             {% if current_variant.sku != blank %}
               <div class="sku">SKU: {{ current_variant.sku }}</div>
             {% endif %}
-            {% if product.metafields.other.specifications_dozen_op_pallet.value != blank %}
-              &nbsp; | &nbsp;
+              {% assign dozen_op_pallet_value = product.metafields.other.specifications_dozen_op_pallet.value %}
+{% if dozen_op_pallet_value != blank and dozen_op_pallet_value != 0 %}
+  &nbsp; | &nbsp;
               <div class="sku">{{ product.metafields.other.specifications_dozen_op_pallet.value }} {{ 'products.product.characteristics_label_boxesperpallet' | t }}
               </div>
             {% endif %}

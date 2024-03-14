@@ -39,10 +39,10 @@
           {% if product.variants[0].available %}
             {% if current_variant.sku != blank %}
               <div class="sku">SKU: {{ current_variant.sku }}</div>
+              &nbsp; | &nbsp;
             {% endif %}
               {% assign dozen_op_pallet_value = product.metafields.other.specifications_dozen_op_pallet.value %}
 {% if dozen_op_pallet_value != blank and dozen_op_pallet_value != 0 %}
-  &nbsp; | &nbsp;
               <div class="sku">{{ product.metafields.other.specifications_dozen_op_pallet.value }} {{ 'products.product.characteristics_label_boxesperpallet' | t }}
               </div>
             {% endif %}
@@ -126,7 +126,6 @@
                     {{ 'products.product.inhoud_stuks' | t: stuks: item.metafields.other.Pieces_per_box.value }}
                   </div>
                 {% endif %}
-
                 {% if item.variants[0].available %}
                   {% if current_variant.sku != blank %}
                     &nbsp; | &nbsp;

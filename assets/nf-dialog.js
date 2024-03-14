@@ -1,3 +1,55 @@
+
+document.addEventListener('DOMContentLoaded', function () {
+  const drawer = document.querySelector('#nf_drawer');
+  document.body.addEventListener('click', (event) => {
+    const closeDrawerButton = event.target.closest('.nf-close-dialog');
+    if (closeDrawerButton) {
+      drawer.removeAttribute('open');
+    }
+  });
+  document.body.addEventListener('click', (event) => {
+    const openDrawerButton = event.target.closest('.nf_show_dialog');
+    if (openDrawerButton) {
+      drawer.setAttribute('open', '');
+    }
+  });
+  document.querySelector('.nf-drawer').addEventListener('click', (event) => {
+    if (event.target === document.querySelector('.nf-drawer')) {
+      drawer.removeAttribute('open');
+    }
+  });
+  const tabs = document.querySelectorAll('.tab');
+  const contentPanels = document.querySelectorAll('.tab-content');
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const target = tab.getAttribute('data-target');
+      tabs.forEach((t) => t.classList.remove('active'));
+      contentPanels.forEach((p) => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelector(`#${target}`).classList.add('active');
+    });
+  });
+
+  var dropdown = document.querySelector('.nf-dropdown');
+  var content = document.querySelector('.nf-dropdown-content');
+  var caret = document.querySelector('.nf-dropdown-caret');
+
+  dropdown.addEventListener('click', function (event) {
+    event.stopPropagation();
+    content.classList.toggle('active');
+    caret.classList.toggle('active');
+  });
+
+  document.addEventListener('click', function (event) {
+    if (content.classList.contains('active')) {
+      content.classList.remove('active');
+      caret.classList.remove('active');
+    }
+  });
+
+});
+
+
 class NFCustomerOrders extends HTMLElement {
   constructor() {
     super();
@@ -85,12 +137,6 @@ class NFCustomerOrders extends HTMLElement {
       class="nf-view_all"
       >
         <a href="javascript:void(0);" class="order_id">${order.name}</a>
-      </td>
-      <td >
-        ${order.fulfillments.edges[0] ? `${window.icon_truck_solid}
-        <a class="tracking-link" target="_blank" href="${order.fulfillments.edges[0].node.trackingUrls[0]}">
-          ${window.String.customerTrack_and_trace}
-        </a>` : ``}
       </td>
       <td colspan="2">${order.liquidShopifyCreatedAt}</td>
       <td>&euro;${order.totalPrice.replace(".", ",")}</td>
@@ -374,14 +420,7 @@ class NFCustomerOrders extends HTMLElement {
           currentOrders.cancelledAt
         ) : ("")}
                   </div>
-                  <div class="order-details-track-and-trace" style="{{ tracking_url_display }}">
-                    <p>
-                      ${currentOrders.fulfillments.edges[0] ? `${window.icon_truck_solid}
-                      <a class="tracking-link" target="_blank" href="${currentOrders.fulfillments.edges[0].node.trackingUrls[0]}">
-                        ${window.String.customerTrack_and_trace}
-                      </a>` : ``}
-                    </p>
-                  </div>
+                 
                 </div>
               </div>
             </div>
@@ -406,7 +445,6 @@ class NFCustomerOrders extends HTMLElement {
           <thead>
             <tr>
             <th>${window.String.customerOrder}</th>
-            <th>${window.String.customerTrack_and_trace}</th>
             <th colspan="2">${window.String.customerDate}</th>
             <th>${window.String.customerTotal}</th>
             </tr>

@@ -168,7 +168,7 @@ class NFCustomerOrders extends HTMLElement {
           console.log('plusButton');
         });
       });
-
+console.log(item.product)
       addToCartButton.forEach(button => {
         button.addEventListener('click', () => {
           const quantityInput = button.closest('.quantity-spinner').querySelector('.quantity__input');
@@ -187,7 +187,7 @@ class NFCustomerOrders extends HTMLElement {
         </div>` : ""}        
         </a>
       </div>
-      <div class="desc-boxx">
+      <div class="desc-box">
         <div>
           <a href="${productUrl}">
             <p class="product_title">${productTitle}</p>

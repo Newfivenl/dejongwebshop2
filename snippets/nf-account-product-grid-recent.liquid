@@ -5,7 +5,7 @@
     data-variant="{{ product.variants[0].id }}"
     data-quantity="">
     <div class="product-image-box">
-      <a href="{{ shop.url }}{{ product.url }}" class="no-decor">
+      <a href="{{ product.url }}" class="no-decor">
         <div class="image-box">
           <div class="image_wrapper">
             <img style="width: 100%" src="{{ product.featured_image | img_url: 'square' }}">
@@ -15,7 +15,7 @@
     </div>
     <div class="desc-box">
       <div>
-        <a href="{{ shop.url }}{{ product.url }}">
+        <a href="{{ product.url }}">
           <p class="product_title">{{ product.title }}</p>
         </a>
       </div>
@@ -40,9 +40,8 @@
             {% if current_variant.sku != blank %}
               <div class="sku">SKU: {{ current_variant.sku }}</div>
             {% endif %}
-              {% assign dozen_op_pallet_value = product.metafields.other.specifications_dozen_op_pallet.value %}
-{% if dozen_op_pallet_value != blank and dozen_op_pallet_value != 0 %}
-  &nbsp; | &nbsp;
+            {% if product.metafields.other.specifications_dozen_op_pallet.value != blank %}
+              &nbsp; | &nbsp;
               <div class="sku">{{ product.metafields.other.specifications_dozen_op_pallet.value }} {{ 'products.product.characteristics_label_boxesperpallet' | t }}
               </div>
             {% endif %}

@@ -150,7 +150,7 @@ class NFCustomerOrders extends HTMLElement {
       const productTitle = item.product && item.product.title ? item.product.title : '';
       const inventoryQuantity = item.variant?.inventoryQuantity ? item.variant.inventoryQuantity : '';
       const productUrl = item.product && item.product?.onlineStoreUrl ? item.product.onlineStoreUrl : '';
-      const productHandle = item.product ? item.product.handle : ''; 
+      const productID = item.product ? item.product.id : ''; 
       const imageUrl = item.product && item.product?.featuredImage && item.product.featuredImage.url ? item.product.featuredImage.url + '&width=100&height=100' : '';
       const productPrice = item.price ? item.price : '';
       const minusButton = this.shadowRoot.querySelectorAll('.minus__button');
@@ -189,7 +189,7 @@ class NFCustomerOrders extends HTMLElement {
       </div>
       <div class="desc-box">
         <div>
-          <a href="${productHandle}">
+          <a href="${productID}">
             <p class="product_title">${productTitle}</p>
           </a>
         </div>

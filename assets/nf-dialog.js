@@ -6,7 +6,7 @@ class NFCustomerOrders extends HTMLElement {
       orders: [],
       lineItems: [],
       view: 'orders',
-      isLoading: true, // Set initial loading state to true
+      isLoading: true,
       error: null,
       itemsPerPage: 10,
       nextPage: null,
@@ -25,7 +25,7 @@ class NFCustomerOrders extends HTMLElement {
   }
 
   initComponent() {
-    this.fetchOrders(); // Fetch orders when component initializes
+    this.fetchOrders();
   }
 
   async fetchOrders(queryParams) {
@@ -44,7 +44,7 @@ class NFCustomerOrders extends HTMLElement {
       .then(response => response.json())
       .then(data => {
         this.setState({
-          orders: data?.data || [], // Ensure orders array is populated, or set to empty array
+          orders: data?.data || [],
           isLoading: false,
           nextPage: data.pagination?.next,
           previousPage: data.pagination?.previous

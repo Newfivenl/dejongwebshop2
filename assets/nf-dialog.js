@@ -4,7 +4,7 @@ class NFCustomerOrders extends HTMLElement {
     this.attachShadow({ mode: 'open' });
     this.state = {
       orders: [],
-      lineItems: [], // Set lineItems to an empty array by default
+      lineItems: [],
       view: 'orders',
       isLoading: false,
       error: null,
@@ -47,16 +47,12 @@ class NFCustomerOrders extends HTMLElement {
     fetch(`${window.customerOrdersApp.urlProxy}api/v1/customer/orders?items=${this.state.itemsPerPage}${queryParams ? `&${queryParams}` : ``}`, requestOptions)
       .then(response => response.json())
       .then(data => {
-        if (data && data.data && data.data.length > 0) {
-          this.setState({
-            orders: data.data,
-            isLoading: false,
-            nextPage: data.pagination?.next,
-            previousPage: data.pagination?.previous
-          });
-        } else {
-          this.setState({ error: { message: "No orders found." }, isLoading: false });
-        }
+        this.setState({
+          orders: data?.data,
+          isLoading: false,
+          nextPage: data.pagination?.next,
+          previousPage: data.pagination?.previous
+        });
       })
       .catch(error => {
         this.setState({ error, isLoading: false });
@@ -64,7 +60,6 @@ class NFCustomerOrders extends HTMLElement {
   }
 
   renderPagination() {
-    if (this.state.lineItems.length === 0) return ''; // Don't render pagination if lineItems array is empty
     return `
       <div class="pagination">
         <button id="prevPage" ${this.state.previousPage == null ? 'disabled' : ''}>${window.pageIcon}</button>
@@ -72,26 +67,23 @@ class NFCustomerOrders extends HTMLElement {
       </div>
     `;
   }
-
   setState(newState) {
     this.state = { ...this.state, ...newState };
     this.render();
   }
-
   onBackClick(event) {
     event.preventDefault();
     this.setState({ view: 'orders', lineItems: [] });
     history.pushState({}, '', window.location.pathname);
   }
-
   renderOrders() {
-    if (!this.state.orders || this.state.orders.length === 0) {
-      return `<tr><td colspan="5">No orders available</td></tr>`;
-    }
-
     return this.state.orders.map(order => `
-    <tr class="order_item" data-order-id="${order.id}">
-      <td class="nf-view_all">
+    <tr
+    class="order_item" data-order-id="${order.id}"
+    >
+      <td
+      class="nf-view_all"
+      >
         <a href="javascript:void(0);" class="order_id">${order.name}</a>
       </td>
       <td >
@@ -105,7 +97,6 @@ class NFCustomerOrders extends HTMLElement {
     </tr>
     `).join('');
   }
-
   renderLineItems() {
     return this.state.lineItems.map(item => {
       const productId = item.id ? item.id : '';
@@ -195,7 +186,6 @@ class NFCustomerOrders extends HTMLElement {
     </div>` : ``}
     `}).join('');
   }
-
   updateQuantity(button, increment) {
     const quantityInput = button.closest('.quantity-spinner').querySelector('.quantity__input');
     let quantity = parseInt(quantityInput.value);
@@ -207,7 +197,6 @@ class NFCustomerOrders extends HTMLElement {
     quantityInput.value = quantity;
     this.checkAndToggleATCButton();
   }
-
   addToCart() {
     const addToCartButton = this.shadowRoot.querySelector('.add-to-cart-button');
     const orderQuantitySpinners = this.shadowRoot.querySelectorAll('.order-qty-spinner');
@@ -262,7 +251,6 @@ class NFCustomerOrders extends HTMLElement {
     }
     this.checkAndToggleATCButton();
   }
-
   checkAndToggleATCButton() {
     const addToCartButton = this.shadowRoot.querySelector('.add-to-cart-button');
     if (addToCartButton) {
@@ -319,7 +307,6 @@ class NFCustomerOrders extends HTMLElement {
         this.setState({ error });
       });
   }
-
   onOrderIdClick(event) {
     event.preventDefault();
     const orderId = event.currentTarget.getAttribute('data-order-id');
@@ -355,6 +342,12 @@ class NFCustomerOrders extends HTMLElement {
     });
   }
 
+  setState(newState) {
+    this.state = { ...this.state, ...newState };
+    this.render();
+  }
+
+
   render() {
     let content;
 
@@ -383,4 +376,73 @@ class NFCustomerOrders extends HTMLElement {
                   </div>
                   <div class="order-details-track-and-trace" style="{{ tracking_url_display }}">
                     <p>
-                      ${currentOrders.fulfillments
+                      ${currentOrders.fulfillments.edges[0] ? `${window.icon_truck_solid}
+                      <a class="tracking-link" target="_blank" href="${currentOrders.fulfillments.edges[0].node.trackingUrls[0]}">
+                        ${window.String.customerTrack_and_trace}
+                      </a>` : ``}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="nf-my-orders__table recently_ordered">
+              <div class="account-product__grid">
+              ${this.renderLineItems()}
+              </div>
+              <div class="re-order-cta-btn--wrapper">
+                <button
+                  class="re-order-cta re-order-btn add-to-cart-button"
+                >
+                ${window.String.reOrderSelectedItems}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    } else {
+      content = `
+        <table class="nf-my-orders__table">
+          <thead>
+            <tr>
+            <th>${window.String.customerOrder}</th>
+            <th>${window.String.customerTrack_and_trace}</th>
+            <th colspan="2">${window.String.customerDate}</th>
+            <th>${window.String.customerTotal}</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${this.renderOrders()}
+          </tbody>
+        </table>
+        ${this.renderPagination()}
+      `;
+    }
+
+    this.shadowRoot.innerHTML = `
+      ${content}
+    `;
+    this.shadowRoot.querySelectorAll('.order_item').forEach(element => {
+      element.addEventListener('click', this.onOrderIdClick.bind(this));
+    });
+    if (this.state.view === 'orders') {
+      // this.shadowRoot.querySelectorAll('.order_item').forEach(element => {
+      //   element.addEventListener('click', this.onOrderIdClick.bind(this));
+      // });
+    } else {
+      this.shadowRoot.querySelector('#backButton').addEventListener('click', this.onBackClick.bind(this));
+    }
+    this.attachPaginationEventListeners();
+    const styleLink = document.createElement('link');
+    styleLink.rel = 'stylesheet';
+    styleLink.href = window.Shopify.theme.stylesheetUrl;
+    this.shadowRoot.append(styleLink);
+
+    const styleLinkLoader = document.createElement('link');
+    styleLinkLoader.rel = 'stylesheet';
+    styleLinkLoader.href = window.Shopify.theme.loading;
+    this.shadowRoot.append(styleLinkLoader);
+
+  }
+}
+customElements.define('nf-customer-orders', NFCustomerOrders);

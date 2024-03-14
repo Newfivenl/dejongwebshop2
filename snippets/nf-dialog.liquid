@@ -1,170 +1,693 @@
-class NFCustomerOrders extends HTMLElement {
-  constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
-    this.state = {
-      orders: [],
-      lineItems: [],
-      view: 'orders',
-      isLoading: false,
-      error: null,
-      itemsPerPage: 10,
-      nextPage: null,
-      previousPage: null
+{% assign recent_purchased_items = customer.metafields.custom.order_json_v2.value %}
+{% assign wishlist_product_list = customer.metafields.fields_raven.wishlist_product_list.value | reverse %}
+
+{% comment %} <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script> {% endcomment %}
+<script type="text/javascript">
+    window.wishlistProductListObj = {{ wishlist_product_list | json | default: '[]' }};
+    window.productIds = [];
+    let recentPurchasedItemsJson = {{ recent_purchased_items | json }};
+    const GRID_LOADED_CLASS = 'loaded';
+    var newRecentPurchasedItemsJson = [];
+    const recentOrdersSelectors = {
+      grid: '[grid-recent-orders]',
+      grid_viewAll: '[grid-recent-orders-all]',
+      productCard: '.recent_order_row_wrapper'
     };
-    this.onOrderIdClick = this.onOrderIdClick.bind(this);
-    this.attachEventListeners();
-  }
+    
+    function initTabs() {
+      const tabLinks = document.querySelectorAll('.nf-tab-links li');
+      const tabContent = document.querySelectorAll('.nf-tab-content .tab');
+      tabLinks.forEach((tabLink, i) => {
+          tabLink.addEventListener('click', function(e) {
+              e.preventDefault();
+              const target = this.querySelector('a').getAttribute('href');
 
-  connectedCallback() {
-    if (document.readyState === 'complete') {
-      this.initComponent();
-    } else {
-      window.addEventListener('load', () => this.initComponent());
-    }
-  }
+              tabContent.forEach(content => content.classList.remove('active'));
+              tabLinks.forEach(link => link.classList.remove('active'));
 
-  initComponent() {
-    this.render();
-    this.fetchOrders();
-    this.checkAndToggleATCButton();
-  }
-
-  async fetchOrders(queryParams) {
-    await window.refreshTokenIfNeeded();
-    const { url, authToken } = window.customerOrdersApp;
-    const headers = new Headers({
-      'Authorization': `Bearer ${authToken}`
-    });
-    const requestOptions = {
-      method: 'GET',
-      headers,
-      redirect: 'follow'
-    };
-
-    this.setState({ isLoading: true });
-
-    fetch(`${window.customerOrdersApp.urlProxy}api/v1/customer/orders?items=${this.state.itemsPerPage}${queryParams ? `&${queryParams}` : ``}`, requestOptions)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          orders: data?.data,
-          isLoading: false,
-          nextPage: data.pagination?.next,
-          previousPage: data.pagination?.previous
-        });
-      })
-      .catch(error => {
-        this.setState({ error, isLoading: false });
+              this.classList.add('active');
+              document.querySelector(target).classList.add('active');
+          });
       });
-  }
+    }
+    const initDialog = () => {
+      const dialog = document.querySelector('dialog');
+      const closeDialogButton = document.querySelector('.nf-close-dialog');
 
-  renderPagination() {
-    return `
-      <div class="pagination">
-        <button id="prevPage" ${this.state.previousPage == null ? 'disabled' : ''}>${window.pageIcon}</button>
-        <button id="nextPage" ${this.state.nextPage == null ? 'disabled' : ''}>${window.pageIcon}</button>
-      </div>
-    `;
-  }
-
-  setState(newState) {
-    this.state = { ...this.state, ...newState };
-    this.render();
-  }
-
-  onBackClick(event) {
-    event.preventDefault();
-    this.setState({ view: 'orders', lineItems: [] });
-    history.pushState({}, '', window.location.pathname);
-  }
-
-  renderOrders() {
-    const orders = this.state.orders;
-    if (orders.length === 0) {
-      return ''; // Return empty string if there are no orders
+      closeDialogButton.onclick = function() {
+          dialog.classList.add('hide');
+          dialog.addEventListener('webkitAnimationEnd', function() {
+              dialog.classList.remove('hide');
+              dialog.close();
+              dialog.removeEventListener('webkitAnimationEnd', arguments.callee, false);
+          }, false);
+      };
+    }
+    
+    const quantitySpinnerElem = (quantitySpinners, minusButton, plusButton, quantityInputField, atcButton) => {
+      quantitySpinners.forEach((quantitySpinner) => {
+        const minusBtn = quantitySpinner.querySelector(minusButton);
+        const plusBtn = quantitySpinner.querySelector(plusButton);
+        const quantityInput = quantitySpinner.querySelector(quantityInputField);
+        if (quantityInput.value == 0) {
+          minusBtn.classList.add('disabled');
+        } else {
+          minusBtn.classList.remove('disabled');
+        }
+        const spinners = document.querySelectorAll(quantityInputField);
+        minusBtn.addEventListener('click', () => {
+          if (quantityInput.value > 0) {
+            quantityInput.value = parseInt(quantityInput.value) - 1;
+          }
+          if (spinners.length == 1) {
+            if (quantityInput.value == 0) {
+              document.querySelector(atcButton).classList.add('disabled');
+              minusBtn.classList.add('disabled');
+            } else {
+              document.querySelector(atcButton).classList.remove('disabled');
+            }
+          } else {
+            const allZero = Array.from(spinners).every((spinner) => spinner.value === '0');
+            if (allZero) {
+              document.querySelector(atcButton).classList.add('disabled');
+            } else {
+              document.querySelector(atcButton).classList.remove('disabled');
+            }
+          }
+        });
+        plusBtn.addEventListener('click', () => {
+          quantityInput.value = parseInt(quantityInput.value) + 1;
+          document.querySelector(atcButton).classList.remove('disabled');
+          minusBtn.classList.remove('disabled');
+        });
+      });
     }
 
-    // Render table head only if there are orders
-    return `
-      <thead>
-        <tr>
-          <th>${window.String.customerOrder}</th>
-          <th>${window.String.customerTrack_and_trace}</th>
-          <th colspan="2">${window.String.customerDate}</th>
-          <th>${window.String.customerTotal}</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${orders.map(order => `
-          <tr class="order_item" data-order-id="${order.id}">
-            <td class="nf-view_all">
-              <a href="javascript:void(0);" class="order_id">${order.name}</a>
-            </td>
-            <td>
-              ${order.fulfillments.edges[0] ? `${window.icon_truck_solid}
-                <a class="tracking-link" target="_blank" href="${order.fulfillments.edges[0].node.trackingUrls[0]}">
-                  ${window.String.customerTrack_and_trace}
-                </a>` : ``}
-            </td>
-            <td colspan="2">${order.liquidShopifyCreatedAt}</td>
-            <td>&euro;${order.totalPrice.replace(".", ",")}</td>
-          </tr>
-        `).join('')}
-      </tbody>
-    `;
-  }
-
-  renderLineItems() {
-    // Your existing renderLineItems() implementation
-  }
-
-  // Your other methods...
-
-  render() {
-    let content;
-
-    if (this.state.isLoading) {
-      content = '<p>Loading...</p>';
-    } else if (this.state.error) {
-      content = `<p>Error: ${this.state.error.message}</p>`;
-    } else if (this.state.view === 'lineItems') {
-      // Your existing rendering logic for line items view
-    } else {
-      content = `
-        <table class="nf-my-orders__table">
-          ${this.renderOrders()} <!-- Render orders here -->
-        </table>
-        ${this.renderPagination()}
-      `;
+    const accountNotif = () => {
+      var x = document.getElementById('account-drawer-notif');
+      x.className = 'show';
+      setTimeout(function () {
+        x.className = x.className.replace('show', '');
+      }, 3000);
+    }
+    const accountErrorNotif = () => {
+      var x = document.getElementById('account-drawer-notif-error');
+      x.className = 'show';
+      setTimeout(function () {
+        x.className = x.className.replace('show', '');
+      }, 3000);
     }
 
-    this.shadowRoot.innerHTML = `
-      ${content}
-    `;
-    this.shadowRoot.querySelectorAll('.order_item').forEach(element => {
-      element.addEventListener('click', this.onOrderIdClick.bind(this));
+  
+    const addToCart = (data, classElem) => {
+      fetch('/cart/add.js', {
+        body: JSON.stringify(data),
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'xmlhttprequest'
+        },
+        method: 'POST'
+      }).then((response) => {
+        return response.json();
+        setTimeout(() => {
+          classElem.cartNotification = document.querySelector('cart-notification');
+          classElem.cartNotification.renderContents(response);
+          classElem.innerHTML = `Added to Cart`;
+        }, 5000);
+  
+      }).then((json) => {
+        newWishlistData = [];
+        accountNotif(); 
+        setTimeout(() => {
+          classElem.innerHTML = `Voeg toe aan winkelwagen.`;
+          classElem.classList.remove('loading');
+          classElem.classList.add('loaded');
+        }, 1000);
+      }).catch((err) => {
+        console.error(err)
+      });
+    }
+    const productCardHTML = (handle) => {
+      let locale_code = '{{ request.locale.iso_code }}';
+      if (locale_code == 'nl') {
+        locale_code = "";
+      } else {
+        locale_code = locale_code
+      }
+      const productTileTemplateUrl = `${locale_code}/products/${handle}?view=recent_purchase`;
+      return fetch(productTileTemplateUrl)
+      .then((res) => res.text())
+      .then((res) => {
+        const text = res;
+        const parser = new DOMParser();
+        const htmlDocument = parser.parseFromString(text, 'text/html');
+        const productCard = htmlDocument.documentElement.querySelector(recentOrdersSelectors.productCard);
+        return productCard.outerHTML;
+      })
+      .catch((err) => console.error(`[Shopify Recent Order] Failed to load content for handle: ${handle}`, err));
+    };
+
+    const recentOrderSetupGrid = async (grid) => {
+      if (recentPurchasedItemsJson == null ) {
+        grid.innerHTML = 'No Recent Orders';
+        grid.classList.add(GRID_LOADED_CLASS);
+      } else {
+        const recent_order = getRecentOrder();
+        const get_quantity = getRecentOrderID();
+        const requests = recent_order.map(productCardHTML);
+        const responses = await Promise.all(requests);
+        const recentOrderProductCards = responses.join('');
+        grid.innerHTML = recentOrderProductCards;
+        document.querySelectorAll('.recent-details').forEach(function (details) {
+        details.addEventListener('toggle', function () {
+          var targetId = this.getAttribute('data-target');
+          var targetContent = document.getElementById(`recent-list-${targetId}`);
+          if (this.open) {
+            targetContent.style.display = 'block';
+          } else {
+            targetContent.style.display = 'none';
+          }
+        });
+      });
+        const recentQuantitySpinners = document.querySelectorAll(".recent-quantity-spinner");
+        let recentListCartData = [];
+        let newRecentListData = [];
+        get_quantity.forEach(item => {
+            const orderCount = document.querySelectorAll(`#purchase-count-${item.id}`);
+            const recentOrderWrapper = document.querySelectorAll(`#recent-order-wrapper-${item.id}`);
+            orderCount.forEach(order => {
+              order.innerHTML = `{{ 'customer.account.times_ordered' | t }}` + item.quantity + `x`;
+            }); 
+            recentOrderWrapper.forEach(recent => {
+              recent.setAttribute('data-quantity', item.quantity);
+            }); 
+          }); 
+
+        const container = document.getElementById("recent_tab");
+        const items = Array.from(container.querySelectorAll(".recent_order_row_item"));
+        items.sort((a, b) => {
+            const quantityA = parseFloat(a.getAttribute("data-quantity"));
+            const quantityB = parseFloat(b.getAttribute("data-quantity"));
+            return quantityB - quantityA;
+        });
+        items.forEach(item => container.appendChild(item));
+        quantitySpinnerElem(recentQuantitySpinners, ".minus__button", ".plus__button", ".recentQuantity-input", ".recent-re-order-btn" );
+        
+        document.querySelector('.recent-re-order-btn').addEventListener('click', function (event) {
+          this.classList.add('loading');
+          this.innerHTML = `<div class="loading-overlay__spinner">
+            <svg
+              aria-hidden="true"
+              focusable="false"
+              role="presentation"
+              class="spinner"
+              viewBox="0 0 66 66"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+            </svg>
+          </div>`;
+          recentQuantitySpinners.forEach(recentQuantitySpinner => {
+            const quantityInput = recentQuantitySpinner.querySelector(".recentQuantity-input");
+            let closestVariantElement = recentQuantitySpinner.closest("[data-variant]");
+            let item = "";
+            item = closestVariantElement.dataset.variant;
+            let quantityValue = quantityInput.value;
+            recentListCartData.push({
+              id: item,
+              quantity: quantityValue
+            });
+          });
+          const reducedRecentListCartData = recentListCartData;
+          let result = reducedRecentListCartData.reduce((acc, curr) => {
+            let item = acc.find(item => item.id === curr.id);
+            if (item) {
+              item.quantity = curr.quantity;
+            } else {
+              acc.push(curr);
+              newRecentListData.push(curr);
+            }
+            return acc;
+          }, []);
+          newRecentListData = newRecentListData.filter(item => item.quantity > 0);
+          var data = {
+            items: newRecentListData
+          }
+          addToCart(data, this);
+        });
+        
+        grid.classList.add(GRID_LOADED_CLASS);
+
+        const event = new CustomEvent('shopify-recent-order:init-product-grid', {
+          detail: { recent_order: recent_order }
+        });
+        document.dispatchEvent(event);
+      }
+    };
+
+    const recentOrderInitGrid = () => {
+      const grid = document.querySelector(recentOrdersSelectors.grid) || false;
+      const grid_viewAll = document.querySelector(recentOrdersSelectors.grid_viewAll) || false;
+      if (grid) recentOrderSetupGrid(grid);
+      if (grid_viewAll) recentOrderSetupGrid(grid_viewAll);
+    };
+
+    const getRecentOrder = () => {  
+      if(recentPurchasedItemsJson != null) {
+        const recentOrders = recentPurchasedItemsJson;
+        let newRecentOrders = [];
+        let getHandle = [];
+        let result = recentOrders.reduce((acc, curr) => {
+          let item = acc.find(item => item.id === curr.id);
+          if (item) {
+            item.quantity += curr.quantity;
+          } else {
+            acc.push(curr);
+            newRecentOrders.push(curr);
+          }
+
+          return acc;
+        }, []);
+        result.forEach(item => {
+          getHandle.push(item.handle);
+        });
+        if (result) return getHandle;
+        return [];
+      }
+      
+    };
+    const getRecentOrderID = () => {  
+    const recentOrders = recentPurchasedItemsJson;
+    if(recentOrders != null) {
+      let result = recentOrders.reduce((acc, curr) => {
+      let item = acc.find(item => item.id === curr.id);
+      if (item) {
+        item.quantity += curr.quantity - 1;
+      } else {
+        acc.push(curr);
+      }
+      return acc;
+
+    }, []);
+    if (result) return result;
+    return [];
+    }
+    };
+    const nf_view_all_recent_orders = `{% render 'nf-view-recent-orders' %}`;
+    const nf_view_all_wishlist = `{% render 'nf-view-wishlist' %}`;
+    var recent_ordered_wrapper = document.querySelectorAll('.re_order_cta_btn');
+    for (var i = 0; i < recent_ordered_wrapper.length; i++) {
+      recent_ordered_wrapper[i].addEventListener('click', function (event) {
+        var variantID = parseInt(this.dataset.upsellId);
+        if (this.dataset.isAdded == 'false') {
+          this.dataset.isAdded = true;
+          addRecentlyProduct(this, variantID);
+        } else {
+          this.dataset.isAdded = false;
+          removeRecentlyProduct(this, variantID);
+        }
+      });
+    }
+    function addRecentlyProduct(target, variantID) {
+      target.querySelector('.icon-cart-v2').classList.add('hidden');
+      target.querySelector('.loading-overlay__spinner').classList.remove('hidden');
+      let formData = {
+        'items': [{
+          'id': variantID,
+          'quantity': 1,
+          'properties': { '': '' }
+        }]
+      };
+
+      addToCart(formData, this);
+    }
+    function removeRecentlyProduct(target, variantID) {
+      target.querySelector('.loading-overlay__spinner').classList.remove('hidden');
+      target.querySelector('.upsell-is-checked').classList.add('hidden');
+      let formData = {
+        'updates': {
+          [variantID]: 0
+        }
+      };
+
+      fetch('/cart/update.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          setTimeout(() => {
+            target.querySelector('.loading-overlay__spinner').classList.add('hidden');
+            target.querySelector('.upsell-is-checked').classList.add('hidden');
+            target.querySelector('.icon-cart-v2').classList.remove('hidden');
+          }, 1000);
+        })
+        .catch(function (error) {
+          console.error('Error:', error);
+        });
+    }
+    // window.addEventListener('DOMContentLoaded', function () {
+    //   const quantitySpinners = document.querySelectorAll('.wishlist-quantity-spinner');
+    //   let wishListCartData = [];
+    //   let newWishlistData = [];
+    //   quantitySpinnerElem(quantitySpinners, ".wishlist-minus__button", ".wishlist-plus__button", ".wishlist-quantity__input", ".wishlist-re-order-btn" );
+    //   document.querySelector('.wishlist-re-order-btn').addEventListener('click', function (event) {
+    //     this.classList.add('loading');
+    //     this.innerHTML = `<div class="loading-overlay__spinner">
+    //     <svg
+    //       aria-hidden="true"
+    //       focusable="false"
+    //       role="presentation"
+    //       class="spinner"
+    //       viewBox="0 0 66 66"
+    //       xmlns="http://www.w3.org/2000/svg"
+    //     >
+    //       <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+    //     </svg>
+    //   </div>`;
+    //     quantitySpinners.forEach((quantitySpinner) => {
+    //       const quantityInput = quantitySpinner.querySelector('.wishlist-quantity__input');
+    //       let item = quantitySpinner.parentNode.parentNode.dataset.variant;
+    //       let quantityValue = quantityInput.value;
+    //       wishListCartData.push({
+    //         id: item,
+    //         quantity: quantityValue,
+    //       });
+    //     });
+    //     const reducedWishlistCartData = wishListCartData;
+    //     let result = reducedWishlistCartData.reduce((acc, curr) => {
+    //       let item = acc.find((item) => item.id === curr.id);
+    //       if (item) {
+    //         item.quantity = curr.quantity;
+    //       } else {
+    //         acc.push(curr);
+    //         newWishlistData.push(curr);
+    //       }
+    //       return acc;
+    //     }, []);
+    //     newWishlistData = newWishlistData.filter((item) => item.quantity > 0);
+    //     var data = {
+    //       items: newWishlistData,
+    //     };
+    //     addToCart(data, this);
+    //   });
+    // });
+    document.addEventListener('DOMContentLoaded', function () {
+      const quantitySpinners = document.querySelectorAll('.orderlist-quantity-spinner');
+      let wishListCartData = [];
+      let newWishlistData = [];
+      quantitySpinnerElem(quantitySpinners, ".orderlist-minus__button", ".orderlist-plus__button", ".orderlist-quantity__input", ".orderlist-re-order-btn" );
+      document.querySelector('.orderlist-re-order-btn').addEventListener('click', function (event) {
+        this.classList.add('loading');
+        this.innerHTML = `<div class="loading-overlay__spinner">
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          role="presentation"
+          class="spinner"
+          viewBox="0 0 66 66"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+        </svg>
+      </div>`;
+        quantitySpinners.forEach((quantitySpinner) => {
+          const quantityInput = quantitySpinner.querySelector('.orderlist-quantity__input');
+
+          let item = quantitySpinner.parentNode.parentNode.dataset.variant;
+          let quantityValue = quantityInput.value;
+          wishListCartData.push({
+            id: item,
+            quantity: quantityValue,
+          });
+        });
+        const reducedWishlistCartData = wishListCartData;
+        let result = reducedWishlistCartData.reduce((acc, curr) => {
+          let item = acc.find((item) => item.id === curr.id);
+
+          if (item) {
+            item.quantity = curr.quantity;
+          } else {
+            acc.push(curr);
+            newWishlistData.push(curr);
+          }
+          return acc;
+        }, []);
+        newWishlistData = newWishlistData.filter((item) => item.quantity > 0);
+        var data = {
+          items: newWishlistData,
+        };
+        addToCart(data, this);
+      });
     });
-    if (this.state.view === 'orders') {
-      // this.shadowRoot.querySelectorAll('.order_item').forEach(element => {
-      //   element.addEventListener('click', this.onOrderIdClick.bind(this));
-      // });
-    } else {
-      this.shadowRoot.querySelector('#backButton').addEventListener('click', this.onBackClick.bind(this));
-    }
-    this.attachPaginationEventListeners();
-    const styleLink = document.createElement('link');
-    styleLink.rel = 'stylesheet';
-    styleLink.href = window.Shopify.theme.stylesheetUrl;
-    this.shadowRoot.append(styleLink);
 
-    const styleLinkLoader = document.createElement('link');
-    styleLinkLoader.rel = 'stylesheet';
-    styleLinkLoader.href = window.Shopify.theme.loading;
-    this.shadowRoot.append(styleLinkLoader);
-  }
+    document.addEventListener('DOMContentLoaded', () => {
+          initTabs();
+          initDialog();
+          recentOrderInitGrid();
+      });
+</script>
+<div id="nf_drawer">
+  <div class="nf-drawer nf-dialog">
+    <div class="nf-drawer-content">
+      {% unless customer %}
+        <div class="close-wrapper">
+          <span class="nf-close-dialog" onclick="window.nf_drawer.close();">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="20"
+              width="20"
+              viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" /></svg>
+          </span>
+        </div>
+      {% endunless %}
+      {% if customer %}
+        <div class="nf-tab--container">
+          <div class="nf-account-tab">
+            <div class="nf-dropdown active">
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24px"
+                  height="24px"
+                  viewBox="0 0 20 20"
+                  fill="currentColor">
+                  {% render 'icon-account' %}
+                </svg>
+              </span>
+              <span>
+                {{- 'customer.account_drawer.account_tab' | t -}}
+              </span>
+              <span class="nf-dropdown-caret"></span>
+              <div class="nf-dropdown-content">
+                <ul class="nf-dropdown-list">
+                  <li>
+                    <span>
+                      {% if customer.first_name %}
+                        {{ customer.first_name }}
+                      {% else %}
+                        {{ customer.email }}
+                      {% endif %}
+                    </span>
+                    {% for company in customer.current_company %}
+                      <div>
+                        <span class="company_name">{{ company.name }}</span>
+                      </div>
+                    {% endfor %}
+                  </li>
+                  <li class="logout_link">
+                    <a class="link" href="{{ routes.account_logout_url }}">
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="16"
+                          width="16"
+                          viewBox="0 0 512 512">
+                            <!-- !Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc. -->
+                          <path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z" />
+                        </svg>
+                      </span>
+                      <span>
+                        {{ 'customer.account_drawer.logout' | t }}
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div>
+            <a class="cart-drawer-icon !no-underline " href="{{ routes.cart_url }}">
+              <span>
+                {{ 'customer.account_drawer.cart' | t }}
+              </span>
+              {%- if cart != empty -%}
+                <div class="cart-count-bubble type__nav type--smaller color__bg-primary color__primary ml-1 px-2 py-0.5 border__button--radius flex items-center " style="position: relative;bottom: 8px;left: 0px;">
+                  {%- if cart.item_count < 100 -%}
+                    <span aria-hidden="true">{{ cart.item_count }}</span>
+                  {%- endif -%}
+                {% comment %} <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span> {% endcomment %}
+                </div>
+              {%- endif -%}
+            </a>
+          </div>
+          <div class="close-wrapper">
+            <span class="nf-close-dialog" onclick="window.dialog.close();">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="20"
+                width="20"
+                viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" /></svg>
+            </span>
+          </div>
+        </div>
+        <div class="nf-tab-container">
+          <button class="tab active" data-target="orders">
+            <span>{{ 'customer.account_drawer.orders_tab' | t }}</span>
+          </button>
+          <button class="tab" data-target="top-ordered__tab">
+            <span>{{ 'customer.account_drawer.top_ordered_tab' | t }}</span>
+          </button>
+        {% comment %} <button class="tab" data-target="order-lists">
+                                <span>{{ 'customer.account_drawer.order_list_title' | t }}</span>
+                          </button> {% endcomment %}
+        {% comment %} <button class="tab" data-target="wishlist">
+                                                                                                                                                                                                                                                                      <span>{{ 'customer.account_drawer.favorites_tab' | t }}</span>
+                                                                                                                                                                                                                  </button> {% endcomment %}
+        </div>
+        <div id="orders" class="tab-content active">
+          <div class="nf-section nf-my-orders__wrapper">
+            <div class="nf-section-heading">
+              <div>
+                <h1>{{ 'customer.account_drawer.my_orders' | t }}</h1>
+              </div>
+            </div>
+            <nf-customer-orders/>
+          </div>
+        </div>
+        <div id="top-ordered__tab" class="tab-content">
+          <div class="nf-section nf-my-orders__wrapper">
+            <div class="nf-section-heading">
+              <div>
+                <h1>{{ 'customer.account_drawer.recently_ordered_products' | t }}</h1>
+              </div>
+            </div>
+            <div
+              id="recent_tab"
+              class="nf-my-orders__table recently_ordered "
+              grid-recent-orders>
+              <p class="recent-orders__loader text-center">Loading...</p>
+            </div>
+            <div class="re-order-cta-btn--wrapper">
+              <button class="re-order-cta recent-re-order-btn disabled">
+                {{ 'customer.account_drawer.re_order_selected_items' | t }}
+              </button>
+            </div>
+          </div>
+        </div>
+        <div id="order-lists" class="tab-content">
+          <div id="nf-tab_view-order">
+            <div class="nf-section nf-my-orders__wrapper">
+              <div class="nf-section-heading">
+                <div>
+                  <h1>{{ 'customer.account_drawer.order_list_text' | t }}</h1>
+                </div>
+              </div>
+              {% if customer.metafields.custom.product_list.value %}
+                <div class="nf-my-orders__table recently_ordered">
+                  {%- for product in customer.metafields.custom.product_list.value -%}
+                    {% render 'nf-account-product-grid'
+                      , product: product %}
+                  {% endfor %}
+                </div>
+                <div class="re-order-cta-btn--wrapper">
+                  <button class="re-order-cta orderlist-re-order-btn disabled">
+                    {{ 'customer.account_drawer.re_order_selected_items' | t }}
+                  </button>
+                </div>
+              {% else %}
+                No Order list
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% comment %} <div id="wishlist" class="tab-content">
+                                                                                                                                                                                                          <div class="nf-section nf-my-orders__wrapper">
+                                                                                                                                                                                                            <div class="nf-section-heading">
+                                                                                                                                                                                                              <div>
+                                                                                                                                                                                                                <h1>{{ 'customer.account_drawer.my_wishlist' | t }}</h1>
+                                                                                                                                                                                                              </div>
+                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                            <div class="nf-my-orders__table recently_ordered wishlist_grid">
+                                                                                                                                                                                                              <div class="wishlist-new-wrapper">
+                                                                                                                                                                                                                <div
+                                                                                                                                                                                                                  class="test"
+                                                                                                                                                                                                                  {%- if customer -%}
+                                                                                                                                                                                                                  x-data="
+                                                                                                                                                                                                                        {
+                                                                                                                                                                                                                          productIds: window.productIds,
+                                                                                                                                                                                                                          wishlistList: wishlistProductListObj,
+                                                                                                                                                                                                                            wishlistRemoveItem(value) {
+                                                                                                                                                                                                                            let newProductIds = this.productIds.filter((item) => item !== value);
+                                                                                                                                                                                                                            let newWishlist = this.wishlistList.filter((item) => item.id !== value)
+                                                                                                                                                                                                                            const ravenObj = {%- render 'raven-mac-gen-2', resource_id: customer.id, raven_id: 'dJARg7k' -%};
+                                                                                                                                                                                                                            const valueObj = { value: JSON.stringify(newProductIds) };
+                                                                                                                                                                                                                            const requestParams = { raven: Object.assign({}, ravenObj, valueObj) };
+                                                                                                                                                                                                                            const response = fetch('/apps/raven/create_metafield', {
+                                                                                                                                                                                                                              method: 'PUT',
+                                                                                                                                                                                                                              headers: { 'Content-Type': 'application/json' },
+                                                                                                                                                                                                                              body: JSON.stringify(requestParams)
+                                                                                                                                                                                                                            })
+                                                                                                                                                                                                                            response
+                                                                                                                                                                                                                            .then(res => {
+                                                                                                                                                                                                                              if (res.status === 200) {
+                                                                                                                                                                                                                                this.wishlistList = newWishlist;
+                                                                                                                                                                                                                                this.productIds = newProductIds;
+                                                                                                                                                                                                                                document.querySelector('.wishlist--count-bubble').innerHTML = this.productIds.length;
+                                                                                                                                                                                                                              } else {
+                                                                                                                                                                                                                                console.error('😞', res)
+                                                                                                                                                                                                                              }
+                                                                                                                                                                                                                            })
 
-  // Your other methods...
-}
-
-customElements.define('nf-customer-orders', NFCustomerOrders);
+                                                                                                                                                                                                                          },
+                                                                                                                                                                                                                          isPresent(value) {
+                                                                                                                                                                                                                            return this.wishlistList.map(i => i.id).includes(value)
+                                                                                                                                                                                                                          }
+                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                      "
+                                                                                                                                                                                                                  x-init="
+                                                                                                                                                                                                                        wishlistList.forEach(function(item) {
+                                                                                                                                                                                                                            productIds.push(item.id);
+                                                                                                                                                                                                                        });
+                                                                                                                                                                                                                      "
+                                                                                                                                                                                                                  {%- endif -%}>
+                                                                                                                                                                                                                  {% for product in wishlist_product_list %}
+                                                                                                                                                                                                                    <div x-show="isPresent({{ product.id }})">
+                                                                                                                                                                                                                      {% render 'nf-account-product-grid-wishlist'
+                                                                                                                                                                                                                        , product: product %}
+                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                  {% endfor %}
+                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                              </div>
+                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                            <div class="re-order-cta-btn--wrapper">
+                                                                                                                                                                                                              <button class="re-order-cta wishlist-re-order-btn disabled">
+                                                                                                                                                                                                                {{ 'customer.account_drawer.re_order_selected_items' | t }}
+                                                                                                                                                                                                              </button>
+                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                          </div>
+                                                                                                                                                        </div>  {% endcomment %}
+      {% else %}
+        {% render 'nf-account-drawer-login' %}
+      {% endif %}
+      <div id="account-drawer-notif">Toegevoegd aan winkelwagen</div>
+      <div id="account-drawer-notif-error">Toevoegen niet gelukt</div>
+    </div>
+  </div>
+</div>

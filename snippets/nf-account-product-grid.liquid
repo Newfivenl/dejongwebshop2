@@ -1,7 +1,7 @@
 <div class="account-product__grid">
   <div class="wishlist_row" data-variant="{{ product.variants[0].id }}">
     <div class="product-image-box">
-      <a href="{{ product.url }}" class="no-decor">
+      <a href="{{ shop.url }}{{ product.url }}" class="no-decor">
         <div class="image-box">
           <div class="image_wrapper">
             {{ product.featured_image | image_url: width: 100 | image_tag }}
@@ -11,7 +11,7 @@
     </div>
     <div class="desc-box">
       <div>
-        <a href="{{ product.url }}">
+        <a href="{{ shop.url }}{{ product.url }}">
           <p class="product_title">{{ product.title }}</p>
         </a>
       </div>

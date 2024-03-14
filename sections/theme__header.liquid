@@ -257,7 +257,6 @@
          {% else %}
            {{ 'customer.account.log_in' | t }}
          {% endif %}
-
        </button>
      {% else %}
        <button
@@ -504,10 +503,42 @@
         {% endif %}
       </div>
       <div class="basis-0 flex items-center justify-end flex-grow flex-shrink text-right">
+        {% comment %} account {% endcomment %}
+        {% if section.settings.bar_button_login_type == "text" %}
+          <button
+            class="nf_show_dialog hover:underline inline-flex pl-4 ml-2 no-underline
+            {% if settings.type_header == 'body' %}type__body{% endif %}
+            {% if settings.type_header == 'heading' %}type__heading{% endif %}
+            {% if settings.type_header == 'navigation' %}type__nav{% endif %}
+            {{ settings.type_header_capitilization }}"
+            {% comment %} href="{{ routes.account_url }}" {% endcomment %}
+            rel="nofollow">
+            {% if customer %}
+              {{ 'general.navigation.account' | t }}
+            {% else %}
+              {{ 'customer.account.log_in' | t }}
+            {% endif %}
+          </button>
+        {% else %}
+          <button
+            class="nf_show_dialog type__nav hover:underline inline-flex pl-4 ml-2 no-underline"
+            {% comment %} href="{{ routes.account_url }}" {% endcomment %}
+            rel="nofollow"
+            title=" {% if customer %}{{ 'general.navigation.account' | t }}{% else %}{{ 'customer.account.log_in' | t }}{% endif %}">
+            {% render 'component__icon', icon: 'account', size: '24', class: '' %} 
+                                    <span style="padding-left: 5px;">
+                             {%- liquid
+                               if customer
+                                 echo customer.first_name
+                                 endif
+                             -%}
+                           </span>
+          </button>
+        {% endif %}
         {% if section.settings.bar_button_cart_type == 'text' %}
           <a
             class="
-              inline-flex py-2 pl-4 ml-2 no-underline
+              inline-flex py-2 ml-2 no-underline
               {% if settings.type_header == 'body' %}type__body{% endif %}
               {% if settings.type_header == 'heading' %}type__heading{% endif %}
               {% if settings.type_header == 'navigation' %}type__nav{% endif %}
@@ -543,7 +574,7 @@
           </a>
         {% else %}
           <a
-            class="type__nav relative inline-flex items-center py-2 pl-4 ml-2 no-underline"
+            class="type__nav relative inline-flex items-center py-2 ml-2 no-underline"
             href="{{ routes.cart_url }}"
             rel="nofollow"
             title="{{ 'cart.general.title' | t }}"

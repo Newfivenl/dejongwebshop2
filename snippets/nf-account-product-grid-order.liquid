@@ -1,7 +1,7 @@
 <div class="account-product__grid">
   <div class="wishlist_row" data-variant="{{ line_item.product.variants[0].id }}">
     <div class="product-image-box">
-      <a href="{{ shop.url }}{{ line_item.product.url }}" class="no-decor">
+      <a href="{{ line_item.product.url }}" class="no-decor">
         <div class="image-box">
           <div class="image_wrapper">
             <img style="width: 100%" src="{{ line_item.product.featured_image | img_url: 100 }}">
@@ -11,7 +11,7 @@
     </div>
     <div class="desc-box">
       <div>
-        <a href="{{ shop.url }}{{ line_item.product.url }}">
+        <a href="{{ line_item.product.url }}">
           <p class="product_title">{{ line_item.product.title }}</p>
         </a>
       </div>
@@ -109,11 +109,11 @@
                     <span>{% render 'icon-box-adjusted' %}</span>
                     {{ 'products.product.inhoud_stuks' | t: stuks: item.metafields.other.Pieces_per_box.value }}
                   </div>
-                  &nbsp; | &nbsp;
                 {% endif %}
 
                 {% if item.variants[0].available %}
                   {% if current_variant.sku != blank %}
+                    &nbsp; | &nbsp;
                     <div class="sku">SKU: {{ current_variant.sku }}</div>
                   {% endif %}
                 {% endif %}

@@ -149,7 +149,7 @@ class NFCustomerOrders extends HTMLElement {
       const variantId = item.variant ? item.variant.id : '';
       const productTitle = item.product && item.product.title ? item.product.title : '';
       const inventoryQuantity = item.variant?.inventoryQuantity ? item.variant.inventoryQuantity : '';
-      const productUrl = item.product && item.product?.onlineStoreUrl ? item.product.onlineStoreUrl : '';
+      const productUrl2 = item.product && item.product?.onlineStoreUrl ? item.product.onlineStoreUrl : '';
       const productID = item.product ? item.product.id : ''; 
       const productUrl = productID ? `/products/${productID}` : '';
       const imageUrl = item.product && item.product?.featuredImage && item.product.featuredImage.url ? item.product.featuredImage.url + '&width=100&height=100' : '';
@@ -190,7 +190,7 @@ class NFCustomerOrders extends HTMLElement {
       </div>
       <div class="desc-box">
         <div>
-          <a href="${productID}">
+          <a href="${productUrl}">
             <p class="product_title">${productTitle}</p>
           </a>
         </div>

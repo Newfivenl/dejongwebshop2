@@ -1,6 +1,6 @@
 <div class="account-product__grid">
   <div class="wishlist_row" data-variant="{{ line_item.product.variants[0].id }}">
-    <div class="product-image-box">
+    <div class="product-image-boxx">
       <a href="{{ line_item.product.url }}" class="no-decor">
         <div class="image-box">
           <div class="image_wrapper">
@@ -81,7 +81,7 @@
       <span class="alternative__products-title">Alternatieve producten</span>
       {% for item in line_item.product.metafields.custom.alternatief.value %}
         <div class="wishlist_row" data-variant="{{ item.variants[0].id }}">
-          <div class="product-image-boxx">
+          <div class="product-image-box">
             <a href="{{ item.url }}" class="no-decor">
               <div class="image-box">
                 <div class="image_wrapper">

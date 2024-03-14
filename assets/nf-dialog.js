@@ -204,7 +204,7 @@ class NFCustomerOrders extends HTMLElement {
                 ${item.product?.metafieldOtherPiecesPerBox ?? ""} pieces per box
               </div>` : ''
         }
-            ${isAvailable && item.variant?.sku ? `&nbsp; | &nbsp;<div class="sku">SKU: ${item.variant.sku}</div>` : ''}
+            ${isAvailable && item.variant?.sku ? `<div class="sku">SKU: ${item.variant.sku}</div>` : ''}
           </div>
       
         </div>

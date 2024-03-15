@@ -1697,6 +1697,14 @@ svg {
   fill: #1a1a1a;
 }
 
+@media (max-width:700px) {
+  .nf-tab--container{ 
+    grid-gap: 0.5rem;
+  }
+  .nf-drawer-content .close-wrapper {
+    padding:0 20px;
+  }
+}
 
 /* LOGOUTWRAPPER */
 

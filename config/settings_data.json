@@ -57,7 +57,7 @@
     "search_tag": true,
     "search_variants_sku": true,
     "search_vendor": false,
-    "price_format": "amount",
+    "price_format": "amount_no_decimals",
     "enable_currency": true,
     "pagination_type": "scroll",
     "enable_region": false,

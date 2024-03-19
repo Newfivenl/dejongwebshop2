@@ -1077,7 +1077,7 @@ svg {
 
 .nf-my-orders__wrapper .nf-my-orders__table.recently_ordered button.disabled {
   border: 0;
-  background-color: rgba(var(--color-button), var(--alpha-button-background));
+  /* background-color: rgba(var(--color-button), var(--alpha-button-background)); */
   pointer-events: none;
   cursor: not-allowed !important;
   opacity: .5;
@@ -1121,7 +1121,7 @@ svg {
   font-size: .9rem !important;
   color: #FFF !important;
   border: 0;
-  background-color: rgba(var(--color-button), var(--alpha-button-background));
+  /* background-color: rgba(var(--color-button), var(--alpha-button-background)); */
   opacity: .5;
   padding: .2rem .5rem;
 }

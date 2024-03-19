@@ -12,9 +12,7 @@
       "type": "video",
       "custom_css": [
         ".btn {display: none;}",
-        ".relative {max-width: 850px; margin: auto;}",
-        ".window {padding: 16px;}",
-        ".gap-2 {max-width: 850px; margin: auto;}"
+        ".window {padding: 16px;}"
       ],
       "settings": {
         "video_background": "shopify:\/\/files\/videos\/inloggen_e5ecdc5e-4c8b-46f7-8e09-826a90bba605.mp4",

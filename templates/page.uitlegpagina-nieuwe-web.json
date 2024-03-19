@@ -13,8 +13,8 @@
       "custom_css": [
         ".btn {display: none;}",
         ".relative {max-width: 850px; margin: auto;}",
-        ".window{padding: 20px;}",
-        ".gap-2{max-width: 850px;margin: auto;}"
+        ".window {padding: 16px;}",
+        ".gap-2 {max-width: 850px; margin: auto;}"
       ],
       "settings": {
         "video_background": "shopify:\/\/files\/videos\/inloggen_e5ecdc5e-4c8b-46f7-8e09-826a90bba605.mp4",
@@ -28,7 +28,7 @@
         "color_scheme": "color__bg-body color__text",
         "color_border": "color__border-divider-1",
         "color_button": "btn btn--plain",
-        "style_border": "border--b-width",
+        "style_border": "",
         "layout_x_alignment": "justify-between",
         "aspect_ratio": "aspect-video",
         "visibility": ""

@@ -7,9 +7,33 @@
         "spacing_bottom": 60,
         "color_scheme": "color__bg-body color__text"
       }
+    },
+    "video_7QTVnQ": {
+      "type": "video",
+      "custom_css": [
+        ".btn {display: none;}"
+      ],
+      "settings": {
+        "video_background": "shopify:\/\/files\/videos\/inloggen_e5ecdc5e-4c8b-46f7-8e09-826a90bba605.mp4",
+        "auto_play": true,
+        "heading": "Zo log je in:",
+        "content": "",
+        "button_label": "",
+        "button_url": "\/",
+        "spacing_top": 100,
+        "spacing_bottom": 100,
+        "color_scheme": "color__bg-body color__text",
+        "color_border": "color__border-divider-1",
+        "color_button": "btn btn--secondary",
+        "style_border": "border--b-width",
+        "layout_x_alignment": "justify-between",
+        "aspect_ratio": "aspect-video",
+        "visibility": ""
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "video_7QTVnQ"
   ]
 }

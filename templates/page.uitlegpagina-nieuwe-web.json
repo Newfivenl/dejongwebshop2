@@ -15,7 +15,7 @@
       "type": "video",
       "custom_css": [
         ".btn {display: none;}",
-        ".window {padding: 16px;}"
+        ".window {padding: 16px; max-width: 53rem;}"
       ],
       "settings": {
         "video_background": "shopify:\/\/files\/videos\/inloggen_e5ecdc5e-4c8b-46f7-8e09-826a90bba605.mp4",

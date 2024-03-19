@@ -42,13 +42,14 @@
         ".window {padding: 16px; max-width: 53rem;}"
       ],
       "settings": {
+        "video_background": "shopify:\/\/files\/videos\/bestellen.mp4",
         "auto_play": true,
         "heading": "Zo bestelt u",
         "content": "",
         "button_label": "Button",
         "button_url": "\/",
         "spacing_top": 20,
-        "spacing_bottom": 0,
+        "spacing_bottom": 20,
         "color_scheme": "color__bg-body color__text",
         "color_border": "color__border-divider-1",
         "color_button": "btn btn--secondary",

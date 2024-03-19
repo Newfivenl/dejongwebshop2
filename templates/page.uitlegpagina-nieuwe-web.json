@@ -68,6 +68,9 @@
         "content_9hMcRG",
         "content_DmHtKx"
       ],
+      "custom_css": [
+        ".window {max-width: 53rem;}"
+      ],
       "settings": {
         "heading": "Collapsible content",
         "content": "",

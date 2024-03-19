@@ -681,7 +681,7 @@ h2,
 h2,
   .h2,
   h2 > * {
-  color: var(--color-primary-button-background-light);
+  color:   var(--color__text-light);
   line-height: 1.1;
 }
 

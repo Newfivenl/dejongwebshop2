@@ -87,12 +87,21 @@
             "content": "<p>Alle producten in uw persoonlijke assortiment \/ bestellijst zijn overgenomen. Na het inloggen kunt u eenvoudig vanuit deze lijst de producten bestellen zoals u van ons bent gewend.<\/p>",
             "icon": ""
           }
+        },
+        "content_3NjgJD": {
+          "type": "content",
+          "settings": {
+            "title": "Kunt u nog 1 keer uitleggen hoe ik in kan loggen?",
+            "content": "<p>Maar natuurlijk:)<\/p><ul><li>Rechtsboven in uw scherm kiest u voor het linkje 'inloggen' of het inlog icoontje<\/li><li>Klik op de button 'Inloggen'<\/li><li>Vul uw e-mailadres is welke bij ons bekend is.<\/li><li>Vul de  6 cijferige code die u (binnen een paar seconden) op dit adres ontvangt.<\/li><li>klaar!<\/li><\/ul>",
+            "icon": ""
+          }
         }
       },
       "block_order": [
         "content_cg4aGa",
         "content_9hMcRG",
-        "content_DmHtKx"
+        "content_DmHtKx",
+        "content_3NjgJD"
       ],
       "custom_css": [
         ".window {max-width: 53rem;}"

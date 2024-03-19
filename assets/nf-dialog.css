@@ -407,7 +407,6 @@ dialog.hide {
   font-size: 1rem;
   cursor: pointer;
   text-decoration: underline;
-  margin-bottom: 20px;
 }
 
 .nf-return-button:hover {}
@@ -802,7 +801,7 @@ svg {
 
 /* Order by ID */
 #nf-order-view .nf-section-heading {
-  margin: 0.7rem 0;
+  margin: 1.7rem 0;
 }
 
 #nf-order-view .nf-section-heading .cta-icon {

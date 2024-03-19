@@ -63,7 +63,7 @@
 }
 
 .nf-my-orders__table td {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   font-family: var(--font-body-family);
   font-style: var(--font-body-style);
   font-weight: var(--font-body-weight);

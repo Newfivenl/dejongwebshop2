@@ -25,7 +25,7 @@
         "spacing_bottom": 0,
         "color_scheme": "color__bg-body color__text",
         "color_border": "color__border-divider-1",
-        "color_button": "btn btn--secondary",
+        "color_button": "btn btn--plain",
         "style_border": "border--b-width",
         "layout_x_alignment": "justify-between",
         "aspect_ratio": "aspect-video",

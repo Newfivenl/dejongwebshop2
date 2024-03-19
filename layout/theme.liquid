@@ -11,7 +11,6 @@
     handleSharedCart(); 
     updateCart(false);">
   <head>
-	{% render 'pandectes-rules' %}
     {{ locksmith_initializations }}
     {% render 'theme__meta' %}
     <link
@@ -98,7 +97,20 @@
     {% unless customer.tags contains 'b2b' or canonical_url contains 'login' or canonical_url contains 'register' %}
       {% render 'nf-dialog' %}
     {% endunless %}
-
+    <script>
+      var isUserLoggedIn = {{ customer | json }};
+      var loggedIn = localStorage.getItem('loggedIn');
+      var logoutLink = document.querySelector('.logout_link');
+      if (isUserLoggedIn && !loggedIn) {
+        document.querySelector('#nf_drawer').setAttribute('open', '');
+        localStorage.setItem('loggedIn', 'true');
+      } else {
+        document.querySelector('#nf_drawer').removeAttribute('open');
+      }
+      logoutLink.addEventListener('click', function (event) {
+        localStorage.removeItem('loggedIn');
+      });
+    </script>
   </body>
 
 </html>

@@ -114,11 +114,16 @@
   right: 0;
   bottom: 0;
   left: 0;
-  /* background-color: rgba(0, 0, 0, 0.5); */
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s linear 300ms, opacity 300ms;
   z-index: 1000;
+}
+#nf_drawer[open] .nf-drawer {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 300ms, visibility 0s 0s;
+  /* Removed transition delay on visibility */
 }
 #nf_drawer[open]::after{
   content: "";
@@ -131,7 +136,6 @@
   position: fixed;
   top: 0;
 }
-
 .nf-drawer-content {
   position: fixed;
   top: 0;
@@ -147,12 +151,7 @@
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
 }
 
-#nf_drawer[open] .nf-drawer {
-  visibility: visible;
-  opacity: 1;
-  transition: opacity 300ms, visibility 0s 0s;
-  /* Removed transition delay on visibility */
-}
+
 
 #nf_drawer[open] .nf-drawer-content {
   right: 0;

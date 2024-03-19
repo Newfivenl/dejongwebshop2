@@ -407,6 +407,7 @@ dialog.hide {
   font-size: 1rem;
   cursor: pointer;
   text-decoration: underline;
+  margin-bottom: 20px;
 }
 
 .nf-return-button:hover {}
@@ -749,7 +750,6 @@ width: 1.1rem;
   color: #FFF;
   padding: 7px 15px;
   border-radius: 4px;
-  margin-top: 15px;
 }
 
 .nf-my-orders__wrapper .nf-my-orders__table.recently_ordered .volume_stocks {

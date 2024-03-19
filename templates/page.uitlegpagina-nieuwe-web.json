@@ -12,14 +12,65 @@
       "type": "video",
       "custom_css": [
         ".btn {display: none;}",
-        ".relative {max-width: 800px; margin: auto;}"
+        ".relative {max-width: 850px; margin: auto;}",
+        ".window {padding: 16px;}",
+        ".gap-2 {max-width: 850px; margin: auto;}"
       ],
       "settings": {
         "video_background": "shopify:\/\/files\/videos\/inloggen_e5ecdc5e-4c8b-46f7-8e09-826a90bba605.mp4",
         "auto_play": true,
-        "heading": "Zo log je in:",
+        "heading": "Zo logt u in:",
         "content": "",
         "button_label": "",
+        "button_url": "\/",
+        "spacing_top": 0,
+        "spacing_bottom": 0,
+        "color_scheme": "color__bg-body color__text",
+        "color_border": "color__border-divider-1",
+        "color_button": "btn btn--plain",
+        "style_border": "",
+        "layout_x_alignment": "justify-between",
+        "aspect_ratio": "aspect-video",
+        "visibility": ""
+      }
+    },
+    "accordions_fjQn4t": {
+      "type": "accordions",
+      "blocks": {
+        "content_cg4aGa": {
+          "type": "content",
+          "settings": {
+            "title": "A question your customers are asking",
+            "content": "<p>Answer to help your customers feel more comfortable completing their purchase.<\/p>",
+            "icon": ""
+          }
+        },
+        "content_9hMcRG": {
+          "type": "content",
+          "settings": {
+            "title": "A question your customers are asking",
+            "content": "<p>Answer to help your customers feel more comfortable completing their purchase.<\/p>",
+            "icon": ""
+          }
+        },
+        "content_DmHtKx": {
+          "type": "content",
+          "settings": {
+            "title": "A question your customers are asking",
+            "content": "<p>Answer to help your customers feel more comfortable completing their purchase.<\/p>",
+            "icon": ""
+          }
+        }
+      },
+      "block_order": [
+        "content_cg4aGa",
+        "content_9hMcRG",
+        "content_DmHtKx"
+      ],
+      "settings": {
+        "heading": "Collapsible content",
+        "content": "",
+        "button_label": "Button",
         "button_url": "\/",
         "spacing_top": 100,
         "spacing_bottom": 100,
@@ -28,13 +79,13 @@
         "color_button": "btn btn--secondary",
         "style_border": "border--b-width",
         "layout_x_alignment": "justify-between",
-        "aspect_ratio": "aspect-video",
         "visibility": ""
       }
     }
   },
   "order": [
     "main",
-    "video_7QTVnQ"
+    "video_7QTVnQ",
+    "accordions_fjQn4t"
   ]
 }

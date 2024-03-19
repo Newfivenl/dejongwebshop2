@@ -1103,6 +1103,10 @@ svg {
   margin-top: 20px;
 }
 
+.account-product__grid .price {
+  padding-right: 10px;
+}
+
 @media screen and (min-width: 749px) {
   .logout-wrapper {
     /* position: absolute; */
@@ -1160,7 +1164,7 @@ svg {
 
 
   .nf-my-orders__wrapper .nf-my-orders__table.recently_ordered .price {
-    font-size: 5.1rem;
+    font-size: 1.1rem;
   }
 
   .nf-my-orders__wrapper .nf-my-orders__table.recently_ordered .product_title{

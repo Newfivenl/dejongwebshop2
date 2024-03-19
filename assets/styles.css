@@ -709,7 +709,7 @@ h3,
 h3,
   .h3,
   h3 > * {
-  color: var(--color-primary-button-background-light);
+  color:   var(--color__text-light);
   line-height: 1.1;
 }
 

@@ -801,7 +801,7 @@ svg {
 
 /* Order by ID */
 #nf-order-view .nf-section-heading {
-  margin: 2rem 0;
+  margin: 2rem 0 0.3rem 0;
 }
 
 #nf-order-view .nf-section-heading .cta-icon {

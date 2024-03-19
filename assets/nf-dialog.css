@@ -902,6 +902,7 @@ svg {
   color: #888888;
   display: inline-block;
   white-space: nowrap;
+  font-size: 0.8rem;
 }
 
 .nf-my-orders__wrapper .nf-my-orders__table.recently_ordered .account-outofstock {

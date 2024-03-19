@@ -740,7 +740,7 @@ width: 1.1rem;
 /* View Orders */
 .nf-view-orders .nf-order-name {
   background-color: var(--color-primary-button-background-light);
-  font-size: 1.1 rem;
+  font-size: 0.9 rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -749,6 +749,7 @@ width: 1.1rem;
   color: #FFF;
   padding: 7px 15px;
   border-radius: 4px;
+  border-top: solid 1px #f1f1f1;
 }
 
 .nf-my-orders__wrapper .nf-my-orders__table.recently_ordered .volume_stocks {

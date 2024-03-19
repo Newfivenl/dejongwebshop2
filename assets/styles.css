@@ -4242,13 +4242,13 @@ table__specs .p-4 {
 
 @media (min-width: 1024px) {
   .\!window {
-    max-width: 64rem;
+    max-width: 56rem;
   }
 }
 
 @media (min-width: 1280px) {
   .\!window {
-    max-width: 72rem;
+    max-width: 56rem;
   }
 }
 

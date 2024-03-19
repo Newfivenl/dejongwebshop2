@@ -2,6 +2,9 @@
   "sections": {
     "main": {
       "type": "page__main",
+      "custom_css": [
+        ".window {max-width: 53rem;}"
+      ],
       "settings": {
         "spacing_top": 60,
         "spacing_bottom": 60,
@@ -12,9 +15,7 @@
       "type": "video",
       "custom_css": [
         ".btn {display: none;}",
-        ".relative {max-width: 850px; margin: auto;}",
-        ".window {padding: 16px;}",
-        ".gap-2 {max-width: 850px; margin: auto;}"
+        ".window {padding: 16px; max-width: 53rem;}"
       ],
       "settings": {
         "video_background": "shopify:\/\/files\/videos\/inloggen_e5ecdc5e-4c8b-46f7-8e09-826a90bba605.mp4",
@@ -66,6 +67,9 @@
         "content_cg4aGa",
         "content_9hMcRG",
         "content_DmHtKx"
+      ],
+      "custom_css": [
+        ".window {max-width: 53rem;}"
       ],
       "settings": {
         "heading": "Collapsible content",

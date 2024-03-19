@@ -67,8 +67,8 @@
         "content_cg4aGa": {
           "type": "content",
           "settings": {
-            "title": "A question your customers are asking",
-            "content": "<p>Answer to help your customers feel more comfortable completing their purchase.<\/p>",
+            "title": "Kan ik met mijn oude gebruikersnaam inloggen?",
+            "content": "<p>U kun inloggen met alleen uw e-mailadres. Het dient wel het adres te zijn wat bij ons bekend is en welke u eerder gebruikte bij het inloggen. Een wachtwoord is niet meer nodig.<\/p><p>Indien u altijd met uw debiteurnummer inlogde (begint met DEB) dan werkt dat niet meer. Wel kunt u ook in dit geval inloggen met het e-mailadres dat bij ons bekend is.<\/p>",
             "icon": ""
           }
         },
@@ -98,9 +98,9 @@
         ".window {max-width: 53rem;}"
       ],
       "settings": {
-        "heading": "Collapsible content",
+        "heading": "Veelgestelde vragen",
         "content": "",
-        "button_label": "Button",
+        "button_label": "Inloggen",
         "button_url": "\/",
         "spacing_top": 20,
         "spacing_bottom": 100,

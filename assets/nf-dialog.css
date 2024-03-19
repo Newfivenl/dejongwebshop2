@@ -89,7 +89,7 @@
   background-color: var(--color-primary-button-background-light);
   margin: 10px 0 0 0;
   display: inherit;
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: #FFF;
   text-decoration: none;
 }

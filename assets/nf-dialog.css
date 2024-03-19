@@ -1034,7 +1034,7 @@ svg {
 
 #nf-order-view .re_order_cta_btn.disabled {
   border: 0;
-  background-color: rgba(var(--color-button), var(--alpha-button-background));
+  /* background-color: rgba(var(--color-button), var(--alpha-button-background)); */
   pointer-events: none;
   cursor: not-allowed;
   opacity: .5;

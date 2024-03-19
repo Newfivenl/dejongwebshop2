@@ -13,6 +13,7 @@
     },
     "video_7QTVnQ": {
       "type": "video",
+      "disabled": true,
       "custom_css": [
         ".btn {display: none;}",
         ".window {padding: 16px; max-width: 53rem;}"
@@ -37,13 +38,14 @@
     },
     "video_hPBAw6": {
       "type": "video",
+      "disabled": true,
       "custom_css": [
         ".btn {display: none;}",
         ".window {padding: 16px; max-width: 53rem;}"
       ],
       "settings": {
         "video_background": "shopify:\/\/files\/videos\/bestellen.mp4",
-        "auto_play": false,
+        "auto_play": true,
         "heading": "Zo bestelt u",
         "content": "",
         "button_label": "Button",

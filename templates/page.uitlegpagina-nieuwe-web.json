@@ -100,7 +100,7 @@
           "type": "content",
           "settings": {
             "title": "Kunt u nog 1 keer uitleggen hoe ik in kan loggen?",
-            "content": "<p>Maar natuurlijk:)<\/p><ul><li>Rechtsboven in uw scherm kiest u voor het linkje 'inloggen' of het inlog icoontje<\/li><\/ul><p><\/p><ul><li>Klik op de button 'Inloggen'<\/li><\/ul><p><\/p><ul><li>Vul uw e-mailadres is welke bij ons bekend is.<\/li><\/ul><p><\/p><ul><li>Vul de  6 cijferige code in die u (binnen een paar seconden) op dit e-mailadres ontvangt.<\/li><\/ul><p><\/p><ul><li>klaar!<\/li><\/ul><p><\/p><p>I de korte video hierboven laten wij zien hoe het werkt.<\/p>",
+            "content": "<p>Maar natuurlijk:)<\/p><ul><li><strong>Rechtsboven<\/strong> in uw scherm kiest u voor het linkje 'inloggen' of het inlog icoontje<\/li><\/ul><p><\/p><ul><li>Klik op de button '<strong>Inloggen<\/strong>'<\/li><\/ul><p><\/p><ul><li>Vul uw <strong>e-mailadres<\/strong> is welke bij ons bekend is.<\/li><\/ul><p><\/p><ul><li>Vul de  <strong>6 cijferige code<\/strong> in die u (binnen een paar seconden) op dit e-mailadres ontvangt.<\/li><\/ul><p><\/p><ul><li>klaar!<\/li><\/ul><p><\/p><p>I de korte video hierboven laten wij zien hoe het werkt.<\/p>",
             "icon": ""
           }
         }

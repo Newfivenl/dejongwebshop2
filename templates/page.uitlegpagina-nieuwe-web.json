@@ -102,7 +102,7 @@
         "content": "",
         "button_label": "Button",
         "button_url": "\/",
-        "spacing_top": 100,
+        "spacing_top": 20,
         "spacing_bottom": 100,
         "color_scheme": "color__bg-body color__text",
         "color_border": "color__border-divider-1",

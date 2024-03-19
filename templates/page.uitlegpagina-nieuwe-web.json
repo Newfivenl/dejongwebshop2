@@ -35,6 +35,29 @@
         "visibility": ""
       }
     },
+    "video_hPBAw6": {
+      "type": "video",
+      "custom_css": [
+        ".btn {display: none;}",
+        ".window {padding: 16px; max-width: 53rem;}"
+      ],
+      "settings": {
+        "auto_play": true,
+        "heading": "Zo bestelt u",
+        "content": "",
+        "button_label": "Button",
+        "button_url": "\/",
+        "spacing_top": 0,
+        "spacing_bottom": 0,
+        "color_scheme": "color__bg-body color__text",
+        "color_border": "color__border-divider-1",
+        "color_button": "btn btn--secondary",
+        "style_border": "",
+        "layout_x_alignment": "justify-between",
+        "aspect_ratio": "aspect-video",
+        "visibility": ""
+      }
+    },
     "accordions_fjQn4t": {
       "type": "accordions",
       "blocks": {
@@ -90,6 +113,7 @@
   "order": [
     "main",
     "video_7QTVnQ",
+    "video_hPBAw6",
     "accordions_fjQn4t"
   ]
 }

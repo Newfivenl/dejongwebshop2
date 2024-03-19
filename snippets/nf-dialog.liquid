@@ -4,7 +4,7 @@
 <script type="text/javascript">
     window.wishlistProductListObj = {{ wishlist_product_list | json | default: '[]' }};
     window.productIds = [];
-    let recentPurchasedItemsJson = null;
+    var recentPurchasedItemsJson = null;
     const GRID_LOADED_CLASS = 'loaded';
     var newRecentPurchasedItemsJson = [];
     const recentOrdersSelectors = {
@@ -284,9 +284,7 @@
 
     const recentOrderInitGrid = () => {
       const grid = document.querySelector(recentOrdersSelectors.grid) || false;
-      const grid_viewAll = document.querySelector(recentOrdersSelectors.grid_viewAll) || false;
       if (grid) recentOrderSetupGrid(grid);
-      if (grid_viewAll) recentOrderSetupGrid(grid_viewAll);
     };
 
     const getRecentOrder = () => {  
@@ -488,7 +486,7 @@
       initTabs();
       initDialog();
       recentOrderInitGrid();
-          });
+    });
 </script>
 <div id="nf_drawer">
   <div class="nf-drawer nf-dialog">
@@ -586,12 +584,12 @@
         </div>
         <div class="nf-tab-container">
         
-        {% comment %} <button class="tab" data-target="top-ordered__tab">
+        {% comment %} <button class="tab active" data-target="top-ordered__tab">
             <span>{{ 'customer.account_drawer.top_ordered_tab' | t }}</span>
-          </button>  {% endcomment %}
-       <button class="tab active" data-target="order-lists">
-                                <span>{{ 'customer.account_drawer.order_list_title' | t }}</span>
-                          </button> 
+          </button> {% endcomment %}
+        <button class="tab active" data-target="order-lists">
+              <span>{{ 'customer.account_drawer.order_list_title' | t }}</span>
+        </button> 
         <button class="tab" data-target="orders">
           <span>{{ 'customer.account_drawer.orders_tab' | t }}</span>
         </button>
@@ -609,7 +607,7 @@
             <nf-customer-orders/>
           </div>
         </div>
-        <div id="top-ordered__tab" class="tab-content active">
+        <div id="top-ordered__tab" class="tab-content">
           <div class="nf-section nf-my-orders__wrapper">
             <div class="nf-section-heading">
               <div>
@@ -629,7 +627,7 @@
             </div>
           </div>
         </div>
-        <div id="order-lists" class="tab-content">
+        <div id="order-lists" class="tab-content active">
           <div id="nf-tab_view-order">
             <div class="nf-section nf-my-orders__wrapper">
               <div class="nf-section-heading">

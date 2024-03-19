@@ -43,7 +43,7 @@
       ],
       "settings": {
         "video_background": "shopify:\/\/files\/videos\/bestellen.mp4",
-        "auto_play": true,
+        "auto_play": false,
         "heading": "Zo bestelt u",
         "content": "",
         "button_label": "Button",

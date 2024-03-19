@@ -95,13 +95,22 @@
             "content": "<p>Maar natuurlijk:)<\/p><ul><li>Rechtsboven in uw scherm kiest u voor het linkje 'inloggen' of het inlog icoontje<\/li><\/ul><p><\/p><ul><li>Klik op de button 'Inloggen'<\/li><\/ul><p><\/p><ul><li>Vul uw e-mailadres is welke bij ons bekend is.<\/li><\/ul><p><\/p><ul><li>Vul de  6 cijferige code in die u (binnen een paar seconden) op dit e-mailadres ontvangt.<\/li><\/ul><p><\/p><ul><li>klaar!<\/li><\/ul><p><\/p><p>I de korte video hierboven laten wij zien hoe het werkt.<\/p>",
             "icon": ""
           }
+        },
+        "content_CE3YcG": {
+          "type": "content",
+          "settings": {
+            "title": "Hoe kan ik bestellen vanuit mijn bestellijst?",
+            "content": "<p>Uw bestellijst hebben wij uiteraard overgenomen. Alle producten vind u terug in uw assortiment na inloggen.  Net als uw historische bestellingen, wel zo handig!<\/p>",
+            "icon": ""
+          }
         }
       },
       "block_order": [
         "content_cg4aGa",
         "content_9hMcRG",
         "content_DmHtKx",
-        "content_3NjgJD"
+        "content_3NjgJD",
+        "content_CE3YcG"
       ],
       "custom_css": [
         ".window {max-width: 53rem;}"

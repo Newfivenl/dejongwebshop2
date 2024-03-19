@@ -1138,8 +1138,8 @@ svg {
 }
 
 .nf-my-orders__wrapper .nf-my-orders__table.recently_ordered .product_title {
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1 rem;
+  font-weight: 400;
   line-height: 1.2;
 
 }

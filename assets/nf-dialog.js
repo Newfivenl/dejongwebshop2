@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
             pageNumber.addEventListener('click', function () {
               currentPage = i;
               showPage(currentPage);
-              updatePageNumbers();
+              // updatePageNumbers();
             });
             pageNumbers.appendChild(pageNumber);
           }
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
             pageNumber.addEventListener('click', function () {
               currentPage = i;
               showPage(currentPage);
-              updatePageNumbers();
+              // updatePageNumbers();
             });
             pageNumbers.appendChild(pageNumber);
           }
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
             pageNumber.addEventListener('click', function () {
               currentPage = i;
               showPage(currentPage);
-              updatePageNumbers();
+              // updatePageNumbers();
             });
             pageNumbers.appendChild(pageNumber);
           }
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
             pageNumber.addEventListener('click', function () {
               currentPage = i;
               showPage(currentPage);
-              updatePageNumbers();
+              // updatePageNumbers();
             });
             pageNumbers.appendChild(pageNumber);
           }
@@ -152,14 +152,14 @@ document.addEventListener('DOMContentLoaded', function () {
       document.getElementById('nextPage').addEventListener('click', function () {
         currentPage = (currentPage % totalPages) + 1;
         showPage(currentPage);
-        updatePageNumbers();
+        // updatePageNumbers();
       });
       document.getElementById('prevPage').addEventListener('click', function () {
         currentPage = ((currentPage - 2 + totalPages) % totalPages) + 1;
         showPage(currentPage);
-        updatePageNumbers();
+        // updatePageNumbers();
       });
-      updatePageNumbers();
+      // updatePageNumbers();
 });
 
 

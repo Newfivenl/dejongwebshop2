@@ -185,7 +185,7 @@
     };
 
     const recentOrderSetupGrid = async (grid) => {
-      if (recentPurchasedItemsJson == null ) {
+     if (recentPurchasedItemsJson == null ) {
         grid.innerHTML = '0 orders';
         grid.classList.add(GRID_LOADED_CLASS);
       } else {
@@ -279,7 +279,7 @@
           detail: { recent_order: recent_order }
         });
         document.dispatchEvent(event);
-      }
+}
     };
 
     const recentOrderInitGrid = () => {
@@ -488,7 +488,7 @@
       initTabs();
       initDialog();
       recentOrderInitGrid();
-    });
+          });
 </script>
 <div id="nf_drawer">
   <div class="nf-drawer nf-dialog">
@@ -585,20 +585,21 @@
           </div>
         </div>
         <div class="nf-tab-container">
-          <button class="tab active" data-target="orders">
-            <span>{{ 'customer.account_drawer.orders_tab' | t }}</span>
-          </button>
+        
         {% comment %} <button class="tab" data-target="top-ordered__tab">
             <span>{{ 'customer.account_drawer.top_ordered_tab' | t }}</span>
           </button>  {% endcomment %}
-       <button class="tab" data-target="order-lists">
+       <button class="tab active" data-target="order-lists">
                                 <span>{{ 'customer.account_drawer.order_list_title' | t }}</span>
                           </button> 
+        <button class="tab" data-target="orders">
+          <span>{{ 'customer.account_drawer.orders_tab' | t }}</span>
+        </button>
         {% comment %} <button class="tab" data-target="wishlist">
                                                                                                                                                                                                                                                                       <span>{{ 'customer.account_drawer.favorites_tab' | t }}</span>
                                                                                                                                                                                                                   </button> {% endcomment %}
         </div>
-        <div id="orders" class="tab-content active">
+        <div id="orders" class="tab-content">
           <div class="nf-section nf-my-orders__wrapper">
             <div class="nf-section-heading">
               <div>
@@ -608,7 +609,7 @@
             <nf-customer-orders/>
           </div>
         </div>
-        <div id="top-ordered__tab" class="tab-content">
+        <div id="top-ordered__tab" class="tab-content active">
           <div class="nf-section nf-my-orders__wrapper">
             <div class="nf-section-heading">
               <div>
@@ -617,7 +618,7 @@
             </div>
             <div
               id="recent_tab"
-              class="nf-my-orders__table recently_ordered "
+              class="nf-my-orders__table recently_ordered"
               grid-recent-orders>
               <p class="recent-orders__loader text-center">Loading...</p>
             </div>

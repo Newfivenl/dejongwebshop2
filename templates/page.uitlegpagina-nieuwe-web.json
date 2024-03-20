@@ -76,7 +76,7 @@
           "type": "content",
           "settings": {
             "title": "Het inlogscherm ziet er anders uit",
-            "content": "<p>Inderdaad! Vanwege de omzetting naar het nieuwe systeem is ook het inlogscherm en de manier van inloggen anders. Om in te loggen heeft u alleen het e-mailadres nodig. Een wachtwoord is niet meer nodig. Het is dus wel noodzakelijk dat u toegang heeft tot uw mailadres om in te kunnen loggen.<\/p>",
+            "content": "<p>Inderdaad! Vanwege de omzetting naar het nieuwe systeem is ook het inlogscherm en de manier van inloggen anders. Om in te loggen heeft u alleen het e-mailadres nodig. Een wachtwoord is niet meer nodig. Het is wel noodzakelijk dat u toegang heeft tot uw mailadres om in te kunnen loggen.<\/p>",
             "icon": ""
           }
         },

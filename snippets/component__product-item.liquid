@@ -94,7 +94,7 @@
   </div>
   
   {%- comment -%}image{%- endcomment -%}
-  <a href="{{ product.url | within: collection }}"
+  <a href="{{ product.url }}"
     class="hover:opacity-100 relative block mb-2" >
 
     <div class="animation-500 w-full overflow-hidden
@@ -242,7 +242,7 @@
   {% endif %}
   
   {%- comment -%}content{%- endcomment -%}
-  <a href="{{ product.url | within: collection }}" 
+  <a href="{{ product.url }}" 
     tabindex="-1"
     class="hover:no-underline block no-underline whitespace-normal
     {{ settings.thumbnail_alignment }}

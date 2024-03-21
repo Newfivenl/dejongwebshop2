@@ -72,7 +72,7 @@
             "color_button": "btn btn--plain",
             "enable_gradient": false,
             "layout_y_alignment": "items-end content-end",
-            "layout_x_alignment": "",
+            "layout_x_alignment": "text-center justify-center",
             "layout_row_span": "row-span-1",
             "layout_col_span": "col-span-1 md: md:col-span-1"
           }
@@ -99,7 +99,7 @@
             "layout_y_alignment": "items-start content-start",
             "layout_x_alignment": "",
             "layout_row_span": "row-span-1",
-            "layout_col_span": "col-span-1 md: md:col-span-3"
+            "layout_col_span": "col-span-1 md: md:col-span-2"
           }
         }
       },

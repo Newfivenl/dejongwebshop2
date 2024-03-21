@@ -51,31 +51,6 @@
     "content_grid_HmFN8L": {
       "type": "content-grid",
       "blocks": {
-        "content_NiBMAy": {
-          "type": "content",
-          "settings": {
-            "heading": "Uitstekend beoordeeld",
-            "content": "<h3><strong>490 klanten geven ons een 9.7!<\/strong><\/h3>",
-            "button_label": "Beoordeel ons op KiYoh",
-            "button_url": "https:\/\/www.kiyoh.com\/add-review\/1063239\/De%2BJong%2BDisposables?lang=nl",
-            "full_block_link": true,
-            "enable_autoplay": true,
-            "enable_mute_toggle": true,
-            "enable_loop": true,
-            "spacing_top": 20,
-            "spacing_bottom": 0,
-            "enable_padding": true,
-            "color_scheme": "color__bg-body color__text",
-            "color_border": "!color__border-transparent",
-            "color_text": "color__dark",
-            "color_button": "btn btn--secondary",
-            "enable_gradient": false,
-            "layout_y_alignment": "items-start content-start",
-            "layout_x_alignment": "",
-            "layout_row_span": "row-span-1",
-            "layout_col_span": "col-span-1 md: md:col-span-2"
-          }
-        },
         "content_4erq6e": {
           "type": "content",
           "settings": {
@@ -100,6 +75,31 @@
             "layout_x_alignment": "",
             "layout_row_span": "row-span-1",
             "layout_col_span": "col-span-1 md: md:col-span-1"
+          }
+        },
+        "content_NiBMAy": {
+          "type": "content",
+          "settings": {
+            "heading": "Uitstekend beoordeeld",
+            "content": "<h3><strong>490 klanten geven ons een 9.7!<\/strong><\/h3>",
+            "button_label": "Beoordeel ons op KiYoh",
+            "button_url": "https:\/\/www.kiyoh.com\/add-review\/1063239\/De%2BJong%2BDisposables?lang=nl",
+            "full_block_link": true,
+            "enable_autoplay": true,
+            "enable_mute_toggle": true,
+            "enable_loop": true,
+            "spacing_top": 20,
+            "spacing_bottom": 0,
+            "enable_padding": true,
+            "color_scheme": "color__bg-body color__text",
+            "color_border": "!color__border-transparent",
+            "color_text": "color__dark",
+            "color_button": "btn btn--secondary",
+            "enable_gradient": false,
+            "layout_y_alignment": "items-start content-start",
+            "layout_x_alignment": "",
+            "layout_row_span": "row-span-1",
+            "layout_col_span": "col-span-1 md: md:col-span-2"
           }
         },
         "content_UMyUnx": {
@@ -129,8 +129,8 @@
         }
       },
       "block_order": [
-        "content_NiBMAy",
         "content_4erq6e",
+        "content_NiBMAy",
         "content_UMyUnx"
       ],
       "custom_css": [

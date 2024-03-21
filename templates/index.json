@@ -125,7 +125,7 @@
         "row_size_desktop": "md:grid-cols-4",
         "row_size_mobile": "grid-cols-1",
         "layout_x_alignment": "text-center justify-center flex-col items-center",
-        "visibility": ""
+        "visibility": "hidden md:block"
       }
     },
     "2cb9d59b-242d-48e7-821a-ae61144186e8": {

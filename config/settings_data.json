@@ -55,6 +55,7 @@
     "cart_icon_behavior": "open_cart_drawer",
     "search_body": true,
     "search_tag": true,
+    "search_variants_barcode": true,
     "search_variants_sku": true,
     "search_vendor": false,
     "price_format": "amount_no_decimals",

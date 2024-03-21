@@ -145,7 +145,7 @@
         "spacing_bottom": 60,
         "color_scheme": "color__bg-body color__text",
         "color_border": "color__border-divider-1",
-        "color_button": "btn",
+        "color_button": "btn btn--neutral",
         "style_border": "border--b-width",
         "row_size_desktop": "md:grid-cols-4",
         "row_size_mobile": "grid-cols-1",

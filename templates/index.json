@@ -48,6 +48,111 @@
         "visibility": ""
       }
     },
+    "content_grid_HmFN8L": {
+      "type": "content-grid",
+      "blocks": {
+        "content_NiBMAy": {
+          "type": "content",
+          "settings": {
+            "heading": "Uitstekend beoordeeld",
+            "content": "<h3><strong>490 klanten geven ons een 9.7!<\/strong><\/h3>",
+            "button_label": "Beoordeel ons op KiYoh",
+            "button_url": "\/",
+            "full_block_link": true,
+            "enable_autoplay": true,
+            "enable_mute_toggle": true,
+            "enable_loop": true,
+            "spacing_top": 20,
+            "spacing_bottom": 0,
+            "enable_padding": true,
+            "color_scheme": "color__bg-body color__text",
+            "color_border": "!color__border-transparent",
+            "color_text": "color__dark",
+            "color_button": "btn btn--plain",
+            "enable_gradient": false,
+            "layout_y_alignment": "items-start content-start",
+            "layout_x_alignment": "",
+            "layout_row_span": "row-span-1",
+            "layout_col_span": "col-span-1 md: md:col-span-2"
+          }
+        },
+        "content_4erq6e": {
+          "type": "content",
+          "settings": {
+            "heading": "",
+            "content": "",
+            "button_label": "",
+            "button_url": "shopify:\/\/collections\/all",
+            "full_block_link": true,
+            "image_featured": "shopify:\/\/shop_images\/KiYoh_De_Jong_Disposables.png",
+            "enable_autoplay": true,
+            "enable_mute_toggle": true,
+            "enable_loop": true,
+            "spacing_top": 20,
+            "spacing_bottom": 0,
+            "enable_padding": false,
+            "color_scheme": "color__bg-body color__text",
+            "color_border": "!color__border-transparent",
+            "color_text": "color__text",
+            "color_button": "btn btn--plain",
+            "enable_gradient": false,
+            "layout_y_alignment": "items-end content-end",
+            "layout_x_alignment": "",
+            "layout_row_span": "row-span-1",
+            "layout_col_span": "col-span-1 md: md:col-span-1"
+          }
+        },
+        "content_UMyUnx": {
+          "type": "content",
+          "settings": {
+            "heading": "",
+            "content": "<h4>490 beoordelingen<\/h4>",
+            "button_label": "Laat een review achter",
+            "button_url": "",
+            "full_block_link": false,
+            "enable_autoplay": true,
+            "enable_mute_toggle": true,
+            "enable_loop": true,
+            "spacing_top": 80,
+            "spacing_bottom": 0,
+            "enable_padding": true,
+            "color_scheme": "color__bg-body color__text",
+            "color_border": "!color__border-transparent",
+            "color_text": "color__text",
+            "color_button": "btn btn--secondary",
+            "enable_gradient": false,
+            "layout_y_alignment": "items-end content-end",
+            "layout_x_alignment": "",
+            "layout_row_span": "row-span-1",
+            "layout_col_span": "col-span-1 md: md:col-span-1"
+          }
+        }
+      },
+      "block_order": [
+        "content_NiBMAy",
+        "content_4erq6e",
+        "content_UMyUnx"
+      ],
+      "custom_css": [
+
+      ],
+      "settings": {
+        "heading": "",
+        "content": "",
+        "button_label": "",
+        "button_url": "\/",
+        "spacing_top": 60,
+        "spacing_bottom": 60,
+        "color_scheme": "color__bg-body color__text",
+        "color_border": "color__border-divider-1",
+        "color_button": "btn",
+        "style_border": "border--b-width",
+        "row_size_desktop": "md:grid-cols-4",
+        "row_size_mobile": "grid-cols-1",
+        "layout_x_alignment": "text-center justify-center flex-col items-center",
+        "visibility": ""
+      }
+    },
     "2cb9d59b-242d-48e7-821a-ae61144186e8": {
       "type": "content-grid",
       "blocks": {
@@ -140,8 +245,8 @@
         "content": "<p><\/p><p><\/p>",
         "button_label": "",
         "button_url": "",
-        "spacing_top": 100,
-        "spacing_bottom": 100,
+        "spacing_top": 60,
+        "spacing_bottom": 60,
         "color_scheme": "color__bg-body color__text",
         "color_border": "color__border-divider-1",
         "color_button": "btn btn--secondary",
@@ -244,8 +349,8 @@
         "content": "<p>Duurzame disposables zijn in deze huidige tijd \"natuurlijk\" niet meer weg te denken, het is een thema dat hoog op onze agenda staat. Ons uitgebreide duurzame disposable assortiment is wederom een serie topproducten dat niet te vergelijken is met de traditionele disposables. Het programma is uitgevoerd in een stevige kwaliteit papier, karton en suikerriet (bagasse). Daarnaast bevat ons assortiment een serie duurzaam bestek zoals, bamboe snack vorkjes en ijslepeltjes.<\/p>",
         "button_label": "",
         "button_url": "",
-        "spacing_top": 100,
-        "spacing_bottom": 100,
+        "spacing_top": 60,
+        "spacing_bottom": 60,
         "color_scheme": "color__bg-body color__text",
         "color_border": "color__border-divider-1",
         "color_button": "btn",
@@ -321,8 +426,8 @@
         "content": "<p>Wilt u <a href=\"https:\/\/dejongwebshop.nl\/product-category\/disposables-bedrukken\/\">disposables bedrukken<\/a>? De Jong Disposables onderscheidt zich binnen deze markt vooral door het aanbieden van het bedrukken van disposables, waarbij voor iedere klant een passend producten pakket wordt samengesteld.<\/p><p>Vaak worden deze disposables voorzien van een eigen bedrukking en indien er geen passend product voor handen is, kan dit speciaal ontwikkeld worden.<\/p><p>Praktisch al onze disposables zijn te voorzien van uw logo of design, voor alle mogelijkheden nodigen wij u graag uit bij ons op de showroom in Tynaarlo.<\/p><p><\/p><p><\/p><p><\/p>",
         "button_label": "Bekijk het hier!",
         "button_url": "shopify:\/\/collections\/disposables-bedrukken",
-        "spacing_top": 100,
-        "spacing_bottom": 100,
+        "spacing_top": 60,
+        "spacing_bottom": 60,
         "color_scheme": "color__bg-body color__text",
         "color_border": "color__border-divider-1",
         "color_button": "btn btn--secondary",
@@ -849,6 +954,7 @@
   },
   "order": [
     "f96b8e1b-0fd4-4c65-856c-cdd01fe228cc",
+    "content_grid_HmFN8L",
     "2cb9d59b-242d-48e7-821a-ae61144186e8",
     "0aee11fe-16ff-4cae-924b-b6dc71c8827b",
     "1e9b6aa9-2f3a-4ca0-a7b2-65d5c9c14d5f",

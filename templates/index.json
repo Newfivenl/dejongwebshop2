@@ -99,7 +99,7 @@
             "layout_y_alignment": "items-start content-start",
             "layout_x_alignment": "",
             "layout_row_span": "row-span-1",
-            "layout_col_span": "col-span-1 md: md:col-span-2"
+            "layout_col_span": "col-span-1 md: md:col-span-3"
           }
         }
       },

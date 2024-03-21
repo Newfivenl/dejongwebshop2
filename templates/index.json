@@ -59,7 +59,7 @@
             "button_label": "",
             "button_url": "shopify:\/\/collections\/all",
             "full_block_link": true,
-            "image_featured": "shopify:\/\/shop_images\/KiYoh_De_Jong_Disposables.png",
+            "image_featured": "shopify:\/\/shop_images\/KiYoh_De_Jong_Disposables_8b675d8d-4a4f-42fb-8e6b-d97bd36501d9.png",
             "enable_autoplay": true,
             "enable_mute_toggle": true,
             "enable_loop": true,
@@ -101,37 +101,11 @@
             "layout_row_span": "row-span-1",
             "layout_col_span": "col-span-1 md: md:col-span-2"
           }
-        },
-        "content_UMyUnx": {
-          "type": "content",
-          "settings": {
-            "heading": "",
-            "content": "<h4>490 beoordelingen<\/h4>",
-            "button_label": "Laat een review achter",
-            "button_url": "",
-            "full_block_link": false,
-            "enable_autoplay": true,
-            "enable_mute_toggle": true,
-            "enable_loop": true,
-            "spacing_top": 0,
-            "spacing_bottom": 0,
-            "enable_padding": true,
-            "color_scheme": "color__bg-body color__text",
-            "color_border": "!color__border-transparent",
-            "color_text": "color__dark",
-            "color_button": "btn btn--neutral",
-            "enable_gradient": false,
-            "layout_y_alignment": "items-end content-end",
-            "layout_x_alignment": "",
-            "layout_row_span": "row-span-1",
-            "layout_col_span": "col-span-1 md: md:col-span-1"
-          }
         }
       },
       "block_order": [
         "content_4erq6e",
-        "content_NiBMAy",
-        "content_UMyUnx"
+        "content_NiBMAy"
       ],
       "custom_css": [
         ".btn--neutral {display: none;}",

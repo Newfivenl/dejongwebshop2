@@ -134,7 +134,8 @@
         "content_UMyUnx"
       ],
       "custom_css": [
-
+        ".btn--neutral {display: none;}",
+        ".btn--plain {display: none;}"
       ],
       "settings": {
         "heading": "",

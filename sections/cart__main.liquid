@@ -194,7 +194,7 @@
                 <span>{{ 'cart.general.subtotal' | t }}</span>
                 <span x-text="Shopify.formatMoney(cart.original_total_price, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">{{ cart.original_total_price | money }}</span>
               </div>
-              <div class="flex items-center justify-between w-full mb-1">
+              <div  x-show="cart.total_discount != 0"  class="flex items-center justify-between w-full mb-1">
                 <span>{{ 'cart.general.discount' | t }}</span>
                 <span x-text="Shopify.formatMoney(cart.total_discount, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">-{{ cart.total_discount | money }}</span>
               </div>

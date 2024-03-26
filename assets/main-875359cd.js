@@ -680,7 +680,7 @@ const search = {
       return;
     }
     fetch(
-      `${window.Shopify.routes.root}search/suggest.json?q=${searchTerm}&resources[type]=${buildResources()}&resources[limit]=6&[options][fields]=${buildParams()}&section_id=predictive-search&resources[options][fields]=variants.sku`
+      `${window.Shopify.routes.root}search/suggest.json?q=${searchTerm}&resources[type]=${buildResources()}&resources[limit]=6&[options][fields]=${buildParams()}&section_id=predictive-search&resources[options][fields]=author,body,product_type,tag,title,variants.sku,variants.title,vendor,variants.sku`
     ).then((response) => {
       if (!response.ok) {
         var error2 = new Error(response.status.toString());

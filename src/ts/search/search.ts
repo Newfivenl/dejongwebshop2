@@ -39,7 +39,7 @@ export const search = {
       return;
     }
     fetch(
-      `${window.Shopify.routes.root}search/suggest.json?q=${searchTerm}&resources[type]=${buildResources()}&resources[limit]=6&[options][fields]=${buildParams()}&section_id=predictive-search`
+      `${window.Shopify.routes.root}search/suggest.json?q=${searchTerm}&resources[type]=${buildResources()}&resources[limit]=6&[options][fields]=${buildParams()}&section_id=predictive-search&resources[options][fields]=variants.sku`
     )
       .then((response) => {
         if (!response.ok) {

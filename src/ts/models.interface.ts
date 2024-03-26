@@ -345,7 +345,7 @@ export interface Params {
   tag: string;
   title: string;
   variants_barcode: string;
-  variants_sku: string;
+  // variants_sku: string;
   variants_title: string;
   vendor: string;
 }

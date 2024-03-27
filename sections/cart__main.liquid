@@ -240,16 +240,16 @@
                   x-cloak></textarea>
               </div>
             {% endif %}
-
             {%- comment -%}checkout{%- endcomment -%}
             <div class="mt-auto">
               <div class="w-full p-4">
-                <label for="checkout" class="sr-only">{{ 'cart.general.checkout' | t }}<</label>
+                <label for="checkout" class="sr-only">{{ 'cart.general.checkout' | t }}</label>
                 <input 
                   id="checkout"
                   class="!w-full btn mb-2"
                   type="submit" 
                   name="checkout" 
+                  x-bind:value="`{{ 'cart.general.checkout' | t }} {% if settings.type_seperator == 'dot' %}·{% else %}|{% endif %} ` + Shopify.formatMoney(cart.total_price, currency_symbol, true, 'amount_no_decimals', '100')"
                   value="{{ 'cart.general.checkout' | t }} {% if settings.type_seperator == 'dot' %}·{% else %}|{% endif %} {{ cart.total_price | money_with_currency | strip_html }}">
 
                 {% if section.settings.enable_dynamic_checkout %}

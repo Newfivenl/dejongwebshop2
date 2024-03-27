@@ -44,7 +44,7 @@
     "enable_thumbnails_product_type": false,
     "enable_thumbnails_vendor": false,
     "enable_color_swatches": true,
-    "enable_sku": false,
+    "enable_sku": true,
     "enable_tagline": true,
     "enable_quick_mobile": true,
     "enable_quick_desktop": true,

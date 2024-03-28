@@ -788,6 +788,19 @@
         "layout_x_alignment": "justify-between",
         "visibility": ""
       }
+    },
+    "liquid_mAXzJh": {
+      "type": "liquid",
+      "settings": {
+        "liquid": "{% form 'customer_login', return_to: routes.root_url %}\n  <!-- form content -->\n        <a href=\"\/account\/login{% if request.locale.iso_code == 'nl' %}?lang=NL{% endif %}\" class=\"btn btn-primary btn-block button button-login\" data-locksmith=\"\">{{ 'customer.login_page.sign_in' | t }}<\/a>\n<button type=\"submit\">login<\/button>\n{% endform %}",
+        "spacing_top": 100,
+        "spacing_bottom": 100,
+        "color_scheme": "color__bg-body color__text",
+        "color_border": "color__border-divider-1",
+        "style_border": "border--b-width",
+        "layout_padding": true,
+        "visibility": ""
+      }
     }
   },
   "order": [
@@ -802,6 +815,7 @@
     "d7e3b662-c368-4636-9d51-e4d12b8168f7",
     "96dcd7af-6180-401d-bf36-5aafc0ddf102",
     "153e1f9d-36b0-4e41-84cd-6510d2d62de1",
-    "78a339b1-cd3c-4871-898d-b86e6dc91a94"
+    "78a339b1-cd3c-4871-898d-b86e6dc91a94",
+    "liquid_mAXzJh"
   ]
 }

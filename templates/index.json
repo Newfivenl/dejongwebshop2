@@ -792,7 +792,7 @@
     "liquid_mAXzJh": {
       "type": "liquid",
       "settings": {
-        "liquid": "{% form 'customer_login', return_to: routes.root_url %}\n  <!-- form content -->\n        <a href=\"\/account\/login{% if request.locale.iso_code == 'nl' %}?lang=NL{% endif %}\" class=\"btn btn-primary btn-block button button-login\" data-locksmith=\"\">{{ 'customer.login_page.sign_in' | t }}<\/a>\n<button type=\"submit\">login<\/button>\n{% endform %}",
+        "liquid": "{% form 'customer_login', return_to: routes.root_url %}\n  <!-- form content -->\n        <a href=\"{{routes.login}}{% if request.locale.iso_code == 'nl' %}?lang=NL{% endif %}\" class=\"btn btn-primary btn-block button button-login\" data-locksmith=\"\">{{ 'customer.login_page.sign_in' | t }}<\/a>\n<div class=\"submit\">\n    <input type=\"submit\" value=\"Sign in\">\n  <\/div>\n{% endform %}",
         "spacing_top": 100,
         "spacing_bottom": 100,
         "color_scheme": "color__bg-body color__text",

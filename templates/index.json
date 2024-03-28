@@ -3,7 +3,7 @@
     "liquid_mAXzJh": {
       "type": "liquid",
       "settings": {
-        "liquid": "{% form 'customer_login', return_to: routes.root_url %}\n  <!-- form content -->\n        <a href=\"{{ routes.account_login_url }}\" class=\"btn btn-primary btn-block button button-login\">{{ 'customer.login_page.sign_in' | t }}<\/a>\n<div class=\"submit\">\n    <input type=\"submit\" value=\"Sign in\">\n  <\/div>\n{% endform %}",
+        "liquid": "{% form 'customer_login', return_to: routes.collections_url %}\n  <!-- form content -->\n        <a href=\"{{ routes.account_login_url }}\" class=\"btn btn-primary btn-block button button-login\">{{ 'customer.login_page.sign_in' | t }}<\/a>\n<div class=\"submit\">\n    <input type=\"submit\" value=\"Sign in\">\n  <\/div>\n{% endform %}",
         "spacing_top": 100,
         "spacing_bottom": 100,
         "color_scheme": "color__bg-body color__text",

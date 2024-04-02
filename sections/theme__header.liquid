@@ -87,7 +87,7 @@
                   <div class="flex justify-between overflow-hidden 
                     {{ section.settings.dropdown_color_border }}">
   
-                    <div class="py-4 grid grid-cols-3 gap-3 ">
+                    <div class="py-4 grid grid-cols-3 gap-1 ">
                       {% for child_link in link.links %}
                         {%- comment %}<locksmith:a1e3>{% endcomment -%}
                           {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: child_link, subject_parent: link, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}

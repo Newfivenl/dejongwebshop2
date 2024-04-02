@@ -3067,8 +3067,6 @@ table__specs .p-4 {
 
 .opacity-0 {
   opacity: 0;
-  transition-timing-function: ease-in;
-  transition: 0.25s;
 }
 
 .opacity-100 {
@@ -4315,7 +4313,6 @@ table__specs .p-4 {
   padding-left: 1rem;
   padding-right: 1rem;
 }
-
 .header__link:hover + .header__dropdown,
   .header__link:focus + .header__dropdown,
   .header__dropdown:hover,
@@ -4323,8 +4320,8 @@ table__specs .p-4 {
   height: auto;
   opacity: 1;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-      transition-timing-function: ease;
-  transition: 0.25s;
+  transition-timing-function: ease !important;
+  transition: 0.5s;
 
 }
 

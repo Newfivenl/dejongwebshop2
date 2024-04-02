@@ -3067,7 +3067,7 @@ table__specs .p-4 {
 
 .opacity-0 {
   opacity: 0;
-  transition-timing-function: ease;
+  transition-timing-function: ease-in;
   transition: 0.25s;
 }
 

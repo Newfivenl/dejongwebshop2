@@ -415,6 +415,9 @@
   "customer_accounts": {
     "order_details": {
       "marketing_checkbox_label": "Aanmelden nieuwsbrief voor nieuws, handige tips, inspiratie en de beste aanbiedingen."
+    },
+    "navigation_and_structure": {
+      "go_to_store_link": "Ga naar je bestellijst"
     }
   },
   "back_in_stock": {

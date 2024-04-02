@@ -4313,6 +4313,10 @@ table__specs .p-4 {
   padding-left: 1rem;
   padding-right: 1rem;
 }
+.header__dropdown {
+  transition-timing-function: ease;
+  transition: 0.25s;
+}
 
 .header__link:hover + .header__dropdown,
   .header__link:focus + .header__dropdown,

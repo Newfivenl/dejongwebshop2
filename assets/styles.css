@@ -2881,6 +2881,13 @@ table__specs .p-4 {
   padding-right: 4.5rem;
 }
 
+@media (max-width: 1023px) {
+  .pr-13 {
+  padding-right: 2.5rem;
+}
+}
+
+
 .pr-2 {
   padding-right: 0.5rem;
 }

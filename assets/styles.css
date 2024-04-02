@@ -4321,7 +4321,7 @@ table__specs .p-4 {
   height: auto;
   opacity: 1;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-      transition-timing-function: ease-out;
+      transition-timing-function: ease;
   transition: 0.25s;
 
 }

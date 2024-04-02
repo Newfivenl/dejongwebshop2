@@ -1951,6 +1951,14 @@ img:after {
   width: 20%;
 }
 
+.w-15 {
+  width: 3.5rem;
+}
+.h-15 {
+  width: 3.5rem;
+}
+
+
 .w-10 {
   width: 2.5rem;
 }

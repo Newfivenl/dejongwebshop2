@@ -403,6 +403,11 @@
       },
       "payment": {
         "offsite_gateway_redirect_hint": "Nadat je op \"{{ button_label }}\"hebt geklikt, wordt je doorgestuurd naar {{ gateway_label}} om je aankoop veilig te voltooien, met bv iDEAL, Bancontact, Credit Card etc."
+      },
+      "throttle": {
+        "merchandise": {
+          "sold_out": "Tijdelijk niet leverbaar"
+        }
       }
     }
   },

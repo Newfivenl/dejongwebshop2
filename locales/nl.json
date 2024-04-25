@@ -398,7 +398,8 @@
         "pick_up": "Afhalen (locatie Groningen)"
       },
       "stock": {
-        "product_column_header": "Producten"
+        "product_column_header": "Producten",
+        "sold_out_label": "Tijdelijk niet leverbaar"
       },
       "payment": {
         "offsite_gateway_redirect_hint": "Nadat je op \"{{ button_label }}\"hebt geklikt, wordt je doorgestuurd naar {{ gateway_label}} om je aankoop veilig te voltooien, met bv iDEAL, Bancontact, Credit Card etc."

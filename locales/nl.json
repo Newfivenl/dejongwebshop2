@@ -3,7 +3,10 @@
     "header": {
       "announcement": "Aankondiging",
       "menu": "Menu",
-      "cart_count": "{{ count }} artikel"
+      "cart_count": {
+        "one": "{{ count }} artikel",
+        "other": "{{ count }} artikelen"
+      }
     }
   },
   "general": {

@@ -1,6 +1,7 @@
+{% assign recent_purchased_items = customer.metafields.custom.order_json.value %}
 {% assign wishlist_product_list = customer.metafields.fields_raven.wishlist_product_list.value | reverse %}
 
-{% comment %} <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script> {% endcomment %}
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 <script type="text/javascript">
     window.wishlistProductListObj = {{ wishlist_product_list | json | default: '[]' }};
     window.productIds = [];
@@ -284,7 +285,9 @@
 
     const recentOrderInitGrid = () => {
       const grid = document.querySelector(recentOrdersSelectors.grid) || false;
+      const grid_viewAll = document.querySelector(recentOrdersSelectors.grid_viewAll) || false;
       if (grid) recentOrderSetupGrid(grid);
+      if (grid_viewAll) recentOrderSetupGrid(grid_viewAll);
     };
 
     const getRecentOrder = () => {  
@@ -387,50 +390,50 @@
         });
     }
     // window.addEventListener('DOMContentLoaded', function () {
-    //   const quantitySpinners = document.querySelectorAll('.wishlist-quantity-spinner');
-    //   let wishListCartData = [];
-    //   let newWishlistData = [];
-    //   quantitySpinnerElem(quantitySpinners, ".wishlist-minus__button", ".wishlist-plus__button", ".wishlist-quantity__input", ".wishlist-re-order-btn" );
-    //   document.querySelector('.wishlist-re-order-btn').addEventListener('click', function (event) {
-    //     this.classList.add('loading');
-    //     this.innerHTML = `<div class="loading-overlay__spinner">
-    //     <svg
-    //       aria-hidden="true"
-    //       focusable="false"
-    //       role="presentation"
-    //       class="spinner"
-    //       viewBox="0 0 66 66"
-    //       xmlns="http://www.w3.org/2000/svg"
-    //     >
+      //   const quantitySpinners = document.querySelectorAll('.wishlist-quantity-spinner');
+      //   let wishListCartData = [];
+      //   let newWishlistData = [];
+      //   quantitySpinnerElem(quantitySpinners, ".wishlist-minus__button", ".wishlist-plus__button", ".wishlist-quantity__input", ".wishlist-re-order-btn" );
+      //   document.querySelector('.wishlist-re-order-btn').addEventListener('click', function (event) {
+        //     this.classList.add('loading');
+        //     this.innerHTML = `<div class="loading-overlay__spinner">
+        //     <svg
+          //       aria-hidden="true"
+          //       focusable="false"
+          //       role="presentation"
+          //       class="spinner"
+          //       viewBox="0 0 66 66"
+          //       xmlns="http://www.w3.org/2000/svg"
+        //     >
     //       <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-    //     </svg>
-    //   </div>`;
-    //     quantitySpinners.forEach((quantitySpinner) => {
-    //       const quantityInput = quantitySpinner.querySelector('.wishlist-quantity__input');
-    //       let item = quantitySpinner.parentNode.parentNode.dataset.variant;
-    //       let quantityValue = quantityInput.value;
-    //       wishListCartData.push({
-    //         id: item,
-    //         quantity: quantityValue,
-    //       });
-    //     });
-    //     const reducedWishlistCartData = wishListCartData;
-    //     let result = reducedWishlistCartData.reduce((acc, curr) => {
-    //       let item = acc.find((item) => item.id === curr.id);
-    //       if (item) {
-    //         item.quantity = curr.quantity;
-    //       } else {
-    //         acc.push(curr);
-    //         newWishlistData.push(curr);
-    //       }
+        //     </svg>
+      //   </div>`;
+        //     quantitySpinners.forEach((quantitySpinner) => {
+          //       const quantityInput = quantitySpinner.querySelector('.wishlist-quantity__input');
+          //       let item = quantitySpinner.parentNode.parentNode.dataset.variant;
+          //       let quantityValue = quantityInput.value;
+          //       wishListCartData.push({
+            //         id: item,
+            //         quantity: quantityValue,
+          //       });
+        //     });
+        //     const reducedWishlistCartData = wishListCartData;
+        //     let result = reducedWishlistCartData.reduce((acc, curr) => {
+          //       let item = acc.find((item) => item.id === curr.id);
+          //       if (item) {
+            //         item.quantity = curr.quantity;
+          //       } else {
+            //         acc.push(curr);
+            //         newWishlistData.push(curr);
+          //       }
     //       return acc;
-    //     }, []);
-    //     newWishlistData = newWishlistData.filter((item) => item.quantity > 0);
-    //     var data = {
-    //       items: newWishlistData,
-    //     };
-    //     addToCart(data, this);
-    //   });
+        //     }, []);
+        //     newWishlistData = newWishlistData.filter((item) => item.quantity > 0);
+        //     var data = {
+          //       items: newWishlistData,
+        //     };
+        //     addToCart(data, this);
+      //   });
     // });
     document.addEventListener('DOMContentLoaded', function () {
       const quantitySpinners = document.querySelectorAll('.orderlist-quantity-spinner');
@@ -481,11 +484,49 @@
       });
     });
 
-    document.addEventListener('DOMContentLoaded', async () => {
-      await fetchRecentOrder();
+    
+    const productSearch = () => {
+      const searchInput = document.getElementById('productSearch');
+      searchInput.addEventListener('keyup', function() {
+        const query = this.value.toLowerCase();
+        const products = document.querySelectorAll('.product_grid_item');
+        products.forEach(function(product) {
+          const title = product.querySelector('.product_title').textContent.toLowerCase();
+          const sku = product.querySelector('.sku') ? product.querySelector('.sku').textContent.toLowerCase() : '';
+          if (title.includes(query) || sku.includes(query)) {
+            product.style.display = '';
+          } else {
+            product.style.display = 'none';
+          }
+        });
+      });
+    }
+    const toggleClearButton = () => {
+      const searchInput = document.getElementById('productSearch');
+        const clearButton = document.getElementById('clearButton');
+        if (searchInput.value.length > 0) {
+          clearButton.style.display = 'block';
+        } else {
+          clearButton.style.display = 'none';
+        }
+      }
+      const clearSearch  = () =>  {
+        const searchInput = document.getElementById('productSearch');
+        searchInput.value = '';
+        searchInput.focus(); 
+        toggleClearButton();
+        const products = document.querySelectorAll('.product_grid_item');
+        products.forEach(function(product) {
+          product.style.display = '';
+        });
+      }
+    document.addEventListener('DOMContentLoaded', () => {
       initTabs();
       initDialog();
       recentOrderInitGrid();
+        productSearch();
+        toggleClearButton();
+        clearSearch();
     });
 </script>
 <div id="nf_drawer">
@@ -534,7 +575,7 @@
                       <div>
                         <span class="company_name">{{ company.name }}</span>
                       </div>
-                    {% endfor %}
+{% endfor %}
                   </li>
                   <li class="logout_link">
                     <a class="link" href="{{ routes.account_logout_url }}">
@@ -558,16 +599,16 @@
             </div>
           </div>
           <div>
-            <a class="cart-drawer-icon !no-underline " href="{{ routes.cart_url }}">
+            <a class="cart-drawer-icon" href="{{ routes.cart_url }}">
               <span>
                 {{ 'customer.account_drawer.cart' | t }}
               </span>
               {%- if cart != empty -%}
-                <div class="cart-count-bubble type__nav type--smaller color__bg-primary color__primary ml-1 px-2 py-0.5 border__button--radius flex items-center " style="position: relative;bottom: 8px;left: 0px;">
+                <div class="cart-count-bubble" style="position: relative;bottom: 8px;left: 0px;">
                   {%- if cart.item_count < 100 -%}
                     <span aria-hidden="true">{{ cart.item_count }}</span>
                   {%- endif -%}
-                {% comment %} <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span> {% endcomment %}
+                  <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
                 </div>
               {%- endif -%}
             </a>
@@ -583,19 +624,19 @@
           </div>
         </div>
         <div class="nf-tab-container">
-        
+          
         {% comment %} <button class="tab active" data-target="top-ordered__tab">
             <span>{{ 'customer.account_drawer.top_ordered_tab' | t }}</span>
           </button> {% endcomment %}
         <button class="tab active" data-target="order-lists">
               <span>{{ 'customer.account_drawer.order_list_title' | t }}</span>
-        </button> 
+</button> 
         <button class="tab" data-target="orders">
           <span>{{ 'customer.account_drawer.orders_tab' | t }}</span>
-        </button>
-        {% comment %} <button class="tab" data-target="wishlist">
-                                                                                                                                                                                                                                                                      <span>{{ 'customer.account_drawer.favorites_tab' | t }}</span>
-                                                                                                                                                                                                                  </button> {% endcomment %}
+        </button> 
+          {% comment %} <button class="tab" data-target="wishlist">
+            <span>{{ 'customer.account_drawer.favorites_tab' | t }}</span>
+                  </button> {% endcomment %}
         </div>
         <div id="orders" class="tab-content">
           <div class="nf-section nf-my-orders__wrapper">
@@ -616,7 +657,7 @@
             </div>
             <div
               id="recent_tab"
-              class="nf-my-orders__table recently_ordered"
+              class="nf-my-orders__table recently_ordered "
               grid-recent-orders>
               <p class="recent-orders__loader text-center">Loading...</p>
             </div>
@@ -628,6 +669,19 @@
           </div>
         </div>
         <div id="order-lists" class="tab-content active">
+          <div class="search-container">
+            <div class="field">
+                  <input class="search__input field__input" oninput="toggleClearButton()" id="productSearch" type="search" placeholder="Zoeken" role="combobox" >
+                  {% comment %} <label class="field__label" for="productSearch">Zoeken</label> {% endcomment %}
+                  <button class="search__button field__button" aria-label="Zoeken">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="icon icon-search">
+                        <path d="M22.938 13.382c-0.036 5.247-4.318 9.472-9.565 9.437s-9.472-4.318-9.436-9.565c0.035-5.223 4.28-9.438 9.503-9.437 5.263 0.023 9.513 4.302 9.501 9.565h-0.003zM26.881 13.382c-0.032-7.423-6.075-13.414-13.498-13.382s-13.414 6.075-13.382 13.497c0.031 7.4 6.039 13.382 13.44 13.382 7.435-0.025 13.447-6.062 13.44-13.498z"></path>
+                        <path d="M29.216 31.882l-8.499-8.451 2.784-2.787 8.499 8.451-2.784 2.787z"></path>
+                    </svg>
+                  </button>
+                  <button id="clearButton" onclick="clearSearch()" style="display: none;">X</button>
+            </div>
+          </div>
           <div id="nf-tab_view-order">
             <div class="nf-section nf-my-orders__wrapper">
               <div class="nf-section-heading">
@@ -641,7 +695,7 @@
                     {% render 'nf-account-product-grid'
                       , product: product %}
                   {% endfor %}
-                </div><div id="pagination">
+</div><div id="pagination">
                   <button id="prevPage">
                     {% render 'icon-caret-new' %}
                   </button>
@@ -656,6 +710,7 @@
                   </button>
                 </div>
               {% else %}
+                No Order list
               {% endif %}
             </div>
           </div>

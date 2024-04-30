@@ -1,4 +1,14 @@
 {
+  "sections": {
+    "header": {
+      "announcement": "Aankondiging",
+      "menu": "Menu",
+      "cart_count": {
+        "one": "{{ count }} artikel",
+        "other": "{{ count }} artikelen"
+      }
+    }
+  },
   "general": {
     "accessibility": {
       "skip_to_content": "Naar de inhoud gaan"

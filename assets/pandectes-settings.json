@@ -6,7 +6,7 @@
     "primaryLocale": "nl",
     "adminMode": false
   },
-  "tsPublished": 1714465093,
+  "tsPublished": 1714465262,
   "declaration": {
     "showPurpose": false,
     "showProvider": false,
@@ -14,257 +14,337 @@
     "showDateGenerated": true
   },
   "language": {
-    "languageMode": "Single",
+    "languageMode": "Multilingual",
     "fallbackLanguage": "nl",
-    "languageDetection": "browser",
+    "languageDetection": "locale",
     "languagesSupported": [
-
+      "en"
     ]
   },
   "texts": {
     "managed": {
       "headerText": {
+        "en": "We respect your privacy",
         "nl": "Wij respecteren uw privacy"
       },
       "consentText": {
+        "en": "This website uses cookies to ensure you get the best experience.",
         "nl": "Deze website maakt gebruik van cookies."
       },
       "dismissButtonText": {
+        "en": "Ok",
         "nl": "OK"
       },
       "linkText": {
+        "en": "Learn more",
         "nl": "Lees meer"
       },
       "imprintText": {
+        "en": "Imprint",
         "nl": "Afdruk"
       },
       "preferencesButtonText": {
+        "en": "Preferences",
         "nl": "Voorkeuren"
       },
       "allowButtonText": {
+        "en": "Accept",
         "nl": "Accepteren"
       },
       "denyButtonText": {
+        "en": "Decline",
         "nl": "Afwijzen"
       },
       "leaveSiteButtonText": {
+        "en": "Leave this site",
         "nl": "Verlaat deze site"
       },
       "cookiePolicyText": {
+        "en": "Cookie policy",
         "nl": "Cookie beleid"
       },
       "preferencesPopupTitleText": {
+        "en": "Manage consent preferences",
         "nl": "Toestemmingsvoorkeuren beheren"
       },
       "preferencesPopupIntroText": {
+        "en": "We use cookies to optimize website functionality, analyze the performance, and provide personalized experience to you. Some cookies are essential to make the website operate and function correctly. Those cookies cannot be disabled. In this window you can manage your preference of cookies.",
         "nl": "We gebruiken cookies om de functionaliteit van de website te optimaliseren, de prestaties te analyseren en u een gepersonaliseerde ervaring te bieden. Sommige cookies zijn essentieel om de website correct te laten werken en functioneren. Die cookies kunnen niet worden uitgeschakeld. In dit venster kunt u uw voorkeur voor cookies beheren."
       },
       "preferencesPopupCloseButtonText": {
+        "en": "Close",
         "nl": "Sluiten"
       },
       "preferencesPopupAcceptAllButtonText": {
+        "en": "Accept all",
         "nl": "Accepteer alles"
       },
       "preferencesPopupRejectAllButtonText": {
+        "en": "Reject all",
         "nl": "Alles afwijzen"
       },
       "preferencesPopupSaveButtonText": {
+        "en": "Save preferences",
         "nl": "Voorkeuren opslaan"
       },
       "accessSectionTitleText": {
+        "en": "Data portability",
         "nl": "Gegevensportabiliteit"
       },
       "accessSectionParagraphText": {
+        "en": "You have the right to request access to your data at any time.",
         "nl": "U heeft te allen tijde het recht om uw gegevens in te zien."
       },
       "rectificationSectionTitleText": {
+        "en": "Data Rectification",
         "nl": "Gegevens rectificatie"
       },
       "rectificationSectionParagraphText": {
+        "en": "You have the right to request your data to be updated whenever you think it is appropriate.",
         "nl": "U hebt het recht om te vragen dat uw gegevens worden bijgewerkt wanneer u dat nodig acht."
       },
       "erasureSectionTitleText": {
+        "en": "Right to be forgotten",
         "nl": "Recht om vergeten te worden"
       },
       "erasureSectionParagraphText": {
+        "en": "You have the right to ask all your data to be erased. After that, you will no longer be able to access your account.",
         "nl": "U heeft het recht om al uw gegevens te laten wissen. Daarna heeft u geen toegang meer tot uw account."
       },
       "declIntroText": {
+        "en": "We use cookies to optimize website functionality, analyze the performance, and provide personalized experience to you. Some cookies are essential to make the website operate and function correctly. Those cookies cannot be disabled. In this window you can manage your preference of cookies.",
         "nl": "We gebruiken cookies om de functionaliteit van de website te optimaliseren, de prestaties te analyseren en u een gepersonaliseerde ervaring te bieden. Sommige cookies zijn essentieel om de website goed te laten werken en correct te laten functioneren. Die cookies kunnen niet worden uitgeschakeld. In dit venster kunt u uw voorkeur voor cookies beheren."
       }
     },
     "categories": {
       "strictlyNecessaryCookiesTitleText": {
+        "en": "Strictly necessary cookies",
         "nl": "Strikt noodzakelijke cookies"
       },
       "functionalityCookiesTitleText": {
+        "en": "Functional cookies",
         "nl": "Functionele cookies"
       },
       "performanceCookiesTitleText": {
+        "en": "Performance cookies",
         "nl": "Prestatiecookies"
       },
       "targetingCookiesTitleText": {
+        "en": "Targeting cookies",
         "nl": "Targeting-cookies"
       },
       "unclassifiedCookiesTitleText": {
+        "en": "Unclassified cookies",
         "nl": "Niet-geclassificeerde cookies"
       },
       "strictlyNecessaryCookiesDescriptionText": {
+        "en": "These cookies are essential in order to enable you to move around the website and use its features, such as accessing secure areas of the website. The website cannot function properly without these cookies.",
         "nl": "Deze cookies zijn essentieel om u in staat te stellen door de website te navigeren en de functies ervan te gebruiken, zoals toegang tot beveiligde delen van de website. Zonder deze cookies kan de website niet goed functioneren."
       },
       "functionalityCookiesDescriptionText": {
+        "en": "These cookies enable the site to provide enhanced functionality and personalisation. They may be set by us or by third party providers whose services we have added to our pages. If you do not allow these cookies then some or all of these services may not function properly.",
         "nl": "Deze cookies stellen de site in staat om verbeterde functionaliteit en personalisatie te bieden. Ze kunnen worden ingesteld door ons of door externe providers wiens diensten we aan onze pagina's hebben toegevoegd. Als u deze cookies niet toestaat, werken sommige of al deze diensten mogelijk niet correct."
       },
       "performanceCookiesDescriptionText": {
+        "en": "These cookies enable us to monitor and improve the performance of our website. For example, they allow us to count visits, identify traffic sources and see which parts of the site are most popular.",
         "nl": "Deze cookies stellen ons in staat om de prestaties van onze website te monitoren en te verbeteren. Ze stellen ons bijvoorbeeld in staat om bezoeken te tellen, verkeersbronnen te identificeren en te zien welke delen van de site het populairst zijn."
       },
       "targetingCookiesDescriptionText": {
+        "en": "These cookies may be set through our site by our advertising partners. They may be used by those companies to build a profile of your interests and show you relevant adverts on other sites.    They do not store directly personal information, but are based on uniquely identifying your browser and internet device. If you do not allow these cookies, you will experience less targeted advertising.",
         "nl": "Deze cookies kunnen via onze site worden geplaatst door onze advertentiepartners. Ze kunnen door die bedrijven worden gebruikt om een profiel van uw interesses op te bouwen en u relevante advertenties op andere sites te tonen. Ze slaan geen directe persoonlijke informatie op, maar zijn gebaseerd op de unieke identificatie van uw browser en internetapparaat. Als je deze cookies niet toestaat, krijg je minder gerichte advertenties te zien."
       },
       "unclassifiedCookiesDescriptionText": {
+        "en": "Unclassified cookies are cookies that we are in the process of classifying, together with the providers of individual cookies.",
         "nl": "Niet-geclassificeerde cookies zijn cookies die we aan het classificeren zijn, samen met de aanbieders van individuele cookies."
       }
     },
     "auto": {
       "declName": {
+        "en": "Name",
         "nl": "Naam"
       },
       "declPath": {
+        "en": "Path",
         "nl": "Pad"
       },
       "declType": {
+        "en": "Type",
         "nl": "Type"
       },
       "declDomain": {
+        "en": "Domain",
         "nl": "Domein"
       },
       "declPurpose": {
+        "en": "Purpose",
         "nl": "Doel"
       },
       "declProvider": {
+        "en": "Provider",
         "nl": "Aanbieder"
       },
       "declRetention": {
+        "en": "Retention",
         "nl": "Behoud"
       },
       "declFirstParty": {
+        "en": "First-party",
         "nl": "Directe"
       },
       "declThirdParty": {
+        "en": "Third-party",
         "nl": "Derde partij"
       },
       "declSeconds": {
+        "en": "seconds",
         "nl": "seconden"
       },
       "declMinutes": {
+        "en": "minutes",
         "nl": "minuten"
       },
       "declHours": {
+        "en": "hours",
         "nl": "uur"
       },
       "declDays": {
+        "en": "days",
         "nl": "dagen"
       },
       "declMonths": {
+        "en": "months",
         "nl": "maanden"
       },
       "declYears": {
+        "en": "years",
         "nl": "jaren"
       },
       "declSession": {
+        "en": "Session",
         "nl": "Sessie"
       },
       "cookiesDetailsText": {
+        "en": "Cookies details",
         "nl": "Cookiegegevens"
       },
       "preferencesPopupAlwaysAllowedText": {
+        "en": "Always allowed",
         "nl": "altijd toegestaan"
       },
       "submitButton": {
+        "en": "Submit",
         "nl": "Indienen"
       },
       "submittingButton": {
+        "en": "Submitting...",
         "nl": "Verzenden..."
       },
       "cancelButton": {
+        "en": "Cancel",
         "nl": "Annuleren"
       },
       "guestsSupportInfoText": {
+        "en": "Please login with your customer account to further proceed.",
         "nl": "Log in met uw klantaccount om verder te gaan."
       },
       "guestsSupportEmailPlaceholder": {
+        "en": "E-mail address",
         "nl": "E-mailadres"
       },
       "guestsSupportEmailValidationError": {
+        "en": "Email is not valid",
         "nl": "E-mail is niet geldig"
       },
       "guestsSupportEmailSuccessTitle": {
+        "en": "Thank you for your request",
         "nl": "dankjewel voor je aanvraag"
       },
       "guestsSupportEmailFailureTitle": {
+        "en": "A problem occurred",
         "nl": "Er is een probleem opgetreden"
       },
       "guestsSupportEmailSuccessMessage": {
+        "en": "If you are registered as a customer of this store, you will soon receive an email with instructions on how to proceed.",
         "nl": "Als je bent geregistreerd als klant van deze winkel, ontvang je binnenkort een e-mail met instructies over hoe je verder kunt gaan."
       },
       "guestsSupportEmailFailureMessage": {
+        "en": "Your request was not submitted. Please try again and if problem persists, contact store owner for assistance.",
         "nl": "Uw verzoek is niet ingediend. Probeer het opnieuw en als het probleem aanhoudt, neem dan contact op met de winkeleigenaar voor hulp."
       },
       "confirmationSuccessTitle": {
+        "en": "Your request is verified",
         "nl": "Uw verzoek is geverifieerd"
       },
       "confirmationFailureTitle": {
+        "en": "A problem occurred",
         "nl": "Er is een probleem opgetreden"
       },
       "confirmationSuccessMessage": {
+        "en": "We will soon get back to you as to your request.",
         "nl": "We zullen spoedig contact met u opnemen over uw verzoek."
       },
       "confirmationFailureMessage": {
+        "en": "Your request was not verified. Please try again and if problem persists, contact store owner for assistance",
         "nl": "Uw verzoek is niet geverifieerd. Probeer het opnieuw en als het probleem aanhoudt, neem dan contact op met de winkeleigenaar voor hulp"
       },
       "consentSectionTitleText": {
+        "en": "Your cookie consent",
         "nl": "Uw toestemming voor cookies"
       },
       "consentSectionNoConsentText": {
+        "en": "You have not consented to the cookies policy of this website.",
         "nl": "U heeft niet ingestemd met het cookiebeleid van deze website."
       },
       "consentSectionConsentedText": {
+        "en": "You consented to the cookies policy of this website on",
         "nl": "U heeft ingestemd met het cookiebeleid van deze website op:"
       },
       "consentStatus": {
+        "en": "Consent preference",
         "nl": "Toestemmingsvoorkeur"
       },
       "consentDate": {
+        "en": "Consent date",
         "nl": "Toestemmingsdatum"
       },
       "consentId": {
+        "en": "Consent ID",
         "nl": "Toestemmings-ID"
       },
       "consentSectionChangeConsentActionText": {
+        "en": "Change consent preference",
         "nl": "Wijzig de toestemmingsvoorkeur"
       },
       "accessSectionGDPRRequestsActionText": {
+        "en": "Data subject requests",
         "nl": "Verzoeken van betrokkenen"
       },
       "accessSectionAccountInfoActionText": {
+        "en": "Personal data",
         "nl": "Persoonlijke gegevens"
       },
       "accessSectionOrdersRecordsActionText": {
+        "en": "Orders",
         "nl": "Bestellingen"
       },
       "accessSectionDownloadReportActionText": {
+        "en": "Request export",
         "nl": "Download alles"
       },
       "rectificationCommentPlaceholder": {
+        "en": "Describe what you want to be updated",
         "nl": "Beschrijf wat u wilt bijwerken"
       },
       "rectificationCommentValidationError": {
+        "en": "Comment is required",
         "nl": "Commentaar is verplicht"
       },
       "rectificationSectionEditAccountActionText": {
+        "en": "Request an update",
         "nl": "Vraag een update aan"
       },
       "erasureSectionRequestDeletionActionText": {
+        "en": "Request personal data deletion",
         "nl": "Verzoek om verwijdering van persoonlijke gegevens"
       }
     }
@@ -391,6 +471,7 @@
         "expires": 1,
         "unit": "declYears",
         "purpose": {
+          "en": "Used in connection with customer login.",
           "nl": "Gebruikt in verband met klantenlogin."
         }
       },
@@ -404,6 +485,7 @@
         "expires": 1,
         "unit": "declYears",
         "purpose": {
+          "en": "Shopify store localization",
           "nl": "Shopify-winkellokalisatie"
         }
       },
@@ -417,6 +499,7 @@
         "expires": 1,
         "unit": "declDays",
         "purpose": {
+          "en": "Used for managing customer privacy settings.",
           "nl": "Wordt gebruikt voor het beheren van de privacy-instellingen van klanten."
         }
       },
@@ -430,6 +513,7 @@
         "expires": 30,
         "unit": "declMinutes",
         "purpose": {
+          "en": "Used in connection with buyer localization.",
           "nl": "Gebruikt in verband met lokalisatie van kopers."
         }
       },
@@ -443,6 +527,7 @@
         "expires": 1,
         "unit": "declYears",
         "purpose": {
+          "en": "Tracking preferences.",
           "nl": "Voorkeuren volgen."
         }
       },
@@ -456,6 +541,7 @@
         "expires": 1,
         "unit": "declHours",
         "purpose": {
+          "en": "Used in connection with customer authentication.",
           "nl": "Gebruikt in verband met klantauthenticatie."
         }
       },
@@ -469,6 +555,7 @@
         "expires": 1,
         "unit": "declMonths",
         "purpose": {
+          "en": "Used to track a user's session for new customer accounts.",
           "nl": "Used to track a user's session for new customer accounts."
         }
       },
@@ -482,6 +569,7 @@
         "expires": 1,
         "unit": "declYears",
         "purpose": {
+          "en": "Used in connection with new customer accounts.",
           "nl": "Used in connection with new customer accounts."
         }
       },
@@ -523,6 +611,7 @@
         "expires": 1,
         "unit": "declSeconds",
         "purpose": {
+          "en": "Used to test the storage of parameters about products added to the cart or payment currency",
           "nl": "Wordt gebruikt om de opslag van parameters te testen over producten die aan het winkelwagentje zijn toegevoegd of de betalingsvaluta"
         }
       },
@@ -536,6 +625,7 @@
         "expires": 1,
         "unit": "declSeconds",
         "purpose": {
+          "en": "Used to test the storage of parameters about products added to the cart or payment currency",
           "nl": "Wordt gebruikt om de opslag van parameters te testen over producten die aan het winkelwagentje zijn toegevoegd of de betalingsvaluta"
         }
       }
@@ -551,6 +641,7 @@
         "expires": 1,
         "unit": "declYears",
         "purpose": {
+          "en": "Shopify analytics.",
           "nl": "Shopify-analyses."
         }
       },
@@ -564,6 +655,7 @@
         "expires": 2,
         "unit": "declSession",
         "purpose": {
+          "en": "Tracks landing pages.",
           "nl": "Volgt bestemmingspagina's."
         }
       },
@@ -577,6 +669,7 @@
         "expires": 2,
         "unit": "declSession",
         "purpose": {
+          "en": "Tracks landing pages.",
           "nl": "Volgt bestemmingspagina's."
         }
       },
@@ -590,6 +683,7 @@
         "expires": 30,
         "unit": "declMinutes",
         "purpose": {
+          "en": "Shopify analytics.",
           "nl": "Shopify-analyses."
         }
       },
@@ -603,6 +697,7 @@
         "expires": 1,
         "unit": "declYears",
         "purpose": {
+          "en": "Cookie is set by Google Analytics with unknown functionality",
           "nl": "Cookie is ingesteld door Google Analytics met onbekende functionaliteit"
         }
       },
@@ -616,6 +711,7 @@
         "expires": 30,
         "unit": "declMinutes",
         "purpose": {
+          "en": "Shopify analytics relating to marketing & referrals.",
           "nl": "Shopify-analyses met betrekking tot marketing en verwijzingen."
         }
       },
@@ -629,6 +725,7 @@
         "expires": 30,
         "unit": "declMinutes",
         "purpose": {
+          "en": "Shopify analytics relating to marketing & referrals.",
           "nl": "Shopify-analyses met betrekking tot marketing en verwijzingen."
         }
       },
@@ -642,6 +739,7 @@
         "expires": 1,
         "unit": "declSeconds",
         "purpose": {
+          "en": "Shopify analytics.",
           "nl": "Shopify-analyses."
         }
       },
@@ -655,6 +753,7 @@
         "expires": 1,
         "unit": "declYears",
         "purpose": {
+          "en": "Used to monitor and optimize the performance of Shopify stores.",
           "nl": "Wordt gebruikt om de prestaties van Shopify-winkels te monitoren en te optimaliseren."
         }
       },
@@ -683,6 +782,7 @@
         "expires": 1,
         "unit": "declYears",
         "purpose": {
+          "en": "Tracks when someone clicks through a Klaviyo email to your website.",
           "nl": "Houdt bij wanneer iemand door een Klaviyo-e-mail naar uw website klikt"
         }
       }

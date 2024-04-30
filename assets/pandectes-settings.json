@@ -6,7 +6,7 @@
     "primaryLocale": "nl",
     "adminMode": false
   },
-  "tsPublished": 1714464854,
+  "tsPublished": 1714464955,
   "declaration": {
     "showPurpose": false,
     "showProvider": false,
@@ -381,19 +381,404 @@
   },
   "cookies": {
     "0": [
-
+      {
+        "name": "secure_customer_sig",
+        "domain": "dejongwebshop.nl",
+        "path": "\/",
+        "provider": "Shopify",
+        "firstParty": true,
+        "retention": "1 year(s)",
+        "expires": 1,
+        "unit": "declYears",
+        "purpose": {
+          "nl": "Gebruikt in verband met klantenlogin."
+        }
+      },
+      {
+        "name": "localization",
+        "domain": "dejongwebshop.nl",
+        "path": "\/",
+        "provider": "Shopify",
+        "firstParty": true,
+        "retention": "1 year(s)",
+        "expires": 1,
+        "unit": "declYears",
+        "purpose": {
+          "nl": "Shopify-winkellokalisatie"
+        }
+      },
+      {
+        "name": "_cmp_a",
+        "domain": ".dejongwebshop.nl",
+        "path": "\/",
+        "provider": "Shopify",
+        "firstParty": true,
+        "retention": "1 day(s)",
+        "expires": 1,
+        "unit": "declDays",
+        "purpose": {
+          "nl": "Wordt gebruikt voor het beheren van de privacy-instellingen van klanten."
+        }
+      },
+      {
+        "name": "keep_alive",
+        "domain": "dejongwebshop.nl",
+        "path": "\/",
+        "provider": "Shopify",
+        "firstParty": true,
+        "retention": "30 minute(s)",
+        "expires": 30,
+        "unit": "declMinutes",
+        "purpose": {
+          "nl": "Gebruikt in verband met lokalisatie van kopers."
+        }
+      },
+      {
+        "name": "_tracking_consent",
+        "domain": ".dejongwebshop.nl",
+        "path": "\/",
+        "provider": "Shopify",
+        "firstParty": true,
+        "retention": "1 year(s)",
+        "expires": 1,
+        "unit": "declYears",
+        "purpose": {
+          "nl": "Voorkeuren volgen."
+        }
+      },
+      {
+        "name": "identity-state",
+        "domain": "shopify.com",
+        "path": "\/",
+        "provider": "Shopify",
+        "firstParty": false,
+        "retention": "1 hour(s)",
+        "expires": 1,
+        "unit": "declHours",
+        "purpose": {
+          "nl": "Gebruikt in verband met klantauthenticatie."
+        }
+      },
+      {
+        "name": "_secure_account_session_id",
+        "domain": "shopify.com",
+        "path": "\/79454568722",
+        "provider": "Shopify",
+        "firstParty": false,
+        "retention": "1 month(s)",
+        "expires": 1,
+        "unit": "declMonths",
+        "purpose": {
+          "nl": "Used to track a user's session for new customer accounts."
+        }
+      },
+      {
+        "name": "customer_account_locale",
+        "domain": "shopify.com",
+        "path": "\/79454568722",
+        "provider": "Shopify",
+        "firstParty": false,
+        "retention": "1 year(s)",
+        "expires": 1,
+        "unit": "declYears",
+        "purpose": {
+          "nl": "Used in connection with new customer accounts."
+        }
+      },
+      {
+        "name": "identity-state-85d0c5c328f084f7dc3da6d460f51d85",
+        "domain": "shopify.com",
+        "path": "\/",
+        "provider": "Shopify",
+        "firstParty": false,
+        "retention": "1 hour(s)",
+        "expires": 1,
+        "unit": "declHours",
+        "purpose": {
+          "nl": ""
+        }
+      },
+      {
+        "name": "identity-state-1ba69c5d30c1b2edb5c7b69af610aa85",
+        "domain": "shopify.com",
+        "path": "\/",
+        "provider": "Shopify",
+        "firstParty": false,
+        "retention": "1 hour(s)",
+        "expires": 1,
+        "unit": "declHours",
+        "purpose": {
+          "nl": ""
+        }
+      }
     ],
     "1": [
-
+      {
+        "name": "wpm-domain-test",
+        "domain": "nl",
+        "path": "\/",
+        "provider": "Shopify",
+        "firstParty": false,
+        "retention": "Session",
+        "expires": 1,
+        "unit": "declSeconds",
+        "purpose": {
+          "nl": "Wordt gebruikt om de opslag van parameters te testen over producten die aan het winkelwagentje zijn toegevoegd of de betalingsvaluta"
+        }
+      },
+      {
+        "name": "wpm-domain-test",
+        "domain": "dejongwebshop.nl",
+        "path": "\/",
+        "provider": "Shopify",
+        "firstParty": true,
+        "retention": "Session",
+        "expires": 1,
+        "unit": "declSeconds",
+        "purpose": {
+          "nl": "Wordt gebruikt om de opslag van parameters te testen over producten die aan het winkelwagentje zijn toegevoegd of de betalingsvaluta"
+        }
+      }
     ],
     "2": [
-
+      {
+        "name": "_shopify_y",
+        "domain": ".dejongwebshop.nl",
+        "path": "\/",
+        "provider": "Shopify",
+        "firstParty": true,
+        "retention": "1 year(s)",
+        "expires": 1,
+        "unit": "declYears",
+        "purpose": {
+          "nl": "Shopify-analyses."
+        }
+      },
+      {
+        "name": "_orig_referrer",
+        "domain": ".dejongwebshop.nl",
+        "path": "\/",
+        "provider": "Shopify",
+        "firstParty": true,
+        "retention": "2 ",
+        "expires": 2,
+        "unit": "declSession",
+        "purpose": {
+          "nl": "Volgt bestemmingspagina's."
+        }
+      },
+      {
+        "name": "_landing_page",
+        "domain": ".dejongwebshop.nl",
+        "path": "\/",
+        "provider": "Shopify",
+        "firstParty": true,
+        "retention": "2 ",
+        "expires": 2,
+        "unit": "declSession",
+        "purpose": {
+          "nl": "Volgt bestemmingspagina's."
+        }
+      },
+      {
+        "name": "_shopify_s",
+        "domain": ".dejongwebshop.nl",
+        "path": "\/",
+        "provider": "Shopify",
+        "firstParty": true,
+        "retention": "30 minute(s)",
+        "expires": 30,
+        "unit": "declMinutes",
+        "purpose": {
+          "nl": "Shopify-analyses."
+        }
+      },
+      {
+        "name": "_ga",
+        "domain": ".dejongwebshop.nl",
+        "path": "\/",
+        "provider": "Google",
+        "firstParty": true,
+        "retention": "1 year(s)",
+        "expires": 1,
+        "unit": "declYears",
+        "purpose": {
+          "nl": "Cookie is ingesteld door Google Analytics met onbekende functionaliteit"
+        }
+      },
+      {
+        "name": "_shopify_sa_t",
+        "domain": ".dejongwebshop.nl",
+        "path": "\/",
+        "provider": "Shopify",
+        "firstParty": true,
+        "retention": "30 minute(s)",
+        "expires": 30,
+        "unit": "declMinutes",
+        "purpose": {
+          "nl": "Shopify-analyses met betrekking tot marketing en verwijzingen."
+        }
+      },
+      {
+        "name": "_shopify_sa_p",
+        "domain": ".dejongwebshop.nl",
+        "path": "\/",
+        "provider": "Shopify",
+        "firstParty": true,
+        "retention": "30 minute(s)",
+        "expires": 30,
+        "unit": "declMinutes",
+        "purpose": {
+          "nl": "Shopify-analyses met betrekking tot marketing en verwijzingen."
+        }
+      },
+      {
+        "name": "_shopify_s",
+        "domain": "nl",
+        "path": "\/",
+        "provider": "Shopify",
+        "firstParty": false,
+        "retention": "Session",
+        "expires": 1,
+        "unit": "declSeconds",
+        "purpose": {
+          "nl": "Shopify-analyses."
+        }
+      },
+      {
+        "name": "_boomr_clss",
+        "domain": "https:\/\/dejongwebshop.nl",
+        "path": "\/",
+        "provider": "Shopify",
+        "firstParty": true,
+        "retention": "Persistent",
+        "expires": 1,
+        "unit": "declYears",
+        "purpose": {
+          "nl": "Wordt gebruikt om de prestaties van Shopify-winkels te monitoren en te optimaliseren."
+        }
+      },
+      {
+        "name": "_ga_FGFTNPQ6SN",
+        "domain": ".dejongwebshop.nl",
+        "path": "\/",
+        "provider": "Google",
+        "firstParty": true,
+        "retention": "1 year(s)",
+        "expires": 1,
+        "unit": "declYears",
+        "purpose": {
+          "nl": ""
+        }
+      }
     ],
     "4": [
-
+      {
+        "name": "__kla_id",
+        "domain": "dejongwebshop.nl",
+        "path": "\/",
+        "provider": "Klaviyo",
+        "firstParty": true,
+        "retention": "1 year(s)",
+        "expires": 1,
+        "unit": "declYears",
+        "purpose": {
+          "nl": "Houdt bij wanneer iemand door een Klaviyo-e-mail naar uw website klikt"
+        }
+      }
     ],
     "8": [
-
+      {
+        "name": "cf_chl_3",
+        "domain": "shopify.com",
+        "path": "\/",
+        "provider": "Unknown",
+        "firstParty": false,
+        "retention": "1 hour(s)",
+        "expires": 1,
+        "unit": "declHours",
+        "purpose": {
+          "nl": ""
+        }
+      },
+      {
+        "name": "device_id",
+        "domain": "shopify.com",
+        "path": "\/",
+        "provider": "Unknown",
+        "firstParty": false,
+        "retention": "1 year(s)",
+        "expires": 1,
+        "unit": "declYears",
+        "purpose": {
+          "nl": ""
+        }
+      },
+      {
+        "name": "local-storage-test",
+        "domain": "https:\/\/dejongwebshop.nl",
+        "path": "\/",
+        "provider": "Unknown",
+        "firstParty": true,
+        "retention": "Persistent",
+        "expires": 1,
+        "unit": "declYears",
+        "purpose": {
+          "nl": ""
+        }
+      },
+      {
+        "name": "__Host-_identity_session_same_site",
+        "domain": "shopify.com",
+        "path": "\/",
+        "provider": "Unknown",
+        "firstParty": false,
+        "retention": "1 year(s)",
+        "expires": 1,
+        "unit": "declYears",
+        "purpose": {
+          "nl": ""
+        }
+      },
+      {
+        "name": "_identity_session",
+        "domain": "shopify.com",
+        "path": "\/",
+        "provider": "Unknown",
+        "firstParty": false,
+        "retention": "1 year(s)",
+        "expires": 1,
+        "unit": "declYears",
+        "purpose": {
+          "nl": ""
+        }
+      },
+      {
+        "name": "_kla_test",
+        "domain": "https:\/\/dejongwebshop.nl",
+        "path": "\/",
+        "provider": "Unknown",
+        "firstParty": true,
+        "retention": "Persistent",
+        "expires": 1,
+        "unit": "declYears",
+        "purpose": {
+          "nl": ""
+        }
+      },
+      {
+        "name": "recentlyViewedProducts",
+        "domain": "https:\/\/dejongwebshop.nl",
+        "path": "\/",
+        "provider": "Unknown",
+        "firstParty": true,
+        "retention": "Persistent",
+        "expires": 1,
+        "unit": "declYears",
+        "purpose": {
+          "nl": ""
+        }
+      }
     ]
   },
   "blocker": {

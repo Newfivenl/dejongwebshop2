@@ -6,7 +6,7 @@
     "primaryLocale": "nl",
     "adminMode": false
   },
-  "tsPublished": 1714465262,
+  "tsPublished": 1714465309,
   "declaration": {
     "showPurpose": false,
     "showProvider": false,
@@ -28,7 +28,7 @@
         "nl": "Wij respecteren uw privacy"
       },
       "consentText": {
-        "en": "This website uses cookies to ensure you get the best experience.",
+        "en": "This website uses cookies.",
         "nl": "Deze website maakt gebruik van cookies."
       },
       "dismissButtonText": {

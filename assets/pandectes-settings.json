@@ -6,7 +6,7 @@
     "primaryLocale": "nl",
     "adminMode": false
   },
-  "tsPublished": 1714464955,
+  "tsPublished": 1714464997,
   "declaration": {
     "showPurpose": false,
     "showProvider": false,
@@ -272,7 +272,7 @@
   "library": {
     "previewMode": false,
     "fadeInTimeout": 0,
-    "defaultBlocked": 7,
+    "defaultBlocked": 0,
     "showLink": true,
     "showImprintLink": false,
     "enabled": true,
@@ -315,7 +315,7 @@
       }
     },
     "content": {
-      "href": "https:\/\/dejongwebshop.myshopify.com\/policies\/privacy-policy",
+      "href": "https:\/\/dejongwebshop.nl\/pages\/privacy-policy",
       "imprintHref": "\/",
       "close": "&#10005;",
       "target": "",
@@ -323,15 +323,15 @@
     },
     "window": "<div role=\"dialog\" aria-live=\"polite\" aria-label=\"cookieconsent\" aria-describedby=\"cookieconsent:desc\" id=\"pandectes-banner\" class=\"cc-window-wrapper cc-top-wrapper\"><div class=\"pd-cookie-banner-window cc-window {{classes}}\"><!--googleoff: all-->{{children}}<!--googleon: all--><\/div><\/div>",
     "compliance": {
-      "opt-both": "<div class=\"cc-compliance cc-highlight\">{{deny}}{{allow}}<\/div>"
+      "custom": "<div class=\"cc-compliance cc-highlight\">{{preferences}}{{allow}}<\/div>"
     },
-    "type": "opt-both",
+    "type": "custom",
     "layouts": {
-      "basic": "{{logo}}{{messagelink}}{{compliance}}{{close}}"
+      "basic": "{{logo}}{{messagelink}}{{compliance}}"
     },
     "position": "top",
     "theme": "wired",
-    "revokable": true,
+    "revokable": false,
     "animateRevokable": false,
     "revokableReset": false,
     "revokableLogoUrl": "https:\/\/cdn.shopify.com\/s\/files\/1\/0794\/5456\/8722\/t\/5\/assets\/pandectes-reopen-logo.png?v=1710841181",
@@ -367,12 +367,12 @@
     "showPoweredBy": false,
     "revokableTrigger": false,
     "hybridStrict": false,
-    "cookiesBlockedByDefault": "7",
+    "cookiesBlockedByDefault": "0",
     "isActive": false,
-    "implicitSavePreferences": false,
+    "implicitSavePreferences": true,
     "cookieIcon": false,
     "blockBots": false,
-    "showCookiesDetails": false,
+    "showCookiesDetails": true,
     "hasTransition": true,
     "blockingPage": false,
     "showOnlyLandingPage": false,
@@ -812,7 +812,7 @@
     },
     "klaviyoIsActive": false,
     "gpcIsActive": false,
-    "defaultBlocked": 7,
+    "defaultBlocked": 0,
     "patterns": {
       "whiteList": [
 

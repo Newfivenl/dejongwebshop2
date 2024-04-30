@@ -6,7 +6,7 @@
     "primaryLocale": "nl",
     "adminMode": false
   },
-  "tsPublished": 1714465052,
+  "tsPublished": 1714465093,
   "declaration": {
     "showPurpose": false,
     "showProvider": false,
@@ -27,13 +27,13 @@
         "nl": "Wij respecteren uw privacy"
       },
       "consentText": {
-        "nl": "Deze website maakt gebruik van cookies om u de beste ervaring te bieden."
+        "nl": "Deze website maakt gebruik van cookies."
       },
       "dismissButtonText": {
         "nl": "OK"
       },
       "linkText": {
-        "nl": "Kom meer te weten"
+        "nl": "Lees meer"
       },
       "imprintText": {
         "nl": "Afdruk"
@@ -42,7 +42,7 @@
         "nl": "Voorkeuren"
       },
       "allowButtonText": {
-        "nl": "Aanvaarden"
+        "nl": "Accepteren"
       },
       "denyButtonText": {
         "nl": "Afwijzen"

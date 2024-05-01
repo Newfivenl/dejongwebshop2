@@ -342,6 +342,7 @@
     },
     "1649436653425ff0fe": {
       "type": "recommendations-slider",
+      "disabled": true,
       "settings": {
         "intent": "related",
         "products_count": 10,

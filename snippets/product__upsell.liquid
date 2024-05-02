@@ -21,9 +21,7 @@
     - Upsells can be set to related or complimentary products.
 {% endcomment %}
 
-
-
-{% unless product.metafields.shopify--discovery--product_recommendation.related_products == empty %}
+{% unless product.metafields.namespace.shopify--discovery--product_recommendation.related_products == empty %}
 <section 
   x-data="{
     initialLoad: true,
@@ -31,7 +29,11 @@
     complementary_products: [],
     getRecomendations(){
       // Fetching related products from the metafield
-      this.complementary_products = {{ product.metafields.shopify--discovery--product_recommendation.related_products | json }};
+      this.complementary_products = [
+        {% for related_product_id in product.metafields.namespace.shopify--discovery--product_recommendation.related_products %}
+          '{{ related_product_id }}',
+        {% endfor %}
+      ];
       this.initialLoad = false;
     }
   }">
@@ -173,7 +175,7 @@
               </div>
 
             </div>
-    {{ product.metafields.shopify--discovery--product_recommendation.related_products | json }}
+    
             {%- comment -%}quick add popup{%- endcomment -%}
             <div :id="'js:quickAdd-upsell-snippet-' + item.handle"></div>
     

@@ -21,23 +21,16 @@
     - Upsells can be set to related or complimentary products.
 {% endcomment %}
 
-{% unless product.tags contains 'custom' %}
+{% unless product.metafields.global.related_products == empty %}
 <section 
   x-data="{
     initialLoad: true,
     loadingRecomendations : false,
     complementary_products: [],
     getRecomendations(){
-      fetch(window.Shopify.routes.root + 'recommendations/products.json?product_id={{ product.id }}&limit={{ blocksettings.products_count }}&intent={{ blocksettings.intent }}')
-        .then(response => response.json())
-        .then(({ products }) => {
-          if (products.length > 0) {
-            this.complementary_products = products;
-            this.loadingRecomendations = true;
-            this.initialLoad = false;
-          }
-        }
-      );
+      // Fetching related products from the metafield
+      this.complementary_products = {{ product.metafields.global.related_products | json }};
+      this.initialLoad = false;
     }
   }">
 

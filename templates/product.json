@@ -228,11 +228,10 @@
         },
         "76f2c051-662d-4c42-b036-d6658cf9616f": {
           "type": "upsell",
-          "disabled": true,
           "settings": {
             "title": "Wellicht ook interessant:",
             "products_count": 3,
-            "intent": "related",
+            "intent": "complementary",
             "color_scheme": "color__bg-overlay-3 color__text",
             "style_border": "",
             "position": "right",

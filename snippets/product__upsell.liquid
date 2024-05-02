@@ -1,4 +1,3 @@
-<!-- snippets/product__upsell.liquid -->
 {% comment %} 
   Block to display a upsell within product block loop.
 
@@ -22,6 +21,7 @@
     - Upsells can be set to related or complimentary products.
 {% endcomment %}
 
+{% unless product.tags contains 'custom' %}
 <section 
   x-data="{
     initialLoad: true,
@@ -196,3 +196,4 @@
   
   </div>
 </section>
+{% endunless %}

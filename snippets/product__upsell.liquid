@@ -5,11 +5,7 @@
     loadingRecommendations: false,
     complementaryProducts: [],
     getRecommendations() {
-      // Extracting related product IDs from the metafield
-      const relatedProductIds = {{ product.metafields.shopify--discovery--product_recommendation.related_products }};
-      
-      // Fetching related products data based on the extracted IDs
-      fetch(window.Shopify.routes.root + 'products.json?ids=' + relatedProductIds.join(','))
+      fetch(window.Shopify.routes.root + 'recommendations/products.json?product_id={{ product.id }}&limit={{ blocksettings.products_count }}&intent={{ blocksettings.intent }}')
         .then(response => response.json())
         .then(({ products }) => {
           if (products.length > 0) {

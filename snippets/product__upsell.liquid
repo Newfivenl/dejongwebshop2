@@ -171,7 +171,7 @@
               </div>
 
             </div>
-    
+    {{ product.metafields.shopify--discovery--product_recommendation.related_products | json }}
             {%- comment -%}quick add popup{%- endcomment -%}
             <div :id="'js:quickAdd-upsell-snippet-' + item.handle"></div>
     

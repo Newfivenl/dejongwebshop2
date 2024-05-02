@@ -1,5 +1,5 @@
 {% comment %} 
-  Block to display a upsell within product block loop.
+  Block to display an upsell within a product block loop.
 
   Accepts:
     - blocksettings: liquid object of block settings
@@ -11,7 +11,7 @@
   Globals:
     - settings.thumbmails_color_scheme: color scheme of thumbnails
     - settings.type_thumbnail: typography for thumbnail titles
-    - settings.type_thumbnail_capitilization: set the capitilization for thumbnail titles
+    - settings.type_thumbnail_capitilization: set the capitalization for thumbnail titles
 
   Possible enhancements: 
     - Fix for duplicate IDs - quantity
@@ -21,7 +21,7 @@
     - Upsells can be set to related or complimentary products.
 {% endcomment %}
 
-{% unless product.metafields.global.related_products == empty %}
+{% unless product.metafields.shopify--discovery--product_recommendation.related_products == empty %}
 <section 
   x-data="{
     initialLoad: true,
@@ -29,7 +29,7 @@
     complementary_products: [],
     getRecomendations(){
       // Fetching related products from the metafield
-      this.complementary_products = {{ product.metafields.global.related_products | json }};
+      this.complementary_products = {{ product.metafields.shopify--discovery--product_recommendation.related_products | json }};
       this.initialLoad = false;
     }
   }">

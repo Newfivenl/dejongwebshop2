@@ -19,7 +19,7 @@
         {% if product.variants[0].available %}
           <p class="price">{{ product.price | money }}</p>
         {% else %}
-          <div class="account-outofstock">UITVERKOCHT</div>
+          <div class="account-outofstock">{{ 'products.general.sold_out_login' | t }}</div>
         {% endif %}
       </div>
       {%- assign current_variant = product.selected_or_first_available_variant -%}
@@ -112,7 +112,7 @@
               </a>
             </div>
             {% unless item.variants[0].available %}
-              <div class="account-outofstock">UITVERKOCHT</div>
+              <div class="account-outofstock">{{ 'products.general.sold_out_login' | t }}</div>
             {% endunless %}
             {% if item.variants[0].available %}
               <div class="price-box">

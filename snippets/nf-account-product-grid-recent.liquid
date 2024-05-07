@@ -110,7 +110,7 @@
               </a>
             </div>
             {% unless item.variants[0].available %}
-              <div class="account-outofstock">UITVERKOCHT</div>
+              <div class="account-outofstock">{{ 'products.general.sold_out_login' | t }}</div>
             {% endunless %}
             {% if item.variants[0].available %}
               <div class="price-box">

@@ -19,7 +19,7 @@
         {% if line_item.product.variants[0].available %}
           <p class="price">{{ line_item.product.price | money }}</p>
         {% else %}
-          <div class="account-outofstock">UITVERKOCHT</div>
+          <div class="account-outofstock">{{ 'products.general.sold_out_login' | t }}</div>
         {% endif %}
       </div>
       {%- assign current_variant = line_item.product.selected_or_first_available_variant -%}

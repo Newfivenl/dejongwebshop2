@@ -1826,8 +1826,8 @@ summary::marker {
 .cart-count-bubble {
   background-color: var(--color-primary-button-background-light);
   color: #FFF;
-  height: 1.7rem;
-  width: 1.7rem;
+  height: 20px;
+  width: 20px;
   border-radius: 100%;
   display: flex;
   justify-content: center;

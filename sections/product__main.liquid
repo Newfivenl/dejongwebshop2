@@ -705,14 +705,12 @@ padding-bottom: 70px;">
         <div class="w-full table-auto bg-[#E5ECF3] border-solid border-[#D0D1D4] py-[15px] md:px-[15px]  md:py-[30px] md:px-[26px]">
           <div class="p-4 text-left pb-[18px] md:pb-[24px] text-base text-[#333]"><b>Extra Informatie</b>
             </div>
-            {% if product.metafields.woo.id_.value %}
               <div class="even:bg-[#E5ECF3] odd:bg-white">
                 <div class="flex justify-between">
                 <div class="p-4 text-left text-[#333]">SKU</div>
                 <div class="p-4 text-right text-[#888888]">{{ product.variants.first.sku }}</div>
               </div>
               </div>
-            {% endif %}
             {% if product.metafields.woo.short_description_plain.value %}
               <div class="even:bg-[#E5ECF3] odd:bg-white">
                 <div class="flex justify-between">

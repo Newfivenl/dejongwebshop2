@@ -13,7 +13,7 @@
       grid_viewAll: '[grid-recent-orders-all]',
       productCard: '.recent_order_row_wrapper'
     };
-
+    
     const fetchRecentOrder = async () => {
       const { urlProxy, authToken } = window.customerOrdersApp;
       const headers = new Headers({
@@ -80,7 +80,7 @@
           }, false);
       };
     }
-    
+
     const quantitySpinnerElem = (quantitySpinners, minusButton, plusButton, quantityInputField, atcButton) => {
       quantitySpinners.forEach((quantitySpinner) => {
         const minusBtn = quantitySpinner.querySelector(minusButton);
@@ -186,7 +186,7 @@
     };
 
     const recentOrderSetupGrid = async (grid) => {
-     if (recentPurchasedItemsJson == null ) {
+      if (recentPurchasedItemsJson == null ) {
         grid.innerHTML = '0 orders';
         grid.classList.add(GRID_LOADED_CLASS);
       } else {
@@ -280,7 +280,7 @@
           detail: { recent_order: recent_order }
         });
         document.dispatchEvent(event);
-}
+      }
     };
 
     const recentOrderInitGrid = () => {
@@ -389,58 +389,64 @@
           console.error('Error:', error);
         });
     }
-    // window.addEventListener('DOMContentLoaded', function () {
-      //   const quantitySpinners = document.querySelectorAll('.wishlist-quantity-spinner');
-      //   let wishListCartData = [];
-      //   let newWishlistData = [];
-      //   quantitySpinnerElem(quantitySpinners, ".wishlist-minus__button", ".wishlist-plus__button", ".wishlist-quantity__input", ".wishlist-re-order-btn" );
-      //   document.querySelector('.wishlist-re-order-btn').addEventListener('click', function (event) {
-        //     this.classList.add('loading');
-        //     this.innerHTML = `<div class="loading-overlay__spinner">
-        //     <svg
-          //       aria-hidden="true"
-          //       focusable="false"
-          //       role="presentation"
-          //       class="spinner"
-          //       viewBox="0 0 66 66"
-          //       xmlns="http://www.w3.org/2000/svg"
-        //     >
-    //       <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-        //     </svg>
-      //   </div>`;
-        //     quantitySpinners.forEach((quantitySpinner) => {
-          //       const quantityInput = quantitySpinner.querySelector('.wishlist-quantity__input');
-          //       let item = quantitySpinner.parentNode.parentNode.dataset.variant;
-          //       let quantityValue = quantityInput.value;
-          //       wishListCartData.push({
-            //         id: item,
-            //         quantity: quantityValue,
-          //       });
-        //     });
-        //     const reducedWishlistCartData = wishListCartData;
-        //     let result = reducedWishlistCartData.reduce((acc, curr) => {
-          //       let item = acc.find((item) => item.id === curr.id);
-          //       if (item) {
-            //         item.quantity = curr.quantity;
-          //       } else {
-            //         acc.push(curr);
-            //         newWishlistData.push(curr);
-          //       }
-    //       return acc;
-        //     }, []);
-        //     newWishlistData = newWishlistData.filter((item) => item.quantity > 0);
-        //     var data = {
-          //       items: newWishlistData,
-        //     };
-        //     addToCart(data, this);
-      //   });
-    // });
+    window.addEventListener('DOMContentLoaded', function () {
+      const wishlist_re_order_btn = document.querySelector('.wishlist-re-order-btn');
+      const quantitySpinners = document.querySelectorAll('.wishlist-quantity-spinner');
+      let wishListCartData = [];
+      let newWishlistData = [];
+      quantitySpinnerElem(quantitySpinners, ".wishlist-minus__button", ".wishlist-plus__button", ".wishlist-quantity__input", ".wishlist-re-order-btn" );
+      if (wishlist_re_order_btn) {
+        wishlist_re_order_btn.addEventListener('click', function (event) {
+        this.classList.add('loading');
+        this.innerHTML = `<div class="loading-overlay__spinner">
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          role="presentation"
+          class="spinner"
+          viewBox="0 0 66 66"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+        </svg>
+      </div>`;
+        quantitySpinners.forEach((quantitySpinner) => {
+          const quantityInput = quantitySpinner.querySelector('.wishlist-quantity__input');
+          let item = quantitySpinner.parentNode.parentNode.dataset.variant;
+          let quantityValue = quantityInput.value;
+          wishListCartData.push({
+            id: item,
+            quantity: quantityValue,
+          });
+        });
+        const reducedWishlistCartData = wishListCartData;
+        let result = reducedWishlistCartData.reduce((acc, curr) => {
+          let item = acc.find((item) => item.id === curr.id);
+          if (item) {
+            item.quantity = curr.quantity;
+          } else {
+            acc.push(curr);
+            newWishlistData.push(curr);
+          }
+          return acc;
+        }, []);
+        newWishlistData = newWishlistData.filter((item) => item.quantity > 0);
+        var data = {
+          items: newWishlistData,
+        };
+        addToCart(data, this);
+      });
+      }
+      
+    });
     document.addEventListener('DOMContentLoaded', function () {
+      const orderlist_re_order_btn = document.querySelector('.orderlist-re-order-btn');
       const quantitySpinners = document.querySelectorAll('.orderlist-quantity-spinner');
       let wishListCartData = [];
       let newWishlistData = [];
       quantitySpinnerElem(quantitySpinners, ".orderlist-minus__button", ".orderlist-plus__button", ".orderlist-quantity__input", ".orderlist-re-order-btn" );
-      document.querySelector('.orderlist-re-order-btn').addEventListener('click', function (event) {
+      if (orderlist_re_order_btn) {
+        orderlist_re_order_btn.addEventListener('click', function (event) {
         this.classList.add('loading');
         this.innerHTML = `<div class="loading-overlay__spinner">
         <svg
@@ -482,12 +488,14 @@
         };
         addToCart(data, this);
       });
+      }
     });
 
     
     const productSearch = () => {
       const searchInput = document.getElementById('productSearch');
-      searchInput.addEventListener('keyup', function() {
+      if (searchInput) {
+        searchInput.addEventListener('keyup', function() {
         const query = this.value.toLowerCase();
         const products = document.querySelectorAll('.product_grid_item');
         products.forEach(function(product) {
@@ -500,33 +508,93 @@
           }
         });
       });
+      }
+     
     }
     const toggleClearButton = () => {
       const searchInput = document.getElementById('productSearch');
         const clearButton = document.getElementById('clearButton');
-        if (searchInput.value.length > 0) {
+        if (searchInput) {
+          if (searchInput.value.length > 0) {
           clearButton.style.display = 'block';
         } else {
           clearButton.style.display = 'none';
         }
+        }
+        
       }
       const clearSearch  = () =>  {
         const searchInput = document.getElementById('productSearch');
-        searchInput.value = '';
+        if (searchInput) {
+          searchInput.value = '';
         searchInput.focus(); 
         toggleClearButton();
         const products = document.querySelectorAll('.product_grid_item');
         products.forEach(function(product) {
           product.style.display = '';
         });
+        }
+       
       }
     document.addEventListener('DOMContentLoaded', () => {
-      initTabs();
-      initDialog();
-      recentOrderInitGrid();
+        initTabs();
+        initDialog();
+        recentOrderInitGrid();
         productSearch();
         toggleClearButton();
         clearSearch();
+
+        document.addEventListener('productListUpdated', () => {
+          const orderlist_re_order_btn = document.querySelector('.orderlist-re-order-btn');
+      const quantitySpinners = document.querySelectorAll('.orderlist-quantity-spinner');
+      let wishListCartData = [];
+      let newWishlistData = [];
+      quantitySpinnerElem(quantitySpinners, ".orderlist-minus__button", ".orderlist-plus__button", ".orderlist-quantity__input", ".orderlist-re-order-btn" );
+      if (orderlist_re_order_btn) {
+        orderlist_re_order_btn.addEventListener('click', function (event) {
+        this.classList.add('loading');
+        this.innerHTML = `<div class="loading-overlay__spinner">
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          role="presentation"
+          class="spinner"
+          viewBox="0 0 66 66"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+        </svg>
+      </div>`;
+        quantitySpinners.forEach((quantitySpinner) => {
+          const quantityInput = quantitySpinner.querySelector('.orderlist-quantity__input');
+
+          let item = quantitySpinner.parentNode.parentNode.dataset.variant;
+          let quantityValue = quantityInput.value;
+          wishListCartData.push({
+            id: item,
+            quantity: quantityValue,
+          });
+        });
+        const reducedWishlistCartData = wishListCartData;
+        let result = reducedWishlistCartData.reduce((acc, curr) => {
+          let item = acc.find((item) => item.id === curr.id);
+
+          if (item) {
+            item.quantity = curr.quantity;
+          } else {
+            acc.push(curr);
+            newWishlistData.push(curr);
+          }
+          return acc;
+        }, []);
+        newWishlistData = newWishlistData.filter((item) => item.quantity > 0);
+        var data = {
+          items: newWishlistData,
+        };
+        addToCart(data, this);
+      });
+      }
+      });
     });
 </script>
 <div id="nf_drawer">
@@ -534,7 +602,7 @@
     <div class="nf-drawer-content">
       {% unless customer %}
         <div class="close-wrapper">
-          <span class="nf-close-dialog" onclick="window.nf_drawer.close();">
+          <span class="nf-close-dialog" onclick="window.dialog.close();">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="20"
@@ -564,19 +632,30 @@
               <div class="nf-dropdown-content">
                 <ul class="nf-dropdown-list">
                   <li>
-                    <span>
-                      {% if customer.first_name %}
-                        {{ customer.first_name }}
-                      {% else %}
-                        {{ customer.email }}
-                      {% endif %}
-                    </span>
-                    {% for company in customer.current_company %}
-                      <div>
-                        <span class="company_name">{{ company.name }}</span>
+                    <div class="profile__wrapper">
+                      <div id="selectedAccountDisplay">
+                        {% if  customer.first_name %}
+                          {{ customer.first_name  }}
+                        {% else  %}
+                          {{ customer.email }}
+                        {% endif  %}
+                        {% if  customer.current_company.name %}
+                        <div>
+                          <span class="company_name">{{ customer.current_company.name }}</span>
+                        </div>
+                        {% endif %}
                       </div>
-{% endfor %}
+                      <div class="revert_button_wrapper">
+                        <button id="revertBtn" title="Revert to Previous Account"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z"/></svg></button>
+                      </div>
+                    </div>
+                   
                   </li>
+                  {% if customer.tags contains 'COA_Role_Admin' %}
+                  <li>
+                    <span class="switchAccount__btn" id="switchAccountBtn">Switch Account</span>
+                  </li>
+                  {% endif  %}
                   <li class="logout_link">
                     <a class="link" href="{{ routes.account_logout_url }}">
                       <span>
@@ -623,20 +702,22 @@
             </span>
           </div>
         </div>
+        {% comment %} Super User {% endcomment %}
+
+
         <div class="nf-tab-container">
-          
-        {% comment %} <button class="tab active" data-target="top-ordered__tab">
-            <span>{{ 'customer.account_drawer.top_ordered_tab' | t }}</span>
-          </button> {% endcomment %}
-        <button class="tab active" data-target="order-lists">
-              <span>{{ 'customer.account_drawer.order_list_title' | t }}</span>
-</button> 
-        <button class="tab" data-target="orders">
-          <span>{{ 'customer.account_drawer.orders_tab' | t }}</span>
-        </button> 
+          <button class="tab" data-target="orders">
+            <span>{{ 'customer.account_drawer.orders_tab' | t }}</span>
+          </button>
+          <button class="tab active" data-target="order-lists">
+            <span>{{ 'customer.account_drawer.order_list_title' | t }}</span>
+          </button>
           {% comment %} <button class="tab" data-target="wishlist">
             <span>{{ 'customer.account_drawer.favorites_tab' | t }}</span>
-                  </button> {% endcomment %}
+          </button>
+          <button class="tab" data-target="top-ordered__tab">
+            <span>{{ 'customer.account_drawer.top_ordered_tab' | t }}</span>
+          </button> {% endcomment %}
         </div>
         <div id="orders" class="tab-content">
           <div class="nf-section nf-my-orders__wrapper">
@@ -648,31 +729,11 @@
             <nf-customer-orders/>
           </div>
         </div>
-        <div id="top-ordered__tab" class="tab-content">
-          <div class="nf-section nf-my-orders__wrapper">
-            <div class="nf-section-heading">
-              <div>
-                <h1>{{ 'customer.account_drawer.recently_ordered_products' | t }}</h1>
-              </div>
-            </div>
-            <div
-              id="recent_tab"
-              class="nf-my-orders__table recently_ordered "
-              grid-recent-orders>
-              <p class="recent-orders__loader text-center">Loading...</p>
-            </div>
-            <div class="re-order-cta-btn--wrapper">
-              <button class="re-order-cta recent-re-order-btn disabled">
-                {{ 'customer.account_drawer.re_order_selected_items' | t }}
-              </button>
-            </div>
-          </div>
-        </div>
         <div id="order-lists" class="tab-content active">
           <div class="search-container">
             <div class="field">
                   <input class="search__input field__input" oninput="toggleClearButton()" id="productSearch" type="search" placeholder="Zoeken" role="combobox" >
-                  {% comment %} <label class="field__label" for="productSearch">Zoeken</label> {% endcomment %}
+                  <label class="field__label" for="productSearch">Zoeken</label>
                   <button class="search__button field__button" aria-label="Zoeken">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="icon icon-search">
                         <path d="M22.938 13.382c-0.036 5.247-4.318 9.472-9.565 9.437s-9.472-4.318-9.436-9.565c0.035-5.223 4.28-9.438 9.503-9.437 5.263 0.023 9.513 4.302 9.501 9.565h-0.003zM26.881 13.382c-0.032-7.423-6.075-13.414-13.498-13.382s-13.414 6.075-13.382 13.497c0.031 7.4 6.039 13.382 13.44 13.382 7.435-0.025 13.447-6.062 13.44-13.498z"></path>
@@ -685,24 +746,20 @@
           <div id="nf-tab_view-order">
             <div class="nf-section nf-my-orders__wrapper">
               <div class="nf-section-heading">
-                <div>
+{% comment %}              <div>
                   <h1>{{ 'customer.account_drawer.order_list_text' | t }}</h1>
                 </div>
+{% endcomment %}  
               </div>
-              {% if customer.metafields.custom.product_list.value %}
+              <div id="product__list">
+
+              </div>
+              {% comment %} {% if customer.metafields.customer.product_list.value %}
                 <div class="nf-my-orders__table recently_ordered">
-                  {%- for product in customer.metafields.custom.product_list.value -%}
+                  {%- for product in customer.metafields.customer.product_list.value -%}
                     {% render 'nf-account-product-grid'
                       , product: product %}
                   {% endfor %}
-</div><div id="pagination">
-                  <button id="prevPage">
-                    {% render 'icon-caret-new' %}
-                  </button>
-                  {% comment %} <span id="pageNumbers"></span> {% endcomment %}
-                  <button id="nextPage">
-                    {% render 'icon-caret-new' %}
-                  </button>
                 </div>
                 <div class="re-order-cta-btn--wrapper">
                   <button class="re-order-cta orderlist-re-order-btn disabled">
@@ -711,76 +768,10 @@
                 </div>
               {% else %}
                 No Order list
-              {% endif %}
+              {% endif %} {% endcomment %}
             </div>
           </div>
         </div>
-      {% comment %} <div id="wishlist" class="tab-content">
-                                                                                                                                                                                                          <div class="nf-section nf-my-orders__wrapper">
-                                                                                                                                                                                                            <div class="nf-section-heading">
-                                                                                                                                                                                                              <div>
-                                                                                                                                                                                                                <h1>{{ 'customer.account_drawer.my_wishlist' | t }}</h1>
-                                                                                                                                                                                                              </div>
-                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                            <div class="nf-my-orders__table recently_ordered wishlist_grid">
-                                                                                                                                                                                                              <div class="wishlist-new-wrapper">
-                                                                                                                                                                                                                <div
-                                                                                                                                                                                                                  class="test"
-                                                                                                                                                                                                                  {%- if customer -%}
-                                                                                                                                                                                                                  x-data="
-                                                                                                                                                                                                                        {
-                                                                                                                                                                                                                          productIds: window.productIds,
-                                                                                                                                                                                                                          wishlistList: wishlistProductListObj,
-                                                                                                                                                                                                                            wishlistRemoveItem(value) {
-                                                                                                                                                                                                                            let newProductIds = this.productIds.filter((item) => item !== value);
-                                                                                                                                                                                                                            let newWishlist = this.wishlistList.filter((item) => item.id !== value)
-                                                                                                                                                                                                                            const ravenObj = {%- render 'raven-mac-gen-2', resource_id: customer.id, raven_id: 'dJARg7k' -%};
-                                                                                                                                                                                                                            const valueObj = { value: JSON.stringify(newProductIds) };
-                                                                                                                                                                                                                            const requestParams = { raven: Object.assign({}, ravenObj, valueObj) };
-                                                                                                                                                                                                                            const response = fetch('/apps/raven/create_metafield', {
-                                                                                                                                                                                                                              method: 'PUT',
-                                                                                                                                                                                                                              headers: { 'Content-Type': 'application/json' },
-                                                                                                                                                                                                                              body: JSON.stringify(requestParams)
-                                                                                                                                                                                                                            })
-                                                                                                                                                                                                                            response
-                                                                                                                                                                                                                            .then(res => {
-                                                                                                                                                                                                                              if (res.status === 200) {
-                                                                                                                                                                                                                                this.wishlistList = newWishlist;
-                                                                                                                                                                                                                                this.productIds = newProductIds;
-                                                                                                                                                                                                                                document.querySelector('.wishlist--count-bubble').innerHTML = this.productIds.length;
-                                                                                                                                                                                                                              } else {
-                                                                                                                                                                                                                                console.error('😞', res)
-                                                                                                                                                                                                                              }
-                                                                                                                                                                                                                            })
-
-                                                                                                                                                                                                                          },
-                                                                                                                                                                                                                          isPresent(value) {
-                                                                                                                                                                                                                            return this.wishlistList.map(i => i.id).includes(value)
-                                                                                                                                                                                                                          }
-                                                                                                                                                                                                                        }
-                                                                                                                                                                                                                      "
-                                                                                                                                                                                                                  x-init="
-                                                                                                                                                                                                                        wishlistList.forEach(function(item) {
-                                                                                                                                                                                                                            productIds.push(item.id);
-                                                                                                                                                                                                                        });
-                                                                                                                                                                                                                      "
-                                                                                                                                                                                                                  {%- endif -%}>
-                                                                                                                                                                                                                  {% for product in wishlist_product_list %}
-                                                                                                                                                                                                                    <div x-show="isPresent({{ product.id }})">
-                                                                                                                                                                                                                      {% render 'nf-account-product-grid-wishlist'
-                                                                                                                                                                                                                        , product: product %}
-                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                  {% endfor %}
-                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                              </div>
-                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                            <div class="re-order-cta-btn--wrapper">
-                                                                                                                                                                                                              <button class="re-order-cta wishlist-re-order-btn disabled">
-                                                                                                                                                                                                                {{ 'customer.account_drawer.re_order_selected_items' | t }}
-                                                                                                                                                                                                              </button>
-                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                          </div>
-                                                                                                                                                        </div>  {% endcomment %}
       {% else %}
         {% render 'nf-account-drawer-login' %}
       {% endif %}
@@ -788,4 +779,19 @@
       <div id="account-drawer-notif-error">Toevoegen niet gelukt</div>
     </div>
   </div>
+
+<dialog id="accountModal">
+  <form method="dialog">
+      <p>Search a Customer:</p>
+      <div class="customer-search-container">
+          <input type="text" id="customerSearchInput" placeholder="Search customer">
+          <ul id="customerSearchDropdown" class="account-dropdown-content"></ul>
+      </div>
+      <menu>
+          <button id="cancelBtn" value="cancel">Cancel</button>
+          <button id="confirmBtn">Confirm</button>
+      </menu>
+  </form>
+</dialog>
 </div>
+

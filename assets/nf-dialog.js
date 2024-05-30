@@ -1,23 +1,39 @@
-
 document.addEventListener('DOMContentLoaded', function () {
+  function hideOrderTabs() {
+    const targets = ["wishlist", "top-ordered__tab"];
+    targets.forEach(target => {
+      const tabs = document.querySelectorAll(`[data-target="${target}"]`);
+      tabs.forEach(tab => {
+        tab.style.display = 'none';
+      });
+    });
+  }
+
   const drawer = document.querySelector('#nf_drawer');
+  const customerSearchInput = document.getElementById('customerSearchInput');
+  const customerSearchDropdown = document.getElementById('customerSearchDropdown');
+  let customers = [];
+
   document.body.addEventListener('click', (event) => {
     const closeDrawerButton = event.target.closest('.nf-close-dialog');
     if (closeDrawerButton) {
       drawer.removeAttribute('open');
     }
   });
+
   document.body.addEventListener('click', (event) => {
     const openDrawerButton = event.target.closest('.nf_show_dialog');
     if (openDrawerButton) {
       drawer.setAttribute('open', '');
     }
   });
+
   document.querySelector('.nf-drawer').addEventListener('click', (event) => {
     if (event.target === document.querySelector('.nf-drawer')) {
       drawer.removeAttribute('open');
     }
   });
+
   const tabs = document.querySelectorAll('.tab');
   const contentPanels = document.querySelectorAll('.tab-content');
   tabs.forEach((tab) => {
@@ -34,11 +50,13 @@ document.addEventListener('DOMContentLoaded', function () {
   var content = document.querySelector('.nf-dropdown-content');
   var caret = document.querySelector('.nf-dropdown-caret');
 
-  dropdown.addEventListener('click', function (event) {
-    event.stopPropagation();
-    content.classList.toggle('active');
-    caret.classList.toggle('active');
-  });
+  if (dropdown) {
+    dropdown.addEventListener('click', function (event) {
+      event.stopPropagation();
+      content.classList.toggle('active');
+      caret.classList.toggle('active');
+    });
+  }
 
   document.addEventListener('click', function (event) {
     if (content.classList.contains('active')) {
@@ -47,121 +65,162 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // Pagination for order list 
-  const itemsPerPage = 48;
-      const items = document.querySelectorAll('#order-lists .account-product__grid');
-      const totalItems = items.length;
-      let currentPage = 1;
-      if (totalItems > itemsPerPage) {
-        document.getElementById('pagination').style.display = 'block';
-      } else {
-        document.getElementById('pagination').style.display = 'none';
-      }
-      const totalPages = Math.ceil(totalItems / itemsPerPage);
-      function showPage(page) {
-        const startIndex = (page - 1) * itemsPerPage;
-        const endIndex = page * itemsPerPage;
+  const queryParams = new URLSearchParams(window.location.search);
+  const accountNumber = queryParams.get('accountnumber');
+  if (accountNumber === '0' || accountNumber === '1') {
+    drawer.setAttribute('open', '');
+  }
 
-        items.forEach((item, index) => {
-          if (index >= startIndex && index < endIndex) {
-            item.style.display = 'grid';
-          } else {
-            item.style.display = 'none';
-          }
-        });
-      }
-      showPage(currentPage);
-      function updatePageNumbers() {
-        const pageNumbers = document.getElementById('pageNumbers');
-        pageNumbers.innerHTML = '';
+  // Super user settings with sample data 
+  const switchAccountBtn = document.getElementById('switchAccountBtn');
+  const accountModal = document.getElementById('accountModal');
+  const confirmBtn = document.getElementById('confirmBtn');
+  const ordersComponent = document.querySelector('nf-customer-orders');
+  const selectedAccountDisplay = document.getElementById('selectedAccountDisplay');
+  const revertBtn = document.getElementById('revertBtn');
+  let currentAccount = localStorage.getItem('currentAccount') || null;
+  let previousAccount = null;
 
-        if (totalPages <= 7) {
-          for (let i = 1; i <= totalPages; i++) {
-            const pageNumber = document.createElement('span');
-            pageNumber.classList.add('page-number');
-            if (i === currentPage) {
-              pageNumber.classList.add('active');
-            }
-            pageNumber.textContent = i;
-            pageNumber.addEventListener('click', function () {
-              currentPage = i;
-              showPage(currentPage);
-              // updatePageNumbers();
-            });
-            pageNumbers.appendChild(pageNumber);
-          }
-        } else {
-          for (let i = 1; i <= 3; i++) {
-            const pageNumber = document.createElement('span');
-            pageNumber.classList.add('page-number');
-            if (i === currentPage) {
-              pageNumber.classList.add('active');
-            }
-            pageNumber.textContent = i;
-            pageNumber.addEventListener('click', function () {
-              currentPage = i;
-              showPage(currentPage);
-              // updatePageNumbers();
-            });
-            pageNumbers.appendChild(pageNumber);
-          }
+  let currentAccountData = JSON.parse(localStorage.getItem('currentAccount')) ?? '';
+  if (currentAccountData) {
+    currentAccount = currentAccountData.customerID;
+    // loadAccountData(currentAccountData.email);
+    const displayName = (currentAccountData.firstName && currentAccountData.lastName) ?
+      `${currentAccountData.firstName} ${currentAccountData.lastName}` :
+      currentAccountData.email;
+    updateSelectedAccountDisplay(displayName);
+    // toggleDraftOrderButton();
+    revertBtn.style.display = 'inline-block';
+    // hideOrderTabs();
+  } else {
+    revertBtn.style.display = 'none';
+  }
 
-          if (currentPage > 3) {
-            const ellipsis = document.createElement('span');
-            ellipsis.textContent = '...';
-            pageNumbers.appendChild(ellipsis);
-          }
+  switchAccountBtn.addEventListener('click', () => {
+    accountModal.showModal();
+    fetchCustomerList();
+  });
 
-          for (let i = Math.max(4, currentPage - 1); i <= Math.min(currentPage + 1, totalPages - 2); i++) {
-            const pageNumber = document.createElement('span');
-            pageNumber.classList.add('page-number');
-            if (i === currentPage) {
-              pageNumber.classList.add('active');
-            }
-            pageNumber.textContent = i;
-            pageNumber.addEventListener('click', function () {
-              currentPage = i;
-              showPage(currentPage);
-              // updatePageNumbers();
-            });
-            pageNumbers.appendChild(pageNumber);
-          }
+  revertBtn.addEventListener('click', () => {
+    localStorage.removeItem('currentAccount');
+    revertBtn.style.display = 'none';
+    window.location.reload();
+    console.log('rever button clicked');
+  });
 
-          if (currentPage < totalPages - 2) {
-            const ellipsis = document.createElement('span');
-            ellipsis.textContent = '...';
-            pageNumbers.appendChild(ellipsis);
-          }
+  confirmBtn.addEventListener('click', () => {
+    const selectedAccountName = customerSearchInput.value;
+    const selectedAccountId = customerSearchInput.dataset.value;
+    const selectedCustomer = customers.find(customer => customer.id === selectedAccountId);
+    if (currentAccount !== selectedAccountId) {
+      previousAccount = currentAccount;
+      currentAccount = selectedAccountId;
+  
+      const accountData = {
+        email: selectedCustomer.email,
+        firstName: selectedCustomer.firstName,
+        lastName: selectedCustomer.lastName,
+        customerID: selectedCustomer.id
+      };
+  
+      localStorage.setItem('currentAccount', JSON.stringify(accountData));
+      let accountDisplayName = JSON.parse(localStorage.getItem('currentAccount'));
+      const displayAccountName = (accountDisplayName.firstName && accountDisplayName.lastName) ?
+        `${accountDisplayName.firstName} ${accountDisplayName.lastName}` :
+        accountDisplayName.email;
+      updateSelectedAccountDisplay(displayAccountName);
+      loadAccountData(selectedAccountName);
+      revertBtn.style.display = 'inline-block';
+      accountModal.close();
+      ordersComponent.setState({ view: 'orders' });
+    }
+    ordersComponent.fetchProductOrderList();
+  });
 
-          for (let i = totalPages - 2; i <= totalPages; i++) {
-            const pageNumber = document.createElement('span');
-            pageNumber.classList.add('page-number');
-            if (i === currentPage) {
-              pageNumber.classList.add('active');
-            }
-            pageNumber.textContent = i;
-            pageNumber.addEventListener('click', function () {
-              currentPage = i;
-              showPage(currentPage);
-              // updatePageNumbers();
-            });
-            pageNumbers.appendChild(pageNumber);
-          }
-        }
-      }
-      document.getElementById('nextPage').addEventListener('click', function () {
-        currentPage = (currentPage % totalPages) + 1;
-        showPage(currentPage);
-        // updatePageNumbers();
-      });
-      document.getElementById('prevPage').addEventListener('click', function () {
-        currentPage = ((currentPage - 2 + totalPages) % totalPages) + 1;
-        showPage(currentPage);
-        // updatePageNumbers();
-      });
-      // updatePageNumbers();
+  function updateSelectedAccountDisplay(accountName) {
+    selectedAccountDisplay.innerHTML = `<span class="customer__badge">Customer</span> <span class="account__name">${accountName}</span>`;
+  }
+
+  function debounce(func, wait) {
+    let timeout;
+    return function (...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  }
+
+  const debouncedFetchCustomerList = debounce(fetchCustomerList, 300);
+
+  async function fetchCustomerList(query = '') {
+    await window.refreshTokenIfNeeded();
+    const { url, authToken } = window.customerOrdersApp;
+    const headers = new Headers({
+      'Authorization': `Bearer ${authToken}`
+    });
+    const requestOptions = {
+      method: 'GET',
+      headers
+    };
+
+    fetch(`${window.customerOrdersApp.urlProxy}api/v1/customer/list?items=25&sort=desc&search=${encodeURIComponent(query)}`, requestOptions)
+      .then(response => response.json())
+      .then(data => {
+        customers = data.data;
+        populateCustomerList(customers);
+      })
+      .catch(error => console.error('Error fetching customer list:', error));
+  }
+
+  function populateCustomerList(data) {
+    customerSearchDropdown.innerHTML = '';
+    data.forEach(customer => {
+      const li = document.createElement('li');
+      li.textContent = customer.email;
+      li.dataset.value = customer.id;
+      customerSearchDropdown.appendChild(li);
+    });
+  }
+
+  customerSearchInput.addEventListener('input', function () {
+    const query = this.value;
+    if (query.length > 0) {
+      debouncedFetchCustomerList(query);
+      customerSearchDropdown.style.display = 'block';
+    } else {
+      customerSearchDropdown.style.display = 'none';
+    }
+  });
+
+  customerSearchDropdown.addEventListener('click', function (event) {
+    const selectedCustomer = event.target;
+    customerSearchInput.value = selectedCustomer.textContent;
+    customerSearchInput.dataset.value = selectedCustomer.dataset.value;
+    customerSearchDropdown.style.display = 'none';
+  });
+
+  async function loadAccountData(accountId) {
+    ordersComponent.fetchOrders(`email=${encodeURIComponent(accountId)}`);
+  }
+
+  // function toggleDraftOrderButton() {
+  //   const createDraftOrderButton = document.querySelector('.create-draft-order-button') ?? '';
+  //   if (currentAccount) {
+  //     createDraftOrderButton.style.display = 'flex'; 
+  //     createDraftOrderButton.innerHTML = `
+  //       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"/></svg>
+  //       Create Draft Order
+  //     `;
+  //     createDraftOrderButton.style.backgroundColor = '#fbe04c';
+  //   }
+  // }
+  // toggleDraftOrderButton();
+  
+  
 });
-
 
 class NFCustomerOrders extends HTMLElement {
   constructor() {
@@ -189,10 +248,50 @@ class NFCustomerOrders extends HTMLElement {
     }
   }
 
+  // Superuser settings
+  setOrders(orders) {
+    this.state.orders = orders;
+    this.render();
+  }
+  fetchProductOrderList = async () => {
+    const currentAccountData = JSON.parse(localStorage.getItem('currentAccount'));
+    const { authToken } = window.customerOrdersApp;
+    const url = `${window.customerOrdersApp.urlProxy}api/v1/liquid/product-list?email=` + encodeURIComponent(currentAccountData.email);
+    const token = 'Bearer ' + authToken;
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Authorization': token,
+          'Content-Type': 'text/html'
+        }
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.text();
+      document.getElementById("product__list").innerHTML = data;
+      console.log('accoutn drawer', data);
+      // Rebind quantity spinner
+      const event = new CustomEvent('productListUpdated');
+      document.dispatchEvent(event);
+
+    } catch (error) {
+      console.error('Failed to fetch products:', error);
+    }
+  };
+
   initComponent() {
     this.render();
-    this.fetchOrders();
+    const currentAccountData = JSON.parse(localStorage.getItem('currentAccount'));
+    if (currentAccountData && currentAccountData.email) {
+      this.fetchOrders(`email=${encodeURIComponent(currentAccountData.email)}`);
+    } else {
+      this.fetchOrders();
+    }
     this.checkAndToggleATCButton();
+    this.fetchProductOrderList();
+
   }
 
   async fetchOrders(queryParams) {
@@ -232,16 +331,20 @@ class NFCustomerOrders extends HTMLElement {
       </div>
     `;
   }
+
   setState(newState) {
     this.state = { ...this.state, ...newState };
     this.render();
   }
+
   onBackClick(event) {
     event.preventDefault();
     this.setState({ view: 'orders', lineItems: [] });
     history.pushState({}, '', window.location.pathname);
   }
+
   renderOrders() {
+    console.log('render orders', this.state.orders);
     return this.state.orders.map(order => `
     <tr
     class="order_item" data-order-id="${order.id}"
@@ -256,33 +359,33 @@ class NFCustomerOrders extends HTMLElement {
     </tr>
     `).join('');
   }
+
   renderLineItems() {
     return this.state.lineItems.map(item => {
       const productId = item.id ? item.id : '';
       const variantId = item.variant ? item.variant.id : '';
       const productTitle = item.product && item.product.title ? item.product.title : '';
       const inventoryQuantity = item.variant?.inventoryQuantity ? item.variant.inventoryQuantity : '';
-      const productUrl2 = item.product && item.product?.onlineStoreUrl ? item.product.onlineStoreUrl : '';
-      const productHandle = item.product ? item.product.handle : ''; 
-      const productUrl = productHandle ? `/products/${productHandle}` : '';
+      const inventoryPolicy = item.variant?.inventoryPolicy ? item.variant.inventoryPolicy : '';
+      const productUrl = item.product && item.product?.onlineStoreUrl ? item.product.onlineStoreUrl : '';
       const imageUrl = item.product && item.product?.featuredImage && item.product.featuredImage.url ? item.product.featuredImage.url + '&width=100&height=100' : '';
       const productPrice = item.price ? item.price : '';
       const minusButton = this.shadowRoot.querySelectorAll('.minus__button');
       const plusButton = this.shadowRoot.querySelectorAll('.plus__button');
       const addToCartButton = this.shadowRoot.querySelectorAll('.add-to-cart-button');
-      const isAvailable = inventoryQuantity > 0;
+      const createDraftOrderButton = this.shadowRoot.querySelector('.create-draft-order-button');
+      const isAvailable = inventoryQuantity < 0 && inventoryPolicy == 'continue' || inventoryQuantity > 0 && inventoryPolicy == 'deny';
       minusButton.forEach(button => {
         button.addEventListener('click', () => {
           this.updateQuantity(button, false);
-          console.log('minus');
         });
       });
       plusButton.forEach(button => {
         button.addEventListener('click', () => {
           this.updateQuantity(button, true);
-          console.log('plusButton');
         });
       });
+
       addToCartButton.forEach(button => {
         button.addEventListener('click', () => {
           const quantityInput = button.closest('.quantity-spinner').querySelector('.quantity__input');
@@ -316,10 +419,9 @@ class NFCustomerOrders extends HTMLElement {
                 <span><!-- Icon here if needed --></span>
                 ${item.product?.metafieldOtherPiecesPerBox ?? ""} pieces per box
               </div>` : ''
-        }
-            ${isAvailable && item.variant?.sku ? `<div class="sku">SKU: ${item.variant.sku}</div>` : ''}
+          }
+            ${isAvailable && item.variant?.sku ? `&nbsp; | &nbsp;<div class="sku">SKU: ${item.variant.sku}</div>` : ''}
           </div>
-      
         </div>
         ${isAvailable ? `<div class="quantity-spinner order-qty-spinner">
             <button
@@ -341,11 +443,12 @@ class NFCustomerOrders extends HTMLElement {
               +
             </button>
           </div>` : ''
-        }
+          }
       </div>
     </div>` : ``}
     `}).join('');
   }
+
   updateQuantity(button, increment) {
     const quantityInput = button.closest('.quantity-spinner').querySelector('.quantity__input');
     let quantity = parseInt(quantityInput.value);
@@ -357,6 +460,7 @@ class NFCustomerOrders extends HTMLElement {
     quantityInput.value = quantity;
     this.checkAndToggleATCButton();
   }
+
   addToCart() {
     const addToCartButton = this.shadowRoot.querySelector('.add-to-cart-button');
     const orderQuantitySpinners = this.shadowRoot.querySelectorAll('.order-qty-spinner');
@@ -382,6 +486,7 @@ class NFCustomerOrders extends HTMLElement {
         orderListData.push({ id: variantId, quantity: quantity });
       }
     });
+
     if (orderListData.length > 0) {
       const data = { items: orderListData };
       fetch('/cart/add.js', {
@@ -398,6 +503,7 @@ class NFCustomerOrders extends HTMLElement {
           console.log('Items added:', json);
           addToCartButton.innerHTML = window.String.reOrderSelectedItems;
           var x = document.getElementById('account-drawer-notif');
+          x.textContent = 'Items Added to Cart';
           x.className = 'show';
           setTimeout(function () {
             x.className = x.className.replace('show', '');
@@ -411,9 +517,73 @@ class NFCustomerOrders extends HTMLElement {
     }
     this.checkAndToggleATCButton();
   }
+
+  createDraftOrder() {
+    const createDraftOrderButton = this.shadowRoot.querySelector('.create-draft-order-button');
+    const orderQuantitySpinners = this.shadowRoot.querySelectorAll('.order-qty-spinner');
+    let orderListData = [];
+    createDraftOrderButton.innerHTML = `<div class="loading-overlay__spinner">
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      role="presentation"
+      class="spinner"
+      viewBox="0 0 66 66"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+    </svg>
+  </div>`;
+
+    orderQuantitySpinners.forEach(orderQuantitySpinner => {
+      const orderQuantityInput = orderQuantitySpinner.querySelector('.quantity__input');
+      let variantId = orderQuantitySpinner.closest('.wishlist_row').getAttribute('data-variant-id');
+      let quantity = parseInt(orderQuantityInput.value);
+      if (quantity > 0) {
+        orderListData.push({ variant_id: parseInt(variantId), quantity: quantity });
+      }
+    });
+
+    const payload = {
+      customer_id: JSON.parse(localStorage.getItem('currentAccount')).customerID ?? '',
+      line_items: orderListData
+    };
+
+    const { authToken } = window.customerOrdersApp;
+    const headers = new Headers({
+      'Authorization': `Bearer ${authToken}`,
+      'Content-Type': 'application/json'
+    });
+
+    fetch(`${window.customerOrdersApp.urlProxy}api/v1/order/draft`, {
+      body: JSON.stringify(payload),
+      credentials: 'same-origin',
+      headers,
+      method: 'POST'
+    })
+      .then(response => response.json())
+      .then(json => {
+        console.log('Draft Order created:', json);
+        createDraftOrderButton.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"/></svg>
+          Create Draft Order
+        `;
+        var x = document.getElementById('account-drawer-notif');
+        x.textContent = 'Draft Order Created';
+        x.className = 'show';
+        setTimeout(function () {
+          x.className = x.className.replace('show', '');
+        }, 3000);
+      })
+      .catch(error => {
+        console.error('Error creating draft order:', error);
+      });
+  }
+
   checkAndToggleATCButton() {
     const addToCartButton = this.shadowRoot.querySelector('.add-to-cart-button');
-    if (addToCartButton) {
+    const createDraftOrderButton = this.shadowRoot.querySelector('.create-draft-order-button');
+    if (addToCartButton || createDraftOrderButton) {
       const orderQuantitySpinners = this.shadowRoot.querySelectorAll('.order-qty-spinner');
       const allZero = Array.from(orderQuantitySpinners).every(spinner => {
         const quantity = parseInt(spinner.querySelector('.quantity__input').value);
@@ -421,16 +591,29 @@ class NFCustomerOrders extends HTMLElement {
       });
       const wishlistRows = this.shadowRoot.querySelectorAll('.wishlist_row');
       const anyUnavailable = Array.from(wishlistRows).every(row => {
-        return row.getAttribute('data-available') === false;
+        return row.getAttribute('data-available') === 'false';
       });
-      addToCartButton.disabled = anyUnavailable;
-      addToCartButton.classList.toggle('disabled', anyUnavailable);
-      if (allZero) {
-        addToCartButton.disabled = true;
-        addToCartButton.classList.add('disabled');
-      } else {
-        addToCartButton.disabled = false;
-        addToCartButton.classList.remove('disabled');
+      if (addToCartButton) {
+        addToCartButton.disabled = anyUnavailable;
+        addToCartButton.classList.toggle('disabled', anyUnavailable);
+        if (allZero) {
+          addToCartButton.disabled = true;
+          addToCartButton.classList.add('disabled');
+        } else {
+          addToCartButton.disabled = false;
+          addToCartButton.classList.remove('disabled');
+        }
+      }
+      if (createDraftOrderButton) {
+        createDraftOrderButton.disabled = anyUnavailable;
+        createDraftOrderButton.classList.toggle('disabled', anyUnavailable);
+        if (allZero) {
+          createDraftOrderButton.disabled = true;
+          createDraftOrderButton.classList.add('disabled');
+        } else {
+          createDraftOrderButton.disabled = false;
+          createDraftOrderButton.classList.remove('disabled');
+        }
       }
     }
   }
@@ -467,6 +650,7 @@ class NFCustomerOrders extends HTMLElement {
         this.setState({ error });
       });
   }
+
   onOrderIdClick(event) {
     event.preventDefault();
     const orderId = event.currentTarget.getAttribute('data-order-id');
@@ -485,6 +669,8 @@ class NFCustomerOrders extends HTMLElement {
         this.updateQuantity(event.target, true);
       } else if (event.target.matches('.add-to-cart-button')) {
         this.addToCart();
+      } else if (event.target.matches('.create-draft-order-button')) {
+        this.createDraftOrder();
       }
     });
   }
@@ -502,15 +688,8 @@ class NFCustomerOrders extends HTMLElement {
     });
   }
 
-  setState(newState) {
-    this.state = { ...this.state, ...newState };
-    this.render();
-  }
-
-
   render() {
     let content;
-
     if (this.state.isLoading) {
       content = '<p>Loading...</p>';
     } else if (this.state.error) {
@@ -534,7 +713,14 @@ class NFCustomerOrders extends HTMLElement {
           currentOrders.cancelledAt
         ) : ("")}
                   </div>
-                 
+                  <div class="order-details-track-and-trace" style="{{ tracking_url_display }}">
+                    <p>
+                      ${currentOrders.fulfillments.edges[0] ? `${window.icon_truck_solid}
+                      <a class="tracking-link" target="_blank" href="${currentOrders.fulfillments.edges[0].node.trackingUrls[0]}">
+                        ${window.String.customerTrack_and_trace}
+                      </a>` : ``}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -543,11 +729,19 @@ class NFCustomerOrders extends HTMLElement {
               ${this.renderLineItems()}
               </div>
               <div class="re-order-cta-btn--wrapper">
-                <button
-                  class="re-order-cta re-order-btn add-to-cart-button"
-                >
-                ${window.String.reOrderSelectedItems}
-                </button>
+              ${localStorage.getItem('currentAccount') ? ` <button
+              class="re-order-cta re-order-btn create-draft-order-button"
+              style="background-color: #fbe04c;"
+            >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"/></svg>
+            Create Draft Order
+            </button>` : `<button
+              class="re-order-cta re-order-btn add-to-cart-button"
+            >
+            ${window.String.reOrderSelectedItems}
+            </button>` }
+                
+               
               </div>
             </div>
           </div>
@@ -594,7 +788,6 @@ class NFCustomerOrders extends HTMLElement {
     styleLinkLoader.rel = 'stylesheet';
     styleLinkLoader.href = window.Shopify.theme.loading;
     this.shadowRoot.append(styleLinkLoader);
-
   }
 }
 customElements.define('nf-customer-orders', NFCustomerOrders);

@@ -1835,3 +1835,139 @@ summary::marker {
   font-size: 13px;
   line-height: calc(1 + 0.1 / var(--font-body-scale));
 }
+
+/* Superuser Settings */
+#selectedAccountDisplay{
+  display: inline-flex;
+  flex-direction: column;
+}
+.customer__badge{
+  background: var(--color-primary-button-background-light);
+  padding: 5px;
+  font-size: 9px;
+  font-weight: bold;
+  text-transform: uppercase;
+  display: inline-block;
+  max-width: max-content;
+}
+.profile__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+#revertBtn{
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  z-index: 2;
+  position: relative;
+}
+#revertBtn:hover{
+  opacity: .8;
+}
+#revertBtn svg{
+ width: 10px;
+ height: 10px;
+}
+
+/* Account Select */
+#accountSelect select{
+  padding: 5px;
+  background-color: transparent;
+  border: 0;
+}
+.customer-search-container {
+  position: relative;
+  width: 100%;
+}
+
+#customerSearchInput {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.account-dropdown-content {
+  position: absolute;
+  background-color: #fff;
+  min-width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 9999; /* Ensure the dropdown is on top */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+.account__name{
+  max-width: 200px;
+  width: 100%;
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.account-dropdown-content li {
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.account-dropdown-content li:hover {
+  background-color: #f1f1f1;
+}
+
+#accountModal {
+  max-width: 400px;
+  margin: auto;
+  border: 1px solid #ccc;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10000; /* Ensure the modal is on top */
+  overflow: visible;
+}
+
+#confirmBtn {
+  background-color: var(--color-primary-button-background-light);
+  box-shadow: none!important;
+  color: currentColor;
+  padding: 10px 20px;
+  font-size: 14px;
+  border: 0;
+  cursor: pointer;
+  border: 1px solid var(--color-primary-button-background-light);
+
+}
+
+#cancelBtn {
+  background-color: transparent;
+  border: 1px solid currentColor;
+  box-shadow: none !important;
+  color: currentColor;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+
+#confirmBtn:hover {
+  opacity: .8;
+}
+
+#cancelBtn:hover {
+  background-color: #DDD;
+}
+
+.create-draft-order-button {
+  background-color: var(--color-primary-button-background-light) !important;
+  color: #000 !important;
+}
+.create-draft-order-button svg {
+  margin-right: 8px;
+  width: 18px;
+}
+.create-draft-order-button:disabled, .add-to-cart-button:disabled {
+  background-color: #c1c1c1 !important;
+  color: #fff !important;
+}

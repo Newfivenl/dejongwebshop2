@@ -336,14 +336,14 @@
   width: 20px;
 }
 
-
+/* 
 dialog[open] {
   -webkit-animation: show 0.5s ease normal;
 }
 
 dialog.hide {
   -webkit-animation: hide 0.5s ease normal;
-}
+} */
 
 @-webkit-keyframes show {
   from {
@@ -1849,6 +1849,7 @@ summary::marker {
   text-transform: uppercase;
   display: inline-block;
   max-width: max-content;
+  color: #fff;
 }
 .profile__wrapper {
   display: flex;
@@ -1861,6 +1862,7 @@ summary::marker {
   cursor: pointer;
   z-index: 2;
   position: relative;
+  margin-left: 10px;
 }
 #revertBtn:hover{
   opacity: .8;
@@ -1879,6 +1881,7 @@ summary::marker {
 .customer-search-container {
   position: relative;
   width: 100%;
+  margin-bottom: 20px;
 }
 
 #customerSearchInput {
@@ -1931,7 +1934,7 @@ summary::marker {
 #confirmBtn {
   background-color: var(--color-primary-button-background-light);
   box-shadow: none!important;
-  color: currentColor;
+  color: #fff;
   padding: 10px 20px;
   font-size: 14px;
   border: 0;
@@ -1960,8 +1963,8 @@ summary::marker {
 }
 
 .create-draft-order-button {
-  background-color: var(--color-primary-button-background-light) !important;
-  color: #000 !important;
+  background-color: #EA5125 !important;
+  color: #fff !important;
 }
 .create-draft-order-button svg {
   margin-right: 8px;

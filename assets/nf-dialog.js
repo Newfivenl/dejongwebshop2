@@ -247,7 +247,6 @@ class NFCustomerOrders extends HTMLElement {
       window.addEventListener('load', () => this.initComponent());
     }
   }
-
   // Superuser settings
   setOrders(orders) {
     this.state.orders = orders;
@@ -256,7 +255,7 @@ class NFCustomerOrders extends HTMLElement {
   fetchProductOrderList = async () => {
     const currentAccountData = JSON.parse(localStorage.getItem('currentAccount'));
     const { authToken } = window.customerOrdersApp;
-    const url = `${window.customerOrdersApp.urlProxy}api/v1/liquid/product-list?email=` + encodeURIComponent(currentAccountData.email);
+    const url = `${window.customerOrdersApp.urlProxy}api/v1/liquid/product-list?email=` + encodeURIComponent(currentAccountData?.email ?? window.String.customerEmail);
     const token = 'Bearer ' + authToken;
     try {
       const response = await fetch(url, {
@@ -712,14 +711,6 @@ class NFCustomerOrders extends HTMLElement {
                     ${currentOrders.cancelledAt ? (
           currentOrders.cancelledAt
         ) : ("")}
-                  </div>
-                  <div class="order-details-track-and-trace" style="{{ tracking_url_display }}">
-                    <p>
-                      ${currentOrders.fulfillments.edges[0] ? `${window.icon_truck_solid}
-                      <a class="tracking-link" target="_blank" href="${currentOrders.fulfillments.edges[0].node.trackingUrls[0]}">
-                        ${window.String.customerTrack_and_trace}
-                      </a>` : ``}
-                    </p>
                   </div>
                 </div>
               </div>

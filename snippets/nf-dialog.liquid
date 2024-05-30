@@ -1,7 +1,7 @@
 {% assign recent_purchased_items = customer.metafields.custom.order_json.value %}
 {% assign wishlist_product_list = customer.metafields.fields_raven.wishlist_product_list.value | reverse %}
 
-<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+{% comment %} <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script> {% endcomment %}
 <script type="text/javascript">
     window.wishlistProductListObj = {{ wishlist_product_list | json | default: '[]' }};
     window.productIds = [];

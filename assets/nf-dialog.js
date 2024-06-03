@@ -182,7 +182,17 @@ document.addEventListener('DOMContentLoaded', function () {
     customerSearchDropdown.innerHTML = '';
     data.forEach(customer => {
       const li = document.createElement('li');
-      li.textContent = customer.email;
+      let liTextContent = [];
+      if (customer?.first_name && customer?.last_name) {
+          liTextContent.push(`${customer.first_name} ${customer.last_name}`);
+      }
+      if (customer?.default_address?.company) {
+          liTextContent.push(customer.default_address.company);
+      }
+      if (customer?.email) {
+          liTextContent.push(customer.email);
+      }
+      li.textContent = liTextContent.join(' | ').trim();
       li.dataset.value = customer.id;
       customerSearchDropdown.appendChild(li);
     });

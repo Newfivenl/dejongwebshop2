@@ -74,6 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Super user settings with sample data 
   const switchAccountBtn = document.getElementById('switchAccountBtn');
   const accountModal = document.getElementById('accountModal');
+  const cancelBtn = document.getElementById('cancelBtn');
   const confirmBtn = document.getElementById('confirmBtn');
   const ordersComponent = document.querySelector('nf-customer-orders');
   const selectedAccountDisplay = document.getElementById('selectedAccountDisplay');
@@ -95,7 +96,9 @@ document.addEventListener('DOMContentLoaded', function () {
   } else {
     revertBtn.style.display = 'none';
   }
-
+  cancelBtn.addEventListener('click', () => {
+    accountModal.close();
+  });
   switchAccountBtn.addEventListener('click', () => {
     accountModal.showModal();
     fetchCustomerList();

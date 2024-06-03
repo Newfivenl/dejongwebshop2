@@ -1985,6 +1985,7 @@ width: 100%;
 .create-draft-order-button svg {
   margin-right: 8px;
   width: 18px;
+  fill: #FFF;
 }
 .create-draft-order-button:disabled, .add-to-cart-button:disabled {
   background-color: #c1c1c1 !important;

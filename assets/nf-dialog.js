@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   const drawer = document.querySelector('#nf_drawer');
+  const logoutBtn = document.querySelector('.logout_btn');
   const customerSearchInput = document.getElementById('customerSearchInput');
   const customerSearchDropdown = document.getElementById('customerSearchDropdown');
   let customers = [];
@@ -65,6 +66,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
+
+  
   const queryParams = new URLSearchParams(window.location.search);
   const accountNumber = queryParams.get('accountnumber');
   if (accountNumber === '0' || accountNumber === '1') {
@@ -98,6 +101,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   cancelBtn.addEventListener('click', () => {
     accountModal.close();
+  });
+  logoutBtn.addEventListener('click', () => {
+    localStorage.removeItem('currentAccount');
+    window.location.reload();
   });
   switchAccountBtn.addEventListener('click', () => {
     accountModal.showModal();

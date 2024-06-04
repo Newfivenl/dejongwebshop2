@@ -114,7 +114,13 @@ document.addEventListener('DOMContentLoaded', function () {
   confirmBtn.addEventListener('click', () => {
     const selectedAccountName = customerSearchInput.value;
     const selectedAccountId = customerSearchInput.dataset.value;
-    const selectedCustomer = customers.find(customer => customer.id === selectedAccountId);
+    const selectedCustomer = customers.find(customer => customer.id);
+  
+    if (!selectedCustomer) {
+      console.error('Selected customer not found');
+      return;
+    }
+  
     if (currentAccount !== selectedAccountId) {
       previousAccount = currentAccount;
       currentAccount = selectedAccountId;
@@ -139,6 +145,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     ordersComponent.fetchProductOrderList();
   });
+  
 
   function updateSelectedAccountDisplay(accountName) {
     selectedAccountDisplay.innerHTML = `<span class="customer__badge">Customer</span> <span class="account__name">${accountName}</span>`;

@@ -265,6 +265,7 @@ class NFCustomerOrders extends HTMLElement {
     this.render();
   }
   fetchProductOrderList = async () => {
+    await window.refreshTokenIfNeeded();
     const currentAccountData = JSON.parse(localStorage.getItem('currentAccount'));
     const { authToken } = window.customerOrdersApp;
     const url = `${window.customerOrdersApp.urlProxy}api/v1/liquid/product-list?email=` + encodeURIComponent(currentAccountData?.email ?? window.String.customerEmail);

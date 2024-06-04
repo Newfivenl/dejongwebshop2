@@ -168,7 +168,6 @@ document.addEventListener('DOMContentLoaded', function () {
       method: 'GET',
       headers
     };
-
     fetch(`${window.customerOrdersApp.urlProxy}api/v1/customer/list?items=15&sort=desc&search=${encodeURIComponent(query)}`, requestOptions)
       .then(response => response.json())
       .then(data => {

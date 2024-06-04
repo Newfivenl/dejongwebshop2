@@ -15,6 +15,7 @@
     };
     
     const fetchRecentOrder = async () => {
+      await window.refreshTokenIfNeeded();
       const { urlProxy, authToken } = window.customerOrdersApp;
       const headers = new Headers({
         'Authorization': `Bearer ${authToken}`

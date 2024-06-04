@@ -85,6 +85,8 @@
   }
 </script>
 <script>
+
+  window.String.COA_ROLE_ADMIN = 'COA_Role_Admin';
   window.Shopify.theme.stylesheetUrl = '{{ "nf-dialog.css" | asset_url }}';
   window.Shopify.theme.loading = '{{ "component-loading-overlay.css" | asset_url }}';
 
@@ -105,5 +107,6 @@
   window.String.reOrderSelectedItems = "{{ 'customer.account_drawer.re_order_selected_items' | t }}";
 
   window.String.customerEmail = "{{ customer.email }}";
+  window.String.customerTags = {{ customer.tags |  default: '[]' | json }};
 </script>
 {% endif %}

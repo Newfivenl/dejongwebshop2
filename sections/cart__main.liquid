@@ -352,8 +352,7 @@
             {% endif %}
             {%- comment -%}checkout{%- endcomment -%}
             <div class="mt-auto">
-              {% if customer.tags contains 'COA_Role_Admin' %}
-                <div class="w-full px-4 pb-4">
+              {% if customer.tags contains 'COA_Role_Admin' and customer.email contains 'takeaware.nl' or customer.email contains 'newfive.nl' or customer.email contains 'newfive.dev' or customer.email contains 'takeaware.com' or customer.email contains 'dejongdisposables.nl' %}                <div class="w-full px-4 pb-4">
                     <button id="createDraftOrderBtn"
                       class="btn !w-full btn mb-2 cart-draft-button"
                     >

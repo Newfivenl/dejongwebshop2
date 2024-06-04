@@ -8,6 +8,12 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   }
+  // Customer Tag Checker
+  if (!window.String.customerTags?.includes(window.String.COA_ROLE_ADMIN) && localStorage.getItem('currentAccount')) {
+    localStorage.removeItem('currentAccount');
+    window.location.reload();
+    return;
+  }
 
   const drawer = document.querySelector('#nf_drawer');
   const logoutBtn = document.querySelector('.logout_btn');

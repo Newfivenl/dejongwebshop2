@@ -6,12 +6,12 @@
         "spacing_top": 60,
         "spacing_bottom": 60,
         "page_color_scheme": "color__bg-body color__text",
-        "color_border": "color__border-divider-1",
+        "color_border": "!color__border-transparent",
         "sidebar_color_scheme": "color__bg-overlay-1 color__text",
         "main_disclaimer": "",
         "empty_button_label": "Shop all",
         "empty_button_url": "\/collections\/all",
-        "enable_cart_note": true,
+        "enable_cart_note": false,
         "enable_dynamic_checkout": true
       }
     }

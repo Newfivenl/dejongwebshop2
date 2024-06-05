@@ -231,7 +231,7 @@
       "track_and_trace": "Trace",
       "track_and_trace_text": "bekijken",
       "order_list_title": "Uw assortiment",
-      "order_list_text": "Hier zijn de producten te vinden die wij speciaal voor jou hebben geselecteerd!",
+      "order_list_text": "* * * Let op: Vanwege aanpassingen in SKU en benamingen  van producten worden veel producten ten onrechte als \"Tijdelijk niet leverbaar\" getoond, terwijl deze wel leverbaar zijn. Wij verwijzen u naar de website voor de actuele voorraad informatie. * * *",
       "stocked": "Voorraad"
     },
     "account": {
@@ -323,7 +323,7 @@
       "title": "Inloggen",
       "sign_in": "Inloggen",
       "submit": "Verzenden",
-      "new_account_title": "Nieuw! Login zonder wachtwoord",
+      "new_account_title": "Login zonder wachtwoord",
       "new_account_p": "Geef in de volgende stap je e-mailadres op en ontvang een code waarmee je kan inloggen. Ook als je nog geen account hebt.",
       "new_account_usp1": "Bekijk historische bestellingen",
       "new_account_usp2": "Bestel vanuit jouw persoonlijke bestellijst",

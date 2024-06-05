@@ -194,7 +194,7 @@
           "main_color_scheme_first": "color__bg-body color__text",
           "main_color_scheme_second": "color__bg-overlay-1 color__text",
           "main_color_border": "color__border-divider-1",
-          "main_enable_cart_note": true,
+          "main_enable_cart_note": false,
           "main_enable_cart_share": true,
           "main_enable_cart_subtotals": true,
           "bottom_color_scheme": "color__bg-body color__text",

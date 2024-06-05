@@ -1993,7 +1993,7 @@ width: 100%;
 }
 .customer__wrapper{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 5px;
 }
 .current_customer--name{

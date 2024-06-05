@@ -136,24 +136,30 @@
 
   <div class="
     {{ settings.layout_horizontal }}">
-
+    {%- comment -%}headline{%- endcomment -%}
+    <div class="flex flex-wrap items-start">
+      {% if cart.item_count > 0 %}
+        <div class="w-full px-4">
+          <h1>{{ 'cart.general.cart_heading' | t }} (<span x-text="cart.item_count">{{ cart.item_count }}</span>)</h1>
+        </div>
+        {% if customer.tags contains 'COA_Role_Admin' and customer.email contains 'takeaware.nl' or customer.email contains 'newfive.nl' or customer.email contains 'newfive.dev' or customer.email contains 'takeaware.com' or customer.email contains 'dejongdisposables.nl' %}                <div class="w-full px-4 pb-4">
+          <div class="w-full">
+              <form action="/cart/clear" method="post" novalidate class="empty-cart-form">
+                <button type="submit" class="btn btn mb-2 clear-cart-button">Clear cart</button>
+              </form>
+            </div>
+          {% endif %}
+      {% else %}
+        <div class="w-full">
+          <h1>{{ 'cart.general.empty' | t }}</h1>
+        </div>
+        <a class="btn" href="{{ section.settings.empty_button_url }}">
+          {{ section.settings.empty_button_label }}
+        </a>
+      {% endif %}
+    </div>
     <form action="{{ routes.cart_url }}" method="post">
       <div class="flex flex-wrap items-start">
-
-        {%- comment -%}headline{%- endcomment -%}
-        {% if cart.item_count > 0 %}
-          <div class="w-full">
-            <h1>{{ 'cart.general.cart_heading' | t }} (<span x-text="cart.item_count">{{ cart.item_count }}</span>)</h1>
-          </div> 
-        {% else %}
-          <div class="w-full">
-            <h1>{{ 'cart.general.empty' | t }}</h1>
-          </div>
-          <a class="btn" href="{{ section.settings.empty_button_url }}">
-            {{ section.settings.empty_button_label }}
-          </a>
-        {% endif %}
-
         {%- comment -%}cart{%- endcomment -%}
         <div class="md:w-2/3 md:border--r-width w-full
           {{ section.settings.color_border }}">
@@ -360,7 +366,7 @@
             {%- comment -%}checkout{%- endcomment -%}
             <div class="mt-auto">
               {% if customer.tags contains 'COA_Role_Admin' and customer.email contains 'takeaware.nl' or customer.email contains 'newfive.nl' or customer.email contains 'newfive.dev' or customer.email contains 'takeaware.com' or customer.email contains 'dejongdisposables.nl' %}                <div class="w-full px-4 pb-4">
-                     <a class="btn !w-full btn mt-2 clear-cart-button" href="/cart/clear">Clear cart</a>
+                 
                     <button id="createDraftOrderBtn"
                       class="btn !w-full btn mb-2 cart-draft-button"
                     >
@@ -419,6 +425,7 @@
     snackbar.className = "show";
     setTimeout(function(){ snackbar.className = snackbar.className.replace("show", ""); }, 3000);
 }
+
 
    async function createDraftOrder(event) {
                   event.preventDefault();

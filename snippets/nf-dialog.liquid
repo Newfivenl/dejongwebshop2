@@ -734,7 +734,7 @@
           <div class="search-container">
             <div class="field">
                   <input class="search__input field__input" oninput="toggleClearButton()" id="productSearch" type="search" placeholder="Zoeken" role="combobox" >
-                  <label class="field__label" for="productSearch">Zoeken</label>
+                  {% comment %} <label class="field__label" for="productSearch">Zoeken</label> {% endcomment %}
                   <button class="search__button field__button" aria-label="Zoeken">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="icon icon-search">
                         <path d="M22.938 13.382c-0.036 5.247-4.318 9.472-9.565 9.437s-9.472-4.318-9.436-9.565c0.035-5.223 4.28-9.438 9.503-9.437 5.263 0.023 9.513 4.302 9.501 9.565h-0.003zM26.881 13.382c-0.032-7.423-6.075-13.414-13.498-13.382s-13.414 6.075-13.382 13.497c0.031 7.4 6.039 13.382 13.44 13.382 7.435-0.025 13.447-6.062 13.44-13.498z"></path>
@@ -746,6 +746,7 @@
           </div>
           <div id="nf-tab_view-order">
             <div class="nf-section nf-my-orders__wrapper">
+          <div id="customerProfileName" class="current_customer--name"></div>
               <div class="nf-section-heading">
 {% comment %}              <div>
                   <h1>{{ 'customer.account_drawer.order_list_text' | t }}</h1>
@@ -785,7 +786,7 @@
   <form method="dialog">
       <p>Search a Customer:</p>
       <div class="customer-search-container">
-          <input type="text" id="customerSearchInput" placeholder="Search customer">
+          <input type="search" id="customerSearchInput" placeholder="Search customer">
           <ul id="customerSearchDropdown" class="account-dropdown-content"></ul>
       </div>
       <menu>

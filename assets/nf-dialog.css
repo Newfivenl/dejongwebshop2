@@ -1991,3 +1991,11 @@ width: 100%;
   background-color: #c1c1c1 !important;
   color: #fff !important;
 }
+.customer__wrapper{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.current_customer--name{
+  font-weight: bold;
+}

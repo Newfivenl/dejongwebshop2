@@ -88,6 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const ordersComponent = document.querySelector('nf-customer-orders');
   const selectedAccountDisplay = document.getElementById('selectedAccountDisplay');
   const revertBtn = document.getElementById('revertBtn');
+  const customerProfileName = document.getElementById('customerProfileName');
   let currentAccount = localStorage.getItem('currentAccount') || null;
   let previousAccount = null;
 
@@ -100,6 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
       currentAccountData.email;
     updateSelectedAccountDisplay(displayName);
     // toggleDraftOrderButton();
+    customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Customer</span><span>${currentAccountData.company ? `${currentAccountData.company} |` : ``} ${currentAccountData.email} </span></div>`;
     revertBtn.style.display = 'inline-block';
     // hideOrderTabs();
   } else {
@@ -115,6 +117,8 @@ document.addEventListener('DOMContentLoaded', function () {
   switchAccountBtn.addEventListener('click', () => {
     accountModal.showModal();
     fetchCustomerList();
+   
+
   });
 
   revertBtn.addEventListener('click', () => {
@@ -127,8 +131,12 @@ document.addEventListener('DOMContentLoaded', function () {
   confirmBtn.addEventListener('click', () => {
     const selectedAccountName = customerSearchInput.value;
     const selectedAccountId = customerSearchInput.dataset.value;
+    const selectedAccountCompany = customerSearchInput.dataset.company;
     const selectedCustomer = customers.find(customer => customer.id);
-  
+    let accountData = {};
+
+    accountData = {}
+
     if (!selectedCustomer) {
       console.error('Selected customer not found');
       return;
@@ -137,12 +145,13 @@ document.addEventListener('DOMContentLoaded', function () {
     if (currentAccount !== selectedAccountId) {
       previousAccount = currentAccount;
       currentAccount = selectedAccountId;
-  
-      const accountData = {
+      
+      accountData = {
         email: selectedCustomer.email,
         firstName: selectedCustomer.firstName,
         lastName: selectedCustomer.lastName,
-        customerID: selectedCustomer.id
+        customerID: selectedCustomer.id,
+        company: selectedCustomer.default_address?.company ?? ""
       };
   
       localStorage.setItem('currentAccount', JSON.stringify(accountData));
@@ -152,6 +161,7 @@ document.addEventListener('DOMContentLoaded', function () {
         accountDisplayName.email;
       updateSelectedAccountDisplay(displayAccountName);
       loadAccountData(selectedAccountName);
+      customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Customer</span><span>${accountDisplayName.company ? `${accountDisplayName.company} |` : ``} ${accountDisplayName.email} </span></div>`;
       revertBtn.style.display = 'inline-block';
       accountModal.close();
       ordersComponent.setState({ view: 'orders' });
@@ -213,6 +223,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
       li.textContent = liTextContent.join(' | ').trim();
       li.dataset.value = customer.id;
+
       customerSearchDropdown.appendChild(li);
     });
   }
@@ -230,6 +241,7 @@ document.addEventListener('DOMContentLoaded', function () {
   customerSearchDropdown.addEventListener('click', function (event) {
     const selectedCustomer = event.target;
     customerSearchInput.value = selectedCustomer.textContent;
+    customerSearchInput.dataset.company = selectedCustomer.textContent;
     customerSearchInput.dataset.value = selectedCustomer.dataset.value;
     customerSearchDropdown.style.display = 'none';
   });
@@ -285,11 +297,15 @@ class NFCustomerOrders extends HTMLElement {
     this.render();
   }
   fetchProductOrderList = async () => {
+    // Show loading spinner
+    const productListContainer = document.getElementById("product__list");
+    productListContainer.innerHTML = `Loading...`;
     await window.refreshTokenIfNeeded();
     const currentAccountData = JSON.parse(localStorage.getItem('currentAccount'));
     const { authToken } = window.customerOrdersApp;
     const url = `${window.customerOrdersApp.urlProxy}api/v1/liquid/product-list?email=` + encodeURIComponent(currentAccountData?.email ?? window.String.customerEmail);
     const token = 'Bearer ' + authToken;
+    
     try {
       const response = await fetch(url, {
         method: 'GET',
@@ -302,14 +318,12 @@ class NFCustomerOrders extends HTMLElement {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.text();
-      document.getElementById("product__list").innerHTML = data;
-      console.log('accoutn drawer', data);
-      // Rebind quantity spinner
+      productListContainer.innerHTML = data;
       const event = new CustomEvent('productListUpdated');
       document.dispatchEvent(event);
-
     } catch (error) {
       console.error('Failed to fetch products:', error);
+      productListContainer.innerHTML = `<p>Error loading products. Please try again later.</p>`;
     }
   };
 

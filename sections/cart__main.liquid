@@ -65,7 +65,14 @@
     top: 30px;
     font-size: 14px;
   }
-  
+  .clear-cart-button{
+    background: transparent;
+    border: 1px solid #EA5125;
+    color: #EA5125;
+  }
+  .clear-cart-button:hover{
+    text-decoration: none;
+  }
   #create_draft_snackbar.show {
       visibility: visible;
       -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
@@ -353,6 +360,7 @@
             {%- comment -%}checkout{%- endcomment -%}
             <div class="mt-auto">
               {% if customer.tags contains 'COA_Role_Admin' and customer.email contains 'takeaware.nl' or customer.email contains 'newfive.nl' or customer.email contains 'newfive.dev' or customer.email contains 'takeaware.com' or customer.email contains 'dejongdisposables.nl' %}                <div class="w-full px-4 pb-4">
+                     <a class="btn !w-full btn mt-2 clear-cart-button" href="/cart/clear">Clear cart</a>
                     <button id="createDraftOrderBtn"
                       class="btn !w-full btn mb-2 cart-draft-button"
                     >

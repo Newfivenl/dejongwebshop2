@@ -158,8 +158,9 @@
         </a>
       {% endif %}
     </div>
-    <form action="{{ routes.cart_url }}" method="post">
-      <div class="flex flex-wrap items-start">
+    <div class="!w-full">
+      <form action="{{ routes.cart_url }}" method="post">
+      <div class="!w-full flex flex-wrap items-start">
         {%- comment -%}cart{%- endcomment -%}
         <div class="md:w-2/3 md:border--r-width w-full
           {{ section.settings.color_border }}">
@@ -413,6 +414,7 @@
 
       </div>
     </form>
+    </div>
    
       
   </div>

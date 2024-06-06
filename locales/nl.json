@@ -419,6 +419,9 @@
         "merchandise": {
           "sold_out": "Tijdelijk niet leverbaar"
         }
+      },
+      "customer_account": {
+        "rollup_label": "Account."
       }
     }
   },

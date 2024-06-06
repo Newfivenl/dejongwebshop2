@@ -421,7 +421,7 @@
         }
       },
       "customer_account": {
-        "rollup_label": "Account."
+        "rollup_label": "Account"
       }
     }
   },

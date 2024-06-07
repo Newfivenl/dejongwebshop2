@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
   
   const queryParams = new URLSearchParams(window.location.search);
   const accountNumber = queryParams.get('accountnumber');
-  if (accountNumber === '0' || accountNumber === '1') {
+  if (accountNumber) {
     drawer.setAttribute('open', '');
   }
 

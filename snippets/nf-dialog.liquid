@@ -151,7 +151,7 @@
         setTimeout(() => {
           classElem.cartNotification = document.querySelector('cart-notification');
           classElem.cartNotification.renderContents(response);
-          classElem.innerHTML = `Added to Cart`;
+          classElem.innerHTML = `${window.String.reOrderSelectedItems}`;
         }, 5000);
   
       }).then((json) => {

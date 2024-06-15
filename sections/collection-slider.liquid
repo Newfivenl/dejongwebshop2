@@ -48,17 +48,23 @@
         {% endfor %}
       {% endif %}
 
+      {%- comment %}<locksmith:5435>{% endcomment -%}
+        {%- assign locksmith_67fa_forloop__size = 0 %}{% for block in section.blocks %}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: block.settings.collection, subject_parent: section, variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_67fa_forloop__size = locksmith_67fa_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_67fa_forloop__index = nil -%}
+      {%- comment %}</locksmith:5435>{% endcomment -%}
       {% for block in section.blocks %}
+        {%- comment %}<locksmith:1d77>{% endcomment -%}
+          {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: block.settings.collection, subject_parent: section, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_67fa_forloop__index == nil %}{% assign locksmith_67fa_forloop__index = 1 %}{% assign locksmith_67fa_forloop__index0 = 0 %}{% else %}{% assign locksmith_67fa_forloop__index = locksmith_67fa_forloop__index | plus: 1 %}{% assign locksmith_67fa_forloop__index0 = locksmith_67fa_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_67fa_forloop__index == 1 %}{% assign locksmith_67fa_forloop__first = true %}{% else %}{% assign locksmith_67fa_forloop__first = false %}{% endif %}{% if locksmith_67fa_forloop__index == locksmith_67fa_forloop__size %}{% assign locksmith_67fa_forloop__last = true %}{% else %}{% assign locksmith_67fa_forloop__last = false %}{% endif %}{% assign locksmith_67fa_forloop__rindex = locksmith_67fa_forloop__size | minus: locksmith_67fa_forloop__index | minus: 1 %}{% assign locksmith_67fa_forloop__rindex0 = locksmith_67fa_forloop__size | minus: locksmith_67fa_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
+        {%- comment %}</locksmith:1d77>{% endcomment -%}
         {%- case block.type -%}
           {%- when 'collection' -%}
             <div class="md:snap-center md:w-[26%] flex justify-center flex-none w-8/12 whitespace-normal" 
-              x-bind:data-slide="{{ forloop.index0 }}">
+              x-bind:data-slide="{{ locksmith_67fa_forloop__index0 }}">
               {% render 'component__collection-item', 
                 collection: block.settings.collection %}
             </div>
           {%- when 'card' -%}
             <div class="md:snap-center md:w-[26%] flex justify-center flex-none w-8/12 whitespace-normal" 
-              x-bind:data-slide="{{ forloop.index0 }}">
+              x-bind:data-slide="{{ locksmith_67fa_forloop__index0 }}">
               {% render 'component__content-item',
                 background_color: settings.thumbmails_color_scheme,
                 title: block.settings.heading,

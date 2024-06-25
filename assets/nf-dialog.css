@@ -1205,6 +1205,10 @@ svg {
   padding: 5px 0;
   grid-gap: 10px;
 }
+.recently_ordered .wishlist_row:hover {
+  opacity: .8;
+  cursor: move;
+}
 .alternative__product-box .wishlist_row:not(:last-child) {
   border-bottom: solid 1px #f1f1f1;
 }

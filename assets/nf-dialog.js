@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
 
-  
+
   const queryParams = new URLSearchParams(window.location.search);
   const accountNumber = queryParams.get('accountnumber');
   if (accountNumber) {
@@ -134,25 +134,25 @@ document.addEventListener('DOMContentLoaded', function () {
     const selectedAccountId = customerSearchInput.dataset.value;
     console.log('Selected Account ID:', selectedAccountId);
     console.log('Customers array:', customers);
-  
+
     // Log each customer ID to compare
     customers.forEach((customer, index) => {
       console.log(`Customer ${index} ID:`, customer.id);
       console.log(`Does ${customer.id} equal ${selectedAccountId}?`, customer.id == selectedAccountId);
     });
-  
+
     const selectedCustomer = customers.find(customer => customer.id == selectedAccountId);
     console.log('Selected customer:', selectedCustomer);
-  
+
     if (!selectedCustomer) {
       console.error('Selected customer not found');
       return;
     }
-  
+
     if (currentAccount !== selectedAccountId) {
       previousAccount = currentAccount;
       currentAccount = selectedAccountId;
-  
+
       const accountData = {
         email: selectedCustomer.email,
         firstName: selectedCustomer.first_name,
@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function () {
         address2: selectedCustomer.default_address?.address2 ?? "",
         company: selectedCustomer.default_address?.company ?? ""
       };
-  
+
       localStorage.setItem('currentAccount', JSON.stringify(accountData));
       let accountDisplayName = JSON.parse(localStorage.getItem('currentAccount'));
       const displayAccountName = (accountDisplayName.firstName && accountDisplayName.lastName) ?
@@ -273,8 +273,8 @@ document.addEventListener('DOMContentLoaded', function () {
   //   }
   // }
   // toggleDraftOrderButton();
-  
-  
+
+
 });
 
 class NFCustomerOrders extends HTMLElement {
@@ -316,7 +316,7 @@ class NFCustomerOrders extends HTMLElement {
     const { authToken } = window.customerOrdersApp;
     const url = `${window.customerOrdersApp.urlProxy}api/v1/liquid/product-list?email=` + encodeURIComponent(currentAccountData?.email ?? window.String.customerEmail);
     const token = 'Bearer ' + authToken;
-    
+
     try {
       const response = await fetch(url, {
         method: 'GET',
@@ -331,7 +331,11 @@ class NFCustomerOrders extends HTMLElement {
       const data = await response.text();
       productListContainer.innerHTML = data;
       const event = new CustomEvent('productListUpdated');
+      const dragEvent = new CustomEvent('draggableEvent');
       document.dispatchEvent(event);
+      document.dispatchEvent(dragEvent);
+
+
     } catch (error) {
       console.error('Failed to fetch products:', error);
       productListContainer.innerHTML = `<p>Error loading products. Please try again later.</p>`;

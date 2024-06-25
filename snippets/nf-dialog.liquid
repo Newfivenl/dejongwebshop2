@@ -3,178 +3,178 @@
 
 {% comment %} <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script> {% endcomment %}
 <script type="text/javascript">
-    window.wishlistProductListObj = {{ wishlist_product_list | json | default: '[]' }};
-    window.productIds = [];
-    var recentPurchasedItemsJson = null;
-    const GRID_LOADED_CLASS = 'loaded';
-    var newRecentPurchasedItemsJson = [];
-    const recentOrdersSelectors = {
-      grid: '[grid-recent-orders]',
-      grid_viewAll: '[grid-recent-orders-all]',
-      productCard: '.recent_order_row_wrapper'
+  window.wishlistProductListObj = {{ wishlist_product_list | json | default: '[]' }};
+  window.productIds = [];
+  var recentPurchasedItemsJson = null;
+  const GRID_LOADED_CLASS = 'loaded';
+  var newRecentPurchasedItemsJson = [];
+  const recentOrdersSelectors = {
+    grid: '[grid-recent-orders]',
+    grid_viewAll: '[grid-recent-orders-all]',
+    productCard: '.recent_order_row_wrapper'
+  };
+
+  const fetchRecentOrder = async () => {
+    await window.refreshTokenIfNeeded();
+    const { urlProxy, authToken } = window.customerOrdersApp;
+    const headers = new Headers({
+      'Authorization': `Bearer ${authToken}`
+    });
+    const fetchOptions = {
+      method: 'GET',
+      headers,
+      redirect: 'follow'
     };
-    
-    const fetchRecentOrder = async () => {
-      await window.refreshTokenIfNeeded();
-      const { urlProxy, authToken } = window.customerOrdersApp;
-      const headers = new Headers({
-        'Authorization': `Bearer ${authToken}`
-      });
-      const fetchOptions = {
-        method: 'GET',
-        headers,
-        redirect: 'follow'
-      };
-      try {
-        const ordersResponse = await fetch(
-          `${urlProxy}api/v1/customer/orders?items=1&sort=desc`,
+    try {
+      const ordersResponse = await fetch(
+        `${urlProxy}api/v1/customer/orders?items=1&sort=desc`,
+        fetchOptions
+      );
+      const orders = await ordersResponse.json();
+      const orderId = orders?.data[0]?.id;
+      if (orderId) {
+        const orderLineItemsResponse = await fetch(
+          `${urlProxy}api/v1/order/line-items?order_id=${orderId}`,
           fetchOptions
         );
-        const orders = await ordersResponse.json();
-        const orderId = orders?.data[0]?.id;
-        if (orderId) {
-          const orderLineItemsResponse = await fetch(
-            `${urlProxy}api/v1/order/line-items?order_id=${orderId}`,
-            fetchOptions
-          );
-          const orderLineItems = await orderLineItemsResponse.json();
-          const lineItems = orderLineItems?.data;
-          if (Array.isArray(lineItems)) {
-            recentPurchasedItemsJson = lineItems.map(({ product, quantity }) => ({
-              id: product?.id,
-              handle: product?.handle,
-              quantity
-            }));
-          }
+        const orderLineItems = await orderLineItemsResponse.json();
+        const lineItems = orderLineItems?.data;
+        if (Array.isArray(lineItems)) {
+          recentPurchasedItemsJson = lineItems.map(({ product, quantity }) => ({
+            id: product?.id,
+            handle: product?.handle,
+            quantity
+          }));
         }
-      } catch (error) {
-        console.error(error);
       }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  function initTabs() {
+    const tabLinks = document.querySelectorAll('.nf-tab-links li');
+    const tabContent = document.querySelectorAll('.nf-tab-content .tab');
+    tabLinks.forEach((tabLink, i) => {
+      tabLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = this.querySelector('a').getAttribute('href');
+
+        tabContent.forEach(content => content.classList.remove('active'));
+        tabLinks.forEach(link => link.classList.remove('active'));
+
+        this.classList.add('active');
+        document.querySelector(target).classList.add('active');
+      });
+    });
+  }
+
+  const initDialog = () => {
+    const dialog = document.querySelector('dialog');
+    const closeDialogButton = document.querySelector('.nf-close-dialog');
+
+    closeDialogButton.onclick = function () {
+      dialog.classList.add('hide');
+      dialog.addEventListener('webkitAnimationEnd', function () {
+        dialog.classList.remove('hide');
+        dialog.close();
+        dialog.removeEventListener('webkitAnimationEnd', arguments.callee, false);
+      }, false);
     };
-    
-    function initTabs() {
-      const tabLinks = document.querySelectorAll('.nf-tab-links li');
-      const tabContent = document.querySelectorAll('.nf-tab-content .tab');
-      tabLinks.forEach((tabLink, i) => {
-          tabLink.addEventListener('click', function(e) {
-              e.preventDefault();
-              const target = this.querySelector('a').getAttribute('href');
+  }
 
-              tabContent.forEach(content => content.classList.remove('active'));
-              tabLinks.forEach(link => link.classList.remove('active'));
-
-              this.classList.add('active');
-              document.querySelector(target).classList.add('active');
-          });
-      });
-    }
-    const initDialog = () => {
-      const dialog = document.querySelector('dialog');
-      const closeDialogButton = document.querySelector('.nf-close-dialog');
-
-      closeDialogButton.onclick = function() {
-          dialog.classList.add('hide');
-          dialog.addEventListener('webkitAnimationEnd', function() {
-              dialog.classList.remove('hide');
-              dialog.close();
-              dialog.removeEventListener('webkitAnimationEnd', arguments.callee, false);
-          }, false);
-      };
-    }
-
-    const quantitySpinnerElem = (quantitySpinners, minusButton, plusButton, quantityInputField, atcButton) => {
-      quantitySpinners.forEach((quantitySpinner) => {
-        const minusBtn = quantitySpinner.querySelector(minusButton);
-        const plusBtn = quantitySpinner.querySelector(plusButton);
-        const quantityInput = quantitySpinner.querySelector(quantityInputField);
-        if (quantityInput.value == 0) {
-          minusBtn.classList.add('disabled');
-        } else {
-          minusBtn.classList.remove('disabled');
-        }
-        const spinners = document.querySelectorAll(quantityInputField);
-        minusBtn.addEventListener('click', () => {
-          if (quantityInput.value > 0) {
-            quantityInput.value = parseInt(quantityInput.value) - 1;
-          }
-          if (spinners.length == 1) {
-            if (quantityInput.value == 0) {
-              document.querySelector(atcButton).classList.add('disabled');
-              minusBtn.classList.add('disabled');
-            } else {
-              document.querySelector(atcButton).classList.remove('disabled');
-            }
-          } else {
-            const allZero = Array.from(spinners).every((spinner) => spinner.value === '0');
-            if (allZero) {
-              document.querySelector(atcButton).classList.add('disabled');
-            } else {
-              document.querySelector(atcButton).classList.remove('disabled');
-            }
-          }
-        });
-        plusBtn.addEventListener('click', () => {
-          quantityInput.value = parseInt(quantityInput.value) + 1;
-          document.querySelector(atcButton).classList.remove('disabled');
-          minusBtn.classList.remove('disabled');
-        });
-      });
-    }
-
-    const accountNotif = () => {
-      var x = document.getElementById('account-drawer-notif');
-      x.className = 'show';
-      setTimeout(function () {
-        x.className = x.className.replace('show', '');
-      }, 3000);
-    }
-    const accountErrorNotif = () => {
-      var x = document.getElementById('account-drawer-notif-error');
-      x.className = 'show';
-      setTimeout(function () {
-        x.className = x.className.replace('show', '');
-      }, 3000);
-    }
-
-  
-    const addToCart = (data, classElem) => {
-      fetch('/cart/add.js', {
-        body: JSON.stringify(data),
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Requested-With': 'xmlhttprequest'
-        },
-        method: 'POST'
-      }).then((response) => {
-        return response.json();
-        setTimeout(() => {
-          classElem.cartNotification = document.querySelector('cart-notification');
-          classElem.cartNotification.renderContents(response);
-          classElem.innerHTML = `${window.String.reOrderSelectedItems}`;
-        }, 5000);
-  
-      }).then((json) => {
-        newWishlistData = [];
-        accountNotif(); 
-        setTimeout(() => {
-          classElem.innerHTML = `Voeg toe aan winkelwagen.`;
-          classElem.classList.remove('loading');
-          classElem.classList.add('loaded');
-        }, 1000);
-      }).catch((err) => {
-        console.error(err)
-      });
-    }
-    const productCardHTML = (handle) => {
-      let locale_code = '{{ request.locale.iso_code }}';
-      if (locale_code == 'nl') {
-        locale_code = "";
+  const quantitySpinnerElem = (quantitySpinners, minusButton, plusButton, quantityInputField, atcButton) => {
+    quantitySpinners.forEach((quantitySpinner) => {
+      const minusBtn = quantitySpinner.querySelector(minusButton);
+      const plusBtn = quantitySpinner.querySelector(plusButton);
+      const quantityInput = quantitySpinner.querySelector(quantityInputField);
+      if (quantityInput.value == 0) {
+        minusBtn.classList.add('disabled');
       } else {
-        locale_code = locale_code
+        minusBtn.classList.remove('disabled');
       }
-      const productTileTemplateUrl = `${locale_code}/products/${handle}?view=recent_purchase`;
-      return fetch(productTileTemplateUrl)
+      const spinners = document.querySelectorAll(quantityInputField);
+      minusBtn.addEventListener('click', () => {
+        if (quantityInput.value > 0) {
+          quantityInput.value = parseInt(quantityInput.value) - 1;
+        }
+        if (spinners.length == 1) {
+          if (quantityInput.value == 0) {
+            document.querySelector(atcButton).classList.add('disabled');
+            minusBtn.classList.add('disabled');
+          } else {
+            document.querySelector(atcButton).classList.remove('disabled');
+          }
+        } else {
+          const allZero = Array.from(spinners).every((spinner) => spinner.value === '0');
+          if (allZero) {
+            document.querySelector(atcButton).classList.add('disabled');
+          } else {
+            document.querySelector(atcButton).classList.remove('disabled');
+          }
+        }
+      });
+      plusBtn.addEventListener('click', () => {
+        quantityInput.value = parseInt(quantityInput.value) + 1;
+        document.querySelector(atcButton).classList.remove('disabled');
+        minusBtn.classList.remove('disabled');
+      });
+    });
+  }
+
+  const accountNotif = () => {
+    var x = document.getElementById('account-drawer-notif');
+    x.className = 'show';
+    setTimeout(function () {
+      x.className = x.className.replace('show', '');
+    }, 3000);
+  }
+  const accountErrorNotif = () => {
+    var x = document.getElementById('account-drawer-notif-error');
+    x.className = 'show';
+    setTimeout(function () {
+      x.className = x.className.replace('show', '');
+    }, 3000);
+  }
+
+  const addToCart = (data, classElem) => {
+    fetch('/cart/add.js', {
+      body: JSON.stringify(data),
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'xmlhttprequest'
+      },
+      method: 'POST'
+    }).then((response) => {
+      return response.json();
+      setTimeout(() => {
+        classElem.cartNotification = document.querySelector('cart-notification');
+        classElem.cartNotification.renderContents(response);
+        classElem.innerHTML = `${window.String.reOrderSelectedItems}`;
+      }, 5000);
+
+    }).then((json) => {
+      newWishlistData = [];
+      accountNotif();
+      setTimeout(() => {
+        classElem.innerHTML = `Voeg toe aan winkelwagen.`;
+        classElem.classList.remove('loading');
+        classElem.classList.add('loaded');
+      }, 1000);
+    }).catch((err) => {
+      console.error(err)
+    });
+  }
+  const productCardHTML = (handle) => {
+    let locale_code = '{{ request.locale.iso_code }}';
+    if (locale_code == 'nl') {
+      locale_code = "";
+    } else {
+      locale_code = locale_code
+    }
+    const productTileTemplateUrl = `${locale_code}/products/${handle}?view=recent_purchase`;
+    return fetch(productTileTemplateUrl)
       .then((res) => res.text())
       .then((res) => {
         const text = res;
@@ -184,20 +184,20 @@
         return productCard.outerHTML;
       })
       .catch((err) => console.error(`[Shopify Recent Order] Failed to load content for handle: ${handle}`, err));
-    };
+  };
 
-    const recentOrderSetupGrid = async (grid) => {
-      if (recentPurchasedItemsJson == null ) {
-        grid.innerHTML = '0 orders';
-        grid.classList.add(GRID_LOADED_CLASS);
-      } else {
-        const recent_order = getRecentOrder();
-        const get_quantity = getRecentOrderID();
-        const requests = recent_order.map(productCardHTML);
-        const responses = await Promise.all(requests);
-        const recentOrderProductCards = responses.join('');
-        grid.innerHTML = recentOrderProductCards;
-        document.querySelectorAll('.recent-details').forEach(function (details) {
+  const recentOrderSetupGrid = async (grid) => {
+    if (recentPurchasedItemsJson == null) {
+      grid.innerHTML = '0 orders';
+      grid.classList.add(GRID_LOADED_CLASS);
+    } else {
+      const recent_order = getRecentOrder();
+      const get_quantity = getRecentOrderID();
+      const requests = recent_order.map(productCardHTML);
+      const responses = await Promise.all(requests);
+      const recentOrderProductCards = responses.join('');
+      grid.innerHTML = recentOrderProductCards;
+      document.querySelectorAll('.recent-details').forEach(function (details) {
         details.addEventListener('toggle', function () {
           var targetId = this.getAttribute('data-target');
           var targetContent = document.getElementById(`recent-list-${targetId}`);
@@ -208,209 +208,211 @@
           }
         });
       });
-        const recentQuantitySpinners = document.querySelectorAll(".recent-quantity-spinner");
-        let recentListCartData = [];
-        let newRecentListData = [];
-        get_quantity.forEach(item => {
-            const orderCount = document.querySelectorAll(`#purchase-count-${item.id}`);
-            const recentOrderWrapper = document.querySelectorAll(`#recent-order-wrapper-${item.id}`);
-            orderCount.forEach(order => {
-              order.innerHTML = `{{ 'customer.account.times_ordered' | t }}` + item.quantity + `x`;
-            }); 
-            recentOrderWrapper.forEach(recent => {
-              recent.setAttribute('data-quantity', item.quantity);
-            }); 
-          }); 
-
-        const container = document.getElementById("recent_tab");
-        const items = Array.from(container.querySelectorAll(".recent_order_row_item"));
-        items.sort((a, b) => {
-            const quantityA = parseFloat(a.getAttribute("data-quantity"));
-            const quantityB = parseFloat(b.getAttribute("data-quantity"));
-            return quantityB - quantityA;
+      const recentQuantitySpinners = document.querySelectorAll(".recent-quantity-spinner");
+      let recentListCartData = [];
+      let newRecentListData = [];
+      get_quantity.forEach(item => {
+        const orderCount = document.querySelectorAll(`#purchase-count-${item.id}`);
+        const recentOrderWrapper = document.querySelectorAll(`#recent-order-wrapper-${item.id}`);
+        orderCount.forEach(order => {
+          order.innerHTML = `{{ 'customer.account.times_ordered' | t }}` + item.quantity + `x`;
         });
-        items.forEach(item => container.appendChild(item));
-        quantitySpinnerElem(recentQuantitySpinners, ".minus__button", ".plus__button", ".recentQuantity-input", ".recent-re-order-btn" );
-        
-        document.querySelector('.recent-re-order-btn').addEventListener('click', function (event) {
-          this.classList.add('loading');
-          this.innerHTML = `<div class="loading-overlay__spinner">
-            <svg
-              aria-hidden="true"
-              focusable="false"
-              role="presentation"
-              class="spinner"
-              viewBox="0 0 66 66"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-            </svg>
-          </div>`;
-          recentQuantitySpinners.forEach(recentQuantitySpinner => {
-            const quantityInput = recentQuantitySpinner.querySelector(".recentQuantity-input");
-            let closestVariantElement = recentQuantitySpinner.closest("[data-variant]");
-            let item = "";
-            item = closestVariantElement.dataset.variant;
-            let quantityValue = quantityInput.value;
-            recentListCartData.push({
-              id: item,
-              quantity: quantityValue
-            });
-          });
-          const reducedRecentListCartData = recentListCartData;
-          let result = reducedRecentListCartData.reduce((acc, curr) => {
-            let item = acc.find(item => item.id === curr.id);
-            if (item) {
-              item.quantity = curr.quantity;
-            } else {
-              acc.push(curr);
-              newRecentListData.push(curr);
-            }
-            return acc;
-          }, []);
-          newRecentListData = newRecentListData.filter(item => item.quantity > 0);
-          var data = {
-            items: newRecentListData
-          }
-          addToCart(data, this);
+        recentOrderWrapper.forEach(recent => {
+          recent.setAttribute('data-quantity', item.quantity);
         });
-        
-        grid.classList.add(GRID_LOADED_CLASS);
-
-        const event = new CustomEvent('shopify-recent-order:init-product-grid', {
-          detail: { recent_order: recent_order }
-        });
-        document.dispatchEvent(event);
-      }
-    };
-
-    const recentOrderInitGrid = () => {
-      const grid = document.querySelector(recentOrdersSelectors.grid) || false;
-      const grid_viewAll = document.querySelector(recentOrdersSelectors.grid_viewAll) || false;
-      if (grid) recentOrderSetupGrid(grid);
-      if (grid_viewAll) recentOrderSetupGrid(grid_viewAll);
-    };
-
-    const getRecentOrder = () => {  
-      if(recentPurchasedItemsJson != null) {
-        const recentOrders = recentPurchasedItemsJson;
-        let newRecentOrders = [];
-        let getHandle = [];
-        let result = recentOrders.reduce((acc, curr) => {
-          let item = acc.find(item => item.id === curr.id);
-          if (item) {
-            item.quantity += curr.quantity;
-          } else {
-            acc.push(curr);
-            newRecentOrders.push(curr);
-          }
-
-          return acc;
-        }, []);
-        result.forEach(item => {
-          getHandle.push(item.handle);
-        });
-        if (result) return getHandle;
-        return [];
-      }
-      
-    };
-    const getRecentOrderID = () => {  
-    const recentOrders = recentPurchasedItemsJson;
-    if(recentOrders != null) {
-      let result = recentOrders.reduce((acc, curr) => {
-      let item = acc.find(item => item.id === curr.id);
-      if (item) {
-        item.quantity += curr.quantity - 1;
-      } else {
-        acc.push(curr);
-      }
-      return acc;
-
-    }, []);
-    if (result) return result;
-    return [];
-    }
-    };
-    const nf_view_all_recent_orders = `{% render 'nf-view-recent-orders' %}`;
-    const nf_view_all_wishlist = `{% render 'nf-view-wishlist' %}`;
-    var recent_ordered_wrapper = document.querySelectorAll('.re_order_cta_btn');
-    for (var i = 0; i < recent_ordered_wrapper.length; i++) {
-      recent_ordered_wrapper[i].addEventListener('click', function (event) {
-        var variantID = parseInt(this.dataset.upsellId);
-        if (this.dataset.isAdded == 'false') {
-          this.dataset.isAdded = true;
-          addRecentlyProduct(this, variantID);
-        } else {
-          this.dataset.isAdded = false;
-          removeRecentlyProduct(this, variantID);
-        }
       });
-    }
-    function addRecentlyProduct(target, variantID) {
-      target.querySelector('.icon-cart-v2').classList.add('hidden');
-      target.querySelector('.loading-overlay__spinner').classList.remove('hidden');
-      let formData = {
-        'items': [{
-          'id': variantID,
-          'quantity': 1,
-          'properties': { '': '' }
-        }]
-      };
 
-      addToCart(formData, this);
-    }
-    function removeRecentlyProduct(target, variantID) {
-      target.querySelector('.loading-overlay__spinner').classList.remove('hidden');
-      target.querySelector('.upsell-is-checked').classList.add('hidden');
-      let formData = {
-        'updates': {
-          [variantID]: 0
-        }
-      };
+      const container = document.getElementById("recent_tab");
+      const items = Array.from(container.querySelectorAll(".recent_order_row_item"));
+      items.sort((a, b) => {
+        const quantityA = parseFloat(a.getAttribute("data-quantity"));
+        const quantityB = parseFloat(b.getAttribute("data-quantity"));
+        return quantityB - quantityA;
+      });
+      items.forEach(item => container.appendChild(item));
+      quantitySpinnerElem(recentQuantitySpinners, ".minus__button", ".plus__button", ".recentQuantity-input", ".recent-re-order-btn");
 
-      fetch('/cart/update.js', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      })
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (data) {
-          setTimeout(() => {
-            target.querySelector('.loading-overlay__spinner').classList.add('hidden');
-            target.querySelector('.upsell-is-checked').classList.add('hidden');
-            target.querySelector('.icon-cart-v2').classList.remove('hidden');
-          }, 1000);
-        })
-        .catch(function (error) {
-          console.error('Error:', error);
-        });
-    }
-    window.addEventListener('DOMContentLoaded', function () {
-      const wishlist_re_order_btn = document.querySelector('.wishlist-re-order-btn');
-      const quantitySpinners = document.querySelectorAll('.wishlist-quantity-spinner');
-      let wishListCartData = [];
-      let newWishlistData = [];
-      quantitySpinnerElem(quantitySpinners, ".wishlist-minus__button", ".wishlist-plus__button", ".wishlist-quantity__input", ".wishlist-re-order-btn" );
-      if (wishlist_re_order_btn) {
-        wishlist_re_order_btn.addEventListener('click', function (event) {
+      document.querySelector('.recent-re-order-btn').addEventListener('click', function (event) {
         this.classList.add('loading');
         this.innerHTML = `<div class="loading-overlay__spinner">
-        <svg
-          aria-hidden="true"
-          focusable="false"
-          role="presentation"
-          class="spinner"
-          viewBox="0 0 66 66"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-        </svg>
-      </div>`;
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            role="presentation"
+            class="spinner"
+            viewBox="0 0 66 66"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+          </svg>
+        </div>`;
+        recentQuantitySpinners.forEach(recentQuantitySpinner => {
+          const quantityInput = recentQuantitySpinner.querySelector(".recentQuantity-input");
+          let closestVariantElement = recentQuantitySpinner.closest("[data-variant]");
+          let item = "";
+          item = closestVariantElement.dataset.variant;
+          let quantityValue = quantityInput.value;
+          recentListCartData.push({
+            id: item,
+            quantity: quantityValue
+          });
+        });
+        const reducedRecentListCartData = recentListCartData;
+        let result = reducedRecentListCartData.reduce((acc, curr) => {
+          let item = acc.find(item => item.id === curr.id);
+          if (item) {
+            item.quantity = curr.quantity;
+          } else {
+            acc.push(curr);
+            newRecentListData.push(curr);
+          }
+          return acc;
+        }, []);
+        newRecentListData = newRecentListData.filter(item => item.quantity > 0);
+        var data = {
+          items: newRecentListData
+        }
+        addToCart(data, this);
+      });
+
+      grid.classList.add(GRID_LOADED_CLASS);
+
+      const event = new CustomEvent('shopify-recent-order:init-product-grid', {
+        detail: { recent_order: recent_order }
+      });
+      document.dispatchEvent(event);
+    }
+  };
+
+  const recentOrderInitGrid = () => {
+    const grid = document.querySelector(recentOrdersSelectors.grid) || false;
+    const grid_viewAll = document.querySelector(recentOrdersSelectors.grid_viewAll) || false;
+    if (grid) recentOrderSetupGrid(grid);
+    if (grid_viewAll) recentOrderSetupGrid(grid_viewAll);
+  };
+
+  const getRecentOrder = () => {
+    if (recentPurchasedItemsJson != null) {
+      const recentOrders = recentPurchasedItemsJson;
+      let newRecentOrders = [];
+      let getHandle = [];
+      let result = recentOrders.reduce((acc, curr) => {
+        let item = acc.find(item => item.id === curr.id);
+        if (item) {
+          item.quantity += curr.quantity;
+        } else {
+          acc.push(curr);
+          newRecentOrders.push(curr);
+        }
+        return acc;
+      }, []);
+      result.forEach(item => {
+        getHandle.push(item.handle);
+      });
+      if (result) return getHandle;
+      return [];
+    }
+  };
+
+  const getRecentOrderID = () => {
+    const recentOrders = recentPurchasedItemsJson;
+    if (recentOrders != null) {
+      let result = recentOrders.reduce((acc, curr) => {
+        let item = acc.find(item => item.id === curr.id);
+        if (item) {
+          item.quantity += curr.quantity - 1;
+        } else {
+          acc.push(curr);
+        }
+        return acc;
+      }, []);
+      if (result) return result;
+      return [];
+    }
+  };
+
+  const nf_view_all_recent_orders = `{% render 'nf-view-recent-orders' %}`;
+  const nf_view_all_wishlist = `{% render 'nf-view-wishlist' %}`;
+  var recent_ordered_wrapper = document.querySelectorAll('.re_order_cta_btn');
+  for (var i = 0; i < recent_ordered_wrapper.length; i++) {
+    recent_ordered_wrapper[i].addEventListener('click', function (event) {
+      var variantID = parseInt(this.dataset.upsellId);
+      if (this.dataset.isAdded == 'false') {
+        this.dataset.isAdded = true;
+        addRecentlyProduct(this, variantID);
+      } else {
+        this.dataset.isAdded = false;
+        removeRecentlyProduct(this, variantID);
+      }
+    });
+  }
+
+  function addRecentlyProduct(target, variantID) {
+    target.querySelector('.icon-cart-v2').classList.add('hidden');
+    target.querySelector('.loading-overlay__spinner').classList.remove('hidden');
+    let formData = {
+      'items': [{
+        'id': variantID,
+        'quantity': 1,
+        'properties': { '': '' }
+      }]
+    };
+
+    addToCart(formData, this);
+  }
+
+  function removeRecentlyProduct(target, variantID) {
+    target.querySelector('.loading-overlay__spinner').classList.remove('hidden');
+    target.querySelector('.upsell-is-checked').classList.add('hidden');
+    let formData = {
+      'updates': {
+        [variantID]: 0
+      }
+    };
+
+    fetch('/cart/update.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        setTimeout(() => {
+          target.querySelector('.loading-overlay__spinner').classList.add('hidden');
+          target.querySelector('.upsell-is-checked').classList.add('hidden');
+          target.querySelector('.icon-cart-v2').classList.remove('hidden');
+        }, 1000);
+      })
+      .catch(function (error) {
+        console.error('Error:', error);
+      });
+  }
+
+  window.addEventListener('DOMContentLoaded', function () {
+    const wishlist_re_order_btn = document.querySelector('.wishlist-re-order-btn');
+    const quantitySpinners = document.querySelectorAll('.wishlist-quantity-spinner');
+    let wishListCartData = [];
+    let newWishlistData = [];
+    quantitySpinnerElem(quantitySpinners, ".wishlist-minus__button", ".wishlist-plus__button", ".wishlist-quantity__input", ".wishlist-re-order-btn");
+    if (wishlist_re_order_btn) {
+      wishlist_re_order_btn.addEventListener('click', function (event) {
+        this.classList.add('loading');
+        this.innerHTML = `<div class="loading-overlay__spinner">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            role="presentation"
+            class="spinner"
+            viewBox="0 0 66 66"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+          </svg>
+        </div>`;
         quantitySpinners.forEach((quantitySpinner) => {
           const quantityInput = quantitySpinner.querySelector('.wishlist-quantity__input');
           let item = quantitySpinner.parentNode.parentNode.dataset.variant;
@@ -437,33 +439,32 @@
         };
         addToCart(data, this);
       });
-      }
-      
-    });
-    document.addEventListener('DOMContentLoaded', function () {
-      const orderlist_re_order_btn = document.querySelector('.orderlist-re-order-btn');
-      const quantitySpinners = document.querySelectorAll('.orderlist-quantity-spinner');
-      let wishListCartData = [];
-      let newWishlistData = [];
-      quantitySpinnerElem(quantitySpinners, ".orderlist-minus__button", ".orderlist-plus__button", ".orderlist-quantity__input", ".orderlist-re-order-btn" );
-      if (orderlist_re_order_btn) {
-        orderlist_re_order_btn.addEventListener('click', function (event) {
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const orderlist_re_order_btn = document.querySelector('.orderlist-re-order-btn');
+    const quantitySpinners = document.querySelectorAll('.orderlist-quantity-spinner');
+    let wishListCartData = [];
+    let newWishlistData = [];
+    quantitySpinnerElem(quantitySpinners, ".orderlist-minus__button", ".orderlist-plus__button", ".orderlist-quantity__input", ".orderlist-re-order-btn");
+    if (orderlist_re_order_btn) {
+      orderlist_re_order_btn.addEventListener('click', function (event) {
         this.classList.add('loading');
         this.innerHTML = `<div class="loading-overlay__spinner">
-        <svg
-          aria-hidden="true"
-          focusable="false"
-          role="presentation"
-          class="spinner"
-          viewBox="0 0 66 66"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-        </svg>
-      </div>`;
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            role="presentation"
+            class="spinner"
+            viewBox="0 0 66 66"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+          </svg>
+        </div>`;
         quantitySpinners.forEach((quantitySpinner) => {
           const quantityInput = quantitySpinner.querySelector('.orderlist-quantity__input');
-
           let item = quantitySpinner.parentNode.parentNode.dataset.variant;
           let quantityValue = quantityInput.value;
           wishListCartData.push({
@@ -474,7 +475,6 @@
         const reducedWishlistCartData = wishListCartData;
         let result = reducedWishlistCartData.reduce((acc, curr) => {
           let item = acc.find((item) => item.id === curr.id);
-
           if (item) {
             item.quantity = curr.quantity;
           } else {
@@ -489,10 +489,9 @@
         };
         addToCart(data, this);
       });
-      }
-    });
+    }
+  });
 
-    
     const productSearch = () => {
       const searchInput = document.getElementById('productSearch');
       if (searchInput) {
@@ -537,67 +536,84 @@
         }
        
       }
-    document.addEventListener('DOMContentLoaded', () => {
-        initTabs();
-        initDialog();
-        recentOrderInitGrid();
-        productSearch();
-        toggleClearButton();
-        clearSearch();
+  document.addEventListener('DOMContentLoaded', () => {
+    initTabs();
+    initDialog();
+    recentOrderInitGrid();
+    productSearch();
+    toggleClearButton();
+    clearSearch();
+    document.addEventListener('draggableEvent', () => {
+      const items = document.querySelectorAll('#product__list .product_grid_item');
 
-        document.addEventListener('productListUpdated', () => {
-          const orderlist_re_order_btn = document.querySelector('.orderlist-re-order-btn');
-      const quantitySpinners = document.querySelectorAll('.orderlist-quantity-spinner');
-      let wishListCartData = [];
-      let newWishlistData = [];
-      quantitySpinnerElem(quantitySpinners, ".orderlist-minus__button", ".orderlist-plus__button", ".orderlist-quantity__input", ".orderlist-re-order-btn" );
-      if (orderlist_re_order_btn) {
-        orderlist_re_order_btn.addEventListener('click', function (event) {
-        this.classList.add('loading');
-        this.innerHTML = `<div class="loading-overlay__spinner">
-        <svg
-          aria-hidden="true"
-          focusable="false"
-          role="presentation"
-          class="spinner"
-          viewBox="0 0 66 66"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-        </svg>
-      </div>`;
-        quantitySpinners.forEach((quantitySpinner) => {
-          const quantityInput = quantitySpinner.querySelector('.orderlist-quantity__input');
-
-          let item = quantitySpinner.parentNode.parentNode.dataset.variant;
-          let quantityValue = quantityInput.value;
-          wishListCartData.push({
-            id: item,
-            quantity: quantityValue,
-          });
-        });
-        const reducedWishlistCartData = wishListCartData;
-        let result = reducedWishlistCartData.reduce((acc, curr) => {
-          let item = acc.find((item) => item.id === curr.id);
-
-          if (item) {
-            item.quantity = curr.quantity;
-          } else {
-            acc.push(curr);
-            newWishlistData.push(curr);
-          }
-          return acc;
-        }, []);
-        newWishlistData = newWishlistData.filter((item) => item.quantity > 0);
-        var data = {
-          items: newWishlistData,
-        };
-        addToCart(data, this);
+      items.forEach(item => {
+        item.setAttribute('draggable', true);
+        item.addEventListener('dragstart', dragStart);
+        item.addEventListener('drop', dropped);
+        item.addEventListener('dragenter', cancelDefault);
+        item.addEventListener('dragover', cancelDefault);
       });
+      function dragStart(e) {
+        var index = Array.from(e.target.parentNode.children).indexOf(e.target);
+        e.dataTransfer.setData('text/plain', index);
       }
-      });
+      function dropped(e) {
+        cancelDefault(e);
+        let oldIndex = e.dataTransfer.getData('text/plain');
+        let target = e.target.closest('.product_grid_item');
+        let newIndex = Array.from(target.parentNode.children).indexOf(target);
+
+        let items = Array.from(target.parentNode.children);
+        let dropped = items[oldIndex];
+
+        if (newIndex < oldIndex) {
+          target.parentNode.insertBefore(dropped, target);
+        } else {
+          target.parentNode.insertBefore(dropped, target.nextSibling);
+        }
+        updateProductOrderList();
+      }
+      function cancelDefault(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+
+      async function updateProductOrderList() {
+        const productListContainer = document.getElementById('product__list');
+        const productIds = Array.from(productListContainer.querySelectorAll('.wishlist_row'))
+          .map(row => row.getAttribute('data-product-id'));
+        await window.refreshTokenIfNeeded();
+        const currentAccountData = JSON.parse(localStorage.getItem('currentAccount'));
+        const { authToken } = window.customerOrdersApp;
+        const url = `${window.customerOrdersApp.urlProxy}api/v1/customer/product-list`;
+        const token = 'Bearer ' + authToken;
+        const productIdPayload = {
+          products: productIds,
+        }
+        const requestOptions = {
+          method: 'PUT',
+          headers: {
+            'Authorization': token,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(productIdPayload),
+        };
+
+        fetch(url, requestOptions)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.text();
+          })
+          .then(result => console.log('Product order updated successfully:', result))
+          .catch(error => console.error('Failed to update product order:', error));
+      }
     });
+  });
 </script>
+
 <div id="nf_drawer">
   <div class="nf-drawer nf-dialog">
     <div class="nf-drawer-content">
@@ -704,8 +720,6 @@
           </div>
         </div>
         {% comment %} Super User {% endcomment %}
-
-
         <div class="nf-tab-container">
           <button class="tab" data-target="orders">
             <span>{{ 'customer.account_drawer.orders_tab' | t }}</span>

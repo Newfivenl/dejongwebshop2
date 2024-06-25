@@ -1058,7 +1058,22 @@ svg {
 .order_section {
   height: 0;
 }
+.nf-my-orders__wrapper .nf-my-orders__table.recently_ordered .product-image-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
+.nf-my-orders__wrapper .nf-my-orders__table.recently_ordered .product-image-box::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="%234A4A4A" viewBox="0 0 320 512"><path d="M40 352l48 0c22.1 0 40 17.9 40 40l0 48c0 22.1-17.9 40-40 40l-48 0c-22.1 0-40-17.9-40-40l0-48c0-22.1 17.9-40 40-40zm192 0l48 0c22.1 0 40 17.9 40 40l0 48c0 22.1-17.9 40-40 40l-48 0c-22.1 0-40-17.9-40-40l0-48c0-22.1 17.9-40 40-40zM40 320c-22.1 0-40-17.9-40-40l0-48c0-22.1 17.9-40 40-40l48 0c22.1 0 40 17.9 40 40l0 48c0 22.1-17.9 40-40 40l-48 0zM232 192l48 0c22.1 0 40 17.9 40 40l0 48c0 22.1-17.9 40-40 40l-48 0c-22.1 0-40-17.9-40-40l0-48c0-22.1 17.9-40 40-40zM40 160c-22.1 0-40-17.9-40-40L0 72C0 49.9 17.9 32 40 32l48 0c22.1 0 40 17.9 40 40l0 48c0 22.1-17.9 40-40 40l-48 0zM232 32l48 0c22.1 0 40 17.9 40 40l0 48c0 22.1-17.9 40-40 40l-48 0c-22.1 0-40-17.9-40-40l0-48c0-22.1 17.9-40 40-40z"/></svg>');
+  display: flex;
+  content: '';
+  width: 15px;
+  height: 15px;
+  align-items: center;
+  background-repeat: no-repeat;
+  cursor: grab;
+}
 .nf-my-orders__wrapper .nf-my-orders__table.recently_ordered img {
   object-fit: cover;
   width: 51px !important;
@@ -1204,10 +1219,6 @@ svg {
   grid-template-columns: auto 1fr;
   padding: 5px 0;
   grid-gap: 10px;
-}
-.recently_ordered .wishlist_row:hover {
-  opacity: .8;
-  cursor: move;
 }
 .alternative__product-box .wishlist_row:not(:last-child) {
   border-bottom: solid 1px #f1f1f1;
@@ -2002,4 +2013,10 @@ width: 100%;
 }
 .current_customer--name{
   font-weight: bold;
+}
+
+.product_grid_item.dragging {
+  transform: scale(1.05);
+  z-index: 1000;
+  background-color: #FFF;
 }

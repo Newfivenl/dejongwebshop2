@@ -543,42 +543,93 @@
     productSearch();
     toggleClearButton();
     clearSearch();
+
+
+    const saveButton = document.getElementById('saveOrderBtn');
+    const cancelButton = document.getElementById('cancelOrderBtn');
+    let initialProductOrder = [];
+
+    function saveInitialProductOrder() {
+        const productListContainer = document.getElementById('product__list');
+        initialProductOrder = Array.from(productListContainer.querySelectorAll('.wishlist_row'))
+            .map(row => row.getAttribute('data-product-id'));
+    }
+
+    function restoreInitialProductOrder() {
+        const productListContainer = document.getElementById('product__list');
+        productListContainer.innerHTML = '';
+        initialProductOrder.forEach(productId => {
+            const product = document.querySelector(`[data-product-id="${productId}"]`).parentNode;
+            productListContainer.appendChild(product);
+        });
+    }
+    saveInitialProductOrder();
+
+
     document.addEventListener('draggableEvent', () => {
       const items = document.querySelectorAll('#product__list .product_grid_item');
 
       items.forEach(item => {
         item.setAttribute('draggable', true);
-        item.addEventListener('dragstart', dragStart);
-        item.addEventListener('drop', dropped);
-        item.addEventListener('dragenter', cancelDefault);
-        item.addEventListener('dragover', cancelDefault);
+            item.addEventListener('dragstart', dragStart);
+            item.addEventListener('dragend', dragEnd);
+            item.addEventListener('drop', dropped);
+            item.addEventListener('dragenter', cancelDefault);
+            item.addEventListener('dragover', cancelDefault);
       });
       function dragStart(e) {
-        var index = Array.from(e.target.parentNode.children).indexOf(e.target);
-        e.dataTransfer.setData('text/plain', index);
-      }
-      function dropped(e) {
-        cancelDefault(e);
-        let oldIndex = e.dataTransfer.getData('text/plain');
-        let target = e.target.closest('.product_grid_item');
-        let newIndex = Array.from(target.parentNode.children).indexOf(target);
-
-        let items = Array.from(target.parentNode.children);
-        let dropped = items[oldIndex];
-
-        if (newIndex < oldIndex) {
-          target.parentNode.insertBefore(dropped, target);
-        } else {
-          target.parentNode.insertBefore(dropped, target.nextSibling);
+            var index = Array.from(e.target.parentNode.children).indexOf(e.target);
+            e.dataTransfer.setData('text/plain', index);
+            e.target.classList.add('dragging');
+            setTimeout(() => {
+                e.target.style.display = 'none';
+            }, 0);
         }
-        updateProductOrderList();
-      }
-      function cancelDefault(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        return false;
-      }
 
+        function dragEnd(e) {
+            e.target.classList.remove('dragging');
+            e.target.style.display = 'block';
+        }
+
+        function dropped(e) {
+            cancelDefault(e);
+            let oldIndex = e.dataTransfer.getData('text/plain');
+            let target = e.target.closest('.product_grid_item');
+            let newIndex = Array.from(target.parentNode.children).indexOf(target);
+
+            let items = Array.from(target.parentNode.children);
+            let dropped = items[oldIndex];
+
+            if (newIndex < oldIndex) {
+                target.parentNode.insertBefore(dropped, target);
+            } else {
+                target.parentNode.insertBefore(dropped, target.nextSibling);
+            }
+
+            saveButton.style.display = 'inline-block';
+            cancelButton.style.display = 'inline-block';
+            saveButton.classList.remove('disabled');
+        }
+
+        function cancelDefault(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }
+
+        saveButton.addEventListener('click', async () => {
+        await updateProductOrderList();
+        saveButton.style.display = 'none';
+        cancelButton.style.display = 'none';
+        saveInitialProductOrder();
+    });
+
+    cancelButton.addEventListener('click', () => {
+        restoreInitialProductOrder();
+        saveButton.style.display = 'none';
+        cancelButton.style.display = 'none';
+        saveButton.classList.add('disabled');
+    });
       async function updateProductOrderList() {
         const productListContainer = document.getElementById('product__list');
         const productIds = Array.from(productListContainer.querySelectorAll('.wishlist_row'))
@@ -769,6 +820,10 @@
               </div>
               <div id="product__list">
 
+              </div>
+              <div class="save-cancel-btn--wrapper">
+                <button id="saveOrderBtn" class="save-order-btn disabled" style="display:none;">Save</button>
+                <button id="cancelOrderBtn" class="cancel-order-btn" style="display:none;">Cancel</button>
               </div>
               {% comment %} {% if customer.metafields.customer.product_list.value %}
                 <div class="nf-my-orders__table recently_ordered">

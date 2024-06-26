@@ -1367,6 +1367,26 @@ svg {
   top: 30px;
   font-size: 14px;
 }
+.account-drawer-notification-success{
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #41CB42;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 12px;
+  position: fixed;
+  z-index: 1;
+  right: 30px;
+  top: 30px;
+  font-size: 14px;
+}
+.account-drawer-notification-success.show{
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
 
 #account-drawer-notif.show {
   visibility: visible;
@@ -2019,4 +2039,28 @@ width: 100%;
   transform: scale(1.05);
   z-index: 1000;
   background-color: #FFF;
+}
+
+
+
+.nf-primary-button {
+  background-color: var(--color-primary-button-background-light);
+  box-shadow: none!important;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 14px;
+  border: 0;
+  cursor: pointer;
+  border: 1px solid var(--color-primary-button-background-light);
+
+}
+
+.nf-secondary-button {
+  background-color: transparent;
+  border: 1px solid currentColor;
+  box-shadow: none !important;
+  color: currentColor;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
 }

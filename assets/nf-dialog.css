@@ -1219,6 +1219,7 @@ svg {
   grid-template-columns: auto 1fr;
   padding: 5px 0;
   grid-gap: 10px;
+  background-color: #FFF;
 }
 .alternative__product-box .wishlist_row:not(:last-child) {
   border-bottom: solid 1px #f1f1f1;

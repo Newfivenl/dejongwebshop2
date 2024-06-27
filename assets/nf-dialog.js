@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // toggleDraftOrderButton();
     customerProfileName.innerHTML = `
     <div class="customer__wrapper">
-    <span class="customer__badge">Klant A</span>
+    <span class="customer__badge">Klant</span>
     <span class="customer__specs">
     ${currentAccountData.company ? `${currentAccountData.company}, ` : ``} 
     ${currentAccountData.firstName} ${currentAccountData.lastName}, 

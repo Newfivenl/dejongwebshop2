@@ -170,8 +170,16 @@ document.addEventListener('DOMContentLoaded', function () {
         accountDisplayName.email;
       updateSelectedAccountDisplay(displayAccountName);
       loadAccountData(selectedAccountName);
-      customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Klant</span><span class="customer__specs">${accountDisplayName.firstName} ${accountDisplayName.lastName}, ${accountDisplayName.address1 ? `${accountDisplayName.address1}, ` : ``}      ${accountDisplayName.city ? `${accountDisplayName.city}, ` : ``}
- ${accountDisplayName.company ? `${accountDisplayName.company}, ` : ``} ${accountDisplayName.email} </span></div>`;
+      customerProfileName.innerHTML = `
+      <div class="customer__wrapper">
+      <span class="customer__badge">Klant</span>
+      <span class="customer__specs">
+        ${accountDisplayName.company ? `${accountDisplayName.company}, ` : ``} 
+        ${accountDisplayName.firstName} ${accountDisplayName.lastName},
+        ${accountDisplayName.city ? `${accountDisplayName.city}, ` : ``}
+        ${accountDisplayName.address1 ? `${accountDisplayName.address1}, ` : ``}     
+        ${accountDisplayName.email} 
+     </span></div>`;
       revertBtn.style.display = 'inline-block';
       accountModal.close();
       ordersComponent.setState({ view: 'orders' });

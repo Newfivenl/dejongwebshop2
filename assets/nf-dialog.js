@@ -237,11 +237,11 @@ document.addEventListener('DOMContentLoaded', function () {
     data.forEach(customer => {
       const li = document.createElement('li');
       let liTextContent = [];
-      if (customer?.first_name && customer?.last_name) {
-        liTextContent.push(`${customer.first_name} ${customer.last_name}`);
-      }
       if (customer?.default_address?.company) {
         liTextContent.push(customer.default_address.company);
+      }
+      if (customer?.first_name && customer?.last_name) {
+        liTextContent.push(`${customer.first_name} ${customer.last_name}`);
       }
     if (customer?.default_address?.city) { // New line to include city
       liTextContent.push(customer.default_address.city); // New line to include city
@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (customer?.email) {
         liTextContent.push(customer.email);
       }
-      li.textContent = liTextContent.join(' | ').trim();
+      li.textContent = liTextContent.join(',  ').trim();
       li.dataset.value = customer.id;
 
       customerSearchDropdown.appendChild(li);

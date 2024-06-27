@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Super user settings with sample data 
   const switchAccountBtn = document.getElementById('switchAccountBtn');
-  const switchAccountBtn2 = document.getElementById('customer__badgeBtn');
+  const switchAccountBtn2 = document.getElementById('customerbadgeBtn');
   const accountModal = document.getElementById('accountModal');
   const cancelBtn = document.getElementById('cancelBtn');
   const confirmBtn = document.getElementById('confirmBtn');
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
       currentAccountData.email;
     updateSelectedAccountDisplay(displayName);
     // toggleDraftOrderButton();
-    customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge" id="customer__badgeBtn" >Customer</span><span>${currentAccountData.address1 ? `${currentAccountData.address1} |` : ``} ${currentAccountData.company ? `${currentAccountData.company} |` : ``} ${currentAccountData.email} </span></div>`;
+    customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge" id="customerbadgeBtn" >Customer</span><span>${currentAccountData.address1 ? `${currentAccountData.address1} |` : ``} ${currentAccountData.company ? `${currentAccountData.company} |` : ``} ${currentAccountData.email} </span></div>`;
     revertBtn.style.display = 'inline-block';
     // hideOrderTabs();
   } else {

@@ -82,6 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Super user settings with sample data 
   const switchAccountBtn = document.getElementById('switchAccountBtn');
+  const switchAccountBtn2 = document.getElementById('customer__badgeBtn');
   const accountModal = document.getElementById('accountModal');
   const cancelBtn = document.getElementById('cancelBtn');
   const confirmBtn = document.getElementById('confirmBtn');
@@ -101,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
       currentAccountData.email;
     updateSelectedAccountDisplay(displayName);
     // toggleDraftOrderButton();
-    customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Customer</span><span>${currentAccountData.address1 ? `${currentAccountData.address1} |` : ``} ${currentAccountData.company ? `${currentAccountData.company} |` : ``} ${currentAccountData.email} </span></div>`;
+    customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge" id="customer__badgeBtn" >Customer</span><span>${currentAccountData.address1 ? `${currentAccountData.address1} |` : ``} ${currentAccountData.company ? `${currentAccountData.company} |` : ``} ${currentAccountData.email} </span></div>`;
     revertBtn.style.display = 'inline-block';
     // hideOrderTabs();
   } else {
@@ -115,6 +116,14 @@ document.addEventListener('DOMContentLoaded', function () {
     window.location.reload();
   });
   switchAccountBtn.addEventListener('click', () => {
+    accountModal.showModal();
+    customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Customer</span><span>${customerSearchInput.value} </span></div>`;
+
+    fetchCustomerList();
+
+  });
+
+    switchAccountBtn2.addEventListener('click', () => {
     accountModal.showModal();
     customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Customer</span><span>${customerSearchInput.value} </span></div>`;
 

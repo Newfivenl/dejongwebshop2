@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
       currentAccountData.email;
     updateSelectedAccountDisplay(displayName);
     // toggleDraftOrderButton();
-    customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Klant</span><span class="customer__specs">${currentAccountData.firstName} ${currentAccountData.lastName}, ${currentAccountData.address1 ? `${currentAccountData.address1}, ` : ``} ${currentAccountData.company ? `${currentAccountData.company}, ` : ``} ${currentAccountData.email} </span></div>`;
+    customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Klant A</span><span class="customer__specs">${currentAccountData.firstName} ${currentAccountData.lastName}, ${currentAccountData.address1 ? `${currentAccountData.address1}, ` : ``} ${currentAccountData.company ? `${currentAccountData.company}, ` : ``} ${currentAccountData.email} </span></div>`;
     revertBtn.style.display = 'inline-block';
     // hideOrderTabs();
   } else {
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   switchAccountBtn.addEventListener('click', () => {
     accountModal.showModal();
-    customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Klant</span><span class="customer__specs">${currentAccountData.firstName} ${currentAccountData.lastName}, ${currentAccountData.address1 ? `${currentAccountData.address1}, ` : ``} ${currentAccountData.company ? `${currentAccountData.company}, ` : ``} ${currentAccountData.email} </span></div>`;
+    customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Klant B</span><span class="customer__specs">${currentAccountData.firstName} ${currentAccountData.lastName}, ${currentAccountData.address1 ? `${currentAccountData.address1}, ` : ``} ${currentAccountData.company ? `${currentAccountData.company}, ` : ``} ${currentAccountData.email} </span></div>`;
 
     fetchCustomerList();
 
@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function () {
         accountDisplayName.email;
       updateSelectedAccountDisplay(displayAccountName);
       loadAccountData(selectedAccountName);
-      customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Klant</span><span class="customer__specs">${accountDisplayName.firstName} ${accountDisplayName.lastName}, ${accountDisplayName.address1 ? `${accountDisplayName.address1}, ` : ``} ${accountDisplayName.company ? `${accountDisplayName.company}, ` : ``} ${accountDisplayName.email} </span></div>`;
+      customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Klant C</span><span class="customer__specs">${accountDisplayName.firstName} ${accountDisplayName.lastName}, ${accountDisplayName.address1 ? `${accountDisplayName.address1}, ` : ``} ${accountDisplayName.company ? `${accountDisplayName.company}, ` : ``} ${accountDisplayName.email} </span></div>`;
       revertBtn.style.display = 'inline-block';
       accountModal.close();
       ordersComponent.setState({ view: 'orders' });

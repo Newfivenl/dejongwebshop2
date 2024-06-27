@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   const drawer = document.querySelector('#nf_drawer');
-  const logoutBtn = document.querySelector('.logout_btn');
+  const logoutBtn = document.querySelector('.logout_btn') || null;
   const customerSearchInput = document.getElementById('customerSearchInput');
   const customerSearchDropdown = document.getElementById('customerSearchDropdown');
   let customers = [];
@@ -53,9 +53,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  var dropdown = document.querySelector('.nf-dropdown');
-  var content = document.querySelector('.nf-dropdown-content');
-  var caret = document.querySelector('.nf-dropdown-caret');
+  var dropdown = document.querySelector('.nf-dropdown') || null;
+  var content = document.querySelector('.nf-dropdown-content')  || null;
+  var caret = document.querySelector('.nf-dropdown-caret')  || null;
 
   if (dropdown) {
     dropdown.addEventListener('click', function (event) {
@@ -63,16 +63,13 @@ document.addEventListener('DOMContentLoaded', function () {
       content.classList.toggle('active');
       caret.classList.toggle('active');
     });
+    document.addEventListener('click', function (event) {
+      if (content.classList.contains('active')) {
+        content.classList.remove('active');
+        caret.classList.remove('active');
+      }
+    });
   }
-
-  document.addEventListener('click', function (event) {
-    if (content.classList.contains('active')) {
-      content.classList.remove('active');
-      caret.classList.remove('active');
-    }
-  });
-
-
 
   const queryParams = new URLSearchParams(window.location.search);
   const accountNumber = queryParams.get('accountnumber');
@@ -81,14 +78,14 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Super user settings with sample data 
-  const switchAccountBtn = document.getElementById('switchAccountBtn');
-  const accountModal = document.getElementById('accountModal');
-  const cancelBtn = document.getElementById('cancelBtn');
-  const confirmBtn = document.getElementById('confirmBtn');
-  const ordersComponent = document.querySelector('nf-customer-orders');
-  const selectedAccountDisplay = document.getElementById('selectedAccountDisplay');
-  const revertBtn = document.getElementById('revertBtn');
-  const customerProfileName = document.getElementById('customerProfileName');
+  const switchAccountBtn = document.getElementById('switchAccountBtn') || null;
+  const accountModal = document.getElementById('accountModal') || null;
+  const cancelBtn = document.getElementById('cancelBtn') || null;
+  const confirmBtn = document.getElementById('confirmBtn') || null;
+  const ordersComponent = document.querySelector('nf-customer-orders') || null;
+  const selectedAccountDisplay = document.getElementById('selectedAccountDisplay') || null;
+  const revertBtn = document.getElementById('revertBtn') || null;
+  const customerProfileName = document.getElementById('customerProfileName') || null;
   let currentAccount = localStorage.getItem('currentAccount') || null;
   let previousAccount = null;
 
@@ -101,34 +98,42 @@ document.addEventListener('DOMContentLoaded', function () {
       currentAccountData.email;
     updateSelectedAccountDisplay(displayName);
     // toggleDraftOrderButton();
-    customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Customer</span><span>${currentAccountData.address1 ? `${currentAccountData.address1} |` : ``} ${currentAccountData.company ? `${currentAccountData.company} |` : ``} ${currentAccountData.email} </span></div>`;
-    revertBtn.style.display = 'inline-block';
+    customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Customer</span><span>${currentAccountData.address1 ? `${currentAccountData.address1} |` : ``} ${currentAccountData.company ? `${currentAccountData.company} |` : ``}  ${currentAccountData.email ? `${currentAccountData.email} |`  : ``}  ${currentAccountData.city ? currentAccountData.city : `` }  </span></div>`;
+    if (revertBtn) {
+      revertBtn.style.display = 'inline-block';
+    }
     // hideOrderTabs();
   } else {
-    revertBtn.style.display = 'none';
+    if (revertBtn) {
+      revertBtn.style.display = 'none';
+    }
   }
   cancelBtn.addEventListener('click', () => {
     accountModal.close();
   });
-  logoutBtn.addEventListener('click', () => {
-    localStorage.removeItem('currentAccount');
-    window.location.reload();
-  });
-  switchAccountBtn.addEventListener('click', () => {
-    accountModal.showModal();
-    customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Customer</span><span>${customerSearchInput.value} </span></div>`;
-
-    fetchCustomerList();
-
-  });
-
-  revertBtn.addEventListener('click', () => {
-    localStorage.removeItem('currentAccount');
-    revertBtn.style.display = 'none';
-    window.location.reload();
-    console.log('rever button clicked');
-  });
-
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+      localStorage.removeItem('currentAccount');
+      window.location.reload();
+    });
+  }
+  if (switchAccountBtn) {
+    switchAccountBtn.addEventListener('click', () => {
+      accountModal.showModal();
+      customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Customer</span><span>${customerSearchInput.value} </span></div>`;
+  
+      fetchCustomerList();
+  
+    });
+  }
+  if (revertBtn) {
+    revertBtn.addEventListener('click', () => {
+      localStorage.removeItem('currentAccount');
+      revertBtn.style.display = 'none';
+      window.location.reload();
+      console.log('rever button clicked');
+    });
+  }
   confirmBtn.addEventListener('click', () => {
     const selectedAccountName = customerSearchInput.value;
     const selectedAccountId = customerSearchInput.dataset.value;
@@ -171,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function () {
         accountDisplayName.email;
       updateSelectedAccountDisplay(displayAccountName);
       loadAccountData(selectedAccountName);
-      customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Customer</span><span>${accountDisplayName.address1 ? `${accountDisplayName.address1} |` : ``} ${accountDisplayName.company ? `${accountDisplayName.company} |` : ``} ${accountDisplayName.email} </span></div>`;
+      customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Customer</span><span>${accountDisplayName.address1 ? `${accountDisplayName.address1} |` : ``} ${accountDisplayName.company ? `${accountDisplayName.company} |` : ``} ${accountDisplayName.email ? `${accountDisplayName.email} |`  : ``}  ${accountDisplayName.city ? accountDisplayName.city : `` } </span></div>`;
       revertBtn.style.display = 'inline-block';
       accountModal.close();
       ordersComponent.setState({ view: 'orders' });

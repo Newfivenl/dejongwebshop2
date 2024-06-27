@@ -2034,6 +2034,7 @@ width: 100%;
 }
 .current_customer--name{
   font-weight: bold;
+  margin-top: 10px;
 }
 
 .product_grid_item.dragging {

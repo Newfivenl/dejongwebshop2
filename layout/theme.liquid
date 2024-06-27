@@ -48,7 +48,7 @@
       href="{{ 'nf-dialog.css' | asset_url }}"
       media="print"
       onload="this.media='all'">
-      <script
+    <script
       defer
       type="module"
       src="{{ 'nf-dialog.js' | asset_url }}"></script>
@@ -93,23 +93,25 @@
     {% render 'theme__error-popup' %}
     {% render 'assets' with 'main.js' %}
     {% render 'theme__scripts' %}
-    
+
     {% unless customer.tags contains 'b2b' or canonical_url contains 'login' or canonical_url contains 'register' %}
       {% render 'nf-dialog' %}
     {% endunless %}
     <script>
       var isUserLoggedIn = {{ customer | json }};
       var loggedIn = localStorage.getItem('loggedIn');
-      var logoutLink = document.querySelector('.logout_link');
+      var logoutLink = document.querySelector('.logout_link') || null;
       if (isUserLoggedIn && !loggedIn) {
         document.querySelector('#nf_drawer').setAttribute('open', '');
         localStorage.setItem('loggedIn', 'true');
       } else {
         document.querySelector('#nf_drawer').removeAttribute('open');
       }
-      logoutLink.addEventListener('click', function (event) {
+      if (logoutLink) {
+        logoutLink.addEventListener('click', function (event) {
         localStorage.removeItem('loggedIn');
       });
+      }
     </script>
   </body>
 

@@ -108,6 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
     ${currentAccountData.company ? `${currentAccountData.company}, ` : ``} 
     ${currentAccountData.firstName} ${currentAccountData.lastName}, 
     ${currentAccountData.address1 ? `${currentAccountData.address1}, ` : ``} 
+    ${currentAccountData.city ? `${currentAccountData.city}, ` : ``} 
     ${currentAccountData.email} </span></div>`;
     revertBtn.style.display = 'inline-block';
     // hideOrderTabs();

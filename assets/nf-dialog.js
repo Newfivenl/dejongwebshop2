@@ -101,7 +101,16 @@ document.addEventListener('DOMContentLoaded', function () {
       currentAccountData.email;
     updateSelectedAccountDisplay(displayName);
     // toggleDraftOrderButton();
-    customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Klant A</span><span class="customer__specs">${currentAccountData.firstName} ${currentAccountData.lastName}, ${currentAccountData.address1 ? `${currentAccountData.address1}, ` : ``} ${currentAccountData.company ? `${currentAccountData.company}, ` : ``} ${currentAccountData.email} </span></div>`;
+    customerProfileName.innerHTML = `
+    <div class="customer__wrapper">
+    <span class="customer__badge">Klant A</span>
+    <span class="customer__specs">
+        ${accountDisplayName.company ? `${accountDisplayName.company}, ` : ``} 
+        ${accountDisplayName.firstName} ${accountDisplayName.lastName},
+        ${accountDisplayName.city ? `${accountDisplayName.city}, ` : ``}
+        ${accountDisplayName.address1 ? `${accountDisplayName.address1}, ` : ``}     
+        ${accountDisplayName.email} 
+    </span></div>`;
     revertBtn.style.display = 'inline-block';
     // hideOrderTabs();
   } else {

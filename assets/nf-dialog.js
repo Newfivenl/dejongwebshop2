@@ -227,6 +227,9 @@ document.addEventListener('DOMContentLoaded', function () {
       if (customer?.default_address?.company) {
         liTextContent.push(customer.default_address.company);
       }
+      if (customer?.address1) {
+        liTextContent.push(customer.address1);
+      }
       if (customer?.email) {
         liTextContent.push(customer.email);
       }

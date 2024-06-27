@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   switchAccountBtn.addEventListener('click', () => {
     accountModal.showModal();
-    customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Customer</span><span>${customerSearchInput.value} </span></div>`;
+    customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge" id="customerbadgeBtn">Customer</span><span>${customerSearchInput.value} </span></div>`;
 
     fetchCustomerList();
 
@@ -125,8 +125,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     switchAccountBtn2.addEventListener('click', () => {
     accountModal.showModal();
-    customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Customer</span><span>${customerSearchInput.value} </span></div>`;
-
     fetchCustomerList();
 
   });

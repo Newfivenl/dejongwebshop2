@@ -141,8 +141,8 @@
   top: 0;
   right: -20vw;
   bottom: 0;
-  width: 100vw;
-  max-width: 800px;
+  width: 120vw;
+  max-width: 1000px;
   background: white;
   transition: transform 300ms, right 300ms;
   transform: translateX(100%);

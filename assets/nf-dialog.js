@@ -116,7 +116,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   switchAccountBtn.addEventListener('click', () => {
     accountModal.showModal();
-    customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Klant B</span><span class="customer__specs">${currentAccountData.firstName} ${currentAccountData.lastName}, ${currentAccountData.address1 ? `${currentAccountData.address1}, ` : ``} ${currentAccountData.company ? `${currentAccountData.company}, ` : ``} ${currentAccountData.email} </span></div>`;
 
     fetchCustomerList();
 

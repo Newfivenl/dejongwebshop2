@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
       currentAccountData.email;
     updateSelectedAccountDisplay(displayName);
     // toggleDraftOrderButton();
-    customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Customer</span><span>${currentAccountData.address1 ? `${currentAccountData.address1} |` : ``} ${currentAccountData.company ? `${currentAccountData.company} |` : ``} ${currentAccountData.email} </span></div>`;
+    customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">' ${currentAccountData.firstName} ${currentAccountData.lastName}'</span><span>${currentAccountData.address1 ? `${currentAccountData.address1} |` : ``} ${currentAccountData.company ? `${currentAccountData.company} |` : ``} ${currentAccountData.email} </span></div>`;
     revertBtn.style.display = 'inline-block';
     // hideOrderTabs();
   } else {

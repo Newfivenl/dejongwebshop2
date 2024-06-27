@@ -227,8 +227,8 @@ document.addEventListener('DOMContentLoaded', function () {
       if (customer?.default_address?.company) {
         liTextContent.push(customer.default_address.company);
       }
-    if (customer?.default_address?.address1) { // Adjusted line
-      liTextContent.push(customer.default_address.address1); // Adjusted line
+    if (customer?.default_address?.city) { // New line to include city
+      liTextContent.push(customer.default_address.city); // New line to include city
     }
       if (customer?.email) {
         liTextContent.push(customer.email);

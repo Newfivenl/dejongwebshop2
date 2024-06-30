@@ -141,8 +141,8 @@
   top: 0;
   right: -20vw;
   bottom: 0;
-  width: 80vw;
-  max-width: 800px;
+  width: 120vw;
+  max-width: 1000px;
   background: white;
   transition: transform 300ms, right 300ms;
   transform: translateX(100%);
@@ -1584,6 +1584,7 @@ svg {
 .login-uspblock {
   display: inline-flex;
   width: 100%;
+  margin: 0px;
  }
 @media screen and (max-width: 1200px) {
 
@@ -1880,7 +1881,7 @@ summary::marker {
 .customer__badge{
   background: var(--color-primary-button-background-light);
   padding: 5px;
-  font-size: 9px;
+  font-size: 11px;
   font-weight: bold;
   text-transform: uppercase;
   display: inline-block;
@@ -1956,7 +1957,7 @@ summary::marker {
 }
 
 #accountModal {
-  max-width: 450px;
+  max-width: 850px;
   width: 100%;
   align-items: center;
   justify-content: center;

@@ -431,6 +431,8 @@
 
    async function createDraftOrder(event) {
                   event.preventDefault();
+                  await window.refreshTokenIfNeeded();
+
                   const button = document.getElementById('createDraftOrderBtn');
                   const url = `${window.customerOrdersApp.urlProxy}api/v1/order/draft`;
                   const token = 'Bearer ' + window.customerOrdersApp.authToken;

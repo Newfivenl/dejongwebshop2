@@ -101,7 +101,8 @@ document.addEventListener('DOMContentLoaded', function () {
     customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Customer</span><span>
     ${currentAccountData.company ? `${currentAccountData.company} ,` : ``} 
     ${currentAccountData.city ? `${currentAccountData.city} ,` : ``} 
-    ${currentAccountData.displayName ? `${currentAccountData.displayName} ,` : ``} 
+    ${currentAccountData.firstName ? `${currentAccountData.firstName}` : ``} 
+    ${currentAccountData.LastName ? `${currentAccountData.lastName} ,` : ``} 
     ${currentAccountData.address1 ? `${currentAccountData.address1} ,` : ``}   
     ${currentAccountData.email ? `${currentAccountData.email} ,`  : ``} </span></div>`;
     if (revertBtn) {

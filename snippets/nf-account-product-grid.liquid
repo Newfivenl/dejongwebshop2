@@ -34,7 +34,7 @@
           {% endif %}
           {% if product.variants[0].available %}
             {% if current_variant.sku != blank %}
-              <div class="sku">SKU: {{ current_variant.sku }}</div>
+              <div class="sku">SKUs: {{ current_variant.sku }}</div>
            
             {% endif %}
               {% assign dozen_op_pallet_value = product.metafields.other.specifications_dozen_op_pallet.value %}

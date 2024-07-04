@@ -501,9 +501,9 @@ class NFCustomerOrders extends HTMLElement {
         </div>
         <div class="inventory-box">
           <div class="volume_stocks align-items-center">
-            ${item.product?.metafieldWooShort_description_plain ? `<div class="account-content">
+            ${item.product?.metafieldOtherPiecesPerBox ? `<div class="account-content">
                 <span><!-- Icon here if needed --></span>
-                ${item.product?.metafieldWooShort_description_plain ?? ""} pieces per box
+                ${item.product?.metafieldOtherPiecesPerBox ?? ""} pieces per box
               </div>` : ''
           }
             ${isAvailable && item.variant?.sku ? `&nbsp; | &nbsp;<div class="sku">SKU: ${item.variant.sku}</div>` : ''}

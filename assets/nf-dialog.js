@@ -183,12 +183,12 @@ document.addEventListener('DOMContentLoaded', function () {
       updateSelectedAccountDisplay(displayAccountName);
       loadAccountData(selectedAccountName);
       customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Customer</span><span>
-      ${accountDisplayName.company ? `${accountDisplayName.company} |` : ``} 
+      ${accountDisplayName.company ? `${accountDisplayName.company},` : ``} 
       ${accountDisplayName.city ? accountDisplayName.city : `` } 
-      ${accountDisplayName.firstName ? `${accountDisplayName.firstName} |` : ``} 
-      ${accountDisplayName.lastName ? `${accountDisplayName.lastName} |` : ``} 
-      ${accountDisplayName.address1 ? `${accountDisplayName.address1} |` : ``} 
-      ${accountDisplayName.email ? `${accountDisplayName.email} |`  : ``}  
+      ${accountDisplayName.firstName ? `${accountDisplayName.firstName}, ` : ``} 
+      ${accountDisplayName.lastName ? `${accountDisplayName.lastName}, ` : ``} 
+      ${accountDisplayName.address1 ? `${accountDisplayName.address1}, ` : ``} 
+      ${accountDisplayName.email ? `${accountDisplayName.email}, `  : ``}  
       </span></div>`;
 
 

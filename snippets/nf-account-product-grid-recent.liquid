@@ -36,10 +36,8 @@
             </div>
             &nbsp; | &nbsp;
           {% else %}
-            <div class="account-content">
-              <span>{% render 'icon-box-adjusted' %}</span>x
-              {{product.metafields.woo.short_description_plain.value }}
-            </div>
+            <div class="account-content">              
+               <div class="sku">{{product.metafields.woo.short_description_plain.value }}</div>
             &nbsp; | &nbsp;
           {% endif %}
           

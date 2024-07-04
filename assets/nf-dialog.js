@@ -99,11 +99,11 @@ document.addEventListener('DOMContentLoaded', function () {
     updateSelectedAccountDisplay(displayName);
     // toggleDraftOrderButton();
     customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Customer</span><span>
-    ${currentAccountData.company ? `${currentAccountData.company} ,` : ``} 
-    ${currentAccountData.city ? `${currentAccountData.city} ,` : ``} 
+    ${currentAccountData.company ? `${currentAccountData.company},` : ``} 
+    ${currentAccountData.city ? `${currentAccountData.city},` : ``} 
     ${currentAccountData.firstName ? `${currentAccountData.firstName}` : ``} 
-    ${currentAccountData.lastName ? `${currentAccountData.lastName} ,` : ``} 
-    ${currentAccountData.address1 ? `${currentAccountData.address1} ,` : ``}   
+    ${currentAccountData.lastName ? `${currentAccountData.lastName},` : ``} 
+    ${currentAccountData.address1 ? `${currentAccountData.address1},` : ``}   
     ${currentAccountData.email ? `${currentAccountData.email}`  : ``} </span></div>`;
     if (revertBtn) {
       revertBtn.style.display = 'inline-block';

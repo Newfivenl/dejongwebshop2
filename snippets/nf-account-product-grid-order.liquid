@@ -24,7 +24,7 @@
       </div>
       {%- assign current_variant = line_item.product.selected_or_first_available_variant -%}
       <div class="inventory-box">
-        <div class="volume_stocks align-items-center x">
+        <div class="volume_stocks align-items-center">
 
           {% if line_item.product.metafields.other.Pieces_per_box.value != blank %}
             <div class="account-content">
@@ -103,7 +103,7 @@
             {% endif %}
             {%- assign current_variant = item.selected_or_first_available_variant -%}
             <div class="inventory-box">
-              <div class="volume_stocks align-items-center x">
+              <div class="volume_stocks align-items-center">
                 {% if item.metafields.other.Pieces_per_box.value != blank %}
                   <div class="account-content">
                     <span>{% render 'icon-box-adjusted' %}</span>
@@ -114,7 +114,7 @@
                 {% if item.variants[0].available %}
                   {% if current_variant.sku != blank %}
                     
-                    <div class="sku">SKU: {{ current_variant.sku }}</div>
+                    <div class="sku">SKu: {{ current_variant.sku }}</div>
                   {% endif %}
                 {% endif %}
               </div>

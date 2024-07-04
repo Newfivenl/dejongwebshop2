@@ -102,8 +102,8 @@ document.addEventListener('DOMContentLoaded', function () {
     ${currentAccountData.company ? `${currentAccountData.company} ,` : ``} 
     ${currentAccountData.city ? `${currentAccountData.city} ,` : ``} 
     ${currentAccountData.displayName ? `${currentAccountData.displayName} ,` : ``} 
-    ${currentAccountData.address1 ? `${currentAccountData.address1} |` : ``}   
-    ${currentAccountData.email ? `${currentAccountData.email} |`  : ``} </span></div>`;
+    ${currentAccountData.address1 ? `${currentAccountData.address1} ,` : ``}   
+    ${currentAccountData.email ? `${currentAccountData.email} ,`  : ``} </span></div>`;
     if (revertBtn) {
       revertBtn.style.display = 'inline-block';
     }

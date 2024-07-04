@@ -32,10 +32,17 @@
           {% if product.metafields.other.Pieces_per_box.value != blank %}
             <div class="account-content">
               <span>{% render 'icon-box-adjusted' %}</span>
-              {{ 'products.product.inhoud_stuks' | t: stuks: product.metafields.other.Pieces_per_box.value }}
+              {{ 'products.product.pieces_per_box' | t: product.metafields.other.Pieces_per_box.value }}
+            </div>
+            &nbsp; | &nbsp;
+          {% else %}
+            <div class="account-content">
+              <span>{% render 'icon-box-adjusted' %}</span>
+              {{product.metafields.woo.short_description_plain.value }}
             </div>
             &nbsp; | &nbsp;
           {% endif %}
+          
           {% if product.variants[0].available %}
             {% if current_variant.sku != blank %}
               <div class="sku">SKU: {{ current_variant.sku }}</div>

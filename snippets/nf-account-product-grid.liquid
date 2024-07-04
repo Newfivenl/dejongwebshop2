@@ -50,7 +50,7 @@
             {%- for variant in product.variants -%}
               {%- assign inventory_count = inventory_count | plus: variant.inventory_quantity -%}
             {%- endfor -%}
-            <div class="sku">{{ 'customer.account_drawer.stocked' | t }}: {{ inventory_count }}</div>
+            <div class="sku"> | {{ 'customer.account_drawer.stocked' | t }}: {{ inventory_count }}</div>
           {% endif %}
         </div>
         {% unless product.variants[0].available %}
@@ -132,7 +132,8 @@
                 {% if item.variants[0].available %}
                   {% if current_variant.sku != blank %}
                     &nbsp; | &nbsp;
-                    <div class="sku">SKUs: {{ current_variant.sku }}</div>
+                    <div class="sku">
+                      s: {{ current_variant.sku }}</div>
                   {% endif %}
                 {% endif %}
                 {% if customer.tags contains 'custom' %}
@@ -141,7 +142,7 @@
                   {%- for variant in product.variants -%}
                     {%- assign inventory_count = inventory_count | plus: variant.inventory_quantity -%}
                   {%- endfor -%}
-                  <div class="sku">{{ 'customer.account_drawer.stocked' | t }}: {{ inventory_count }}</div>
+                  <div class="sku"> | {{ 'customer.account_drawer.stocked' | t }}: {{ inventory_count }}</div>
                 {% endif %}
               </div>
             </div>

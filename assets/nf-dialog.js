@@ -182,7 +182,27 @@ document.addEventListener('DOMContentLoaded', function () {
         accountDisplayName.email;
       updateSelectedAccountDisplay(displayAccountName);
       loadAccountData(selectedAccountName);
-      customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Customer</span><span>${accountDisplayName.address1 ? `${accountDisplayName.address1} |` : ``} ${accountDisplayName.company ? `${accountDisplayName.company} |` : ``} ${accountDisplayName.email ? `${accountDisplayName.email} |`  : ``}  ${accountDisplayName.city ? accountDisplayName.city : `` } </span></div>`;
+      customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Customer</span><span>
+      ${accountDisplayName.company ? `${accountDisplayName.company}, ` : ``} 
+      ${accountDisplayName.city ? `${accountDisplayName.city} , ` : ``} 
+      ${accountDisplayName.firstName ? `${accountDisplayName.firstName}, ` : ``} 
+      ${accountDisplayName.lastName ? `${accountDisplayName.lastName}, ` : ``} 
+      ${accountDisplayName.address1 ? `${accountDisplayName.address1}, ` : ``} 
+      ${accountDisplayName.email ? `${accountDisplayName.email}`  : ``}  
+      </span></div>`;
+
+
+    customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Customer</span><span>
+    ${currentAccountData.company ? `${currentAccountData.company},` : ``} 
+    ${currentAccountData.city ? `${currentAccountData.city},` : ``} 
+    ${currentAccountData.firstName ? `${currentAccountData.firstName}` : ``} 
+    ${currentAccountData.lastName ? `${currentAccountData.lastName},` : ``} 
+    ${currentAccountData.address1 ? `${currentAccountData.address1},` : ``}   
+    ${currentAccountData.email ? `${currentAccountData.email}`  : ``} </span></div>`;
+
+
+
+      
       revertBtn.style.display = 'inline-block';
       accountModal.close();
       ordersComponent.setState({ view: 'orders' });

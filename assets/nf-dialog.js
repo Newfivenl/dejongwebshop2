@@ -255,7 +255,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (customer?.email) {
         liTextContent.push(customer.email);
       }
-      li.textContent = liTextContent.join(',  ').trim();
+      li.textContent = liTextContent.join(', ').trim();
       li.dataset.value = customer.id;
 
       customerSearchDropdown.appendChild(li);

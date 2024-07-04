@@ -500,7 +500,7 @@ class NFCustomerOrders extends HTMLElement {
           ${isAvailable ? `<p class="price">&euro;${productPrice.replace(".", ",")}</p>` : `<div class="account-outofstock">UITVERKOCHT</div>`}
         </div>
         <div class="inventory-box">
-          <div class="volume_stocks align-items-center">
+          <div class="volume_stocks align-items-center x">
             ${item.product?.metafieldOtherPiecesPerBox ? `<div class="account-content">
                 <span><!-- Icon here if needed --></span>
                 ${item.product?.metafieldOtherPiecesPerBox ?? ""} pieces per box

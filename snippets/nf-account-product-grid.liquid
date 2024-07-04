@@ -24,7 +24,7 @@
       </div>
       {%- assign current_variant = product.selected_or_first_available_variant -%}
       <div class="inventory-box">
-        <div class="volume_stocks align-items-center">
+        <div class="volume_stocks align-items-center x">
           {% if product.metafields.other.Pieces_per_box.value != blank %}
             <div class="account-content">
               <span>{% render 'icon-box-adjusted' %}</span>
@@ -121,7 +121,7 @@
             {% endif %}
             {%- assign current_variant = item.selected_or_first_available_variant -%}
             <div class="inventory-box">
-              <div class="volume_stocks align-items-center">
+              <div class="volume_stocks align-items-center x">
                 {% if item.metafields.other.Pieces_per_box.value != blank %}
                   <div class="account-content">
                     <span>{% render 'icon-box-adjusted' %}</span>

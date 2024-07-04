@@ -191,18 +191,7 @@ document.addEventListener('DOMContentLoaded', function () {
       ${accountDisplayName.email ? `${accountDisplayName.email}`  : ``}  
       </span></div>`;
 
-
-    customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Customer</span><span>
-    ${currentAccountData.company ? `${currentAccountData.company},` : ``} 
-    ${currentAccountData.city ? `${currentAccountData.city},` : ``} 
-    ${currentAccountData.firstName ? `${currentAccountData.firstName}` : ``} 
-    ${currentAccountData.lastName ? `${currentAccountData.lastName},` : ``} 
-    ${currentAccountData.address1 ? `${currentAccountData.address1},` : ``}   
-    ${currentAccountData.email ? `${currentAccountData.email}`  : ``} </span></div>`;
-
-
-
-      
+     
       revertBtn.style.display = 'inline-block';
       accountModal.close();
       ordersComponent.setState({ view: 'orders' });

@@ -89,8 +89,20 @@
             "position": "right"
           }
         },
+        "text_nphBzq": {
+          "type": "text",
+          "settings": {
+            "content": "<p><strong>Op aanvraag: Neem <\/strong><a href=\"\/pages\/contact\" title=\"Contact\"><strong>contact<\/strong><\/a><strong> met ons op voor de mogelijkheden!<\/strong><\/p>",
+            "spacing_top": 10,
+            "spacing_bottom": 10,
+            "color_scheme": "color__bg-body color__text",
+            "style_border": "",
+            "position": "right"
+          }
+        },
         "b78b560b-e1c2-428d-ad73-fb5f8aac6d53": {
           "type": "add",
+          "disabled": true,
           "settings": {
             "content": "",
             "spacing_top": 0,
@@ -257,6 +269,7 @@
         "text_ALtDtT",
         "liquid_RUKbKy",
         "b78b560b-e1c2-428d-ad73-fb5f8aac6d58",
+        "text_nphBzq",
         "b78b560b-e1c2-428d-ad73-fb5f8aac6d53",
         "123fd04c-91f3-4248-a65a-614e2f64fdeb",
         "9f1692ea-ccb9-4e4c-9c83-7a6ae53392aa",

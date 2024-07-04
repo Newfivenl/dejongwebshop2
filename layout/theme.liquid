@@ -1,6 +1,6 @@
-{%- comment %}<locksmith:e0d8>{% endcomment -%}
-{%- include 'locksmith' -%}
-{%- comment %}</locksmith:e0d8>{% endcomment -%}
+{%- comment %}<locksmith:e0f7>{% endcomment -%}
+  {%- include 'locksmith' -%}
+{%- comment %}</locksmith:e0f7>{% endcomment -%}
 
 <!DOCTYPE html>
 <html
@@ -11,6 +11,7 @@
     handleSharedCart(); 
     updateCart(false);">
   <head>
+{{ locksmith_initializations }}
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16499698235"></script>
 <script>
@@ -22,7 +23,6 @@
 </script>
 
     
-    {{ locksmith_initializations }}
     {% render 'theme__meta' %}
     <link
       rel="preconnect"

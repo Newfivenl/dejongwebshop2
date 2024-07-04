@@ -191,11 +191,7 @@ document.addEventListener('DOMContentLoaded', function () {
       ${accountDisplayName.email ? `${accountDisplayName.email}`  : ``}  
       </span></div>`;
 
-
-
-
-
-      
+     
       revertBtn.style.display = 'inline-block';
       accountModal.close();
       ordersComponent.setState({ view: 'orders' });

@@ -102,9 +102,9 @@ document.addEventListener('DOMContentLoaded', function () {
     ${currentAccountData.company ? `${currentAccountData.company} ,` : ``} 
     ${currentAccountData.city ? `${currentAccountData.city} ,` : ``} 
     ${currentAccountData.firstName ? `${currentAccountData.firstName}` : ``} 
-    ${currentAccountData.LastName ? `${currentAccountData.lastName} ,` : ``} 
+    ${currentAccountData.lastName ? `${currentAccountData.lastName} ,` : ``} 
     ${currentAccountData.address1 ? `${currentAccountData.address1} ,` : ``}   
-    ${currentAccountData.email ? `${currentAccountData.email} ,`  : ``} </span></div>`;
+    ${currentAccountData.email ? `${currentAccountData.email}`  : ``} </span></div>`;
     if (revertBtn) {
       revertBtn.style.display = 'inline-block';
     }

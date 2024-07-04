@@ -98,7 +98,12 @@ document.addEventListener('DOMContentLoaded', function () {
       currentAccountData.email;
     updateSelectedAccountDisplay(displayName);
     // toggleDraftOrderButton();
-    customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Customer</span><span>${currentAccountData.address1 ? `${currentAccountData.address1} |` : ``} ${currentAccountData.company ? `${currentAccountData.company} |` : ``}  ${currentAccountData.email ? `${currentAccountData.email} |`  : ``}  ${currentAccountData.city ? currentAccountData.city : `` }  </span></div>`;
+    customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Customer</span><span>
+    ${currentAccountData.company ? `${currentAccountData.company} ,` : ``} 
+    ${currentAccountData.city ? `${currentAccountData.city} ,` : ``} 
+    ${currentAccountData.displayName ? `${currentAccountData.displayName} ,` : ``} 
+    ${currentAccountData.address1 ? `${currentAccountData.address1} |` : ``}   
+    ${currentAccountData.email ? `${currentAccountData.email} |`  : ``} </span></div>`;
     if (revertBtn) {
       revertBtn.style.display = 'inline-block';
     }

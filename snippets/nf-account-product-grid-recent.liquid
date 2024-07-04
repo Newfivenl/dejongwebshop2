@@ -43,7 +43,7 @@
           
           {% if product.variants[0].available %}
             {% if current_variant.sku != blank %}
-              <div class="sku">SKU: {{ current_variant.sku }}</div>
+              <div class="sku">SKUs: {{ current_variant.sku }}</div>
               &nbsp; | &nbsp;
             {% endif %}
             {% if product.metafields.other.specifications_dozen_op_pallet.value != blank %}
@@ -134,7 +134,7 @@
                 {% if item.variants[0].available %}
                   {% if current_variant.sku != blank %}
                     &nbsp; | &nbsp;
-                    <div class="sku">SKU: {{ current_variant.sku }}</div>
+                    <div class="sku">SKUs: {{ current_variant.sku }}</div>
                     &nbsp;|&nbsp;
                   {% endif %}
                 {% endif %}

@@ -232,13 +232,15 @@
       </div>
     {% endif %}
   {% else %}
+ {% unless product.title contains 'bedrukt' %}
     <div class="no-js--hide md:block group-hover:opacity-100 group-focus-within:opacity-100 animation-500 group-hover:translate-y-0 group-focus-within:translate-y-0 absolute hidden w-full px-4 pb-4 -mt-16 translate-y-2 opacity-0">
       <button type="button" 
         tabindex="-1"
-        class="!w-full btn btn--small btn--plain" >
+        class="!w-full btn btn--small btn--plain">
         {{ 'products.general.sold_out' | t }}
       </button>
     </div>
+  {% endunless %}
   {% endif %}
   
   {%- comment -%}content{%- endcomment -%}

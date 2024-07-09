@@ -445,7 +445,7 @@
                     return;
                   }
                   const payload = {
-                    customer_id: JSON.parse(localStorage.getItem('currentAccount')).customerID ?? '',
+                    customer_id: JSON.parse(localStorage.getItem('currentAccount'))?.customerID ?? '{{ customer.id }}',
                     line_items: cart.items.map(item => ({
                       variant_id: item.variant_id,
                       quantity: item.quantity

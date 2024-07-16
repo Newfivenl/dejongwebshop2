@@ -332,40 +332,45 @@ class NFCustomerOrders extends HTMLElement {
     this.state.orders = orders;
     this.render();
   }
-  fetchProductOrderList = async () => {
-    // Show loading spinner
-    const productListContainer = document.getElementById("product__list");
-    productListContainer.innerHTML = `Loading...`;
+const fetchProductOrderList = async () => {
+  // Show loading spinner
+  const productListContainer = document.getElementById("product__list");
+  productListContainer.innerHTML = `<div class="spinner"></div>`;
+
+  try {
     await window.refreshTokenIfNeeded();
     const currentAccountData = JSON.parse(localStorage.getItem('currentAccount'));
     const { authToken } = window.customerOrdersApp;
-    const url = `${window.customerOrdersApp.urlProxy}api/v1/liquid/product-list?email=` + encodeURIComponent(currentAccountData?.email ?? window.String.customerEmail);
+    const email = encodeURIComponent(currentAccountData?.email ?? window.String.customerEmail);
+    const url = `${window.customerOrdersApp.urlProxy}api/v1/liquid/product-list?email=${email}`;
     const token = 'Bearer ' + authToken;
 
-    try {
-      const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-          'Authorization': token,
-          'Content-Type': 'text/html'
-        }
-      });
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Authorization': token,
+        'Content-Type': 'text/html'
       }
-      const data = await response.text();
-      productListContainer.innerHTML = data;
-      const event = new CustomEvent('productListUpdated');
-      const dragEvent = new CustomEvent('draggableEvent');
-      document.dispatchEvent(event);
-      document.dispatchEvent(dragEvent);
+    });
 
-
-    } catch (error) {
-      console.error('Failed to fetch products:', error);
-      productListContainer.innerHTML = `<p>Error loading products. Please try again later.</p>`;
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
     }
-  };
+
+    const data = await response.text();
+    productListContainer.innerHTML = data;
+
+    const event = new CustomEvent('productListUpdated');
+    const dragEvent = new CustomEvent('draggableEvent');
+    document.dispatchEvent(event);
+    document.dispatchEvent(dragEvent);
+
+  } catch (error) {
+    console.error('Failed to fetch products:', error);
+    productListContainer.innerHTML = `<p>Error loading products. Please try again later.</p>`;
+  }
+};
+
 
   initComponent() {
     this.render();

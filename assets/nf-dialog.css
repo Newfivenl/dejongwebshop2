@@ -2110,10 +2110,8 @@ width: 100%;
   border-radius: 50%;
   width: 80px;
   height: 80px;
-  animation: spin 4s linear infinite;
-  margin: 0 auto; /* Center the spinner */
-  padding-top: 50px;
-}
+  animation: spin 1s linear infinite;
+margin-top: 50px;}
 
 @keyframes spin {
   0% { transform: rotate(0deg); }

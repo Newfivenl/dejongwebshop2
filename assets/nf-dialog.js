@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   }
-  // Customer Tag Checker
+  
   if (!window.String.customerTags?.includes(window.String.COA_ROLE_ADMIN) && localStorage.getItem('currentAccount')) {
     localStorage.removeItem('currentAccount');
     window.location.reload();
@@ -77,7 +77,6 @@ document.addEventListener('DOMContentLoaded', function () {
     drawer.setAttribute('open', '');
   }
 
-  // Super user settings with sample data 
   const switchAccountBtn = document.getElementById('switchAccountBtn') || null;
   const accountModal = document.getElementById('accountModal') || null;
   const cancelBtn = document.getElementById('cancelBtn') || null;
@@ -92,12 +91,10 @@ document.addEventListener('DOMContentLoaded', function () {
   let currentAccountData = JSON.parse(localStorage.getItem('currentAccount')) ?? '';
   if (currentAccountData) {
     currentAccount = currentAccountData.customerID;
-    // loadAccountData(currentAccountData.email);
     const displayName = (currentAccountData.firstName && currentAccountData.lastName) ?
       `${currentAccountData.firstName} ${currentAccountData.lastName}` :
       currentAccountData.email;
     updateSelectedAccountDisplay(displayName);
-    // toggleDraftOrderButton();
     customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Customer</span><span>
     ${currentAccountData.company ? `${currentAccountData.company},` : ``} 
     ${currentAccountData.city ? `${currentAccountData.city},` : ``} 
@@ -108,7 +105,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (revertBtn) {
       revertBtn.style.display = 'inline-block';
     }
-    // hideOrderTabs();
   } else {
     if (revertBtn) {
       revertBtn.style.display = 'none';
@@ -127,9 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
     switchAccountBtn.addEventListener('click', () => {
       accountModal.showModal();
       customerProfileName.innerHTML = `<div class="customer__wrapper"><span class="customer__badge">Customer</span><span>${customerSearchInput.value} </span></div>`;
-  
       fetchCustomerList();
-  
     });
   }
   if (revertBtn) {
@@ -143,18 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
   confirmBtn.addEventListener('click', () => {
     const selectedAccountName = customerSearchInput.value;
     const selectedAccountId = customerSearchInput.dataset.value;
-    console.log('Selected Account ID:', selectedAccountId);
-    console.log('Customers array:', customers);
-
-    // Log each customer ID to compare
-    customers.forEach((customer, index) => {
-      console.log(`Customer ${index} ID:`, customer.id);
-      console.log(`Does ${customer.id} equal ${selectedAccountId}?`, customer.id == selectedAccountId);
-    });
-
     const selectedCustomer = customers.find(customer => customer.id == selectedAccountId);
-    console.log('Selected customer:', selectedCustomer);
-
     if (!selectedCustomer) {
       console.error('Selected customer not found');
       return;
@@ -190,8 +173,6 @@ document.addEventListener('DOMContentLoaded', function () {
       ${accountDisplayName.address1 ? `${accountDisplayName.address1}, ` : ``} 
       ${accountDisplayName.email ? `${accountDisplayName.email}`  : ``}  
       </span></div>`;
-
-     
       revertBtn.style.display = 'inline-block';
       accountModal.close();
       ordersComponent.setState({ view: 'orders' });
@@ -244,20 +225,17 @@ document.addEventListener('DOMContentLoaded', function () {
       if (customer?.default_address?.company) {
         liTextContent.push(customer.default_address.company);
       }
-    if (customer?.default_address?.city) { // New line to include city
-      liTextContent.push(customer.default_address.city); // New line to include city
-    }
-      
-    if (customer?.first_name && customer?.last_name) {
+      if (customer?.default_address?.city) {
+        liTextContent.push(customer.default_address.city);
+      }
+      if (customer?.first_name && customer?.last_name) {
         liTextContent.push(`${customer.first_name} ${customer.last_name}`);
       }
-
       if (customer?.email) {
         liTextContent.push(customer.email);
       }
       li.textContent = liTextContent.join(', ').trim();
       li.dataset.value = customer.id;
-
       customerSearchDropdown.appendChild(li);
     });
   }
@@ -274,32 +252,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
   customerSearchDropdown.addEventListener('click', function (event) {
     const selectedCustomer = event.target;
-    // console.log('Selected customer from dropdown:', selectedCustomer);
     customerSearchInput.value = selectedCustomer.textContent;
     customerSearchInput.dataset.company = selectedCustomer.dataset.company;
     customerSearchInput.dataset.value = selectedCustomer.dataset.value;
-    // console.log('Customer search input dataset:', customerSearchInput.dataset);
     customerSearchDropdown.style.display = 'none';
   });
 
   async function loadAccountData(accountId) {
     ordersComponent.fetchOrders(`email=${encodeURIComponent(accountId)}`);
   }
-
-  // function toggleDraftOrderButton() {
-  //   const createDraftOrderButton = document.querySelector('.create-draft-order-button') ?? '';
-  //   if (currentAccount) {
-  //     createDraftOrderButton.style.display = 'flex'; 
-  //     createDraftOrderButton.innerHTML = `
-  //       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"/></svg>
-  //       Create Draft Order
-  //     `;
-  //     createDraftOrderButton.style.backgroundColor = '#fbe04c';
-  //   }
-  // }
-  // toggleDraftOrderButton();
-
-
 });
 
 class NFCustomerOrders extends HTMLElement {
@@ -327,15 +288,16 @@ class NFCustomerOrders extends HTMLElement {
       window.addEventListener('load', () => this.initComponent());
     }
   }
-  // Superuser settings
+  
   setOrders(orders) {
     this.state.orders = orders;
     this.render();
   }
+
   fetchProductOrderList = async () => {
     // Show loading spinner
     const productListContainer = document.getElementById("product__list");
-    productListContainer.innerHTML = `Loading...`;
+    productListContainer.innerHTML = `<div class="spinner"></div>`;
     await window.refreshTokenIfNeeded();
     const currentAccountData = JSON.parse(localStorage.getItem('currentAccount'));
     const { authToken } = window.customerOrdersApp;
@@ -359,8 +321,6 @@ class NFCustomerOrders extends HTMLElement {
       const dragEvent = new CustomEvent('draggableEvent');
       document.dispatchEvent(event);
       document.dispatchEvent(dragEvent);
-
-
     } catch (error) {
       console.error('Failed to fetch products:', error);
       productListContainer.innerHTML = `<p>Error loading products. Please try again later.</p>`;
@@ -377,7 +337,6 @@ class NFCustomerOrders extends HTMLElement {
     }
     this.checkAndToggleATCButton();
     this.fetchProductOrderList();
-
   }
 
   async fetchOrders(queryParams) {
@@ -430,14 +389,9 @@ class NFCustomerOrders extends HTMLElement {
   }
 
   renderOrders() {
-    // console.log('render orders', this.state.orders);
     return this.state.orders.map(order => `
-    <tr
-    class="order_item" data-order-id="${order.id}"
-    >
-      <td
-      class="nf-view_all"
-      >
+    <tr class="order_item" data-order-id="${order.id}">
+      <td class="nf-view_all">
         <a href="javascript:void(0);" class="order_id">${order.name}</a>
       </td>
       <td colspan="2">${order.liquidShopifyCreatedAt}</td>
@@ -504,32 +458,15 @@ class NFCustomerOrders extends HTMLElement {
             ${item.product?.metafieldOtherPiecesPerBox ? `<div class="account-content">
                 <span><!-- Icon here if needed --></span>
                 ${item.product?.metafieldOtherPiecesPerBox ?? ""} pieces per box
-              </div>` : ''
-          }
+              </div>` : ''}
             ${isAvailable && item.variant?.sku ? `&nbsp; | &nbsp;<div class="sku">SKU: ${item.variant.sku}</div>` : ''}
           </div>
         </div>
         ${isAvailable ? `<div class="quantity-spinner order-qty-spinner">
-            <button
-              class="minus__button order-minus-btn"
-              type="button"
-            >
-              -
-            </button>
-            <input
-              class="quantity__input order-quantity-input"
-              type="number"
-              value="${item.quantity}"
-              min="0"
-            >
-            <button
-              class="plus__button order-plus-btn"
-              type="button"
-            >
-              +
-            </button>
-          </div>` : ''
-          }
+            <button class="minus__button order-minus-btn" type="button">-</button>
+            <input class="quantity__input order-quantity-input" type="number" value="${item.quantity}" min="0">
+            <button class="plus__button order-plus-btn" type="button">+</button>
+          </div>` : ''}
       </div>
     </div>` : ``}
     `}).join('');
@@ -552,14 +489,7 @@ class NFCustomerOrders extends HTMLElement {
     const orderQuantitySpinners = this.shadowRoot.querySelectorAll('.order-qty-spinner');
     let orderListData = [];
     addToCartButton.innerHTML = `<div class="loading-overlay__spinner">
-    <svg
-      aria-hidden="true"
-      focusable="false"
-      role="presentation"
-      class="spinner"
-      viewBox="0 0 66 66"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
       <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
     </svg>
   </div>`;
@@ -586,7 +516,6 @@ class NFCustomerOrders extends HTMLElement {
       })
         .then(response => response.json())
         .then(json => {
-          // console.log('Items added:', json);
           addToCartButton.innerHTML = window.String.reOrderSelectedItems;
           var x = document.getElementById('account-drawer-notif');
           x.textContent = 'Items Added to Cart';
@@ -609,14 +538,7 @@ class NFCustomerOrders extends HTMLElement {
     const orderQuantitySpinners = this.shadowRoot.querySelectorAll('.order-qty-spinner');
     let orderListData = [];
     createDraftOrderButton.innerHTML = `<div class="loading-overlay__spinner">
-    <svg
-      aria-hidden="true"
-      focusable="false"
-      role="presentation"
-      class="spinner"
-      viewBox="0 0 66 66"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
       <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
     </svg>
   </div>`;
@@ -649,9 +571,8 @@ class NFCustomerOrders extends HTMLElement {
     })
       .then(response => response.json())
       .then(json => {
-        // console.log('Draft Order created:', json);
         createDraftOrderButton.innerHTML = `
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"/></svg>
           Create Draft Order
         `;
         var x = document.getElementById('account-drawer-notif');
@@ -728,7 +649,6 @@ class NFCustomerOrders extends HTMLElement {
     fetch(`${window.customerOrdersApp.urlProxy}api/v1/order/line-items?order_id=${orderId}`, requestOptions)
       .then(response => response.json())
       .then(data => {
-        // console.log(data.data);
         this.setState({ lineItems: data.data, view: 'lineItems', isLoading: false });
       })
       .catch(error => {
@@ -777,7 +697,7 @@ class NFCustomerOrders extends HTMLElement {
   render() {
     let content;
     if (this.state.isLoading) {
-      content = '<p>Loading...</p>';
+      content = '<div class="spinner"></div>';
     } else if (this.state.error) {
       content = `<p>Error: ${this.state.error.message}</p>`;
     } else if (this.state.view === 'lineItems') {
@@ -843,9 +763,7 @@ class NFCustomerOrders extends HTMLElement {
       `;
     }
 
-    this.shadowRoot.innerHTML = `
-      ${content}
-    `;
+    this.shadowRoot.innerHTML = `${content}`;
     this.shadowRoot.querySelectorAll('.order_item').forEach(element => {
       element.addEventListener('click', this.onOrderIdClick.bind(this));
     });

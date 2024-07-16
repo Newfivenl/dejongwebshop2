@@ -2105,7 +2105,7 @@ width: 100%;
 
 /* Loading spinner */
 .spinner {
-  border: 16px solid #f3f3f3; /* Light grey */
+  border: 10px solid #f3f3f3; /* Light grey */
   border-top: 16px solid #064A89; /* Blue */
   border-radius: 50%;
   width: 80px;

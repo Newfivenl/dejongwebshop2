@@ -271,9 +271,14 @@
       {{ product.title }}
     </h3>
 
-    {% if product.has_only_default_variant and settings.enable_sku %}
-      <span class="type--small p-0 opacity-75 mb-0.5 flex">{{ product.variants[0].sku }}</span>
-    {% endif %}
+{% if product.has_only_default_variant and settings.enable_sku %}
+  <span class="type--small p-0 opacity-75 mb-0.5 flex">{{ product.variants[0].sku }}</span>
+{% endif %}
+
+{% if product.metafields.woo.short_description_plain and product.metafields.woo.short_description_plain != '' %}
+  <span class="type--small p-0 opacity-75 mb-0.5 flex"> | {{ product.metafields.woo.short_description_plain | t }}</span>
+{% endif %}
+
 
     <ul class="flex flex-wrap items-center gap-x-1 gap-y-0.5 p-0 opacity-75 mb-0.5
       {{ settings.thumbnail_alignment }}">

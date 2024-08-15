@@ -60,7 +60,7 @@
     "enable_quick_image": false,
     "product_variant_selection": "buttons",
     "product_color_selection": "swatches",
-    "cart_behavior": "redirect",
+    "cart_behavior": "alert",
     "cart_icon_behavior": "go_to_cart",
     "search_body": true,
     "search_tag": true,

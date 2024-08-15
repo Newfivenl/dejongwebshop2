@@ -61,7 +61,7 @@
     "product_variant_selection": "buttons",
     "product_color_selection": "swatches",
     "cart_behavior": "alert",
-    "cart_icon_behavior": "go_to_cart",
+    "cart_icon_behavior": "open_cart_drawer",
     "search_body": true,
     "search_tag": true,
     "search_variants_barcode": true,

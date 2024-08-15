@@ -54,12 +54,13 @@
     {{ 'cart.general.view_cart' | t }}
   </button>
 
+           {%- comment -%} 
   <button class="btn btn--small btn--primary !w-full mb-2" @click="checkout_button_loading = true; setTimeout(function(){ checkout_button_loading = false}, 5000); window.location.href = '/checkout';">
     {{ 'cart.general.checkout' | t }} {% if settings.type_seperator == 'dot' and settings.show_cart_button_prices %}·{% elsif settings.type_seperator == 'line' and settings.show_cart_button_prices %}|{% endif %} 
     {% if settings.show_cart_button_prices %}
     <span class="type__nav ml-1" x-text="Shopify.formatMoney(cart.total_price, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')"></span>
     {% endif %}
-  </button>
+  </button>          {%- endcomment -%}
 {% endcapture %}
 
 <section

@@ -107,6 +107,9 @@
     }
   },
   "products": {
+    "product": {
+      "sold_out": "Tijdelijk niet leverbaar"
+    },
     "general": {
       "from": "vanaf",
       "each": "per stuk",

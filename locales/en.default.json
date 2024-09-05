@@ -97,6 +97,9 @@
     }
   },
   "products": {
+    "product": {
+      "sold_out": "Unavailable"
+    },
     "general": {
       "from": "from",
       "upp_from": "From",

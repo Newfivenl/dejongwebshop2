@@ -437,7 +437,7 @@
         "rollup_label": "Account"
       },
       "payment_gateway": {
-        "generic_payment_terms": "Op rekening",
+        "generic_payment_terms": "Op rekening.",
         "deferred_payment_label": "Je ontvangt de factuur van ons per e-mail. Heb je een automatische incasso overeenkomst met ons? Dan incasseren wij het bedrag automatisch. Wel zo handig."
       }
     }

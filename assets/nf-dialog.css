@@ -900,9 +900,12 @@ svg {
 .nf-my-orders__wrapper .nf-my-orders__table.recently_ordered .sku,
 .nf-my-orders__wrapper .nf-my-orders__table.recently_ordered .account-content {
   color: #888888;
-  display: inline-block;
+  display: inline-flex;
   white-space: nowrap;
   font-size: 0.8rem;
+  align-items: center;
+  gap: 5px;
+  line-height: 1;
 }
 
 .nf-my-orders__wrapper .nf-my-orders__table.recently_ordered .account-outofstock {

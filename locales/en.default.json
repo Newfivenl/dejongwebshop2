@@ -98,7 +98,9 @@
   },
   "products": {
     "product": {
-      "sold_out": "Unavailable"
+      "sold_out": "Unavailable",
+      "inhoud_stuks": "Contains {{ stuks }} pieces",
+
     },
     "general": {
       "from": "from",

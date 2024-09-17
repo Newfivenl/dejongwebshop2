@@ -87,6 +87,9 @@
     }
   },
   "products": {
+    "product": {
+      "inhoud_stuks": "Contenu {{ stuks }} pièces",
+    },
     "general": {
       "from": "De",
       "each": "chaque",

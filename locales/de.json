@@ -87,6 +87,9 @@
     }
   },
   "products": {
+    "product": {
+      "inhoud_stuks": "{{ stuks }} Stück",
+    },
     "general": {
       "from": "Von",
       "each": "jeder",

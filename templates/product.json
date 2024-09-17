@@ -1,3 +1,12 @@
+/*
+* ------------------------------------------------------------
+* IMPORTANT: The contents of this file are auto-generated.
+*
+* This file may be updated by the Shopify admin theme editor
+* or related systems. Please exercise caution as any changes
+* made to this file may be overwritten.
+* ------------------------------------------------------------
+*/
 {
   "sections": {
     "1638995507af787164": {
@@ -142,7 +151,7 @@
         "liquid_DqECCn": {
           "type": "liquid",
           "settings": {
-            "custom_liquid": "<div class=\"product-tags\">Tags:  {% for tag in product.tags %}\n<span class=\"product-tags-productpage\"><a href=\"\/collections\/all\/{{ tag | handleize }}\">{{ tag }}<\/a><\/span>\n  {% endfor %}\n<\/div>",
+            "custom_liquid": "",
             "spacing_top": 10,
             "spacing_bottom": 10,
             "color_scheme": "color__bg-overlay-3 color__text",

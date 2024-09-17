@@ -104,11 +104,16 @@
             {%- assign current_variant = item.selected_or_first_available_variant -%}
             <div class="inventory-box">
               <div class="volume_stocks align-items-center">
-                {% if item.metafields.other.Pieces_per_box.value != blank %}
+                {% if product.metafields.other.Pieces_per_box.value != blank %}
                   <div class="account-content">
                     <span>{% render 'icon-box-adjusted' %}</span>
-                    {{ 'products.product.inhoud_stuks' | t: stuks: item.metafields.other.Pieces_per_box.value }}
+                    {{ 'products.product.pieces_per_box' | t: product.metafields.other.Pieces_per_box.value }}
                   </div>
+                  &nbsp; | &nbsp;
+                {% else %}
+                  <div class="account-content">              
+                     <div class="sku">{{ product.metafields.woo.short_description_plain.value }}</div>
+                  &nbsp; | &nbsp;
                 {% endif %}
 
                 {% if item.variants[0].available %}

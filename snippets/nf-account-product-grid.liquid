@@ -33,13 +33,12 @@
             &nbsp; | &nbsp;
           {% else %}
             <div class="account-content">              
-               <div class="sku">{{product.metafields.woo.short_description_plain.value }}</div>
+               <div class="sku">{{ product.metafields.woo.short_description_plain.value }}</div>
             &nbsp; | &nbsp;
           {% endif %}
           {% if product.variants[0].available %}
             {% if current_variant.sku != blank %}
               <div class="sku">SKU: {{ current_variant.sku }}</div>
-           
             {% endif %}
               {% assign dozen_op_pallet_value = product.metafields.other.specifications_dozen_op_pallet.value %}
 {% if dozen_op_pallet_value != blank and dozen_op_pallet_value != 0 %}

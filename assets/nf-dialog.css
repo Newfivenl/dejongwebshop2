@@ -766,8 +766,8 @@ svg {
 }
 
 .re-order-cta-btn--wrapper svg{
-  width: 15px;
-  height: 15px;
+  width: 30px;
+  height: 30px;
 }
 
 @media screen and (max-width: 749px) {

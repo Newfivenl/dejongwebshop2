@@ -765,6 +765,11 @@ svg {
 }
 }
 
+.re-order-cta-btn--wrapper svg{
+  width: 15px;
+  height: 15px;
+}
+
 @media screen and (max-width: 749px) {
   .nf-drawer {
     left: calc(100vw - 93%);

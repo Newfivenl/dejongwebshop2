@@ -2117,6 +2117,11 @@ width: 100%;
   margin: 10px auto 0 auto; 
 }
 
+.product__list .nf-spinner-loader{
+  margin: 100px auto 0 auto; 
+
+}
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }

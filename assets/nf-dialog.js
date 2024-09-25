@@ -297,7 +297,7 @@ class NFCustomerOrders extends HTMLElement {
   fetchProductOrderList = async () => {
     // Show loading spinner
     const productListContainer = document.getElementById("product__list");
-    productListContainer.innerHTML = `<div class="nf-spinner-loader"></div>`;
+    productListContainer.innerHTML = `<div class="spinner nf-spinner-loader"></div>`;
     await window.refreshTokenIfNeeded();
     const currentAccountData = JSON.parse(localStorage.getItem('currentAccount'));
     const { authToken } = window.customerOrdersApp;
@@ -488,11 +488,7 @@ class NFCustomerOrders extends HTMLElement {
     const addToCartButton = this.shadowRoot.querySelector('.add-to-cart-button');
     const orderQuantitySpinners = this.shadowRoot.querySelectorAll('.order-qty-spinner');
     let orderListData = [];
-    addToCartButton.innerHTML = `<div class="loading-overlay__spinner">
-    <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-      <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-    </svg>
-  </div>`;
+    addToCartButton.innerHTML = `<div class="spinner nf-atc-spinner-loader"></div>`;
 
     orderQuantitySpinners.forEach(orderQuantitySpinner => {
       const orderQuantityInput = orderQuantitySpinner.querySelector('.quantity__input');

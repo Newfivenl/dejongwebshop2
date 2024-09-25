@@ -2114,10 +2114,15 @@ width: 100%;
   width: 40px;
   height: 40px;
   animation: spin 1s linear infinite;
+  margin: 0 auto 0 auto !important; 
 }
 
-.product__list .nf-spinner-loader{
+.nf-spinner-loader{
   margin: 100px auto 0 auto !important; 
+}
+
+.nf-atc-spinner-loader{
+  margin: 0 auto 0 auto !important; 
 }
 
 @keyframes spin {

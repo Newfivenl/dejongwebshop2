@@ -297,7 +297,7 @@ class NFCustomerOrders extends HTMLElement {
   fetchProductOrderList = async () => {
     // Show loading spinner
     const productListContainer = document.getElementById("product__list");
-    productListContainer.innerHTML = `<div class="spinner nf-spinner-loader"></div>`;
+    productListContainer.innerHTML = `<div class="nf-spinner-loader"></div>`;
     await window.refreshTokenIfNeeded();
     const currentAccountData = JSON.parse(localStorage.getItem('currentAccount'));
     const { authToken } = window.customerOrdersApp;

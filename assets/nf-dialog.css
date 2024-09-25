@@ -2108,21 +2108,16 @@ width: 100%;
 
 /* Loading spinner */
 .spinner {
-  border: 10px solid #f3f3f3; /* Light grey */
-  border-top: 10px solid #064A89; /* Blue */
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #064A89;
   border-radius: 50%;
+  width: 40px;
+  height: 40px;
   animation: spin 1s linear infinite;
-  margin: 10px auto 0 auto; 
 }
 
 .product__list .nf-spinner-loader{
-  margin: 100px auto 0 auto; 
-  border: 10px solid #f3f3f3; /* Light grey */
-  border-top: 10px solid #064A89; /* Blue */
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
-  animation: spin 1s linear infinite;
+  margin: 100px auto 0 auto !important; 
 }
 
 @keyframes spin {

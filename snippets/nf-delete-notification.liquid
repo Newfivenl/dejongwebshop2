@@ -1,0 +1,20 @@
+<div id="nf-delete-modal" class="delete-notif">
+  <div class="delete-notif-overlay">
+    <div class="delete-notif-content">
+      <div class="delete-notif-header">
+        <div class="delete-notif-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 512">
+            <path d="M96 64c0-17.7-14.3-32-32-32S32 46.3 32 64l0 256c0 17.7 14.3 32 32 32s32-14.3 32-32L96 64zM64 480a40 40 0 1 0 0-80 40 40 0 1 0 0 80z" /></svg>
+        </div>
+        <div>
+          <h3 class="delete-notif-title">{{ 'customer.account_drawer.notif_confirm_deletion' | t }}</h3>
+        </div>
+      </div>
+      <p class="delete-notif-message">{{ 'customer.account_drawer.notif_confirm_deletion_message' | t }}</p>
+      <div class="delete-notif-footer">
+        <button class="delete-notif-button delete-notif-button-accept">{{ 'customer.account_drawer.notif_confirm_delete_button' | t }}</button>
+        <button class="delete-notif-button delete-notif-button-cancel">{{ 'customer.account_drawer.notif_cancel' | t }}</button>
+      </div>
+    </div>
+  </div>
+</div>

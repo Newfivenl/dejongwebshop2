@@ -1,6 +1,6 @@
 {%- comment -%}
   ----
-  This snippet file is part of TakeAware COA. Hosted the Authorization Setup for Logged-in Customer.
+  This snippet file is part of Dejong COA. Hosted the Authorization Setup for Logged-in Customer.
   In this snippet file the steps process are:
   - Prepare and assign variables to compose the data to be use on auth token.
   - Generate hash and add the prefix for the auth token.
@@ -11,102 +11,141 @@
 {%- endcomment -%}
 {% if customer %}
 
-{%- comment -%} Define constants used for data composition and token generation. {%- endcomment -%}
+  {%- comment -%} Define constants used for data composition and token generation. {%- endcomment -%}
 {% assign CO_DATA_SEPARATOR = ':::' %}
 
-{%- comment -%} Extract customer ID, email and shop ID. {%- endcomment -%}
-{% assign customerID = customer.id %}
-{% assign customerEmail = customer.email %}
-{% assign shopId = shop.id %}
+  {%- comment -%} Extract customer ID, email and shop ID. {%- endcomment -%}
+  {% assign customerID = customer.id %}
+  {% assign customerEmail = customer.email %}
+  {% assign shopId = shop.id %}
 
-{% assign customerIDAppended = customerID | append: CO_DATA_SEPARATOR %}
-{% assign customerEmailAppended = customerEmail | append: CO_DATA_SEPARATOR %}
-{% assign shopIdAppended = shopId | append: CO_DATA_SEPARATOR %}
+  {% assign customerIDAppended = customerID | append: CO_DATA_SEPARATOR %}
+  {% assign customerEmailAppended = customerEmail | append: CO_DATA_SEPARATOR %}
+  {% assign shopIdAppended = shopId | append: CO_DATA_SEPARATOR %}
 
-{% assign xCOAppPayload = customerIDAppended | append: customerEmailAppended %}
-{% assign xCOAppPayload = xCOAppPayload | append: shopIdAppended %}
-{% assign xCOAppPayload = xCOAppPayload | base64_encode %}
+  {% assign xCOAppPayload = customerIDAppended | append: customerEmailAppended %}
+  {% assign xCOAppPayload = xCOAppPayload | append: shopIdAppended %}
+  {% assign xCOAppPayload = xCOAppPayload | base64_encode %}
 
-{%- comment -%} Expose the authentication token and payload data on the global `window` object for frontend use. {%- endcomment -%}
-<script>
-  window.customerOrdersApp = {
-    url: '{{ settings.customer_orders_app_api_base_url | default: 'https://de-jong-coa--development.gadget.app/' }}',
-    urlProxy: '/apps/de-jong-coa-proxy/',
-    authToken: null,
-    payload: '{{ xCOAppPayload }}',
-  };
-
-  const getToken = async () => {
-    const headers = new Headers({
-      'X-COApp-Payload': '{{ xCOAppPayload }}'
-    });
-    const fetchOptions = {
-      method: 'GET',
-      headers,
-      redirect: 'follow',
+  {%- comment -%} Expose the authentication token and payload data on the global `window` object for frontend use. {%- endcomment -%}
+  <script>
+    window.customerOrdersApp = {
+      url: '{{ settings.customer_orders_app_api_base_url | default: 'https://de-jong-coa--development.gadget.app/' }}',
+      urlProxy: '/apps/de-jong-coa-dev-proxy/',
+      authToken: null,
+      payload: '{{ xCOAppPayload }}',
     };
-    const tokenResponse = await fetch('/apps/de-jong-coa-proxy/token', fetchOptions);
-    const tokenBody = await tokenResponse.text();
-    const token = JSON.parse(tokenBody);
 
-    // Store the token and its expiration time if it's valid
-    if (token && typeof token.token !== 'undefined') {
-      window.customerOrdersApp['authToken'] = token.token;
-      const now = new Date();
-      // Assuming the token is valid for 300 seconds (5 minutes)
-      const expirationTime = now.getTime() + (300 * 1000);
-      sessionStorage.setItem('customer_orders_app_token', token.token);
-      sessionStorage.setItem('customer_orders_app_token_expiry', expirationTime);
-    }
-  };
+    const getToken = async () => {
+      const headers = new Headers({
+    'X-COApp-Payload': '{{ xCOAppPayload }}'
+      });
+      const fetchOptions = {
+    method: 'GET',
+    headers,
+    redirect: 'follow',
+      };
+      const tokenResponse = await fetch('/apps/de-jong-coa-dev-proxy/api/v1/customer/token', fetchOptions);
+      const tokenBody = await tokenResponse.text();
+      const token = JSON.parse(tokenBody);
 
-  const shouldFetchToken = () => {
-    const exp = sessionStorage.getItem('customer_orders_app_token_expiry');
+      // Store the token and its expiration time if it's valid
+      if (token && typeof token.token !== 'undefined') {
+    window.customerOrdersApp['authToken'] = token.token;
     const now = new Date();
-    // Check if the token is expired or not present
-    return !exp || now.getTime() > parseInt(exp);
-  };
+    // Assuming the token is valid for 300 seconds (5 minutes)
+    const expirationTime = now.getTime() + (300 * 1000);
+    sessionStorage.setItem('customer_orders_app_token', token.token);
+    sessionStorage.setItem('customer_orders_app_token_expiry', expirationTime);
+      }
+    };
 
-  // Fetch the token if it's expired or not present
-  if (shouldFetchToken()) {
-    getToken();
-  } else {
-    // If the token should not be fetched, set it from session storage to the window object
-    const storedToken = sessionStorage.getItem('customer_orders_app_token');
-    if (storedToken) {
-      window.customerOrdersApp['authToken'] = storedToken;
-    }
-  }
+    const shouldFetchToken = () => {
+      const exp = sessionStorage.getItem('customer_orders_app_token_expiry');
+      const now = new Date();
+      const buffer = 30000;
+      // Check if the token is expired or not present
+      return !exp || now.getTime() > (parseInt(exp) - buffer);
+    };
 
-  window.refreshTokenIfNeeded = async function() {
+    // Fetch the token if it's expired or not present
     if (shouldFetchToken()) {
-      await getToken();
+      getToken();
+    } else {
+      // If the token should not be fetched, set it from session storage to the window object
+      const storedToken = sessionStorage.getItem('customer_orders_app_token');
+      if (storedToken) {
+    window.customerOrdersApp['authToken'] = storedToken;
+      }
     }
-  }
-</script>
-<script>
 
-  window.String.COA_ROLE_ADMIN = 'COA_Role_Admin';
-  window.Shopify.theme.stylesheetUrl = '{{ "nf-dialog.css" | asset_url }}';
-  window.Shopify.theme.loading = '{{ "component-loading-overlay.css" | asset_url }}';
+    window.refreshTokenIfNeeded = async function() {
+      if (shouldFetchToken()) {
+    await getToken();
+      }
+    }
 
-  window.pageIcon = `{% render 'icon-caret-new' %}`;
-  window.icon_truck_solid = `{% render 'icon-truck-solid', width: '20px' %}`;
-  window.boxIcon = `{% render 'icon-box'  width: '10px' %}`;
-  window.backButton = `{% render 'icon-arrow' %} {{ 'customer.account_drawer.return_to_account' | t }}`;
 
-  window.String.customerOrder = "{{ 'customer.account_drawer.order' | t }}";
-  window.String.customerTrack_and_trace = "{{ 'customer.account_drawer.track_and_trace' | t }}";
-  window.String.customerDate = "{{ 'customer.account_drawer.date' | t }}";
-  window.String.customerTotal = "{{ 'customer.account_drawer.total' | t }}";
-  window.String.customerOrderDate = "{{ 'customer.order.account_date_html' | t }}";
+    window.removeSessionRefreshTokenTracking = function() {
+      sessionStorage.removeItem('customer_orders_app_token');
+      sessionStorage.removeItem('customer_orders_app_token_expiry');
+    }
+  </script>
+  <script>
+    window.Shopify.theme.stylesheetUrl = '{{ "nf-dialog.css" | asset_url }}';
+    window.Shopify.theme.loading = '{{ "component-loading-overlay.css" | asset_url }}';
 
-  window.String.orders_tab = "{{ 'customer.account_drawer.orders_tab' | t }}";
-  window.String.order_list_title = "{{ 'customer.account_drawer.order_list_title' | t }}";
-  window.String.favorites_tab = "{{ 'customer.account_drawer.favorites_tab' | t }}";
-  window.String.reOrderSelectedItems = "{{ 'customer.account_drawer.re_order_selected_items' | t }}";
+    window.pageIcon = `{% render 'icon-caret-new' %}`;
+    window.removeIcon = `{% render 'icon-remove' %}`;
+    window.icon_truck_solid = `{% render 'icon-truck-solid', width: '20px' %}`;
+    window.boxIcon = `{% render 'icon-box'  width: '10px' %}`;
+    window.backButton = `{% render 'icon-arrow' %} {{ 'customer.account_drawer.return_to_account' | t }}`;
 
-  window.String.customerEmail = "{{ customer.email }}";
-  window.String.customerTags = {{ customer.tags |  default: '[]' | json }};
-</script>
+    window.String.customerOrder = "{{ 'customer.account_drawer.order' | t }}";
+    window.String.customerTrack_and_trace = "{{ 'customer.account_drawer.track_and_trace' | t }}";
+    window.String.customerDate = "{{ 'customer.account_drawer.date' | t }}";
+    window.String.customerTotal = "{{ 'customer.account_drawer.total' | t }}";
+    window.String.customerOrderDate = "{{ 'customer.order.account_date_html' | t }}";
+
+    window.String.orders_tab = "{{ 'customer.account_drawer.orders_tab' | t }}";
+    window.String.order_list_title = "{{ 'customer.account_drawer.order_list_title' | t }}";
+    window.String.favorites_tab = "{{ 'customer.account_drawer.favorites_tab' | t }}";
+    window.String.reOrderSelectedItems = "{{ 'customer.account_drawer.re_order_selected_items' | t }}";
+
+    window.String.customerId = "{{ customer.id }}";
+    window.String.customerEmail = "{{ customer.email }}";
+    window.String.currentLocationID = "{{ customer.current_location.id }}";
+    window.String.customerTags = {{ customer.tags |  default: '[]' | json }};
+    window.String.COA_ROLE_ADMIN = 'COA_Role_Admin';
+    window.String.wishlist_notif_success = '{{ 'customer.account_drawer.notif_add_wishlist_success' | t }}';
+    window.String.date_available_message = "{{ 'products.product.date-available-message' | t }}";
+    window.String.sold_out = "{{ 'products.product.sold_out' | t }}";
+    window.String.characteristics_label_boxesperpallet = "{{ 'products.product.characteristics_label_boxesperpallet' | t }}";
+    window.String.inhoud_stuks = "{{ 'products.product.inhoud_stuks' | t }}";
+    window.String.stocked = "{{ 'customer.account_drawer.stocked' | t }}";
+    window.String.times_ordered = "{{ 'customer.account.times_ordered' | t }}";
+    window.String.inhoud_wish = "{{ 'products.product.inhoud_wish' | t }}";
+    window.String.stuks_wish = "{{ 'products.product.stuks_wish' | t }}";
+    window.String.remove_item_wishlist = "{{ 'customer.account_drawer.remove_item_wishlist' | t }}";
+    window.String.pieces_per_box = "{{  'customer.account_drawer.pieces_per_box' | t  }}";
+    window.String.reOrderButtonText = "{{ 'customer.account_drawer.re_order_selected_items' | t }}";
+    window.String.shopCurrency = "{{ shop.money_format }}";
+    window.String.shopCurrency = window.String.shopCurrency.trim();
+    if (window.String.shopCurrency.substring(window.String.shopCurrency.length - 1) !== '}' && window.String.shopCurrency.substring(window.String.shopCurrency.length - 1).length > 0) {
+      window.String.shopCurrency = window.String.shopCurrency.substring(window.String.shopCurrency.length - 1);
+    } else {
+      window.String.shopCurrency = window.String.shopCurrency.substring(0, 1);
+    }
+    window.String.subtotalString = `{{ 'customer.account_drawer.subtotal' | t }}`;
+    window.String.product_items = `{{ 'customer.account_drawer.product_items' | t }}`;
+    window.String.line_item = `{{ 'customer.account_drawer.line_item' | t }}`;
+
+
+  </script>
 {% endif %}
+<script>
+    {% if customer == nil %}
+      sessionStorage.removeItem('customer_orders_app_token');
+      sessionStorage.removeItem('customer_orders_app_token_expiry');
+    {% endif %}
+</script>

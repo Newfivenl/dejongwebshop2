@@ -180,7 +180,7 @@ initDialogScroll();
               ${currentAccountData.city ? `${currentAccountData.city} | ` : ``}
               ${currentAccountData.firstName && currentAccountData.lastName ? `${currentAccountData.firstName} ${currentAccountData.lastName} | ` : ``}
               ${currentAccountData.address1 ? `${currentAccountData.address1} |` : ``}
-              <a href="https://admin.shopify.com/store/takeawarebv/customers/${currentAccountData.customerID}" target="_blank">
+              <a href="https://admin.shopify.com/store/dejongwebshop/customers/${currentAccountData.customerID}" target="_blank">
                 ${currentAccountData.email ? `${currentAccountData.email}` : ``}
               </a>
             </div>
@@ -195,7 +195,7 @@ initDialogScroll();
                     </svg>
                     </span>
                      <small>
-                       <a href="https://admin.shopify.com/store/takeawarebv/companies/${currentAccountData.companyId}/locations/${currentAccountData.companyLocationId}" target="_blank">
+                       <a href="https://admin.shopify.com/store/dejongwebshop/companies/${currentAccountData.companyId}/locations/${currentAccountData.companyLocationId}" target="_blank">
                         ${currentAccountData.companyName ? `${currentAccountData.companyName} ${currentAccountData.companyLocationName ? `(${currentAccountData.companyLocationName})` : ``}` : ``}
                        </a>
                      </small>
@@ -306,7 +306,7 @@ initDialogScroll();
               ${accountDisplayName.city ? `${accountDisplayName.city} | ` : ``}
               ${accountDisplayName.firstName && accountDisplayName.lastName ? `${accountDisplayName.firstName} ${accountDisplayName.lastName} | ` : ``}
               ${accountDisplayName.address1 ? `${accountDisplayName.address1} |` : ``}
-              <a href="https://admin.shopify.com/store/takeawarebv/customers/${accountDisplayName.customerID}" target="_blank">
+              <a href="https://admin.shopify.com/store/dejongwebshop/customers/${accountDisplayName.customerID}" target="_blank">
               ${accountDisplayName.email ? `${accountDisplayName.email}` : ``}
               </a>
             </div>
@@ -320,7 +320,7 @@ initDialogScroll();
                         fill="#666" />
                     </svg>
                     </span> <small>
-                    <a href="https://admin.shopify.com/store/takeawarebv/companies/${accountDisplayName.companyId}/locations/${accountDisplayName.companyLocationId}" target="_blank">
+                    <a href="https://admin.shopify.com/store/dejongwebshop/companies/${accountDisplayName.companyId}/locations/${accountDisplayName.companyLocationId}" target="_blank">
                     ${accountDisplayName.companyName ? `${accountDisplayName.companyName} ${accountDisplayName.companyLocationName ? `(${accountDisplayName.companyLocationName})` : ``}` : ``}
                     </a>
                     </small>

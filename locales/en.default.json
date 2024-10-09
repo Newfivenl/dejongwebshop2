@@ -237,7 +237,27 @@
       "track_and_trace_text": "Track & Trace",
       "order_list_title": "Orderlist",
       "order_list_text": "Here you will find the products that we have selected especially for you",
-      "stocked": "Stock"
+      "stocked": "Stock",
+      "notif_add_to_cart": "Added to Cart",
+      "notif_error_to_cart": "Error in Adding to Cart",
+      "notif_confirm_deletion": "Confirm Deletion",
+      "notif_confirm_delete_button": "Confirm Deletion",
+      "notif_confirm_deletion_message": "Are you sure you want to delete this product from the wishlist?",
+      "notif_confirm": "Confirm",
+      "notif_cancel": "Cancel",
+      "notif_sort_success": "Order Updated!",
+      "notif_add_wishlist_success": "Product added to wishlist!",
+      "remove_item_wishlist": "Remove Item from the list",
+      "pieces_per_box": "pieces per box",
+      "line_item": "producten",
+      "product_items": "dozen",
+      "customer_list_search": "Search a Customer by:",
+      "customer_list_search_placeholder": "Search a customer",
+      "customer_list_company": "Company",
+      "customer_list_email": "Email",
+      "customer_list_city": "City",
+      "customer_list_first_name": "First Name",
+      "customer_list_last_name": "Last Name"
     },
     "account": {
       "heading": "Details",
@@ -335,7 +355,7 @@
       "new_account_p": "You will receive a code via email with which you can log in.",
       "new_account_explain_title": "Remembering passwords is a thing of the past!",
       "new_account_explain_p_html": "Whether you have an account or not, logging in without a password is always possible. View all historical orders and order easily from your personal order list. <br>Want to know more about this new way of logging in?",
-      "new_account_explain_html": "<a href=\"https:\/\/takeaware.nl\/pages\/inloggen-zonder-wachtwoord\">Your read it here!<\/a>"
+      "new_account_explain_html": "<a href=\"https:\/\/dejongwebshop.nl\/pages\/inloggen-zonder-wachtwoord\">Your read it here!<\/a>"
     }
   },
   "gift_cards": {

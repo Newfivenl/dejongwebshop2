@@ -1914,11 +1914,11 @@ img:after {
 .gap-20 {
   gap: 5rem;
 }
+.gap-3 {
+  gap: 0.75rem;
+}
 .gap-4 {
   gap: 1rem;
-}
-.gap-5 {
-  gap: 1.25rem;
 }
 .gap-\[10px\] {
   gap: 10px;
@@ -1928,9 +1928,6 @@ img:after {
 }
 .gap-\[32px\] {
   gap: 32px;
-}
-.gap-3 {
-  gap: 0.75rem;
 }
 .gap-x-1 {
   -moz-column-gap: 0.25rem;
@@ -2116,6 +2113,9 @@ img:after {
 }
 .p-\[10px\] {
   padding: 10px;
+}
+.p-5 {
+  padding: 1.25rem;
 }
 .\!px-0 {
   padding-left: 0px !important;

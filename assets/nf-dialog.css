@@ -1474,12 +1474,12 @@ svg {
     opacity: 0;
   }
 }
-.loading-overlay__spinner{
+/* .loading-overlay__spinner{
   width: 1.8rem;
 }
 .loading-overlay__spinner svg circle {
   stroke: #FFF !important;
-}
+} */
 
 
 .not-allowed {
@@ -1817,6 +1817,12 @@ svg {
 .nf-dropdown-list li.logout_link:hover {
   background-color: #f1f1f1;
 }
+.nf-dropdown-list li.logout_link svg {
+  width: 16px;
+  height: 16px;
+}
+
+
 
 .nf-dropdown .nf-dropdown-caret {
   border: solid black;
@@ -2204,7 +2210,7 @@ width: 100%;
 .dialogConfirmButton {
   background-color: var(--color-primary-button-background-light);
   box-shadow: none!important;
-  color: #000;
+  color: #FFF;
   padding: 10px 20px;
   font-size: 14px;
   border: 0;
@@ -2432,7 +2438,7 @@ line-height: 1;
 .nf-notif-icon svg {
   width: 24px;
   height: 24px;
-  fill: #000;
+  fill: #FFF;
 }
 
 .nf-notif-title {
@@ -2734,6 +2740,7 @@ line-height: 1;
   background: transparent;
   border: 1px solid #EA5125;
   color: #EA5125;
+  padding: 4px 8px;
 }
 .clear-cart-button:hover{
   text-decoration: none;

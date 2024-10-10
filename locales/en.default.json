@@ -421,5 +421,10 @@
     "changelog": "Changelog",
     "by": "by",
     "visibility_note": "This widget will not be visible to customers visiting your online store."
+  },
+  "notif_draft_order": {
+    "notif_header_title": "Clear Cart Reminder",
+    "notif_message": "You have successfully created a draft order. Please clear your cart before proceeding with the next one.",
+    "notif_close_button": "Close"
   }
 }

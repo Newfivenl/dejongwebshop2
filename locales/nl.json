@@ -482,5 +482,10 @@
   "back_in_stock": {
     "notify": "",
     "title": ""
+  },
+  "notif_draft_order": {
+    "notif_header_title": "Check conceptbestelling",
+    "notif_message": "Er is een conceptbestelling aangemaakt. Controleer of deze succesvol is aangemaakt. Kies voor 'Winkelwagen verwijderen'  om de winkelwagen leeg te maken voor de volgende bestelling. O sluit dit bericht om opnieuw deze conceptbestelling aan te maken of huidige aan te passen.",
+    "notif_close_button": "Close"
   }
 }

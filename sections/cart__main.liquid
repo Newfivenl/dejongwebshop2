@@ -25,13 +25,11 @@
         <div class="w-full px-4">
           <h1>{{ 'cart.general.cart_heading' | t }} (<span x-text="cart.item_count">{{ cart.item_count }}</span>)</h1>
         </div>
-        {% if customer.tags contains 'COA_Role_Admin' and customer.email contains 'takeaware.nl' or customer.email contains 'newfive.nl' or customer.email contains 'newfive.dev' or customer.email contains 'takeaware.com' or customer.email contains 'dejongdisposables.nl' %}                <div class="w-full px-4 pb-4">
-          <div class="w-full">
-              <form action="/cart/clear" method="post" novalidate class="empty-cart-form">
-                <button type="submit" class="btn btn mb-2 clear-cart-button">Clear cart</button>
-              </form>
-            </div>
-          {% endif %}
+        {% if customer.tags contains 'COA_Role_Admin' and customer.email contains 'takeaware.nl' or customer.email contains 'newfive.nl' or customer.email contains 'newfive.dev' or customer.email contains 'takeaware.com' or customer.email contains 'dejongdisposables.nl' %}
+          <div>
+            <button type="button" class="clear-cart-button nf-clear-cart-button">Clear cart</button>
+          </div>
+        {% endif %}
       {% else %}
         <div class="w-full">
           <h1>{{ 'cart.general.empty' | t }}</h1>
@@ -301,6 +299,11 @@
     </div>
   </div>
 </section>
+<dialog id="deleteConfirmationDialog" class="p-5 border border-solid border-1">
+  <p>Are you sure you want to delete all the items in the cart?</p>
+  <button class="dialogConfirmButton" id="confirmClearCart" class="confirm-button">Yes</button>
+  <button class="dialogCancelButton" id="cancelClearCart" class="cancel-button">No</button>
+</dialog>
 <div id="create_draft_snackbar">Draft Order Created</div>
 {% render 'nf-draft-notification' %}
 <script>

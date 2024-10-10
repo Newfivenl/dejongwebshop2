@@ -1,37 +1,37 @@
 <!-- snippets/component__product-item.liquid -->
 {% comment %} 
-  Standard product thumbnail.
-  Accepts:
-    - product: liquid product object
-    - source: accessibility variable
-  
-  Usage:
-    {% render 'component__product-item', 
-      product: product, 
-      source: 'section-name' %}
-  Globals:
-    - settings.enable_animations: boolean to enable animations
-    - settings.thumbnails_border_style: border style of thumbnails
-    - settings.thumbnails_color_border: border color
-    - settings.thumbmails_color_scheme: color scheme of thumbnails
-    - settings.thumbnails_ratio: set the aspect ratio of thumbnails
-    - settings.thumbnails_object: set the image object sizing
-    - settings.type_thumbnail: typography for thumbnail titles
-    - settings.type_thumbnail_capitilization: set the capitilization for thumbnail titles
-    - settings.type_seperator: setting to pick the type of seperator between text
-    - settings.savings_badge: can be set to 'dollar', 'percent', or 'none'
-    - settings.stock_threshold: number to set the threshold for when to show stock count
-    - settings.enable_quick_desktop: boolean to enable quick add
-    - settings.enable_quick_mobile: boolean to enable quick add
-    - settings.enable_thumbnails_product_type: boolean to enable product type
-    - settings.enable_thumbnails_vendor: boolean to enable vendor
-    - settings.enable_thumbnails_variant_count: boolean to enable variant count
-  
-  Possible enhancements: 
-    - Add setting to disable video on hover, can cause performance issues. 
-  
-  Pro tips:
-    - Use this while looping through products. For example on collection product grids.
+                                                                            Standard product thumbnail.
+                                                                            Accepts:
+                                                                              - product: liquid product object
+                                                                              - source: accessibility variable
+                                                                            
+                                                                            Usage:
+                                                                              {% render 'component__product-item', 
+                                                                                product: product, 
+                                                                                source: 'section-name' %}
+                                                                            Globals:
+                                                                              - settings.enable_animations: boolean to enable animations
+                                                                              - settings.thumbnails_border_style: border style of thumbnails
+                                                                              - settings.thumbnails_color_border: border color
+                                                                              - settings.thumbmails_color_scheme: color scheme of thumbnails
+                                                                              - settings.thumbnails_ratio: set the aspect ratio of thumbnails
+                                                                              - settings.thumbnails_object: set the image object sizing
+                                                                              - settings.type_thumbnail: typography for thumbnail titles
+                                                                              - settings.type_thumbnail_capitilization: set the capitilization for thumbnail titles
+                                                                              - settings.type_seperator: setting to pick the type of seperator between text
+                                                                              - settings.savings_badge: can be set to 'dollar', 'percent', or 'none'
+                                                                              - settings.stock_threshold: number to set the threshold for when to show stock count
+                                                                              - settings.enable_quick_desktop: boolean to enable quick add
+                                                                              - settings.enable_quick_mobile: boolean to enable quick add
+                                                                              - settings.enable_thumbnails_product_type: boolean to enable product type
+                                                                              - settings.enable_thumbnails_vendor: boolean to enable vendor
+                                                                              - settings.enable_thumbnails_variant_count: boolean to enable variant count
+                                                                            
+                                                                            Possible enhancements: 
+                                                                              - Add setting to disable video on hover, can cause performance issues. 
+                                                                            
+                                                                            Pro tips:
+                                                                              - Use this while looping through products. For example on collection product grids.
 {% endcomment %}
 
 <div class="group relative w-full
@@ -39,35 +39,43 @@
     border--radius overflow-hidden
     {{ settings.thumbnails_color_border }} 
     {{ settings.thumbmails_color_scheme }} 
-  {% endif %}"
-  x-data="{ 
+  {% endif %}" x-data="{ 
     button_loading: false
   }">
 
   {%- comment -%}badges{%- endcomment -%}
   <div class="absolute top-0 left-0 z-10 flex flex-wrap w-full gap-1 p-2 whitespace-normal">
-
+    <div class="nf-wishlist-button">
+      <button
+        data-product-id="{{ product.id }}"
+        class="nf-add-to-favourite"
+        type="button"
+        {% unless customer %}
+        onclick="window.location.href='/pages/mytakeaware'; return false;"
+        {% endunless %}>
+        {% render 'icon-heart-regular' %}
+      </button>
+    </div>
     {%- if product.metafields.reviews.rating.value != blank -%}
       {% capture badge_content %}
       {% assign rating = product.metafields.reviews.rating.value | strip %}
       {{ rating | times: 1 | round: 2 }}
         {% render 'component__icon', icon: 'star', size: '12', class: 'ml-1' %} 
       {% endcapture %}
-      {% render 'component__badge', 
-        color: 'overlay-2',
-        text: 'text',
-        icon: '',
-        content: badge_content %}
+      {% render 'component__badge'
+        , color: 'overlay-2'
+        , text: 'text'
+        , icon: ''
+        , content: badge_content %}
     {%- endif -%}
 
     {% for tag in product.tags %}
       {% if tag contains "badge_" %}
         {% capture badge_content %}{{ tag | remove: "badge_" }}{% endcapture %}
-        {% render 'component__badge', 
-          color: 'secondary',
-          text: 'secondary'
-          icon: '',
-          content: badge_content %}
+        {% render 'component__badge'
+          , color: 'secondary'
+          , text: 'secondary' icon: ''
+          , content: badge_content %}
       {% endif %}
     {% endfor %}
 
@@ -76,26 +84,24 @@
         {% if settings.savings_badge == "percent" %}
           {% capture badge_content %}{{ discount_percentage }}{% endcapture %}
           {% capture a %}{{ product.compare_at_price | minus: product.price }} {% endcapture %}
-          {% capture b %}{{ a | times: 100 }} {% endcapture %} 
-          {% capture discount_percentage %}{{ b | divided_by: product.compare_at_price | round }} {% endcapture %} 
+          {% capture b %}{{ a | times: 100 }} {% endcapture %}
+          {% capture discount_percentage %}{{ b | divided_by: product.compare_at_price | round }} {% endcapture %}
           {% capture badge_content %} {{ 'products.general.save' | t }} {{ discount_percentage | strip | append: '%' }} {% endcapture %}
         {% else %}
           {% capture discount_amount %}{{ product.compare_at_price | minus: product.price | money }}{% endcapture %}
           {% capture badge_content %}{{ 'products.general.save' | t }} {{ discount_amount }}{% endcapture %}
         {% endif %}
-        {% render 'component__badge', 
-          color: 'primary',
-          text: 'primary'
-          icon: '',
-          content: badge_content %}
+        {% render 'component__badge'
+          , color: 'primary'
+          , text: 'primary' icon: ''
+          , content: badge_content %}
       {% endif %}
     {% endif %}
-    
+
   </div>
-  
+
   {%- comment -%}image{%- endcomment -%}
-  <a href="{{ product.url }}"
-    class="hover:opacity-100 relative block mb-2" >
+  <a href="{{ product.url }}" class="hover:opacity-100 relative block mb-2">
 
     <div class="animation-500 w-full overflow-hidden
       {{ settings.thumbmails_color_scheme }} 
@@ -113,60 +119,57 @@
           {% else %}
             {% capture image_class %}w-full h-full object-contain {{ settings.thumbmails_color_scheme }}{% endcapture %}
           {% endif %}
-          {{ product.featured_image 
-            | image_url: width: 900 
-            | image_tag: class: image_class, loading: 'lazy', alt: product.featured_image.alt }}
+          {{ product.featured_image | image_url: width: 900 | image_tag: class: image_class, loading: 'lazy', alt: product.featured_image.alt }}
         {%- endunless -%}
       </div>
     </div>
 
     {% if settings.enable_second_media_hover %}
-    {%- unless product.media[1] == blank %}
-      {% case product.media[1].media_type %}
-        {% when 'image' %}
-          <div class="animation-500 absolute left-0 top-0 overflow-hidden opacity-0 group-hover:opacity-100 w-full h-full
+      {%- unless product.media[1] == blank %}
+        {% case product.media[1].media_type %}
+          {% when 'image' %}
+            <div class="animation-500 absolute left-0 top-0 overflow-hidden opacity-0 group-hover:opacity-100 w-full h-full
             {{ settings.thumbmails_color_scheme }} 
             {% if settings.thumbnails_border_style == 'image' %}
               border--radius
               {{ settings.thumbnails_color_border }} 
             {% endif %}">
-            <div class="object-cover overflow-hidden
+              <div class="object-cover overflow-hidden
               {{ settings.thumbnails_ratio }}">
-              {% if settings.thumbnails_object-sizing == "cover" %}
-                {% capture image_class %}w-full h-full object-cover {{ settings.thumbmails_color_scheme }}{% endcapture %}
-              {% else %}
-                {% capture image_class %}w-full h-full object-contain {{ settings.thumbmails_color_scheme }}{% endcapture %}
-              {% endif %}
-              {{ product.media[1]
-                | image_url: width: 900 
-                | image_tag: class: image_class, loading: 'lazy', alt: product.images[1].alt }}
+                {% if settings.thumbnails_object-sizing == "cover" %}
+                  {% capture image_class %}w-full h-full object-cover {{ settings.thumbmails_color_scheme }}{% endcapture %}
+                {% else %}
+                  {% capture image_class %}w-full h-full object-contain {{ settings.thumbmails_color_scheme }}{% endcapture %}
+                {% endif %}
+                {{ product.media[1] | image_url: width: 900 | image_tag: class: image_class, loading: 'lazy', alt: product.images[1].alt }}
+              </div>
             </div>
-          </div>
-        {% when 'video' %}
-          <div class="animation-500 absolute left-0 top-0 overflow-hidden opacity-0 group-hover:opacity-100 w-full h-full
+          {% when 'video' %}
+            <div class="animation-500 absolute left-0 top-0 overflow-hidden opacity-0 group-hover:opacity-100 w-full h-full
             {{ settings.thumbmails_color_scheme }} 
             {% if settings.thumbnails_border_style == 'image' %}
               border--radius
               {{ settings.thumbnails_color_border }} 
             {% endif %}">
-            <div class="object-cover overflow-hidden
+              <div class="object-cover overflow-hidden
               {{ settings.thumbnails_ratio }}">
-              {{ product.media[1] | video_tag: autoplay: true, loop: true, mute: true, controls: false, class: 'w-full h-full object-cover' }}
+                {{ product.media[1] | video_tag: autoplay: true, loop: true, mute: true, controls: false, class: 'w-full h-full object-cover' }}
+              </div>
             </div>
-          </div>
-      {% endcase %}
-    {%- endunless -%}
-   {% endif %}
+        {% endcase %}
+      {%- endunless -%}
+    {% endif %}
   </a>
 
   {%- comment -%}quick add desktop{%- endcomment -%}
   {% if product.available %}
     {% if settings.enable_quick_desktop %}
       <div class="no-js--hide md:block group-hover:opacity-100 group-focus-within:opacity-100 animation-500 group-hover:translate-y-0 group-focus-within:translate-y-0 absolute hidden w-full px-4 pb-4 -mt-16 translate-y-2 opacity-0">
-        <form action="/cart/add" 
-          method="post" 
+        <form
+          action="/cart/add"
+          method="post"
           enctype="multipart/form-data"
-          class="flex flex-wrap" 
+          class="flex flex-wrap"
           x-data="{
             defaultVariantId: {{ product.variants[0].id }},
             defaultSellingPlanId: 0,
@@ -179,52 +182,62 @@
             setTimeout(function(){ button_loading = false}, 500);
           ">
           {% if product.has_only_default_variant and product.selected_or_first_available_selling_plan_allocation == nil %}
-            <input 
-              name="id" 
-              :value="defaultVariantId" 
+            <input
+              name="id"
+              :value="defaultVariantId"
               type="hidden">
-            <label 
-              :for="'quantity_product_item_' + defaultVariantId + '_desktop' + '{{ source }}'" 
-              class="sr-only">{{ 'products.general.quantity' | t }}</label>
-            <input 
+            <label :for="'quantity_product_item_' + defaultVariantId + '_desktop' + '{{ source }}'" class="sr-only">{{ 'products.general.quantity' | t }}</label>
+            <input
               :id="'quantity_product_item_' + defaultVariantId + '_desktop' + '{{ source }}'"
               class="!hidden"
-              type="text" 
+              type="text"
               name="quantity"
-              value="1" 
-              min="1" 
-              max="" 
+              value="1"
+              min="1"
+              max=""
               x-model="quantity">
-            <button type="submit" 
-              role="button" 
-              class="!w-full btn btn--secondary btn--small btn--load"  
+            <button
+              type="submit"
+              role="button"
+              class="!w-full btn btn--secondary btn--small btn--load"
               :class="{ 'btn--loading' : cart_loading && button_loading }"
               :disabled="button_loading">
-              <div class="btn__content">{% if product.metafields.custom.button_text %}
-                {{ product.metafields.custom.button_text }}
-              {% else %}
-              {{ 'products.general.add_to_cart' | t }}
-              {% endif %}</div>
+              <div class="btn__content">
+                {% if product.metafields.custom.button_text %}
+                  {{ product.metafields.custom.button_text }}
+                {% else %}
+                  {{ 'products.general.add_to_cart' | t }}
+                {% endif %}
+              </div>
               <div class="btn__spinner">
-                {% render 'component__icon', icon: 'spinner', size: '24', class: '' %}
+                {% render 'component__icon'
+                  , icon: 'spinner'
+                  , size: '24'
+                  , class: '' %}
               </div>
             </button>
           {% else %}
-            <button type="button" 
-              class="!w-full btn btn--small btn--secondary btn--load" 
+            <button
+              type="button"
+              class="!w-full btn btn--small btn--secondary btn--load"
               :class="{ 'btn--loading' : button_loading }"
               :disabled="button_loading"
               @click="
                 button_loading = true; 
                 fetchAndRenderQuickAdd('{{ product.handle }}', 'product');
                 setTimeout(function(){ button_loading = false}, 500);">
-              <div class="btn__content">{% if product.metafields.custom.button_text %}
-                {{ product.metafields.custom.button_text }}
-              {% else %}
-              {{ 'products.general.add_to_cart' | t }}
-              {% endif %}</div>
+              <div class="btn__content">
+                {% if product.metafields.custom.button_text %}
+                  {{ product.metafields.custom.button_text }}
+                {% else %}
+                  {{ 'products.general.add_to_cart' | t }}
+                {% endif %}
+              </div>
               <div class="btn__spinner">
-                {% render 'component__icon', icon: 'spinner', size: '24', class: '' %}
+                {% render 'component__icon'
+                  , icon: 'spinner'
+                  , size: '24'
+                  , class: '' %}
               </div>
             </button>
           {% endif %}
@@ -232,19 +245,21 @@
       </div>
     {% endif %}
   {% else %}
- {% unless product.title contains 'bedrukt' %}
-    <div class="no-js--hide md:block group-hover:opacity-100 group-focus-within:opacity-100 animation-500 group-hover:translate-y-0 group-focus-within:translate-y-0 absolute hidden w-full px-4 pb-4 -mt-16 translate-y-2 opacity-0">
-      <button type="button" 
-        tabindex="-1"
-        class="!w-full btn btn--small btn--plain">
-        {{ 'products.general.sold_out' | t }}
-      </button>
-    </div>
-  {% endunless %}
+    {% unless product.title contains 'bedrukt' %}
+      <div class="no-js--hide md:block group-hover:opacity-100 group-focus-within:opacity-100 animation-500 group-hover:translate-y-0 group-focus-within:translate-y-0 absolute hidden w-full px-4 pb-4 -mt-16 translate-y-2 opacity-0">
+        <button
+          type="button"
+          tabindex="-1"
+          class="!w-full btn btn--small btn--plain">
+          {{ 'products.general.sold_out' | t }}
+        </button>
+      </div>
+    {% endunless %}
   {% endif %}
-  
+
   {%- comment -%}content{%- endcomment -%}
-  <a href="{{ product.url }}" 
+  <a
+    href="{{ product.url }}"
     tabindex="-1"
     class="hover:no-underline block no-underline whitespace-normal
     {{ settings.thumbnail_alignment }}
@@ -271,15 +286,15 @@
       {{ product.title }}
     </h3>
 
-  <span class="type--small p-0 opacity-75 mb-0.5 flex">
-{% if product.has_only_default_variant and settings.enable_sku %}
-{{ product.variants[0].sku }}
-{% endif %}
+    <span class="type--small p-0 opacity-75 mb-0.5 flex">
+      {% if product.has_only_default_variant and settings.enable_sku %}
+        {{ product.variants[0].sku }}
+      {% endif %}
 
-{% if product.metafields.woo.short_description_plain and product.metafields.woo.short_description_plain != '' %}
-&nbsp;&nbsp;|&nbsp;&nbsp;{{ product.metafields.woo.short_description_plain | t }}
-{% endif %}
-</span>
+      {% if product.metafields.woo.short_description_plain and product.metafields.woo.short_description_plain != '' %}
+        &nbsp;&nbsp;|&nbsp;&nbsp;{{ product.metafields.woo.short_description_plain | t }}
+      {% endif %}
+    </span>
 
     <ul class="flex flex-wrap items-center gap-x-1 gap-y-0.5 p-0 opacity-75 mb-0.5
       {{ settings.thumbnail_alignment }}">
@@ -308,14 +323,15 @@
       {% if settings.price_range_display == "show_range" %}
         <span class="type--small text-[#0A0A0A]" x-text="Shopify.formatMoney({{ product.price_min }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">{{ product.price_min | money }}</span>
         {% if product.price_varies %}
-          <pre class="type--base text-[#0A0A0A] m-0" x-text="' - ' + Shopify.formatMoney({{ product.price_max }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')"> - {{ product.price_max | money }}</pre>
+<pre class="type--base text-[#0A0A0A] m-0" x-text="' - ' + Shopify.formatMoney({{ product.price_max }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')"> - {{ product.price_max | money }}</pre>
         {% endif %}
       {% else %}
-      {% if product.price_varies %}
-        <span class="type--small" x-text="'{{ 'products.general.upp_from' | t }}' + ' ' + Shopify.formatMoney({{ product.price_min }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">{{ 'products.general.upp_from' | t }} {{ product.price_min | money }} </span>
+        {% if product.price_varies %}
+          <span class="type--small" x-text="'{{ 'products.general.upp_from' | t }}' + ' ' + Shopify.formatMoney({{ product.price_min }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')">{{ 'products.general.upp_from' | t }} {{ product.price_min | money }}
+          </span>
         {% else %}
-        <pre class="type--small m-0" x-text="Shopify.formatMoney({{ product.price_min }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')"> - {{ product.price_max | money }}</pre> 
-      {% endif %}
+<pre class="type--small m-0" x-text="Shopify.formatMoney({{ product.price_min }}, currency_symbol, {{ settings.enable_currency }}, '{{ settings.price_format }}', '{{ settings.currency_subunit_value }}')"> - {{ product.price_max | money }}</pre>
+        {% endif %}
       {% endif %}
       {% if product.compare_at_price_max > 0 %}
         <span class="type--small">
@@ -338,8 +354,8 @@
     {% endif %}
 
     {% if settings.enable_color_swatches %}
-      {%- assign color =  'general.color.color' | t -%}
-      {%- assign colorDowncase =  color | downcase -%}
+      {%- assign color = 'general.color.color' | t -%}
+      {%- assign colorDowncase = color | downcase -%}
       {% for product_option in product.options_with_values %}
         {%- if product_option.name == color or product_option.name == colorDowncase or product_option.name == "Colour" or product_option.name == "colour" -%}
           <div class="w-full flex flex-wrap gap-1 mb-0.5
@@ -348,15 +364,13 @@
               {%- capture swatch_image_filename -%}swatch-{{ value | handle }}.jpg{%- endcapture -%}
               {% assign swatch_image = images[swatch_image_filename] %}
 
-              <div 
-                class="btn btn--plain btn--smaller !w-5 !h-5 !min-w-0 !min-h-0 bg-center !p-0"
-                style="
+              <div class="btn btn--plain btn--smaller !w-5 !h-5 !min-w-0 !min-h-0 bg-center !p-0" style="
                   background-color: {{ value | handle }};
                   {% if swatch_image contains '.jpg' %}
                     background-image: url('{{ swatch_image | image_url }}');
                   {% endif %}
                 ">
-              </div>
+</div>
             {% endfor %}
           </div>
         {%- endif -%}
@@ -384,25 +398,27 @@
           </span>
           <span class="type--small">{{ product_qty }} {{ 'products.inventory.remaining' | t }}</span>
         {%- endcapture -%}
-        {% render 'component__badge', 
-          container_class: 'mt-2',
-          color: 'overlay-2',
-          icon: '',
-          content: badge %}
+        {% render 'component__badge'
+          , container_class: 'mt-2'
+          , color: 'overlay-2'
+          , icon: ''
+          , content: badge %}
       {% endif %}
     {% endif %}
 
   </a>
 
   {%- comment -%}quick add mobile{%- endcomment -%}
+
   {% if settings.enable_quick_mobile %}
     <div class="no-js--hide md:hidden absolute bottom-0 w-full pt-2
       {% if settings.thumbnails_border_style == 'thumbnail' %}pb-2 px-2{% endif %}">
       {% if product.available %}
-        <form action="/cart/add" 
-          method="post" 
+        <form
+          action="/cart/add"
+          method="post"
           enctype="multipart/form-data"
-          class="flex flex-wrap" 
+          class="flex flex-wrap"
           x-data="{
             defaultVariantId: {{ product.variants[0].id }},
             defaultSellingPlanId: 0,
@@ -415,65 +431,79 @@
             setTimeout(function(){ button_loading = false}, 500);
           ">
           {% if product.has_only_default_variant and product.selected_or_first_available_selling_plan_allocation == nil %}
-            <input type="hidden"
-              name="id" 
+            <input
+              type="hidden"
+              name="id"
               :value="defaultVariantId">
-            <label class="sr-only"
-              :for="'quantity_product_item_' + defaultVariantId  + '{{ source }}'" >
+            <label class="sr-only" :for="'quantity_product_item_' + defaultVariantId  + '{{ source }}'">
               {{ 'products.general.quantity' | t }}</label>
-            <input :id="'quantity_product_item_' + defaultVariantId  + '{{ source }}'"
-              class="!hidden" 
+            <input
+              :id="'quantity_product_item_' + defaultVariantId  + '{{ source }}'"
+              class="!hidden"
               type="text"
-              name="quantity" 
-              value="1" 
-              min="1" 
-              max="" 
+              name="quantity"
+              value="1"
+              min="1"
+              max=""
               x-model="quantity">
-            <button type="submit" 
-              role="button"  
-              class="!w-full btn btn--secondary btn--small btn--load"  
+            <button
+              type="submit"
+              role="button"
+              class="!w-full btn btn--secondary btn--small btn--load"
               :class="{ 'btn--loading' : cart_loading && button_loading }"
               :disabled="button_loading">
-              
-              <div class="btn__content">{% if product.metafields.custom.button_text %}
-                {{ product.metafields.custom.button_text }}
-              {% else %}
-              {{ 'products.general.add_to_cart' | t }}
-              {% endif %}</div>
+
+              <div class="btn__content">
+                {% if product.metafields.custom.button_text %}
+                  {{ product.metafields.custom.button_text }}
+                {% else %}
+                  {{ 'products.general.add_to_cart' | t }}
+                {% endif %}
+              </div>
               <div class="btn__spinner">
-                {% render 'component__icon', icon: 'spinner', size: '24', class: '' %}
+                {% render 'component__icon'
+                  , icon: 'spinner'
+                  , size: '24'
+                  , class: '' %}
               </div>
             </button>
           {% else %}
-            <button type="button" 
-              class="!w-full btn btn--small btn--secondary btn--load" 
+            <button
+              type="button"
+              class="!w-full btn btn--small btn--secondary btn--load"
               :class="{ 'btn--loading' : button_loading }"
               :disabled="button_loading"
               @click="
                 button_loading = true; 
                 fetchAndRenderQuickAdd('{{ product.handle }}', 'product');
                 setTimeout(function(){ button_loading = false}, 500);">
-              <div class="btn__content">{% if product.metafields.custom.button_text %}
-                {{ product.metafields.custom.button_text }}
-              {% else %}
-              {{ 'products.general.add_to_cart' | t }}
-              {% endif %}</div>
+              <div class="btn__content">
+                {% if product.metafields.custom.button_text %}
+                  {{ product.metafields.custom.button_text }}
+                {% else %}
+                  {{ 'products.general.add_to_cart' | t }}
+                {% endif %}
+              </div>
               <div class="btn__spinner">
-                {% render 'component__icon', icon: 'spinner', size: '24', class: '' %}
+                {% render 'component__icon'
+                  , icon: 'spinner'
+                  , size: '24'
+                  , class: '' %}
               </div>
             </button>
           {% endif %}
         </form>
       {% else %}
-        <button type="button"
-          class="!w-full btn btn--small btn--plain" tabindex="-1">
+        <button
+          type="button"
+          class="!w-full btn btn--small btn--plain"
+          tabindex="-1">
           {{ 'products.general.sold_out' | t }}
         </button>
       {% endif %}
     </div>
   {% endif %}
-  
+
   {%- comment -%}quick add popup{%- endcomment -%}
   <div id='js:quickAdd-product-{{ product.handle }}'></div>
-  
 </div>

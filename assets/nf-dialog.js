@@ -871,7 +871,7 @@ class NFCustomerOrders extends HTMLElement {
               <div class="volume_stocks align-items-center">
                 <div class="account-content skeleton">&nbsp;</div> <!-- Skeleton for Pieces_per_box -->
                 <div>${product.variants[0]?.sku ? `<span>&bull;</span><div class="sku">SKU: ${product.variants[0]?.sku}</div>` : ''}</div>
-                <div>${hasAdminPermission && window.String.customerTags?.includes(window.String.COA_ROLE_ADMIN) || !window.String.customerTags?.includes(window.String.COA_ROLE_ADMIN) && product.title.includes('custom') ? `<span>&bull;</span> <div class="sku">${translate("customer.account_drawer.stocked")}: <span class="nf-stocked-count">${totalInventory}</span></div>` : ''}</div>
+                <div>${hasAdminPermission && window.String.customerTags?.includes(window.String.COA_ROLE_ADMIN) || !window.String.customerTags?.includes(window.String.COA_ROLE_ADMIN) && product.title.includes('custom') ? `<span>&bull;</span><div class="sku">${translate("customer.account_drawer.stocked")}: <span class="nf-stocked-count">${totalInventory}</span></div>` : ''}</div>
                 <div class="sku times_order-wrapper"> <span>&bull;</span> ${translate("customer.account.times_ordered")}<span class="times_ordered skeleton skeleton-text times_ordered_text">&nbsp;</span></div>
                 <div>
                  <button class="nf-delete-button" data-product-id="${product.id}">

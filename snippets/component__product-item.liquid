@@ -1,37 +1,37 @@
 <!-- snippets/component__product-item.liquid -->
 {% comment %} 
-                                                                            Standard product thumbnail.
-                                                                            Accepts:
-                                                                              - product: liquid product object
-                                                                              - source: accessibility variable
-                                                                            
-                                                                            Usage:
-                                                                              {% render 'component__product-item', 
-                                                                                product: product, 
-                                                                                source: 'section-name' %}
-                                                                            Globals:
-                                                                              - settings.enable_animations: boolean to enable animations
-                                                                              - settings.thumbnails_border_style: border style of thumbnails
-                                                                              - settings.thumbnails_color_border: border color
-                                                                              - settings.thumbmails_color_scheme: color scheme of thumbnails
-                                                                              - settings.thumbnails_ratio: set the aspect ratio of thumbnails
-                                                                              - settings.thumbnails_object: set the image object sizing
-                                                                              - settings.type_thumbnail: typography for thumbnail titles
-                                                                              - settings.type_thumbnail_capitilization: set the capitilization for thumbnail titles
-                                                                              - settings.type_seperator: setting to pick the type of seperator between text
-                                                                              - settings.savings_badge: can be set to 'dollar', 'percent', or 'none'
-                                                                              - settings.stock_threshold: number to set the threshold for when to show stock count
-                                                                              - settings.enable_quick_desktop: boolean to enable quick add
-                                                                              - settings.enable_quick_mobile: boolean to enable quick add
-                                                                              - settings.enable_thumbnails_product_type: boolean to enable product type
-                                                                              - settings.enable_thumbnails_vendor: boolean to enable vendor
-                                                                              - settings.enable_thumbnails_variant_count: boolean to enable variant count
-                                                                            
-                                                                            Possible enhancements: 
-                                                                              - Add setting to disable video on hover, can cause performance issues. 
-                                                                            
-                                                                            Pro tips:
-                                                                              - Use this while looping through products. For example on collection product grids.
+                                                                                                        Standard product thumbnail.
+                                                                                                        Accepts:
+                                                                                                          - product: liquid product object
+                                                                                                          - source: accessibility variable
+                                                                                                        
+                                                                                                        Usage:
+                                                                                                          {% render 'component__product-item', 
+                                                                                                            product: product, 
+                                                                                                            source: 'section-name' %}
+                                                                                                        Globals:
+                                                                                                          - settings.enable_animations: boolean to enable animations
+                                                                                                          - settings.thumbnails_border_style: border style of thumbnails
+                                                                                                          - settings.thumbnails_color_border: border color
+                                                                                                          - settings.thumbmails_color_scheme: color scheme of thumbnails
+                                                                                                          - settings.thumbnails_ratio: set the aspect ratio of thumbnails
+                                                                                                          - settings.thumbnails_object: set the image object sizing
+                                                                                                          - settings.type_thumbnail: typography for thumbnail titles
+                                                                                                          - settings.type_thumbnail_capitilization: set the capitilization for thumbnail titles
+                                                                                                          - settings.type_seperator: setting to pick the type of seperator between text
+                                                                                                          - settings.savings_badge: can be set to 'dollar', 'percent', or 'none'
+                                                                                                          - settings.stock_threshold: number to set the threshold for when to show stock count
+                                                                                                          - settings.enable_quick_desktop: boolean to enable quick add
+                                                                                                          - settings.enable_quick_mobile: boolean to enable quick add
+                                                                                                          - settings.enable_thumbnails_product_type: boolean to enable product type
+                                                                                                          - settings.enable_thumbnails_vendor: boolean to enable vendor
+                                                                                                          - settings.enable_thumbnails_variant_count: boolean to enable variant count
+                                                                                                        
+                                                                                                        Possible enhancements: 
+                                                                                                          - Add setting to disable video on hover, can cause performance issues. 
+                                                                                                        
+                                                                                                        Pro tips:
+                                                                                                          - Use this while looping through products. For example on collection product grids.
 {% endcomment %}
 
 <div class="group relative w-full
@@ -48,11 +48,10 @@
     <div class="nf-wishlist-button">
       <button
         data-product-id="{{ product.id }}"
-        class="nf-add-to-favourite"
-        type="button"
-        {% unless customer %}
-        onclick="window.location.href='/pages/mytakeaware'; return false;"
-        {% endunless %}>
+        class="nf-add-to-favourite {% unless customer %}
+                          wishlist__logged_out
+                        {% endunless %}"
+        type="button">
         {% render 'icon-heart-regular' %}
       </button>
     </div>

@@ -256,6 +256,30 @@
 
                     {% render 'product__add'
                       ,  blocksettings: block.settings %}
+
+                      <style>                 
+                  .nf-wishlist-button button {
+                    margin-top: 5px;
+                  }
+                  </style>
+                  <div class="nf-wishlist-button">
+                    {% if customer  %}
+                    <div id="nf-wishlist-loading-spinner">
+                        <div class="nf-wishlist-spinner">&nbsp;</div>
+                    </div>
+                    {% endif %}
+                    <button
+                        data-product-id="{{ product.id }}"
+                        class="nf-add-to-favourite nf-add-to-favourite-pdp {% if customer %}nf-hidden{% endif %} {% unless customer %}
+                          wishlist__logged_out
+                        {% endunless %}"
+                        type="button"
+                        >
+                        {% render 'icon-heart-regular' %}
+                    </button>
+                    
+                </div>
+
                     {% if block.settings.enable_dynamic_checkout %}
                       <div class="px-4 mt-4">
                         {{ form | payment_button }}
@@ -472,6 +496,30 @@
 
                     {% render 'product__add'
                       ,  blocksettings: block.settings %}
+
+                      <style>                 
+                  .nf-wishlist-button button {
+                    margin-top: 5px;
+                  }
+                  </style>
+                  <div class="nf-wishlist-button">
+                    {% if customer  %}
+                    <div id="nf-wishlist-loading-spinner">
+                        <div class="nf-wishlist-spinner">&nbsp;</div>
+                    </div>
+                    {% endif %}
+                    <button
+                        data-product-id="{{ product.id }}"
+                        class="nf-add-to-favourite nf-add-to-favourite-pdp {% if customer %}nf-hidden{% endif %} {% unless customer %}
+                          wishlist__logged_out
+                        {% endunless %}"
+                        type="button"
+                        >
+                        {% render 'icon-heart-regular' %}
+                    </button>
+                    
+                </div>
+
                     {% if block.settings.enable_dynamic_checkout %}
                       <div class="px-4 mt-4">
                         {{ form | payment_button }}
@@ -614,6 +662,29 @@
 
                       {% render 'product__add'
                         ,  blocksettings: block.settings %}
+
+                        <style>                 
+                  .nf-wishlist-button button {
+                    margin-top: 5px;
+                  }
+                  </style>
+                  <div class="nf-wishlist-button">
+                    {% if customer  %}
+                    <div id="nf-wishlist-loading-spinner">
+                        <div class="nf-wishlist-spinner">&nbsp;</div>
+                    </div>
+                    {% endif %}
+                    <button
+                        data-product-id="{{ product.id }}"
+                        class="nf-add-to-favourite nf-add-to-favourite-pdp {% if customer %}nf-hidden{% endif %} {% unless customer %}
+                          wishlist__logged_out
+                        {% endunless %}"
+                        type="button">
+                        {% render 'icon-heart-regular' %}
+                    </button>
+                    
+                </div>
+
                       {% if block.settings.enable_dynamic_checkout %}
                         <div class="px-4 mt-4">
                           {{ form | payment_button }}

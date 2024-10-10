@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Customer Tag Checker
   if (!window.String.customerTags?.includes(window.String.COA_ROLE_ADMIN) && localStorage.getItem('currentAccount')) {
     localStorage.removeItem('currentAccount');
-    window.removeSessionRefreshTokenTracking();
+    // window.removeSessionRefreshTokenTracking();
     window.location.reload();
     return;
   }
@@ -32,6 +32,8 @@ document.addEventListener('DOMContentLoaded', function () {
   let customers = [];
   let searchField = 'company';
   const searchFields = document.querySelectorAll('.nf-search-field-btn');
+
+  
 
   searchFields.forEach(field => {
     field.addEventListener('click', function (e) {
@@ -64,6 +66,15 @@ document.addEventListener('DOMContentLoaded', function () {
       document.body.classList.remove('nf-dialog-open'); 
     }
   });
+  const wishlistLoggedOut = document.querySelectorAll('.wishlist__logged_out');
+  wishlistLoggedOut.forEach((item) => {
+    item.addEventListener('click', async () => {
+      drawer.setAttribute('open', '');
+      document.body.classList.add('nf-dialog-open');
+      await window.refreshTokenIfNeeded();
+    });
+  });
+
 
   document.body.addEventListener('click', async (event) => {
     const openDrawerButton = event.target.closest('.nf_show_dialog');
@@ -222,7 +233,7 @@ initDialogScroll();
   if (logoutBtn) {
     logoutBtn.addEventListener('click', () => {
       localStorage.removeItem('currentAccount');
-      window.removeSessionRefreshTokenTracking();
+      // window.removeSessionRefreshTokenTracking();
       window.location.reload();
     });
   }

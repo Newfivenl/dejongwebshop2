@@ -2749,3 +2749,13 @@ line-height: 1;
 .nf-stocked-count {
   font-size: 12px;
 }
+
+.nf-add-to-favourite-pdp{
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 10px;
+
+}

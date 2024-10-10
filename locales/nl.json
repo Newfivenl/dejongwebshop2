@@ -266,7 +266,8 @@
       "customer_list_email": "E-mail",
       "customer_list_city": "Plaats",
       "customer_list_first_name": "Voornaam",
-      "customer_list_last_name": "Achternaam"
+      "customer_list_last_name": "Achternaam",
+      "add_to_wishlist": "Toevoegen aan verlanglijst"
     },
     "account": {
       "heading": "Details",

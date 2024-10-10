@@ -257,7 +257,8 @@
       "customer_list_email": "Email",
       "customer_list_city": "City",
       "customer_list_first_name": "First Name",
-      "customer_list_last_name": "Last Name"
+      "customer_list_last_name": "Last Name",
+      "add_to_wishlist": "Add to Wishlist"
     },
     "account": {
       "heading": "Details",

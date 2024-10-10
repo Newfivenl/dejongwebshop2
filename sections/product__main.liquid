@@ -1,17 +1,17 @@
 <!-- sections/product__main.liquid -->
 {% comment %} 
-    Loop through different blocks to create a product page.
+      Loop through different blocks to create a product page.
 
-    Globals:
-      - settings.layout_horizontal: horizontaly margin
-      - settings.thumbmails_color_scheme: set color of items
+      Globals:
+        - settings.layout_horizontal: horizontaly margin
+        - settings.thumbmails_color_scheme: set color of items
 
-    Possible enhancements:
-      - Add alternative layouts
-      - Add support so upsell can fit within form
+      Possible enhancements:
+        - Add alternative layouts
+        - Add support so upsell can fit within form
 
-    Pro tips:
-      - Multiple product templates can be created from the theme editor.
+      Pro tips:
+        - Multiple product templates can be created from the theme editor.
 {% endcomment %}
 {% style %}
   .usp-wrap {
@@ -242,7 +242,7 @@
                         padding-top:{% if product.selected_or_first_available_selling_plan_allocation or product.has_only_default_variant == false %}{{ block.settings.spacing_top }}px;{% else %}0;{% endif %}
                         padding-bottom:{% if product.selected_or_first_available_selling_plan_allocation or product.has_only_default_variant == false %}{{ block.settings.spacing_bottom }}px;{% else %}0;{% endif %}">
                     {% render 'product__options'
-                      ,  blocksettings: block.settings %}
+                      , blocksettings: block.settings %}
                   </div>
                 {% endif %}
 
@@ -255,30 +255,8 @@
                           padding-bottom:{{ block.settings.spacing_bottom }}px;">
 
                     {% render 'product__add'
-                      ,  blocksettings: block.settings %}
+                      , blocksettings: block.settings %}
 
-                      <style>                 
-                  .nf-wishlist-button button {
-                    margin-top: 5px;
-                  }
-                  </style>
-                  <div class="nf-wishlist-button">
-                    {% if customer  %}
-                    <div id="nf-wishlist-loading-spinner">
-                        <div class="nf-wishlist-spinner">&nbsp;</div>
-                    </div>
-                    {% endif %}
-                    <button
-                        data-product-id="{{ product.id }}"
-                        class="nf-add-to-favourite nf-add-to-favourite-pdp {% if customer %}nf-hidden{% endif %} {% unless customer %}
-                          wishlist__logged_out
-                        {% endunless %}"
-                        type="button"
-                        >
-                        {% render 'icon-heart-regular' %}
-                    </button>
-                    
-                </div>
 
                     {% if block.settings.enable_dynamic_checkout %}
                       <div class="px-4 mt-4">
@@ -470,7 +448,7 @@
                       padding-top:{% if product.selected_or_first_available_selling_plan_allocation or product.has_only_default_variant == false %}{{ block.settings.spacing_top }}px;{% else %}0;{% endif %}
                       padding-bottom:{% if product.selected_or_first_available_selling_plan_allocation or product.has_only_default_variant == false %}{{ block.settings.spacing_bottom }}px;{% else %}0;{% endif %}">
                     {% render 'product__options'
-                      ,  blocksettings: block.settings %}
+                      , blocksettings: block.settings %}
                   </div>
                 {% endif %}
 
@@ -495,30 +473,8 @@
                       padding-bottom:{{ block.settings.spacing_bottom }}px;">
 
                     {% render 'product__add'
-                      ,  blocksettings: block.settings %}
+                      , blocksettings: block.settings %}
 
-                      <style>                 
-                  .nf-wishlist-button button {
-                    margin-top: 5px;
-                  }
-                  </style>
-                  <div class="nf-wishlist-button">
-                    {% if customer  %}
-                    <div id="nf-wishlist-loading-spinner">
-                        <div class="nf-wishlist-spinner">&nbsp;</div>
-                    </div>
-                    {% endif %}
-                    <button
-                        data-product-id="{{ product.id }}"
-                        class="nf-add-to-favourite nf-add-to-favourite-pdp {% if customer %}nf-hidden{% endif %} {% unless customer %}
-                          wishlist__logged_out
-                        {% endunless %}"
-                        type="button"
-                        >
-                        {% render 'icon-heart-regular' %}
-                    </button>
-                    
-                </div>
 
                     {% if block.settings.enable_dynamic_checkout %}
                       <div class="px-4 mt-4">
@@ -648,7 +604,7 @@
                           padding-top:{% if product.selected_or_first_available_selling_plan_allocation or product.has_only_default_variant == false %}{{ block.settings.spacing_top }}px;{% else %}0;{% endif %}
                           padding-bottom:{% if product.selected_or_first_available_selling_plan_allocation or product.has_only_default_variant == false %}{{ block.settings.spacing_bottom }}px;{% else %}0;{% endif %}">
                       {% render 'product__options'
-                        ,  blocksettings: block.settings %}
+                        , blocksettings: block.settings %}
                     </div>
                   {% endif %}
 
@@ -661,29 +617,8 @@
                             padding-bottom:{{ block.settings.spacing_bottom }}px;">
 
                       {% render 'product__add'
-                        ,  blocksettings: block.settings %}
+                        , blocksettings: block.settings %}
 
-                        <style>                 
-                  .nf-wishlist-button button {
-                    margin-top: 5px;
-                  }
-                  </style>
-                  <div class="nf-wishlist-button">
-                    {% if customer  %}
-                    <div id="nf-wishlist-loading-spinner">
-                        <div class="nf-wishlist-spinner">&nbsp;</div>
-                    </div>
-                    {% endif %}
-                    <button
-                        data-product-id="{{ product.id }}"
-                        class="nf-add-to-favourite nf-add-to-favourite-pdp {% if customer %}nf-hidden{% endif %} {% unless customer %}
-                          wishlist__logged_out
-                        {% endunless %}"
-                        type="button">
-                        {% render 'icon-heart-regular' %}
-                    </button>
-                    
-                </div>
 
                       {% if block.settings.enable_dynamic_checkout %}
                         <div class="px-4 mt-4">
@@ -762,78 +697,79 @@ padding-bottom: 70px;">
     <div class="contentflex">
       <div class="product-description md:max-w-[693px] w-full">
         {{ product.description }}
-        {% comment %} <div class="product_header">
-          <h2>{{ section.settings.product_header }}</h2>
-        </div>
-        <div class="product_sub_header">
-          <h4>{{ section.settings.product_subheader }}</h4>
-        </div>
-        <div class="description_box">
-          {{ section.settings.product_desc }}
-        </div> {% endcomment %}
+      {% comment %} <div class="product_header">
+                  <h2>{{ section.settings.product_header }}</h2>
+                </div>
+                <div class="product_sub_header">
+                  <h4>{{ section.settings.product_subheader }}</h4>
+                </div>
+                <div class="description_box">
+                  {{ section.settings.product_desc }}
+              </div> {% endcomment %}
       </div>
       <div class="table__specs max-w-[427px] w-full">
         <div class="w-full table-auto bg-[#E5ECF3] border-solid border-[#D0D1D4] py-[15px] md:px-[15px]  md:py-[30px] md:px-[26px]">
-          <div class="p-4 text-left pb-[18px] md:pb-[24px] text-base text-[#333]"><b>Extra Informatie</b>
-            </div>
-              <div class="even:bg-[#E5ECF3] odd:bg-white">
-                <div class="flex justify-between">
-                <div class="p-4 text-left text-[#333]">SKU</div>
-                <div class="p-4 text-right text-[#888888]">{{ product.variants.first.sku }}</div>
-              </div>
-              </div>
-{% if product.metafields.custom.voormalig_sku != empty %}
-    {% if product.variants.first.sku != product.metafields.custom.voormalig_sku %}
-        <div class="even:bg-[#E5ECF3] odd:bg-white">
+          <div class="p-4 text-left pb-[18px] md:pb-[24px] text-base text-[#333]">
+            <b>Extra Informatie</b>
+          </div>
+          <div class="even:bg-[#E5ECF3] odd:bg-white">
             <div class="flex justify-between">
-                <div class="p-4 text-left text-[#333]">Voormalig SKU</div>
-                <div class="p-4 text-right text-[#888888]">{{ product.metafields.custom.voormalig_sku }}</div>
+              <div class="p-4 text-left text-[#333]">SKU</div>
+              <div class="p-4 text-right text-[#888888]">{{ product.variants.first.sku }}</div>
             </div>
-        </div>
-    {% endif %}
-{% endif %}
-            {% if product.metafields.woo.short_description_plain.value %}
+          </div>
+          {% if product.metafields.custom.voormalig_sku != empty %}
+            {% if product.variants.first.sku != product.metafields.custom.voormalig_sku %}
               <div class="even:bg-[#E5ECF3] odd:bg-white">
                 <div class="flex justify-between">
-                <div class="p-4 text-left text-[#333]">Stuks per doos</div>
-                <div class="p-4 text-right text-[#888888]">{{  product.metafields.woo.short_description_plain.value }}</div>
-              </div>
-              </div>
-            {% endif %}
-              {% if product.metafields.woo.length.value and product.metafields.woo.length.value != "0" %}
-              <div class="even:bg-[#E5ECF3] odd:bg-white">
-                <div class="flex justify-between">
-                <div class="p-4 text-left text-[#333]">Lengte</div>
-                <div class="p-4 text-right text-[#888888]">{{  product.metafields.woo.length.value }}</div>
-              </div>
-              </div>
-            {% endif %}
-            {% if product.metafields.woo.height.value and product.metafields.woo.height.value != "0" %}
-              <div class="even:bg-[#E5ECF3] odd:bg-white">
-                <div class="flex justify-between">
-                <div class="p-4 text-left text-[#333]">Hoogte</div>
-                <div class="p-4 text-right text-[#888888]">{{  product.metafields.woo.height.value }}</div>
-              </div>
-              </div>
-            {% endif %}
-            {% if product.metafields.woo.width.value and product.metafields.woo.width.value != "0" %}
-              <div class="even:bg-[#E5ECF3] odd:bg-white">
-                <div class="flex justify-between">
-                <div class="p-4 text-left text-[#333]">Breedte</div>
-                <div class="p-4 text-right text-[#888888]">{{  product.metafields.woo.width.value }}</div>
-              </div>
-              </div>
-            {% endif %}
-            {% if product.metafields.woo_attribute.Diameter.value %}
-              <div class="even:bg-[#E5ECF3] odd:bg-white">
-                <div class="flex justify-between">
-                  <div class="p-4 text-left text-[#333]">Diameter</div>
-                  <div class="p-4 text-right text-[#888888]">{{  product.metafields.woo_attribute.Diameter.value }}</div>
+                  <div class="p-4 text-left text-[#333]">Voormalig SKU</div>
+                  <div class="p-4 text-right text-[#888888]">{{ product.metafields.custom.voormalig_sku }}</div>
                 </div>
               </div>
             {% endif %}
+          {% endif %}
+          {% if product.metafields.woo.short_description_plain.value %}
+            <div class="even:bg-[#E5ECF3] odd:bg-white">
+              <div class="flex justify-between">
+                <div class="p-4 text-left text-[#333]">Stuks per doos</div>
+                <div class="p-4 text-right text-[#888888]">{{ product.metafields.woo.short_description_plain.value }}</div>
+              </div>
+            </div>
+          {% endif %}
+          {% if product.metafields.woo.length.value and product.metafields.woo.length.value != "0" %}
+            <div class="even:bg-[#E5ECF3] odd:bg-white">
+              <div class="flex justify-between">
+                <div class="p-4 text-left text-[#333]">Lengte</div>
+                <div class="p-4 text-right text-[#888888]">{{ product.metafields.woo.length.value }}</div>
+              </div>
+            </div>
+          {% endif %}
+          {% if product.metafields.woo.height.value and product.metafields.woo.height.value != "0" %}
+            <div class="even:bg-[#E5ECF3] odd:bg-white">
+              <div class="flex justify-between">
+                <div class="p-4 text-left text-[#333]">Hoogte</div>
+                <div class="p-4 text-right text-[#888888]">{{ product.metafields.woo.height.value }}</div>
+              </div>
+            </div>
+          {% endif %}
+          {% if product.metafields.woo.width.value and product.metafields.woo.width.value != "0" %}
+            <div class="even:bg-[#E5ECF3] odd:bg-white">
+              <div class="flex justify-between">
+                <div class="p-4 text-left text-[#333]">Breedte</div>
+                <div class="p-4 text-right text-[#888888]">{{ product.metafields.woo.width.value }}</div>
+              </div>
+            </div>
+          {% endif %}
+          {% if product.metafields.woo_attribute.Diameter.value %}
+            <div class="even:bg-[#E5ECF3] odd:bg-white">
+              <div class="flex justify-between">
+                <div class="p-4 text-left text-[#333]">Diameter</div>
+                <div class="p-4 text-right text-[#888888]">{{ product.metafields.woo_attribute.Diameter.value }}</div>
+              </div>
+            </div>
+          {% endif %}
         </div>
-      </div> 
+      </div>
     </div>
   </div>
 

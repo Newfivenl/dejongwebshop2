@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   const wishlistLoggedOut = document.querySelectorAll('.wishlist__logged_out');
   wishlistLoggedOut.forEach((item) => {
-    item.addEventListener('click', async () => {
+    item.addEventListener('click', async() => {
       drawer.setAttribute('open', '');
       document.body.classList.add('nf-dialog-open');
       await window.refreshTokenIfNeeded();

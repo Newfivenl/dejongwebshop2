@@ -1784,11 +1784,12 @@ svg {
   overflow: hidden;
   max-height: 0; 
   transition: max-height 0.3s ease; 
+  width: 400px;
 }
 
 .nf-dropdown-content.active {
   display: block;
-  max-height: 200px;
+  max-height: 400px;
 }
 
 .nf-dropdown-list {
@@ -1840,7 +1841,9 @@ svg {
 @media screen and (max-width: 991px) {
   .nf-dropdown-content{
     top: 12vw;
+    width: 400px;
   }
+  
 }
 
 .nf-drawer summary svg{

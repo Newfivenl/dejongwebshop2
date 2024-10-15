@@ -682,16 +682,16 @@ class NFCustomerOrders extends HTMLElement {
         `<div class="nf-my-orders__table recently_ordered js-list">
           ${productGridHTML}
         </div>
-        <div class="nf__subtotal">
+        
+        <div class="re-order-cta-btn--wrapper">
+          <div class="nf__subtotal">
             <div class="nf__totals--row">
                 <div class="nf__totals--text">${window.String.subtotalString} 
                 <span class="nf__totals--lines-text">(0 ${window.String.product_items}, 0 ${window.String.line_item})</span>
                 </div>
                 <div class="nf__totals--price">${window.String.shopCurrency} <span class="nf__totals--price-text skeleton skeleton-text">&nbsp;</span></div>
             </div>
-            
         </div>
-        <div class="re-order-cta-btn--wrapper">
           <button class="re-order-cta orderlist-re-order-btn disabled">
             ${window.String.reOrderButtonText}
           </button>

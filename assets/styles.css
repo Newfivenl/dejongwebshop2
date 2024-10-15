@@ -3509,9 +3509,9 @@ html {
 .login .field + a {
   margin-top: 1rem;
 }
-.login p {
+/* .login p {
   margin: 1.5rem 0;
-}
+} */
 .login h3 {
   margin-top: 1.5rem;
   text-align: left;

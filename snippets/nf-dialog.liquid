@@ -736,7 +736,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                         {% if customer.current_company.name and customer.current_location.name %}
                           {% if customer.first_name %}
-                            <a href="https://shopify.com/{{ shop.id }}/account/profile class="customer_name_link">
+                            <a href="https://shopify.com/{{ shop.id }}/account/profile" class="customer_name_link">
                               <span class="customer_name"> {{ customer.first_name }} {{ customer.last_name }}</span>
                             </a>
                           {% else %}

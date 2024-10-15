@@ -2652,7 +2652,7 @@ line-height: 1;
 
 .nf-row-overstock {
   border-bottom: 1px solid #FDD9D8 !important;
-  background-color: #fdf5f6;
+  background-color: #fdf5f6 !important;
 }
 
 /* Subtotal Wrapper */

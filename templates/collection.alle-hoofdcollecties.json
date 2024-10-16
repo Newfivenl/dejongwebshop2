@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "banner": {
@@ -21,7 +30,7 @@
       "type": "banner",
       "disabled": true,
       "settings": {
-        "image_background_desktop": "shopify:\/\/shop_images\/Banner_Toykits.png",
+        "image_background_desktop": "shopify://shop_images/Banner_Toykits.png",
         "show_entire_image": false,
         "enable_lazy_loading": false,
         "show_video_background_mobile": true,
@@ -205,7 +214,7 @@
       "disabled": true,
       "settings": {
         "heading": "Draagtrays voor 2 en 4 bekers",
-        "content": "<p>Het meenemen van warme en koude dranken is in deze huidige tijd explosief gegroeid. Van een tankstation tot aan een cafetaria, praktisch elke doelgroep in de horeca doet aan “take away”.<br\/><br\/>En daarbij komt kijken dat alles wat te maken heeft met het milieu een belangrijk aspect is. Omdat duurzaam ondernemen bij ons al jarenlang hoog op de agenda staat hebben wij 2 verschillende formaten draagtrays ontwikkeld.<br\/><br\/>Beide modellen zijn gemaakt van hernieuwbare en duurzame plantaardige vezels uit bagasse pulp.<br\/><br\/>Dit zijn stengelresten van suikerriet die als milieuvriendelijk bekend staan. Onze trays hebben dezelfde composteerbare samenstelling dan onze borden en frietbakjes.<\/p>",
+        "content": "<p>Het meenemen van warme en koude dranken is in deze huidige tijd explosief gegroeid. Van een tankstation tot aan een cafetaria, praktisch elke doelgroep in de horeca doet aan “take away”.<br/><br/>En daarbij komt kijken dat alles wat te maken heeft met het milieu een belangrijk aspect is. Omdat duurzaam ondernemen bij ons al jarenlang hoog op de agenda staat hebben wij 2 verschillende formaten draagtrays ontwikkeld.<br/><br/>Beide modellen zijn gemaakt van hernieuwbare en duurzame plantaardige vezels uit bagasse pulp.<br/><br/>Dit zijn stengelresten van suikerriet die als milieuvriendelijk bekend staan. Onze trays hebben dezelfde composteerbare samenstelling dan onze borden en frietbakjes.</p>",
         "button_label": "",
         "button_url": "",
         "spacing_top": 80,
@@ -299,6 +308,12 @@
             "collection": "catering-dozen"
           }
         },
+        "collection_ebrn6B": {
+          "type": "collection",
+          "settings": {
+            "collection": "cateringschalen"
+          }
+        },
         "collection_DBrrQ7": {
           "type": "collection",
           "settings": {
@@ -334,12 +349,6 @@
           "settings": {
             "collection": "saladebakken-en-bowls"
           }
-        },
-        "collection_DADhem": {
-          "type": "collection",
-          "settings": {
-            "collection": "soepbekers"
-          }
         }
       },
       "block_order": [
@@ -356,13 +365,13 @@
         "collection_LBzVN4",
         "collection_XqxhCq",
         "collection_grJ3Qb",
+        "collection_ebrn6B",
         "collection_DBrrQ7",
         "collection_bFabzU",
         "collection_Rg9JrY",
         "collection_8QJJLb",
         "collection_Wg9pYN",
-        "collection_t6xX4f",
-        "collection_DADhem"
+        "collection_t6xX4f"
       ],
       "settings": {
         "heading": "",
@@ -385,6 +394,12 @@
     "collection_grid_agzkUf": {
       "type": "collection-grid",
       "blocks": {
+        "collection_bRb6b8": {
+          "type": "collection",
+          "settings": {
+            "collection": "soepbekers"
+          }
+        },
         "collection_LBYYTc": {
           "type": "collection",
           "settings": {
@@ -465,6 +480,7 @@
         }
       },
       "block_order": [
+        "collection_bRb6b8",
         "collection_LBYYTc",
         "collection_XNTdke",
         "collection_ihMe9X",
@@ -503,10 +519,10 @@
         "template--20644271554834__153e1f9d-36b0-4e41-84cd-6510d2d62de1-icon-3": {
           "type": "icon",
           "settings": {
-            "icon": "shopify:\/\/shop_images\/icon-usp-shipping_1.svg",
+            "icon": "shopify://shop_images/icon-usp-shipping_1.svg",
             "icon_height": "h-14",
             "heading": "Kwaliteit & prijs",
-            "content": "<p>Wij helpen u met producten van de hoogste kwaliteit voor de scherpste prijs.<\/p>",
+            "content": "<p>Wij helpen u met producten van de hoogste kwaliteit voor de scherpste prijs.</p>",
             "enable_padding": true,
             "color_scheme": "color__bg-body color__text",
             "color_border": "!color__border-transparent",
@@ -519,10 +535,10 @@
         "template--20644271554834__153e1f9d-36b0-4e41-84cd-6510d2d62de1-icon-2": {
           "type": "icon",
           "settings": {
-            "icon": "shopify:\/\/shop_images\/icon-usp-reward.svg",
+            "icon": "shopify://shop_images/icon-usp-reward.svg",
             "icon_height": "h-14",
             "heading": "Betrouwbaar",
-            "content": "<p>Ons familiebedrijf is al meer dan 35 jaar wereldwijd actief. <\/p>",
+            "content": "<p>Ons familiebedrijf is al meer dan 35 jaar wereldwijd actief. </p>",
             "enable_padding": true,
             "color_scheme": "color__bg-body color__text",
             "color_border": "!color__border-transparent",
@@ -535,10 +551,10 @@
         "template--20644271554834__153e1f9d-36b0-4e41-84cd-6510d2d62de1-icon-1": {
           "type": "icon",
           "settings": {
-            "icon": "shopify:\/\/shop_images\/icon-usp-shipping_1.svg",
+            "icon": "shopify://shop_images/icon-usp-shipping_1.svg",
             "icon_height": "h-14",
             "heading": "Verzending",
-            "content": "<p>Vanaf € 250,- geen verzendkosten, levertijd circa 3 werkdagen.<br\/><\/p>",
+            "content": "<p>Vanaf € 250,- geen verzendkosten, levertijd circa 3 werkdagen.<br/></p>",
             "enable_padding": true,
             "color_scheme": "color__bg-body color__text",
             "color_border": "!color__border-transparent",

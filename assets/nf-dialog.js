@@ -861,7 +861,7 @@ class NFCustomerOrders extends HTMLElement {
         <div class="wishlist_row" data-product-id="${product.id}" data-variant="${product.variants[0].id}">
           <div class="product-image-box">
             ${hasAdminPermission ? '<div class="nf-drag-handle nf-js-drag-handle"></div>' : ''}
-            <a href="/products/${product?.handle}" class="no-decor">
+            <a href="${product?.onlineStoreUrl}" class="no-decor">
               <div class="image-box">
                 <div class="image_wrapper">
                   <img src="${product?.featuredImage?.url}&width=100&height=100" style="width: 100%" />
@@ -871,7 +871,7 @@ class NFCustomerOrders extends HTMLElement {
           </div>
           <div class="desc-box">
             <div>
-              <a href="/products/${product.handle}">
+              <a href="${product?.onlineStoreUrl}">
                 <p class="product_title">${product.title}</p>
               </a>
             </div>
@@ -1146,7 +1146,7 @@ class NFCustomerOrders extends HTMLElement {
       return `
       ${item ? `<div class="wishlist_row" data-variant-id="${variantId}" data-available="${isAvailable}">
       <div class="product-image-box">
-        <a href="/${productUrl}" class="no-decor">
+        <a href="${productUrl}" class="no-decor">
           ${imageUrl ? `<div class="image-box">
           <div class="image_wrapper">
             <img style="width: 100px" src="${imageUrl}">
@@ -1156,7 +1156,7 @@ class NFCustomerOrders extends HTMLElement {
       </div>
       <div class="desc-box">
         <div>
-          <a href="/${productUrl}">
+          <a href="${productUrl}">
             <p class="product_title">${productTitle}</p>
           </a>
         </div>

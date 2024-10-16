@@ -31,7 +31,7 @@
   <script>
     window.customerOrdersApp = {
       url: '{{ settings.customer_orders_app_api_base_url | default: 'https://de-jong-coa--development.gadget.app/' }}',
-      urlProxy: '/apps/de-jong-coa-dev-proxy/',
+      urlProxy: '/apps/de-jong-coa-proxy/',
       authToken: null,
       payload: '{{ xCOAppPayload }}',
     };
@@ -45,7 +45,7 @@
     headers,
     redirect: 'follow',
       };
-      const tokenResponse = await fetch('/apps/de-jong-coa-dev-proxy/api/v1/customer/token', fetchOptions);
+      const tokenResponse = await fetch('/apps/de-jong-coa-proxy/api/v1/customer/token', fetchOptions);
       const tokenBody = await tokenResponse.text();
       const token = JSON.parse(tokenBody);
 

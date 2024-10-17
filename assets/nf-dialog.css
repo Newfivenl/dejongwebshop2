@@ -1824,6 +1824,34 @@ svg {
   height: 16px;
 }
 
+.nf-dropdown-list li.location{
+  display: flex;
+  gap: 5px;
+  align-items: center;  
+  text-decoration: none;
+}
+
+.nf-dropdown-list li span{
+  font-size: 14px;
+}
+
+.nf-dropdown-list li.logout_link a{
+  display: flex;
+  gap: 5px;
+  align-items: center;  
+  text-decoration: none;
+}
+.nf-dropdown-list li.logout_link a span{
+      display: flex;
+}
+.nf-dropdown-list li.logout_link:hover {
+  background-color: #f1f1f1;
+}
+
+.nf-dropdown-list li.location:hover  {
+  background-color: #f1f1f1;
+}
+
 
 
 .nf-dropdown .nf-dropdown-caret {

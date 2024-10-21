@@ -651,6 +651,8 @@ class NFCustomerOrders extends HTMLElement {
         this.updateWishlistIcon(button, productId);
       });
 
+     
+
       const wishlistLoader = document.querySelector('#nf-wishlist-loading-spinner');
       const addToFavouritePDP = document.querySelector('.nf-add-to-favourite-pdp');
       if(wishlistLoader) {
@@ -883,6 +885,7 @@ class NFCustomerOrders extends HTMLElement {
                 <div class="account-content skeleton">&nbsp;</div> <!-- Skeleton for Pieces_per_box -->
                 <div>${product.variants[0]?.sku ? `<span>&bull;</span><div class="sku">SKU: ${product.variants[0]?.sku}</div>` : ''}</div>
                 <div>${hasAdminPermission && window.String.customerTags?.includes(window.String.COA_ROLE_ADMIN) || !window.String.customerTags?.includes(window.String.COA_ROLE_ADMIN) && product.title.includes('custom') ? `<span>&bull;</span><div class="sku">${translate("customer.account_drawer.stocked")}: <span class="nf-stocked-count">${totalInventory}</span></div>` : ''}</div>
+                
                 <div class="sku times_order-wrapper"> <span>&bull;</span> ${translate("customer.account.times_ordered")}<span class="times_ordered skeleton skeleton-text times_ordered_text">&nbsp;</span></div>
                 <div>
                  <button class="nf-delete-button" data-product-id="${product.id}">
@@ -891,6 +894,7 @@ class NFCustomerOrders extends HTMLElement {
                 </div>
               </div>
             </div>
+            
             ${isVariantAvailable(product.variants[0]) ? `
               <div class="quantity-spinner orderlist-quantity-spinner">
                 <div class="quantity__box">
@@ -900,12 +904,33 @@ class NFCustomerOrders extends HTMLElement {
                 </div>
                 
               </div>
+              
+            ` : ''}
+            ${!isVariantAvailable(product.variants[0]) ? `
+              <div class="alternative__products">
+                <details data-target="${product.id}">
+                  <summary class="facets__summary caption-large focus-offset">
+                    <div>
+                      <div class="alternate-box">
+                        ${window.pageIcon}
+                        <span>Toon alternatieve producten</span>
+                      </div>
+                    </div>
+                  </summary>
+                </details>
+              </div>
             ` : ''}
           </div>
+          
         </div>
-      </div>`;
+        <div id="${product.id}" class="alternative__product-box">
+          <span class="alternative__products-title">Alternatieve producten</span>
+        </div>
+      </div>
+      `;
 
     return productHTML;
+    
   };
 
   debouncedAddProductToOrderList = debounce(async (productId) => {

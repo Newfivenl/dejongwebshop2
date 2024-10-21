@@ -572,6 +572,21 @@ document.addEventListener('DOMContentLoaded', function () {
   document.addEventListener('productListUpdated', () => {
     const wishlistProductList = document.querySelector('.js-list-wishlist');
     const orderListProductList = document.querySelector('.js-list');
+
+    document.querySelectorAll('details').forEach(function (details) {
+      details.addEventListener('toggle', function () {
+        var targetId = this.getAttribute('data-target');
+        var targetContent = document.getElementById(targetId);
+        if (this.open) {
+          targetContent.style.display = 'block';
+          console.log('test open');
+        } else {
+          targetContent.style.display = 'none';
+          console.log('test close');
+        }
+      });
+    });
+
     if (wishlistProductList) {
       setupDragAndDropWishlist(wishlistProductList);
     }
